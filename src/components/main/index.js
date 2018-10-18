@@ -6,8 +6,10 @@ import {
   Switch
 } from "react-router-dom";
 
-import Users from "../Users";
-import Subs from "./Subs";
+import "./styles.css"
+import Users from "../users";
+import Subs from "../subs";
+import Posts from "../posts";
 
 class Main extends Component {
   render() {
@@ -18,11 +20,13 @@ class Main extends Component {
           <ul className="header">
             <li><NavLink exact to="/">Home</NavLink></li>
             <li><NavLink to="/subs">Subs</NavLink></li>
+            <li><NavLink to="/users">Users</NavLink></li>
           </ul>
           <div className="content">
             <Switch>
-              <Route exact path="/" component={Home}/>
-              <Route path="/subs" component={Stuff}/>
+              <Route exact path="/" component={Posts}/>
+              <Route path="/subs" component={Subs}/>
+              <Route path="/users" component={Users}/>              
             </Switch>
           </div>
         </div>

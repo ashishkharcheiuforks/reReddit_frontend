@@ -1,11 +1,11 @@
 import React, { Component } from "react";
  
-class Users extends Component {
+class Posts extends Component {
   render() {
     return (
       <div>
-        <h2>Users</h2>
-        <p>List of Users:</p>
+        <h2>Posts</h2>
+        <p>Top Posts:</p>
         <ol>
           <li>Nulla pulvinar diam</li>
           <li>Facilisis bibendum</li>
@@ -18,4 +18,4 @@ class Users extends Component {
   }
 }
  
-export default Stuff;
+export default Posts;

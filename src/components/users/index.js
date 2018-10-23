@@ -1,5 +1,7 @@
 import React, { Component } from "react";
 import axios from 'axios';
+
+import { getUserList } from '../../api/users'
  
 class Users extends Component {
   constructor(props) {
@@ -11,13 +13,16 @@ class Users extends Component {
   }
   
   componentDidMount() {
-    axios.get('http://127.0.0.1:8000/users/')
-      .then(response => this.setState({users: response.data}))
+    // axios.get('http://127.0.0.1:8000/users/')
+    //   .then(response => this.setState({users: response.data}))
+    this.setState({users: getUserList()})
+    
   }
   
   
   
   render() {
+    console.log(this.state.users)
     const user_list = this.state.users.map(
       (user, idx) => <li key={idx}>{user.username}</li>
     )    

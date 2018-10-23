@@ -7,7 +7,7 @@ class Posts extends Component {
         <h2>Posts</h2>
         <p>Top Posts:</p>
         <ol>
-          <li>Nulla pulvinar diam</li>
+          <li>{process.env.REACT_APP_DEV_API_ROOT}</li>
           <li>Facilisis bibendum</li>
           <li>Vestibulum vulputate</li>
           <li>Eget erat</li>

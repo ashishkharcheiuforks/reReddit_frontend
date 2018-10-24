@@ -1,4 +1,4 @@
-import React, { Component } from "react";
+import React, { Component } from 'react';
 import axios from 'axios';
 
 import { getUserList } from '../../api/users'
@@ -22,10 +22,6 @@ class Users extends Component {
   
   
   render() {
-    console.log(this.state.users)
-    const user_list = this.state.users.map(
-      (user, idx) => <li key={idx}>{user.username}</li>
-    )    
     return (
       <div>
         <h2>Users</h2>

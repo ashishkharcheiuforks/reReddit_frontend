@@ -1,37 +1,33 @@
 import React, { Component } from 'react';
-import axios from 'axios';
+import { connect } from 'react-redux';
 
-import { getUserList } from '../../api/users'
+import fetchUserList from '../../actions/'
+import UserList from '../../components/userList';
  
-class Users extends Component {
-  constructor(props) {
-    super(props);
-    
-    this.state = {
-        users: []
-    }
-  }
-  
+class UserListContainer extends Component {
   componentDidMount() {
     // axios.get('http://127.0.0.1:8000/users/')
     //   .then(response => this.setState({users: response.data}))
-    this.setState({users: getUserList()})
-    
+    //this.setState({users: getUserList()})
+    this.props.fetchUserList();    
   }
   
-  
-  
   render() {
-    return (
-      <div>
-        <h2>Users</h2>
-        <p>List of Users:</p>
-        <ol>
-          {user_list}
-        </ol>
-      </div>
-    );
+    return <UserList {...this.props} />
   }
 }
  
-export default Users;
+const mapStateToProps = state => ({
+  loading: state.loading,
+  users: state.users,
+  error: state.error
+});
+
+const mapDispatchToProps = dispatch => ({
+  fetchUserList: () => dispatch(fetchUserList())
+});
+
+export default connect (
+  mapStateToProps,
+  mapDispatchToProps,
+)(UserListContainer)

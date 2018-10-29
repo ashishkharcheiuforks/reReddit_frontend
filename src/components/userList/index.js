@@ -10,18 +10,18 @@ class UserList extends Component {
       );
     }
       
-    const userList = users.map((user) =>
+    const userList = users.map((user, idx) => {
       const { 
-        usename,
+        username,
         karma
       } = user;
       
-      return (<li> {username} has {karma} karma points </li>);
-    )
+      return (<li key={idx}> {username} has {karma} karma</li>);
+    });
     return (
-      <ul> userList </ul>
+      <ul> {userList} </ul>
     );
   }
 }
 
-export default UserList
+export default UserList;

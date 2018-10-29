@@ -6,8 +6,8 @@ import {
   Switch
 } from "react-router-dom";
 
-import "./styles.css"
-import Users from "../users";
+import "./styles.css";
+import UserListContainer from '../../containers/users';
 import Subs from "../subs";
 import Posts from "../posts";
 
@@ -26,7 +26,7 @@ class Main extends Component {
             <Switch>
               <Route exact path="/" component={Posts}/>
               <Route path="/subs" component={Subs}/>
-              <Route path="/users" component={Users}/>              
+              <Route path="/users" component={UserListContainer}/>              
             </Switch>
           </div>
         </div>

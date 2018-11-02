@@ -12,24 +12,26 @@ import {
 import './index.css';
 import store from './store'
 import UserListContainer from './containers/users';
-import Subs from "./components/subs";
-import Posts from "./components/posts";
+import Subs from './components/subs';
+import Posts from './components/posts';
 import NavBar from './components/NavBar';
 
 ReactDOM.render(
   <Provider store = {store}>
-      <BrowserRouter>
-        <div>
-          <NavBar />
-          <div className="content">
-            <Switch>
-              <Route exact path="/" component={Posts}/>
-              <Route path="/subs" component={Subs}/>
-              <Route path="/users" component={UserListContainer}/>              
-            </Switch>
+        <BrowserRouter>
+          <div>
+            <NavBar />
+            <div className='main-layout'>
+              <div className="content">
+                <Switch>
+                  <Route exact path="/" component={Posts}/>
+                  <Route path="/subs" component={Subs}/>
+                  <Route path="/users" component={UserListContainer}/>              
+                </Switch>
+              </div>
+            </div>
           </div>
-        </div>
-      </BrowserRouter>
+        </BrowserRouter>
   </Provider>, 
   document.getElementById('root')
 );

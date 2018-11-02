@@ -4,12 +4,7 @@ import { LinkContainer } from 'react-router-bootstrap';
 
 import "./styles.css"
 
-const NavBar = (props) => (
-  /*<header className="navbar">
-      <NavLink to="/" activeClassName="navlink-active">Home</NavLink>
-      <NavLink to="/subs" activeClassName="navlink-active">Subs</NavLink>
-      <NavLink to="/subs" activeClassName="navlink-active">Users</NavLink>
-  </header>*/
+const NavBar = () => (
   
   <div>
     <Navbar inverse>

@@ -13,7 +13,7 @@ import './index.css';
 import store from './store'
 import UserListContainer from './containers/users';
 import Subs from './components/subs';
-import Posts from './components/posts';
+import PostList from './components/PostList';
 import NavBar from './components/NavBar';
 
 ReactDOM.render(
@@ -24,7 +24,7 @@ ReactDOM.render(
             <div className='main-layout'>
               <div className="content">
                 <Switch>
-                  <Route exact path="/" component={Posts}/>
+                  <Route exact path="/" component={PostList}/>
                   <Route path="/subs" component={Subs}/>
                   <Route path="/users" component={UserListContainer}/>              
                 </Switch>

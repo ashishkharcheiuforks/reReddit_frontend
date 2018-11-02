@@ -6,9 +6,6 @@ import UserList from '../../components/userList';
  
 class UserListContainer extends Component {
   componentDidMount() {
-    // axios.get('http://127.0.0.1:8000/users/')
-    //   .then(response => this.setState({users: response.data}))
-    //this.setState({users: getUserList()})
     this.props.fetchUserList();    
   }
   
@@ -30,4 +27,4 @@ const mapDispatchToProps = dispatch => ({
 export default connect (
   mapStateToProps,
   mapDispatchToProps,
-)(UserListContainer)
+)(UserListContainer);

@@ -13,7 +13,7 @@ const NavBar = (props) => (
   </header>*/
   
   <div>
-    <Navbar inverse className='navbar-custom'>
+    <Navbar inverse>
       <Navbar.Header>
         <Navbar.Brand>
           <a href="/">React-Bootstrap</a>

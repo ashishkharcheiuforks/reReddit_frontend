@@ -12,7 +12,7 @@ import "./styles.css"
 const NavBar = () => (
   
   <div>
-    <Navbar inverse fixed fluid>
+    <Navbar inverse fixed="true" fluid>
       <Navbar.Header>
         <Navbar.Brand>
           <a href="/">reReddit</a>

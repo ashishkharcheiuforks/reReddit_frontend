@@ -13,7 +13,7 @@ const PostList = (props) => {
   ]
   
   const postList = posts.map((post,idx) => {
-    return <PostSegment post={post} />
+    return <PostSegment post={post} key={idx} />
   });
   
   

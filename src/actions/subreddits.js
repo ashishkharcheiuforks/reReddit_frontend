@@ -14,7 +14,6 @@ export const fetchSubList = () => dispatch => {
   .catch(error => dispatch(fetchSubsFailure(error)));
 }
 
-
 export const fetchSubsRequest = () => (
   {type: FETCH_SUBS_REQUEST}
 );
@@ -32,4 +31,3 @@ export const fetchSubsReques = (error) => (
     error
   }
 );
-

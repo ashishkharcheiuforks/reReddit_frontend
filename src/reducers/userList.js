@@ -32,8 +32,7 @@ const userList = (state = initialState, action) => {
       };
     default:
       return state;
-      
   }
-}
+};
 
 export default userList;

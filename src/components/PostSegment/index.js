@@ -4,7 +4,7 @@ import { Segment } from 'semantic-ui-react';
 import './styles.css'
 
 const PostSegment = (props) => (
-  <Segment className="post-segment">{props.post.content}</Segment>
+  <Segment className="post-segment">{props.post.body}</Segment>
 );
 
 export default PostSegment;

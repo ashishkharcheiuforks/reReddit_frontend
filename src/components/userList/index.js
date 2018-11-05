@@ -5,9 +5,7 @@ class UserList extends Component {
     const {users, loading, error} = this.props;
     
     if (loading) {
-      return (
-        <h3> This is loading </h3>
-      );
+      return <h3> This is loading </h3>;
     }
     
     if (error) {

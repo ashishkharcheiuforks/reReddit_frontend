@@ -15,9 +15,9 @@ class UserListContainer extends Component {
 }
  
 const mapStateToProps = state => ({
-  loading: state.loading,
-  users: state.users,
-  error: state.error
+  loading: state.userList.loading,
+  users: state.userList.users,
+  error: state.userList.error
 });
 
 const mapDispatchToProps = dispatch => ({

@@ -8,7 +8,7 @@ import { getUserListApi } from '../api/users'
 
 export const fetchUserList = () => dispatch => {
   // state is set to show that we are loading them from api
-  dispatch(fetchUsersRequest)
+  dispatch(fetchUsersRequest())
   
   // Now actually send the request and deal with it
   getUserListApi()

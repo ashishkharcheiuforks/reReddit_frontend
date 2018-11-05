@@ -11,7 +11,7 @@ import {
 
 import './index.css';
 import store from './store'
-import UserListContainer from './containers/users';
+import UserListContainer from './containers/UsersListContainer';
 import Subs from './components/subs';
 import PostList from './components/PostList';
 import NavBar from './components/NavBar';

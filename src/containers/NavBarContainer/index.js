@@ -2,14 +2,22 @@ import React, { Component } from 'react';
 import { connect } from 'react-redux';
 
 import NavBar from '../../components/NavBar';
+import {
+  userAuthLogin,
+  userAuthLogout,
+  userAuthRegister,
+} from '../../actions/UserAuth';
 
-class NavBarContainer extends Component {
+const NavBarContainer = connect(
+  null,
+  null,
+)(NavBar)
 
-  render () {
-    return (<NavBar />)
-      
+const mapDispatchToProps = dispatch => (
+  {
+    loginUser: () => dispatch(userAuthLogin())
   }
-};
+)
 
 export default NavBarContainer;
 

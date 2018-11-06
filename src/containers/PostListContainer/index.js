@@ -14,14 +14,13 @@ class PostListContainer extends Component {
   }
 }
 
-const mapStateToProps = state => {
-  
-  return  ({
+const mapStateToProps = state => (
+  {
     loading: state.PostList.loading,
     posts: state.PostList.posts,
     error: state.PostList.error,
-    });
-}
+  }
+);
 
 const mapDispatchToProps = dispatch => ({
   fetchPostList: () => dispatch(fetchPostList()),

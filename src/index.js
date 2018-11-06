@@ -14,13 +14,13 @@ import store from './store'
 import UserListContainer from './containers/UsersListContainer';
 import PostListContainer from './containers/PostListContainer';
 import Subs from './components/subs';
-import NavBar from './components/NavBar';
+import NavBarContainer from './containers/NavBarContainer';
 
 ReactDOM.render(
   <Provider store = {store}>
         <BrowserRouter>
           <div>
-            <NavBar />
+            <NavBarContainer />
             <div className='main-layout'>
               <div className="content">
                 <Switch>

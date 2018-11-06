@@ -8,9 +8,9 @@ import { Navbar,
 import { LinkContainer } from 'react-router-bootstrap';
 
 import "./styles.css"
+import UserButton from '../UserButton'
 
 const NavBar = () => (
-  
   <div>
     <Navbar inverse fixed="true" fluid>
       <Navbar.Header>
@@ -27,16 +27,23 @@ const NavBar = () => (
           <MenuItem eventKey={3.4}>Separated link</MenuItem>
       </NavDropdown>
   
-        <LinkContainer exact to="/users">
+        <LinkContainer to="/users">
           <NavItem eventKey={1} href="#">Users</NavItem>
         </LinkContainer>
         <LinkContainer to="/subs">
           <NavItem eventKey={2} href="#">Subs</NavItem>
         </LinkContainer>
       </Nav>
+      <Nav pullRight className="right-user-links">
+        <NavItem eventKey={4}>
+          <UserButton onClick={() => alert("hiya")} content={"login"} inverted/>
+        </NavItem>
+        <NavItem eventKey={4}>
+          <UserButton content={"sign up"}/>
+        </NavItem>        
+      </Nav>
     </Navbar>
   </div>
-      
 );
 
 export default NavBar;

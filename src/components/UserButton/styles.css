@@ -1,0 +1,9 @@
+#user-button-inverted {
+  color: white;
+  background-color: black;
+}
+
+.user-button {
+  padding: 0em 3rem 0rem 3rem;
+  font-size: 120%;
+}

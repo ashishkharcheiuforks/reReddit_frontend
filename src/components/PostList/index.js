@@ -7,17 +7,19 @@ import Loader from '../ListLoader';
 const PostList = (props) => {
   const {posts, loading, error} = props;
 
-  if (loading) {
-    return <Loader />
-  }
   
   if (error) {
     return <p> error.message </p>
   }
   
-  const postList = posts.map((post,idx) => {
-    return <PostSegment post={post} key={idx} />
-  });
+  let postList = null;
+  if (loading) {
+    postList =  <Loader />;
+  } else {
+      postList = posts.map((post,idx) => {
+        return <PostSegment post={post} key={idx} />
+    });
+  }
   
   
   return (

@@ -21,7 +21,7 @@ const NavBar = (props) => {
       <Navbar inverse fixed="true" fluid>
         <Navbar.Header>
           <Navbar.Brand>
-            <NavLink to="/">reReddit</NavLink>
+            <NavLink exact to="/">reReddit</NavLink>
           </Navbar.Brand>
         </Navbar.Header>
         <Nav>
@@ -33,11 +33,11 @@ const NavBar = (props) => {
             <MenuItem eventKey={3.4}>Separated link</MenuItem>
         </NavDropdown>
     
-          <LinkContainer to="/users">
-            <NavItem eventKey={1} href="#">Users</NavItem>
+          <LinkContainer exact to="/users">
+            <NavItem eventKey={1}>Users</NavItem>
           </LinkContainer>
-          <LinkContainer to="/subs">
-            <NavItem eventKey={2} href="#">Subs</NavItem>
+          <LinkContainer exact to="/subs">
+            <NavItem eventKey={2}>Subs</NavItem>
           </LinkContainer>
         </Nav>
         <Nav pullRight className="right-user-links">

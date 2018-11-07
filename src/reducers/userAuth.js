@@ -30,7 +30,7 @@ const userAuth = (state=initialState, action) => {
           subscriptions: null,
           moderatedSubs: null,
           error: null,
-        }
+        };
       case USER_AUTH_REGISTER:
       default:
         return state;

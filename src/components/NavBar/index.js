@@ -25,7 +25,12 @@ const NavBar = (props) => {
           </Navbar.Brand>
         </Navbar.Header>
         <Nav>
-          <NavDropdown className='feed-dropdown' eventKey={3} title="feed" id="basic-nav-dropdown">
+          <NavDropdown 
+            className='feed-dropdown'
+            eventKey={3}
+            title="feed" 
+            id="basic-nav-dropdown"
+          >
             <MenuItem eventKey={3.1}>Action</MenuItem>
             <MenuItem eventKey={3.2}>Another action</MenuItem>
             <MenuItem eventKey={3.3}>Something else here</MenuItem>

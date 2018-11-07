@@ -2,8 +2,11 @@ import React from 'react';
 import { connect } from 'react-redux';
 import { Modal } from 'react-bootstrap';
 
-const UserAuthModal = ({show,}) => (
-  <Modal show={show}>
+const UserAuthModal = ({show,onHide}) => (
+  <Modal 
+    show={show}
+    onHide={onHide}
+  >
     <Modal.Header closeButton>
       <Modal.Title>Modal Title</Modal.Title>
     </Modal.Header>
@@ -13,12 +16,4 @@ const UserAuthModal = ({show,}) => (
   </Modal>
 );
 
-const mapStateToProps = state => (
-  {
-    show: state.userAuthModal.showModal
-  }
-);
-
-export default connect(
-  mapStateToProps
-)(UserAuthModal);
+export default UserAuthModal;

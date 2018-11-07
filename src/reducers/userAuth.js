@@ -12,7 +12,7 @@ const initialState = {
   error: null
 }
 
-const UserAuth = (state=initialState, action) => {
+const userAuth = (state=initialState, action) => {
     switch (action.type) {
       case USER_AUTH_LOGIN:
         return {
@@ -37,4 +37,4 @@ const UserAuth = (state=initialState, action) => {
     }
 };
 
-export default UserAuth;
+export default userAuth;

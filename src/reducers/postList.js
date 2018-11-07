@@ -10,7 +10,7 @@ const initialState = {
   error: null,
 }
 
-const PostList = (state=initialState, action) => {
+const postList = (state=initialState, action) => {
   switch (action.type) {
     case FETCH_POSTS_REQUEST:
       return {
@@ -35,4 +35,4 @@ const PostList = (state=initialState, action) => {
   }
 };
 
-export default PostList;
+export default postList;

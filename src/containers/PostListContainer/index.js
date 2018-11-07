@@ -16,9 +16,9 @@ class PostListContainer extends Component {
 
 const mapStateToProps = state => (
   {
-    loading: state.PostList.loading,
-    posts: state.PostList.posts,
-    error: state.PostList.error,
+    loading: state.postList.loading,
+    posts: state.postList.posts,
+    error: state.postList.error,
   }
 );
 

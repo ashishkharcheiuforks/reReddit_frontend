@@ -3,21 +3,21 @@ import { connect } from 'react-redux';
 
 import NavBar from '../../components/NavBar';
 import {
-  userAuthLogin,
-  userAuthLogout,
-  userAuthRegister,
-} from '../../actions/UserAuth';
+  showUserAuthModal,
+  hideUserAuthModal,
+} from '../../actions/UserAuthModal';
 
-const NavBarContainer = connect(
-  null,
-  null,
-)(NavBar)
 
 const mapDispatchToProps = dispatch => (
   {
-    loginUser: () => dispatch(userAuthLogin())
+    showModal: () => dispatch(showUserAuthModal("login"))
   }
-)
+);
+
+const NavBarContainer = connect(
+  null,
+  mapDispatchToProps,
+)(NavBar)
 
 export default NavBarContainer;
 

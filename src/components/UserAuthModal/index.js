@@ -1,15 +1,15 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
-import { Button, Header, Image, Modal } from 'semantic-ui-react';
+import { Modal } from 'react-bootstrap';
 
 const UserAuthModal = ({show,}) => (
-  <Modal
-      open={show}
-      size='small'
-  >
-    <Modal.Content>
-      <h3>Noice Modal</h3>
-    </Modal.Content>
+  <Modal show={show}>
+    <Modal.Header closeButton>
+      <Modal.Title>Modal Title</Modal.Title>
+    </Modal.Header>
+    <Modal.Body>
+      <h4>This is the Bod</h4>
+    </Modal.Body>
   </Modal>
 );
 

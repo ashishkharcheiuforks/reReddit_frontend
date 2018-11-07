@@ -39,10 +39,10 @@ const NavBar = (props) => {
         </NavDropdown>
     
           <LinkContainer exact to="/users">
-            <NavItem eventKey={1}>Users</NavItem>
+            <NavItem>Users</NavItem>
           </LinkContainer>
           <LinkContainer exact to="/subs">
-            <NavItem eventKey={2}>Subs</NavItem>
+            <NavItem>Subs</NavItem>
           </LinkContainer>
         </Nav>
         <Nav pullRight className="right-user-links">

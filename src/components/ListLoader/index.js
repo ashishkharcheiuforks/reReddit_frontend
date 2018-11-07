@@ -1,15 +1,16 @@
-import React from 'react'
-import { Dimmer, Loader, Image, Segment } from 'semantic-ui-react'
+import React from 'react';
+import { Panel } from 'react-bootstrap';
+import { PulseLoader } from 'react-spinners';
+
+import './styles.css';
 
 const ListLoader = () => (
   <div>
-    <Segment>
-      <Dimmer active inverted>
-        <Loader inverted>Loading</Loader>
-      </Dimmer>
-
-      <Image src='https://react.semantic-ui.com/images/wireframe/short-paragraph.png' />
-    </Segment>
+    <Panel>
+      <Panel.Body id="pulse-loader-panel-body">
+          <PulseLoader className="panel-clip-loader" color={'#BFEFFF'}/>
+      </Panel.Body>
+    </Panel>
 </div>    
 );
 

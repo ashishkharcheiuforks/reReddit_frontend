@@ -1,10 +1,12 @@
 import React from 'react';
+import { Panel } from 'react-bootstrap';
 
-import { Segment } from 'semantic-ui-react';
 import './styles.css'
 
-const PostSegment = (props) => (
-  <Segment className="post-segment">{props.post.body}</Segment>
+const PostSegment = ({post}) => (
+  <Panel id="post-segment-panel">
+    <Panel.Body>{post.body}</Panel.Body>
+  </Panel>
 );
 
 export default PostSegment;

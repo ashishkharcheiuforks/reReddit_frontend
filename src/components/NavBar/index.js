@@ -6,6 +6,7 @@ import { Navbar,
   NavDropdown,
 } from 'react-bootstrap';
 import { LinkContainer } from 'react-router-bootstrap';
+import { NavLink } from 'react-router-dom';
 
 import "./styles.css"
 import UserButton from '../UserButton'
@@ -20,7 +21,7 @@ const NavBar = (props) => {
       <Navbar inverse fixed="true" fluid>
         <Navbar.Header>
           <Navbar.Brand>
-            <a href="/">reReddit</a>
+            <NavLink to="/">reReddit</NavLink>
           </Navbar.Brand>
         </Navbar.Header>
         <Nav>

@@ -15,12 +15,14 @@ import UserListContainer from './containers/UsersListContainer';
 import PostListContainer from './containers/PostListContainer';
 import Subs from './components/subs';
 import NavBarContainer from './containers/NavBarContainer';
+import UserAuthModal from './components/UserAuthModal';
 
 ReactDOM.render(
   <Provider store = {store}>
         <BrowserRouter>
           <div>
             <NavBarContainer />
+            <UserAuthModal />
             <div className='main-layout'>
               <div className="content">
                 <Switch>

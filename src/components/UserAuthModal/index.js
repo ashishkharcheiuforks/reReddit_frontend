@@ -1,10 +1,13 @@
 import React from 'react';
 import { connect } from 'react-redux';
 import { Modal, Button} from 'react-bootstrap';
+import axios from 'axios';
+import { USER_LOGIN_URL } from "../../api/constants";
 
 const UserAuthModal = ({show,onHide,userLogin}) => {
   
-  const credentials = {username: "Bobby", password: "TheEnd6754"}
+  const credentials = {username: "Bobby", password: "TheEnd6754"};
+  
   return (
     <Modal 
       show={show}

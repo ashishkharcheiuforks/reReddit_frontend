@@ -14,7 +14,7 @@ import UserListContainer from './containers/UsersListContainer';
 import PostListContainer from './containers/PostListContainer';
 import Subs from './components/subs';
 import NavBarContainer from './containers/NavBarContainer';
-import UserAuthModalContainer from './containers/UserAuthModal';
+import UserAuthModalContainer from './containers/UserAuthModalContainer';
 
 ReactDOM.render(
   <Provider store = {store}>

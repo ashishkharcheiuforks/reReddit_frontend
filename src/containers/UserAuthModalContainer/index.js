@@ -15,7 +15,7 @@ const mapStateToProps = state => (
 const mapDispatchToProps = dispatch => (
   {
     onHide: () => dispatch(hideUserAuthModal()),
-    userLogin: () => dispatch(makeUserLoginRequest()),
+    userLogin: (credentials) => dispatch(makeUserLoginRequest(credentials)),
   }
 );
 

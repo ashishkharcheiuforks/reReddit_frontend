@@ -1,27 +1,23 @@
+import React from 'react';
 import { connect } from 'react-redux';
+import LoginModalContainer from './LoginModalContainer';
 
 
-import UserAuthModal from '../../components/UserAuthModal';
-import { hideUserAuthModal } from '../../actions/UserAuthModal';
-import { makeUserLoginRequest } from '../../actions/UserAuth';
-
+const UserAuthModalContainer = ({displayType}) => {
+  switch (displayType) {
+    case 'login':
+      return <LoginModalContainer />;
+    default:
+      return null;
+  }
+}
 
 const mapStateToProps = state => (
   {
-    show: state.userAuthModal.showModal
+      displayType: state.userAuthModal.displayType,
   }
 );
 
-const mapDispatchToProps = dispatch => (
-  {
-    onHide: () => dispatch(hideUserAuthModal()),
-    userLogin: (credentials) => dispatch(makeUserLoginRequest(credentials)),
-  }
-);
-
-const UserAuthModalContainer = connect(
-  mapStateToProps,
-  mapDispatchToProps,
-)(UserAuthModal);
-
-export default UserAuthModalContainer;
+export default connect(
+  mapStateToProps
+) (UserAuthModalContainer);

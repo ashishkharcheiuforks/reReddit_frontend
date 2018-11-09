@@ -8,8 +8,8 @@ import { Navbar,
 import { LinkContainer } from 'react-router-bootstrap';
 import { NavLink } from 'react-router-dom';
 
-import "./styles.css"
-import UserButton from '../UserButton'
+import "./styles.css";
+import UserButton from '../UserButton';
 
 const NavBar = (props) => {
   const {

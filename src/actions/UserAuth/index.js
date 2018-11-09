@@ -9,11 +9,11 @@ import {
 import userLoginApi from '../../api/UserAuth'
 
 export const makeUserLoginRequest = credentials => dispatch => {
-  dispatch(userAuthLoginRequest);
+  dispatch(userAuthLoginRequest());
   
   return userLoginApi(credentials)
           .then(token => dispatch(userAuthLoginSuccess(token)))
-          .catch(error => dispatch(userAuthLoginFailure(error)));
+          .catch(error => dispatch(userAuthLoginFailure(error)))
 }
 
 export const userAuthLoginRequest = () => (

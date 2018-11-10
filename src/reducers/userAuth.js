@@ -8,6 +8,9 @@ import {
 
 const initialState = {
   token: null,
+  username: null,
+  subs: [],
+  moderated_subs: [],
   error: null,
   loading: false,
 }
@@ -22,7 +25,10 @@ const userAuth = (state=initialState, action) => {
       case USER_AUTH_LOGIN_SUCCESS:
         return {
           ...state,
-          token: action.token,
+          token: action.data.token,
+          username: action.data.username,
+          subs: action.data.subs,
+          moderated_subs: action.data.moderated_subs,
           loading: false,
           error: null
         };
@@ -34,10 +40,7 @@ const userAuth = (state=initialState, action) => {
           error: action.error
         };        
       case USER_AUTH_LOGOUT:
-        return {
-          token: null,
-          error: null,
-        };
+        return initialState;
       case USER_AUTH_REGISTER:
       default:
         return state;

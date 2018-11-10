@@ -13,7 +13,7 @@ export const makeUserLoginRequest = credentials => dispatch => {
   dispatch(userAuthLoginRequest());
   
   return userLoginApi(credentials)
-          .then(token => dispatch(userAuthLoginSuccess(token)))
+          .then(data => dispatch(userAuthLoginSuccess(data)))
           .then(() => dispatch(hideUserAuthModal()))
           .catch(error => dispatch(userAuthLoginFailure(error)));
 }
@@ -24,10 +24,10 @@ export const userAuthLoginRequest = () => (
   }
 );
 
-export const userAuthLoginSuccess = (token) => (
+export const userAuthLoginSuccess = (data) => (
   {
     type: USER_AUTH_LOGIN_SUCCESS,
-    token
+    data
   }
 );
 

@@ -7,9 +7,10 @@ import {
   BrowserRouter,
   Switch
 } from "react-router-dom";
+import { PersistGate } from 'redux-persist/integration/react';
 
 import './index.css';
-import store from './store'
+import { store, persistor } from './store'
 import UserListContainer from './containers/UsersListContainer';
 import PostListContainer from './containers/PostListContainer';
 import Subs from './components/subs';
@@ -17,22 +18,24 @@ import NavBarContainer from './containers/NavBarContainer';
 import UserAuthModalContainer from './containers/UserAuthModalContainer';
 
 ReactDOM.render(
-  <Provider store = {store}>
-        <BrowserRouter>
-          <div>
-            <NavBarContainer />
-            <UserAuthModalContainer />
-            <div className='main-layout'>
-              <div className="content">
-                <Switch>
-                  <Route exact path="/" component={PostListContainer}/>
-                  <Route path="/subs" component={Subs}/>
-                  <Route path="/users" component={UserListContainer}/>              
-                </Switch>
-              </div>
+  <Provider store={store}>
+    <PersistGate loading={null} persistor={persistor}>
+      <BrowserRouter>
+        <div>
+          <NavBarContainer />
+          <UserAuthModalContainer />
+          <div className='main-layout'>
+            <div className="content">
+              <Switch>
+                <Route exact path="/" component={PostListContainer}/>
+                <Route path="/subs" component={Subs}/>
+                <Route path="/users" component={UserListContainer}/>              
+              </Switch>
             </div>
           </div>
-        </BrowserRouter>
+        </div>
+      </BrowserRouter>
+    </PersistGate>
   </Provider>, 
   document.getElementById('root')
 );

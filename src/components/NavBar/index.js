@@ -9,12 +9,8 @@ import { LinkContainer } from 'react-router-bootstrap';
 import { NavLink } from 'react-router-dom';
 
 import "./styles.css";
-import UserButton from '../UserButton';
 
 const NavBar = (props) => {
-  const {
-    showModal
-  } = props;
   
   return (
     <div>
@@ -45,14 +41,7 @@ const NavBar = (props) => {
             <NavItem>Subs</NavItem>
           </LinkContainer>
         </Nav>
-        <Nav pullRight className="right-user-links">
-          <NavItem eventKey={4}>
-            <UserButton onClick={() => showModal()} content={"login"} inverted/>
-          </NavItem>
-          <NavItem eventKey={5}>
-            <UserButton content={"sign up"}/>
-          </NavItem>        
-        </Nav>
+        {props.children}
       </Navbar>
     </div>
   );

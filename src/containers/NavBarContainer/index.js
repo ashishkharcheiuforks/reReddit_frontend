@@ -10,11 +10,20 @@ class NavBarContainer extends Component {
   
   render = () => (
     <NavBar>
-      <UserAuthNav showModal={this.props.showModal} />
+      <UserAuthNav
+        showModal={this.props.showModal} 
+        token={this.props.token} 
+      />
     </NavBar>
   );
   
 }
+
+const mapStateToProps = state => (
+  {
+    token: state.userAuth.token,
+  }
+);
 
 const mapDispatchToProps = dispatch => (
   {
@@ -23,7 +32,7 @@ const mapDispatchToProps = dispatch => (
 );
 
 export default connect(
-  null,
+  mapStateToProps,
   mapDispatchToProps,
   null,
   {pure: false},

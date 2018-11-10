@@ -7,14 +7,14 @@ import {
 
 import './styles.css'
 
-const AuthenticatedUser = ({showModal}) => {
+const AuthenticatedUser = ({username}) => {
   
   return (
     <Nav pullRight className="auth-dropdown-container">
           <NavDropdown 
             className='user-dropdown'
             eventKey={3}
-            title="User" 
+            title={username}
             id="user-nav-dropdown"
           >
             <MenuItem eventKey={3.1}>Action</MenuItem>

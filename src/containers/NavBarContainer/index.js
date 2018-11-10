@@ -11,8 +11,8 @@ class NavBarContainer extends Component {
   render = () => (
     <NavBar>
       <UserAuthNav
-        showModal={this.props.showModal} 
-        token={this.props.token} 
+        showModal={this.props.showModal}
+        username={this.props.username} 
       />
     </NavBar>
   );
@@ -21,7 +21,7 @@ class NavBarContainer extends Component {
 
 const mapStateToProps = state => (
   {
-    token: state.userAuth.token,
+    username: state.userAuth.username,
   }
 );
 

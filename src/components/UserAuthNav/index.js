@@ -5,11 +5,11 @@ import React from 'react';
 import UnauthenticatedUser from './UnauthenticatedUser';
 import AuthenticatedUser from './AuthenticatedUser';
 
-const UserAuthNav = ({showModal, token}) => {
+const UserAuthNav = ({showModal, username}) => {
   return (
-    token ?
-    <AuthenticatedUser /> :
-    <UnauthenticatedUser showModal={showModal}/>
+    username ?
+    <AuthenticatedUser username={username} /> :
+    <UnauthenticatedUser showModal={showModal} />
   );
 }
 

@@ -6,14 +6,16 @@ import {
   USER_AUTH_REGISTER
 } from '../actionTypes';
 
-import userLoginApi from '../../api/UserAuth'
+import userLoginApi from '../../api/UserAuth';
+import { hideUserAuthModal } from "../UserAuthModal";
 
 export const makeUserLoginRequest = credentials => dispatch => {
   dispatch(userAuthLoginRequest());
   
   return userLoginApi(credentials)
           .then(token => dispatch(userAuthLoginSuccess(token)))
-          .catch(error => dispatch(userAuthLoginFailure(error)))
+          .then(() => dispatch(hideUserAuthModal()))
+          .catch(error => dispatch(userAuthLoginFailure(error)));
 }
 
 export const userAuthLoginRequest = () => (

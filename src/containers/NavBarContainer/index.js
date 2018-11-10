@@ -4,6 +4,7 @@ import { connect } from 'react-redux';
 import NavBar from '../../components/NavBar';
 import UserAuthNav from '../../components/UserAuthNav';
 import { showUserAuthModal } from '../../actions/UserAuthModal';
+import { userAuthLogout } from '../../actions/UserAuth';
 
 
 class NavBarContainer extends Component {
@@ -12,7 +13,8 @@ class NavBarContainer extends Component {
     <NavBar>
       <UserAuthNav
         showModal={this.props.showModal}
-        username={this.props.username} 
+        username={this.props.username}
+        handleLogout={this.props.handleLogout}
       />
     </NavBar>
   );
@@ -28,6 +30,7 @@ const mapStateToProps = state => (
 const mapDispatchToProps = dispatch => (
   {
     showModal: () => dispatch(showUserAuthModal("login")),
+    handleLogout: () => dispatch(userAuthLogout()),
   }
 );
 

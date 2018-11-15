@@ -16,7 +16,7 @@ const PostSegment = ({post}) => (
       </div>
       
       <div id='post-segment-info'>
-        <strong>{post.sub}</strong> - posted by: {post.poster}
+        <strong>r/{post.subreddit_title}</strong> - posted by: {post.poster_username}
       </div>
       
       <div id='post-segment-links'>

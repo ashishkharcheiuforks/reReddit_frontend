@@ -1,5 +1,5 @@
 import React from 'react';
-import { Panel } from 'react-bootstrap';
+import { Panel, Button } from 'react-bootstrap';
 
 import './styles.css'
 
@@ -13,8 +13,15 @@ const PostSegment = ({post}) => (
       <div id="post-segment-title">
         {post.body}
       </div>
+      
       <div id='post-segment-info'>
         <strong>{post.sub}</strong> - posted by: {post.poster}
+      </div>
+      
+      <div id='post-segment-links'>
+        <Button bsSize='xsmall' className='post-buttons'> X Comments </Button>
+        <Button bsSize='xsmall' className='post-buttons'> Share </Button>
+        <Button bsSize='xsmall' className='post-buttons'> Save </Button>
       </div>
     </div>
 

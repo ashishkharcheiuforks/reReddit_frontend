@@ -11,9 +11,7 @@ import { PersistGate } from 'redux-persist/integration/react';
 
 import './index.css';
 import { store, persistor } from './store'
-import UserListContainer from './containers/UsersListContainer';
 import PostListContainer from './containers/PostListContainer';
-import Subs from './components/subs';
 import NavBarContainer from './containers/NavBarContainer';
 import UserAuthModalContainer from './containers/UserAuthModalContainer';
 
@@ -28,15 +26,13 @@ ReactDOM.render(
             <div className="content">
               <Switch>
                 <Route exact path="/" component={PostListContainer}/>
-                <Route path="/subs" component={Subs}/>
-                <Route path="/users" component={UserListContainer}/>              
               </Switch>
             </div>
           </div>
         </div>
       </BrowserRouter>
     </PersistGate>
-  </Provider>, 
+  </Provider>,
   document.getElementById('root')
 );
 

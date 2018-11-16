@@ -14,12 +14,12 @@ const LoginModalContainer = (props) => {
   } = props;
   
   return (
-    <UserAuthModal 
+    <UserAuthModal
       handleHide={handleHide}
       title='Login'
       formComponent={
         <ModalLoginForm
-          handleLogin={handleLogin} 
+          handleLogin={handleLogin}
           handleHide={handleHide}
           loading={loading}
         />
@@ -36,7 +36,8 @@ const mapStatetoProps = state => (
 const mapDispatchToProps = dispatch => (
   {
     handleHide: () => dispatch(hideUserAuthModal()),
-    handleLogin: (credentials) => dispatch(makeUserLoginRequest(credentials)),
+    handleLogin: (username, password) =>
+      dispatch(makeUserLoginRequest(username, password)),
   }
 );
 

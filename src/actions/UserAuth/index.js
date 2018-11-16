@@ -8,34 +8,17 @@ import {
 import { userLoginApi } from '../../api/UserAuth';
 import { hideUserAuthModal } from "../UserAuthModal";
 
-export const makeUserLoginRequest = credentials => dispatch => {
-  dispatch(userAuthLoginRequest());
-  
-  return userLoginApi(credentials)
-          .then(data => dispatch(userAuthLoginSuccess(data)))
-          .then(() => dispatch(hideUserAuthModal()))
-          .catch(error => dispatch(userAuthLoginFailure(error)));
-}
-
-export const userAuthLoginRequest = () => (
+export const makeUserLoginRequest = (username, password) => (
   {
-    type: USER_AUTH_LOGIN_REQUEST,
+    type: 'API_USER_LOGIN',
+    types: {
+      request: USER_AUTH_LOGIN_REQUEST,
+      success: USER_AUTH_LOGIN_SUCCESS,
+      failure: USER_AUTH_LOGIN_FAILURE,
+    },
+    callAPI: () => userLoginApi({username, password})
   }
-);
-
-export const userAuthLoginSuccess = (data) => (
-  {
-    type: USER_AUTH_LOGIN_SUCCESS,
-    data
-  }
-);
-
-export const userAuthLoginFailure= (error) => (
-  {
-    type: USER_AUTH_LOGIN_FAILURE,
-    error
-  }
-);
+)
 
 export const userAuthLogout = () => (
   {

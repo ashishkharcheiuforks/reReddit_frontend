@@ -21,11 +21,7 @@ class ModalLoginForm extends Component {
   }
   
   handleSubmit= () => {
-    const credentials = {
-      username: this.state.username,
-      password: this.state.password,
-    }
-    this.props.handleLogin(credentials);
+    this.props.handleLogin(this.state.username, this.state.password);
   }
   
   render = () => (
@@ -49,22 +45,22 @@ class ModalLoginForm extends Component {
           placeholder='password'
           name='password'
           onChange={this.handleChange}
-          />  
+          />
         
         <div id="button-container">
           <LoginButton
             bsStyle='primary'
             handleClick={this.handleSubmit}
             loading={this.props.loading}
-            content='Login'            
+            content='Login'
           />
         
           <LoginButton
             bsStyle='danger'
             handleClick={this.props.handleHide}
             loading={this.props.loading}
-            content='Cancel'            
-          /> 
+            content='Cancel'
+          />
         </div>
       </form>
     </div>

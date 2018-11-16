@@ -13,7 +13,7 @@ the following technologies:
 Unfortunately at this point this project is still very much in progress
 and I do not have a demo deployed. If you have create-react-app installed you
 can clone the project and run it locally with a demo version of
-the current api backend which is also currently under development. To do this
+the current api backend which is running on PythonAnywhere.com. To do this
 just rename `.env_example` file to `.env` and start the development server:
 
 ```

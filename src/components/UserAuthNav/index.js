@@ -5,11 +5,11 @@ import React from 'react';
 import UnauthenticatedUser from './UnauthenticatedUser';
 import AuthenticatedUser from './AuthenticatedUser';
 
-const UserAuthNav = ({showModal, username, handleLogout}) => {
+const UserAuthNav = ({showModal, username, handleLogout,middleWareTest}) => {
   return (
     username ?
     <AuthenticatedUser username={username} handleLogout={handleLogout} /> :
-    <UnauthenticatedUser showModal={showModal} />
+    <UnauthenticatedUser showModal={showModal} middleWareTest={middleWareTest}/>
   );
 }
 

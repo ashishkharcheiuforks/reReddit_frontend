@@ -1,12 +1,11 @@
 import {
   USER_AUTH_LOGIN_REQUEST,
-  USER_AUTH_LOGIN_SUCCESS,  
-  USER_AUTH_LOGIN_FAILURE,    
-  USER_AUTH_LOGOUT,
-  USER_AUTH_REGISTER
+  USER_AUTH_LOGIN_SUCCESS,
+  USER_AUTH_LOGIN_FAILURE,
+  USER_AUTH_LOGOUT
 } from '../actionTypes';
 
-import userLoginApi from '../../api/UserAuth';
+import { userLoginApi } from '../../api/UserAuth';
 import { hideUserAuthModal } from "../UserAuthModal";
 
 export const makeUserLoginRequest = credentials => dispatch => {
@@ -43,10 +42,3 @@ export const userAuthLogout = () => (
     type: USER_AUTH_LOGOUT,
   }
 );
-
-export const userAuthRegister = () => (
-  {
-    type: USER_AUTH_REGISTER,
-  }
-);
-

@@ -1,9 +1,8 @@
 import {
   USER_AUTH_LOGIN_REQUEST,
-  USER_AUTH_LOGIN_SUCCESS,  
-  USER_AUTH_LOGIN_FAILURE,    
-  USER_AUTH_LOGOUT,
-  USER_AUTH_REGISTER
+  USER_AUTH_LOGIN_SUCCESS,
+  USER_AUTH_LOGIN_FAILURE,
+  USER_AUTH_LOGOUT
 } from '../actions/actionTypes';
 
 const initialState = {
@@ -20,7 +19,7 @@ const userAuth = (state=initialState, action) => {
       case USER_AUTH_LOGIN_REQUEST:
         return {
           ...state,
-          loading: true,         
+          loading: true,
         }
       case USER_AUTH_LOGIN_SUCCESS:
         return {
@@ -38,10 +37,9 @@ const userAuth = (state=initialState, action) => {
           token: null,
           loading: false,
           error: action.error
-        };        
+        };
       case USER_AUTH_LOGOUT:
         return initialState;
-      case USER_AUTH_REGISTER:
       default:
         return state;
     }

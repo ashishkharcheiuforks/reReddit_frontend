@@ -17,10 +17,10 @@ const PostSegment = ({post}) => (
       
       <div id='post-segment-info'>
         <strong>
-          <a>r/{post.subreddit_title}</a>
+          <a href="/#">r/{post.subreddit_title}</a>
         </strong>
         - posted by:
-        <a> u/{post.poster_username} </a>
+        <a href="/#"> u/{post.poster_username} </a>
         {post.age_in_days} days ago
       </div>
       

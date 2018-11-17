@@ -9,7 +9,7 @@ const UserAuthNav = ({showModal, username, handleLogout,middleWareTest}) => {
   return (
     username ?
     <AuthenticatedUser username={username} handleLogout={handleLogout} /> :
-    <UnauthenticatedUser showModal={showModal} middleWareTest={middleWareTest}/>
+    <UnauthenticatedUser showModal={showModal}/>
   );
 }
 

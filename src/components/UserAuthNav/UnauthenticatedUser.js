@@ -16,7 +16,7 @@ const UnauthenticatedUser = ({showModal, middleWareTest}) => {
       </NavItem>
       <NavItem eventKey={5}>
         <UserButton
-          onClick={() => middleWareTest('Bobby', 'TheEnd6754')}
+          onClick={() => null}
           content={"sign up"}
         />
       </NavItem>

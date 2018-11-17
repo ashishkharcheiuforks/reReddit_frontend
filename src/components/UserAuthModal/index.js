@@ -1,5 +1,5 @@
 import React from 'react';
-import { Modal } from 'react-bootstrap';
+import { Modal, Alert } from 'react-bootstrap';
 import { FaTimes, FaCheck } from 'react-icons/fa';
 
 import './styles.css';
@@ -22,22 +22,22 @@ const UserAuthModal = (props) => {
   
   if (successMessage) {
     sMessage =
-      <div id='message-container'>
+      <Alert bsStyle='success' className="modal-alert">
         <FaCheck color='green' size='3em' />
-        <p className="message" id="success-message" align='center'>
+        <p className="message" id="success-text" align='center'>
           {successMessage}
         </p>
-      </div>
+      </Alert>
     }
-    
+
     if (errorMessage) {
       eMessage =
-        <div id='message-container'>
-          <FaTimes color='red' size='3em'/>
-          <p className="message" id="warning-message" align='center'>
-            {errorMessage}
-          </p>
-        </div>
+      <Alert bsStyle='danger' className="modal-alert">
+        <FaTimes color='red' size='3em' />
+        <p className="message" id="error-text" align='center'>
+          {errorMessage}
+        </p>
+      </Alert>
     }
   
   return (

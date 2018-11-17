@@ -3,18 +3,22 @@
   padding-left: 2em;
 }
 
-#success-message {
+#success-text {
   color: green;
   font-size: 1.3em;
 }
 
-#warning-message {
+#error-text {
   color: red;
   font-size: 1.3em;
 }
 
 p.message {
   padding-top: 0.4em;
-  margin-bottom: 1em;
   padding-left: 1em;
+}
+
+div.modal-alert {
+  display: flex;
+  justify-content: center;
 }

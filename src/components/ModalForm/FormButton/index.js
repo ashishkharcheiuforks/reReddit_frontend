@@ -4,13 +4,13 @@ import { CircleLoader } from 'react-spinners';
 
 import './styles.css'
 
-const LoginButton = ({bsStyle, handleClick, loading, content}) => {
+const FormButton = ({bsStyle, handleClick, loading, content}) => {
   
   const spinnerStyle = 'display: inline-block;'
   
   const spinner = loading ?
     <CircleLoader
-      size={20} 
+      size={20}
       className={spinnerStyle}
     /> :
     null;
@@ -31,4 +31,4 @@ const LoginButton = ({bsStyle, handleClick, loading, content}) => {
   );
 }
 
-export default LoginButton;
+export default FormButton;

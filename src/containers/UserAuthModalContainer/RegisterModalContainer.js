@@ -2,24 +2,24 @@ import React from 'react';
 import { connect } from 'react-redux';
 
 import UserAuthModal from '../../components/UserAuthModal';
-import ModalLoginForm from "../../components/ModalForm/ModalLoginForm";
+import ModalRegisterForm from '../../components/ModalForm/ModalRegisterForm';
 import { hideUserAuthModal } from '../../actions/UserAuthModal';
-import { makeUserLoginRequest } from '../../actions/UserAuth';
+import { makeUserRegisterRequest } from '../../actions/UserAuth';
 
-const LoginModalContainer = (props) => {
+const RegisterModalContainer = (props) => {
   const {
     handleHide,
-    handleLogin,
+    handleRegister,
     loading,
   } = props;
   
   return (
     <UserAuthModal
       handleHide={handleHide}
-      title='Login'
+      title='Register'
       formComponent={
-        <ModalLoginForm
-          handleLogin={handleLogin}
+        <ModalRegisterForm
+          handleRegister={handleRegister}
           handleHide={handleHide}
           loading={loading}
         />
@@ -34,15 +34,15 @@ const mapStateToProps = state => (
   }
 );
 
-const mapDispatchToProps = dispatch => (
+const mapDispatchToProps = (dispatch) => (
   {
-    handleHide: () => dispatch(hideUserAuthModal()),
-    handleLogin: (username, password) =>
-      dispatch(makeUserLoginRequest(username, password)),
+  handleHide: () => dispatch(hideUserAuthModal()),
+  handleRegister: (username, password, email) =>
+    dispatch(makeUserRegisterRequest(username, password, email)),
   }
 );
 
 export default connect(
   mapStateToProps,
-  mapDispatchToProps,
-)(LoginModalContainer);
+  mapDispatchToProps
+)(RegisterModalContainer);

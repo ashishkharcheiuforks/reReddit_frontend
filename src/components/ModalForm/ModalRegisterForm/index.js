@@ -1,10 +1,10 @@
 import React, { Component } from 'react';
 
-import FieldGroup from '../FieldGroup';
-import LoginButton from './LoginButton';
+import FieldGroup from '../../FieldGroup';
+import FormButton from '../FormButton';
 import './styles.css'
 
-class ModalLoginForm extends Component {
+class ModalRegisterForm extends Component {
   constructor(props) {
     super(props);
     
@@ -13,19 +13,24 @@ class ModalLoginForm extends Component {
     this.state = {
       username: '',
       password: '',
+      email: '',
     };
   }
   
   handleChange = (e) => {
-    this.setState({[e.target.name]: e.target.value});
+      this.setState({[e.target.name]: e.target.value});
   }
   
-  handleSubmit= () => {
-    this.props.handleLogin(this.state.username, this.state.password);
+  handleSubmit = () => {
+    this.props.handleRegister(
+      this.state.username,
+      this.state.password,
+      this.state.email
+    );
   }
   
   render = () => (
-    <div id="login-form-container">
+    <div id="register-form-container">
       <form>
         <FieldGroup
           id="formControlsText"
@@ -35,8 +40,8 @@ class ModalLoginForm extends Component {
           placeholder='username'
           name='username'
           onChange={this.handleChange}
-          />
-        
+        />
+      
         <FieldGroup
           id="formControlsPassword"
           label="Password:"
@@ -45,26 +50,36 @@ class ModalLoginForm extends Component {
           placeholder='password'
           name='password'
           onChange={this.handleChange}
-          />
+        />
         
+        <FieldGroup
+          id="formControlsEmail"
+          label="Email:"
+          type="email"
+          value={this.state.email}
+          placeholder='email'
+          name='email'
+          onChange={this.handleChange}
+        />
+      
         <div id="button-container">
-          <LoginButton
+          <FormButton
             bsStyle='primary'
             handleClick={this.handleSubmit}
             loading={this.props.loading}
-            content='Login'
+            content='Register'
           />
         
-          <LoginButton
-            bsStyle='danger'
-            handleClick={this.props.handleHide}
-            loading={this.props.loading}
-            content='Cancel'
-          />
+          <FormButton
+              bsStyle='danger'
+              handleClick={this.props.handleHide}
+              loading={this.props.loading}
+              content='Cancel'
+            />
         </div>
       </form>
     </div>
-  );
+  )
 }
 
-export default ModalLoginForm;
+export default ModalRegisterForm;

@@ -27,7 +27,7 @@ const mapStateToProps = state => (
 
 const mapDispatchToProps = dispatch => (
   {
-    showModal: () => dispatch(showUserAuthModal("login")),
+    showModal: (displayType) => dispatch(showUserAuthModal(displayType)),
     handleLogout: () => dispatch(userAuthLogout()),
   }
 );

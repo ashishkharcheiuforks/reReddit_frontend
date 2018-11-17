@@ -9,7 +9,7 @@ import {
 } from '../actionTypes';
 
 import { userLoginApi, userRegisterApi } from '../../api/UserAuth';
-import { hideUserAuthModal } from "../UserAuthModal";
+import { hideUserAuthModal, updateErrorMessage } from "../UserAuthModal";
 
 export const makeUserLoginRequest = (username, password) => (
   {
@@ -20,7 +20,8 @@ export const makeUserLoginRequest = (username, password) => (
       failure: USER_AUTH_LOGIN_FAILURE,
     },
     callAPI: () => userLoginApi({username, password}),
-    successAction: hideUserAuthModal()
+    successActionCreator: hideUserAuthModal,
+    failureActionCreator: updateErrorMessage,
   }
 )
 
@@ -32,12 +33,12 @@ export const makeUserRegisterRequest = (username, password, email) => (
       success: USER_AUTH_REGISTER_SUCCESS,
       failure: USER_AUTH_REGISTER_FAILURE,
     },
-    callAPI: () =>
-      userRegisterApi({
+    callAPI: () => userRegisterApi({
         username,
         password,
         email
-      })
+    }),
+    failureActionCreator: updateErrorMessage,
   }
 )
 

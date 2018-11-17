@@ -8,8 +8,8 @@ const apiRequestErrorHandler = (e) => {
       if (erd.detail){
         return erd.detail;
       }
-      console.log(erd)
-      return erd[0];
+      //console.log(erd)
+      return erd.non_field_errors[0];
     }
   }
   catch (error) {

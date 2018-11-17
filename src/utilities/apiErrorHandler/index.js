@@ -8,8 +8,23 @@ const apiRequestErrorHandler = (e) => {
       if (erd.detail){
         return erd.detail;
       }
-      //console.log(erd)
-      return erd.non_field_errors[0];
+      
+      if (erd.non_field_errors){
+        return erd.non_field_errors[0];
+      }
+      
+      if (erd[0]) return erd[0];
+      
+      // Handle field errors
+      const key = Object.keys(erd)[0];
+      const errorMessage = erd[key][0];
+      const errorField = String(key);
+      console.log(errorField);
+      return (
+        errorField.charAt(0).toUpperCase() +
+        errorField.substring(1) + ":  " +
+        errorMessage
+      );
     }
   }
   catch (error) {

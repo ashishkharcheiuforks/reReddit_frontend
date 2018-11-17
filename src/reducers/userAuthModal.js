@@ -7,7 +7,7 @@ import {
 const initialState = {
   showModal: false,
   displayType: null,
-  warningMessage: null,
+  errorMessage: null,
   successMessage: null,
 }
 
@@ -18,7 +18,7 @@ const userAuthModal = (state=initialState, action) => {
           ...state,
           showModal: true,
           displayType: action.displayType,
-          warningMessage: action.warningMessage,
+          errorMessage: action.warningMessage,
           successMessage: action.successMessage,
       };
     case HIDE_USER_AUTH_MODAL:
@@ -26,13 +26,13 @@ const userAuthModal = (state=initialState, action) => {
         ...state,
         showModal: false,
         displayType: null,
-        warningMessage: null,
+        errorMessage: null,
         successMessage: null,
       };
     case UPDATE_USER_AUTH_MODAL_ERROR:
       return {
         ...state,
-        warningMessage: action.errorMessage,
+        errorMessage: action.errorMessage,
       };
     default:
       return state;

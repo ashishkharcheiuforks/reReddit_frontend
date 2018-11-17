@@ -11,12 +11,14 @@ const RegisterModalContainer = (props) => {
     handleHide,
     handleRegister,
     loading,
+    messageProps,
   } = props;
   
   return (
     <UserAuthModal
       handleHide={handleHide}
       title='Register'
+      messageProps={messageProps}
       formComponent={
         <ModalRegisterForm
           handleRegister={handleRegister}

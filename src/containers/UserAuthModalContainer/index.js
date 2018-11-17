@@ -4,12 +4,12 @@ import { connect } from 'react-redux';
 import LoginModalContainer from './LoginModalContainer';
 import RegisterModalContainer from './RegisterModalContainer';
 
-const UserAuthModalContainer = ({displayType, warningMessage, successMessage}) => {
+const UserAuthModalContainer = ({displayType, messageProps}) => {
   switch (displayType) {
     case 'login':
-      return <LoginModalContainer warningMessage={warningMessage} />;
+      return <LoginModalContainer messageProps={messageProps}/>;
     case 'register':
-      return <RegisterModalContainer />;
+      return <RegisterModalContainer messageProps={messageProps}/>;
     default:
       return null;
   }
@@ -18,8 +18,10 @@ const UserAuthModalContainer = ({displayType, warningMessage, successMessage}) =
 const mapStateToProps = state => (
   {
       displayType: state.userAuthModal.displayType,
-      warningMessage: state.userAuthModal.warningMessage,
-      successMessage: state.userAuthModal.successMessage,
+      messageProps: {
+        errorMessage: state.userAuthModal.errorMessage,
+        successMessage: state.userAuthModal.successMessage,
+      },
   }
 );
 

@@ -10,28 +10,32 @@ const UserAuthModal = (props) => {
     handleHide,
     title,
     formComponent,
-    warningMessage,
-    successMessage,
+    messageProps,
   } = props;
   
-  let wMessage, sMessage = null;
+  const {
+    errorMessage,
+    successMessage,
+  } = messageProps;
+  
+  let eMessage, sMessage = null;
   
   if (successMessage) {
     sMessage =
       <div id='message-container'>
         <FaCheck color='green' size='3em' />
         <p className="message" id="success-message" align='center'>
-          successMessage
+          {successMessage}
         </p>
       </div>
     }
     
-    if (warningMessage) {
-      wMessage =
+    if (errorMessage) {
+      eMessage =
         <div id='message-container'>
           <FaTimes color='red' size='3em'/>
           <p className="message" id="warning-message" align='center'>
-            {warningMessage}
+            {errorMessage}
           </p>
         </div>
     }
@@ -46,7 +50,7 @@ const UserAuthModal = (props) => {
       </Modal.Header>
       <Modal.Body>
         {sMessage}
-        {wMessage}
+        {eMessage}
         {formComponent}
       </Modal.Body>
       

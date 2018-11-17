@@ -11,14 +11,14 @@ const LoginModalContainer = (props) => {
     handleHide,
     handleLogin,
     loading,
-    warningMessage,
+    messageProps,
   } = props;
   
   return (
     <UserAuthModal
       handleHide={handleHide}
       title='Login'
-      warningMessage={warningMessage}
+      messageProps={messageProps}
       formComponent={
         <ModalLoginForm
           handleLogin={handleLogin}

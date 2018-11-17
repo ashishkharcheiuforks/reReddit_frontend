@@ -3,19 +3,21 @@ export const apiMiddleware = store => next => action => {
     const {
       callAPI,
       types,
+      successAction,
     } = action;
     
     store.dispatch({type: types.request})
     
-    callAPI()
-    .then(data => store.dispatch({
-      type: types.success,
-      data
-    }))
-    .catch(error => store.dispatch({
-      type: types.failure,
-      error
-    }))
+    return callAPI()
+      .then(data => store.dispatch({
+        type: types.success,
+        data
+      }))
+      .then( () => store.dispatch(successAction))
+      .catch(error => store.dispatch({
+        type: types.failure,
+        error
+      }))
   }
   else {
     return next(action)

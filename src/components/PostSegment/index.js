@@ -12,7 +12,7 @@ const PostSegment = ({post}) => (
     
     <div id='post-segment-text-container'>
       <div id="post-segment-title">
-        {post.body}
+        {post.title}
       </div>
       
       <div id='post-segment-info'>

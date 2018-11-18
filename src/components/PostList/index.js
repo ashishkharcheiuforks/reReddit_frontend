@@ -9,7 +9,7 @@ const PostList = (props) => {
 
   
   if (error) {
-    return <p> error.message </p>
+    return <p> {error} </p>
   }
   
   let postList = null;

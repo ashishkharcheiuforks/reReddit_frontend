@@ -16,13 +16,13 @@ const postList = (state=initialState, action) => {
       return {
         ...state,
         loading: true,
-        error: false,
+        error: null,
       };
     case FETCH_POSTS_SUCCESS:
       return {
         loading: false,
         error: null,
-        posts: action.posts,
+        posts: action.data,
       };
     case FETCH_POSTS_FAILURE:
       return {

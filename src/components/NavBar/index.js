@@ -5,7 +5,7 @@ import {
   MenuItem,
   NavDropdown,
 } from 'react-bootstrap';
-//import { LinkContainer } from 'react-router-bootstrap';
+import { LinkContainer } from 'react-router-bootstrap';
 import { NavLink } from 'react-router-dom';
 
 import "./styles.css";
@@ -27,7 +27,11 @@ const NavBar = (props) => {
             title="feed"
             id="basic-nav-dropdown"
           >
-            <MenuItem eventKey={3.1}>Action</MenuItem>
+            <LinkContainer exact to='/sub-post/'>
+              <MenuItem eventKey={3.1}>
+                nature-stock
+              </MenuItem>
+            </LinkContainer>
             <MenuItem eventKey={3.2}>Another action</MenuItem>
             <MenuItem eventKey={3.3}>Something else here</MenuItem>
             <MenuItem divider />

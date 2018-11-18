@@ -1,12 +1,12 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
 
-import fetchPostList from '../../actions/Posts';
+import { makeSubPostListRequest } from '../../actions/Posts';
 import PostList from '../../components/PostList';
 
 class PostListContainer extends Component {
   componentDidMount() {
-    this.props.fetchPostList();
+    this.props.fetchPostList('nature-stock','new');
   }
   
   render () {
@@ -23,7 +23,8 @@ const mapStateToProps = state => (
 );
 
 const mapDispatchToProps = dispatch => ({
-  fetchPostList: () => dispatch(fetchPostList()),
+  fetchPostList: (subredditTitle, orderBy) =>
+    dispatch(makeSubPostListRequest(subredditTitle, orderBy)),
 });
 
 export default connect(

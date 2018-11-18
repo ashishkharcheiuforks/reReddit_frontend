@@ -1,6 +1,7 @@
 import apiRequestErrorHandler from '../../utilities/apiErrorHandler';
 
 export const apiMiddleware = store => next => action => {
+  
   if (action.type && action.type.startsWith("API_")) {
     const {
       callAPI,
@@ -17,14 +18,12 @@ export const apiMiddleware = store => next => action => {
         data
       }))
       .then(action => {
-        console.log(successActionCreator(action.data))
         if (successActionCreator){
           return store.dispatch(successActionCreator(action.data))
         }
       })
       .catch(error => {
         const errorMessage = apiRequestErrorHandler(error)
-
         if (failureActionCreator) {
           store.dispatch(failureActionCreator(errorMessage))
         }

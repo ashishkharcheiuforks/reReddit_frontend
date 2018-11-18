@@ -17,6 +17,7 @@ export const apiMiddleware = store => next => action => {
         data
       }))
       .then(action => {
+        console.log(successActionCreator(action.data))
         if (successActionCreator){
           return store.dispatch(successActionCreator(action.data))
         }

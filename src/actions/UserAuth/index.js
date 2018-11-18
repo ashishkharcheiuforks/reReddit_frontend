@@ -9,7 +9,11 @@ import {
 } from '../actionTypes';
 
 import { userLoginApi, userRegisterApi } from '../../api/UserAuth';
-import { hideUserAuthModal, updateErrorMessage } from "../UserAuthModal";
+import {
+  showUserAuthModal,
+  hideUserAuthModal,
+  updateErrorMessage
+} from "../UserAuthModal";
 
 export const makeUserLoginRequest = (username, password) => (
   {
@@ -39,6 +43,7 @@ export const makeUserRegisterRequest = (username, password, email) => (
         email
     }),
     failureActionCreator: updateErrorMessage,
+    successActionCreator: registerSuccessLoginModal,
   }
 )
 
@@ -47,3 +52,11 @@ export const userAuthLogout = () => (
     type: USER_AUTH_LOGOUT,
   }
 );
+
+// When succesfully registered launch the login modal with
+// success message
+const successMessage = "User profile create! Please log in."
+const registerSuccessLoginModal = () => showUserAuthModal(
+  'login',
+  successMessage
+)

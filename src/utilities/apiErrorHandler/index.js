@@ -1,8 +1,9 @@
 const apiRequestErrorHandler = (e) => {
   try {
+    console.log("Response: " , e.response)
     if (!e.response) {
       return "Network Error";
-    } else if (e.response.data && ! typeof e.response.data ==='string') {
+    } else if (e.response.data) {
       const erd = e.response.data;
   
       if (erd.detail){
@@ -21,9 +22,6 @@ const apiRequestErrorHandler = (e) => {
         errorField.substring(1) + ":  " +
         errorMessage
       );
-    } else {
-      // response.data is a html string
-      return e.message;
     }
   }
   catch (error) {

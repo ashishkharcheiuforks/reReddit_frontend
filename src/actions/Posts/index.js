@@ -2,6 +2,7 @@ import {
   FETCH_POSTS_REQUEST,
   FETCH_POSTS_SUCCESS,
   FETCH_POSTS_FAILURE,
+  SET_POSTS_SUBREDDIT,
 } from '../actionTypes';
 
 import { getSubPostListApi, getPostListApi } from '../../api/Posts';
@@ -18,5 +19,12 @@ export const makeSubPostListRequest = (subredditTitle, orderBy) => (
     callAPI: subredditTitle?
               () => getSubPostListApi(subredditTitle, orderBy):
               () => getPostListApi(orderBy),
+  }
+)
+
+export const  setPostListSub = (subredditTitle) => (
+  {
+    type: SET_POSTS_SUBREDDIT,
+    subredditTitle: subredditTitle,
   }
 )

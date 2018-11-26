@@ -6,7 +6,7 @@ import PostList from '../../components/PostList';
 
 class PostListContainer extends Component {
   componentDidMount() {
-    this.props.fetchPostList('nature-stock','new');
+    this.props.fetchPostList('scientist-fly', 'new');
   }
   
   render () {

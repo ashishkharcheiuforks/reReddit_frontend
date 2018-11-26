@@ -4,7 +4,7 @@ import {
   FETCH_POSTS_FAILURE,
 } from '../actionTypes';
 
-import { getSubPostListApi } from '../../api/Posts';
+import { getSubPostListApi, getPostListApi } from '../../api/Posts';
 
 
 export const makeSubPostListRequest = (subredditTitle, orderBy) => (
@@ -15,6 +15,8 @@ export const makeSubPostListRequest = (subredditTitle, orderBy) => (
       success: FETCH_POSTS_SUCCESS,
       failure: FETCH_POSTS_FAILURE,
     },
-    callAPI: () => getSubPostListApi(subredditTitle, orderBy),
+    callAPI: subredditTitle?
+              () => getSubPostListApi(subredditTitle, orderBy):
+              () => getPostListApi(orderBy),
   }
 )

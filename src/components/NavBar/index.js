@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { Fragment } from 'react';
 import {
   Navbar,
   Nav,
@@ -9,31 +9,9 @@ import { LinkContainer } from 'react-router-bootstrap';
 import { NavLink } from 'react-router-dom';
 
 import "./styles.css";
+import NavBarDropdown from './NavBarDropdown';
 
 const NavBar = (props) => {
-  
-  // the static links do not depend on user subreddit subscriptions
-  // users who subscribe to nothing can still view all Posts
-  // ordered by popular, new, etc.
-  const dropDownLinksStatic = (
-    <>
-      <LinkContainer exact to='/'>
-        <MenuItem eventKey={3.1}>
-          Home
-        </MenuItem>
-      </LinkContainer>
-      <LinkContainer exact to='/r/popular'>
-        <MenuItem eventKey={3.2}>
-          Popular
-        </MenuItem>
-      </LinkContainer>
-      <LinkContainer exact to='/r/new'>
-        <MenuItem eventKey={3.3}>
-          New
-        </MenuItem>
-      </LinkContainer>
-     </>
-  )
   
   return (
     <div>
@@ -44,16 +22,7 @@ const NavBar = (props) => {
           </Navbar.Brand>
         </Navbar.Header>
         <Nav>
-          <NavDropdown
-            className='feed-dropdown'
-            eventKey={3}
-            title="feed"
-            id="basic-nav-dropdown"
-          >
-            {dropDownLinksStatic}
-            <MenuItem divider />
-            <MenuItem eventKey={3.4}>Separated link</MenuItem>
-          </NavDropdown>
+          <NavBarDropdown/>
         </Nav>
         {props.children}
       </Navbar>

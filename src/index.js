@@ -29,8 +29,12 @@ ReactDOM.render(
                   exact
                   path="/r/:subredditTitle"
                   component={PostListContainer}
-                />                
-                <Route exact path="/" component={PostListContainer}/>
+                />
+                <Route
+                  exact
+                  path="/"
+                  component={PostListContainer}
+                />
               </Switch>
             </div>
           </div>

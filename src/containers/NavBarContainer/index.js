@@ -14,6 +14,7 @@ class NavBarContainer extends Component {
         showModal={this.props.showModal}
         username={this.props.username}
         handleLogout={this.props.handleLogout}
+        subredditTitles={this.props.subredditTitles}
       />
     </NavBar>
   );
@@ -22,6 +23,7 @@ class NavBarContainer extends Component {
 const mapStateToProps = state => (
   {
     username: state.userAuth.username,
+    subredditTitles: state.userAuth.subs.map(sub => sub.title),
   }
 );
 

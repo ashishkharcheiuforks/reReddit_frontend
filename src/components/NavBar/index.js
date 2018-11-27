@@ -12,6 +12,29 @@ import "./styles.css";
 
 const NavBar = (props) => {
   
+  // the static links do not depend on user subreddit subscriptions
+  // users who subscribe to nothing can still view all Posts
+  // ordered by popular, new, etc.
+  const dropDownLinksStatic = (
+    <>
+      <LinkContainer exact to='/'>
+        <MenuItem eventKey={3.1}>
+          Home
+        </MenuItem>
+      </LinkContainer>
+      <LinkContainer exact to='/r/popular'>
+        <MenuItem eventKey={3.2}>
+          Popular
+        </MenuItem>
+      </LinkContainer>
+      <LinkContainer exact to='/r/new'>
+        <MenuItem eventKey={3.3}>
+          New
+        </MenuItem>
+      </LinkContainer>
+     </>
+  )
+  
   return (
     <div>
       <Navbar inverse fixed="true" fluid>
@@ -27,13 +50,7 @@ const NavBar = (props) => {
             title="feed"
             id="basic-nav-dropdown"
           >
-            <LinkContainer exact to='/sub-post/'>
-              <MenuItem eventKey={3.1}>
-                nature-stock
-              </MenuItem>
-            </LinkContainer>
-            <MenuItem eventKey={3.2}>Another action</MenuItem>
-            <MenuItem eventKey={3.3}>Something else here</MenuItem>
+            {dropDownLinksStatic}
             <MenuItem divider />
             <MenuItem eventKey={3.4}>Separated link</MenuItem>
           </NavDropdown>

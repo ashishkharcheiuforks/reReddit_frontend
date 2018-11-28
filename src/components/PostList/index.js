@@ -3,6 +3,7 @@ import React from 'react';
 
 import PostSegment from '../PostSegment';
 import Loader from '../ListLoader';
+import './styles.css';
 
 const PostList = (props) => {
   const {posts, loading, error} = props;
@@ -16,17 +17,22 @@ const PostList = (props) => {
   if (loading) {
     postList =  <Loader />;
   } else {
-      postList = posts.map((post,idx) => {
-        return <PostSegment post={post} key={idx} />
+      postList = posts.map((post) => {
+        return <PostSegment post={post} key={post.id} />
     });
   }
   
   
   return (
-    <div>
-      <ul>
-        {postList}
-      </ul>
+    <div className='post-list-container'>
+      <div className='list-container'>
+        <ul>
+          {postList}
+        </ul>
+      </div>
+      <div className='sidebar-container'>
+        
+      </div>
     </div>
   );
 }

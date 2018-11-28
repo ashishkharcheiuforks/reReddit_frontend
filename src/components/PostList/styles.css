@@ -1,0 +1,16 @@
+div.post-list-container {
+  display: flex;
+  flex-direction: row;
+  max-width: 100%;
+  padding: 2rem 3rem;
+  align-items: stretch;
+}
+
+.post-list-container div.list-container {
+  flex: 2 1 auto;
+}
+.post-list-container div.sidebar-container {
+  margin-left: 5rem;
+  flex: 1 1 auto;
+  border: 1px solid black;
+}

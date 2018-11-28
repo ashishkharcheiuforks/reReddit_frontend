@@ -24,7 +24,6 @@ const PostList = (props) => {
   
   return (
     <div>
-      <h2> Posts: </h2>
       <ul>
         {postList}
       </ul>

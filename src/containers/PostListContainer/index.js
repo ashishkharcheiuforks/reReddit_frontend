@@ -5,8 +5,8 @@ import { makeSubPostListRequest } from '../../actions/Posts';
 import PostList from '../../components/PostList';
 
 class PostListContainer extends Component {
-  // If undefined converts to null
   componentDidMount() {
+    // If undefined converts to null    
     const subredditTitle = this.props.match.params.subredditTitle || null;
       
     this.props.fetchPostList(subredditTitle, 'new');

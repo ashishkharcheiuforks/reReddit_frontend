@@ -14,19 +14,17 @@ import NavBarDropdown from './NavBarDropdown';
 const NavBar = (props) => {
   
   return (
-    <div>
-      <Navbar inverse fixed="true" fluid>
-        <Navbar.Header>
-          <Navbar.Brand>
-            <NavLink exact to="/">reReddit</NavLink>
-          </Navbar.Brand>
-        </Navbar.Header>
-        <Nav>
-          <NavBarDropdown/>
-        </Nav>
-        {props.children}
-      </Navbar>
-    </div>
+    <Navbar inverse fixed="true" fluid>
+      <Navbar.Header>
+        <Navbar.Brand>
+          <NavLink exact to="/">reReddit</NavLink>
+        </Navbar.Brand>
+      </Navbar.Header>
+      <Nav>
+        <NavBarDropdown subscribed={props.subscribed}/>
+      </Nav>
+      {props.children}
+    </Navbar>
   );
 };
 

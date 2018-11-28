@@ -20,7 +20,6 @@ const postList = (state=initialState, action) => {
         error: null,
       };
     case FETCH_POSTS_SUCCESS:
-      console.log(action.data)
       return {
         ...state,
         loading: false,

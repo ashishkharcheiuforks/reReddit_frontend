@@ -9,12 +9,11 @@ import { userAuthLogout } from '../../actions/UserAuth';
 
 class NavBarContainer extends Component {
   render = () => (
-    <NavBar>
+    <NavBar subscribed={this.props.subscribed}>
       <UserAuthNav
         showModal={this.props.showModal}
         username={this.props.username}
         handleLogout={this.props.handleLogout}
-        subredditTitles={this.props.subredditTitles}
       />
     </NavBar>
   );
@@ -23,7 +22,7 @@ class NavBarContainer extends Component {
 const mapStateToProps = state => (
   {
     username: state.userAuth.username,
-    subredditTitles: state.userAuth.subs.map(sub => sub.title),
+    subscribed: state.userAuth.subs,
   }
 );
 

@@ -1,4 +1,4 @@
-import React, { Component } from 'react';
+import React from 'react';
 import {
   NavDropdown,
   MenuItem
@@ -10,7 +10,7 @@ import './styles.css'
 const NavBarDropdown = ({subscribed}) => {
   
   const subscribedSubs = subscribed.map( sub =>
-    <LinkContainer exact to={"/r/" + sub.title}>
+    <LinkContainer key={sub.id} exact to={"/r/" + sub.title}>
       <MenuItem eventKey={sub.id}>
         {sub.title}
       </MenuItem>
@@ -39,7 +39,7 @@ const NavBarDropdown = ({subscribed}) => {
           New
         </MenuItem>
       </LinkContainer>
-      <MenuItem divider />
+      <MenuItem divider eventKey={3.4} />
       {subscribedSubs}
     </NavDropdown>
   )

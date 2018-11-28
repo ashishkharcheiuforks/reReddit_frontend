@@ -1,17 +1,14 @@
-import React, { Fragment } from 'react';
+import React from 'react';
 import {
   Navbar,
   Nav,
-  MenuItem,
-  NavDropdown,
 } from 'react-bootstrap';
-import { LinkContainer } from 'react-router-bootstrap';
 import { NavLink } from 'react-router-dom';
 
 import "./styles.css";
 import NavBarDropdown from './NavBarDropdown';
 
-const NavBar = (props) => {
+const NavBar = ({children, subscribed}) => {
   
   return (
     <Navbar inverse fixed="true" fluid>
@@ -21,9 +18,9 @@ const NavBar = (props) => {
         </Navbar.Brand>
       </Navbar.Header>
       <Nav>
-        <NavBarDropdown subscribed={props.subscribed}/>
+        <NavBarDropdown subscribed={subscribed}/>
       </Nav>
-      {props.children}
+      {children}
     </Navbar>
   );
 };

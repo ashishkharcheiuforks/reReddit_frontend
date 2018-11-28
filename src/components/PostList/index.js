@@ -26,7 +26,7 @@ const PostList = (props) => {
   return (
     <div className='post-list-container'>
       <div className='list-container'>
-        <ul>
+        <ul className='post-list-ul'>
           {postList}
         </ul>
       </div>

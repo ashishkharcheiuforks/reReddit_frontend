@@ -23,7 +23,6 @@ ReactDOM.render(
           <NavBarContainer />
           <UserAuthModalContainer />
           <div className='main-layout'>
-            <div className="content">
               <Switch>
                 <Route
                   exact
@@ -35,8 +34,7 @@ ReactDOM.render(
                   path="/"
                   component={PostListContainer}
                 />
-              </Switch>
-            </div>
+            </Switch>
           </div>
         </div>
       </BrowserRouter>

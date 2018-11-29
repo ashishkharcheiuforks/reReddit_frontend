@@ -2,7 +2,6 @@ import React, { Component } from 'react';
 import { connect } from 'react-redux';
 
 import { makeSubPostListRequest } from '../../actions/Posts';
-import { makeSubDetailRequest } from '../../actions/Subreddit';
 import PostList from '../../components/PostList';
 
 class PostListContainer extends Component {

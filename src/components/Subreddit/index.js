@@ -6,6 +6,9 @@ import './styles.css';
 
 const Subreddit = (props) => {
   
+  const {
+    title,
+  } = props;
   return (
     <div className='subreddit-container'>
       <div className='postlist-container'>
@@ -14,7 +17,7 @@ const Subreddit = (props) => {
         </ul>
       </div>
       <div className='sidebar-container'>
-        <SideBar {...props} />
+        <SideBar title={title} />
       </div>
     </div>
   )

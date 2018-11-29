@@ -1,15 +1,11 @@
-import React, { Fragment } from 'react';
+import React from 'react';
 
 
-const SideBar = (props) => {
-  
-  const {
-    sub,
-  } = props;
+const SideBar = ({title} ) => {
   
   return (
     <div className='sidebar-content'>
-      r/
+      r/ {title}
     </div>
   )
 }

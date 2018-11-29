@@ -33,13 +33,20 @@ class SubredditContainer extends Component {
   
 }
 
+const mapStateToProps = state => (
+  {
+    title: state.subreddit.title
+  }
+)
+
 const mapDispatchToProps = dispatch => (
   {
-    fetchSubDetail: (subredditTitle) => makeSubDetailRequest(subredditTitle),
+    fetchSubDetail: (subredditTitle) =>
+      dispatch(makeSubDetailRequest(subredditTitle)),
   }
 )
 
 export default connect(
-  null,
+  mapStateToProps,
   mapDispatchToProps,
 )(SubredditContainer);

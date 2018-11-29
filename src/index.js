@@ -11,7 +11,6 @@ import { PersistGate } from 'redux-persist/integration/react';
 
 import './index.css';
 import { store, persistor } from './store'
-import PostListContainer from './containers/PostListContainer';
 import SubredditContainer from './containers/SubredditContainer';
 import NavBarContainer from './containers/NavBarContainer';
 import UserAuthModalContainer from './containers/UserAuthModalContainer';

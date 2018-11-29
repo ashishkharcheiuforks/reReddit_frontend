@@ -1,11 +1,11 @@
 import React from 'react';
 
 
-const SideBar = ({title} ) => {
+const SideBar = ({title}) => {
   
   return (
     <div className='sidebar-content'>
-      r/ {title}
+      r/{title}
     </div>
   )
 }

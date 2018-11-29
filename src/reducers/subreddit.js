@@ -2,14 +2,15 @@ import {
   FETCH_SUB_DETAIL_REQUEST,
   FETCH_SUB_DETAIL_SUCCESS,
   FETCH_SUB_DETAIL_FAILURE,
+  SET_SUB_TO_HOME,
 } from '../actions/actionTypes';
 import postList from './postList';
 
 const initialState = {
-  title: null,
   postList: postList(undefined, {type:""}),
   loading: false,
   error: null,
+  title: null,
 }
 
 
@@ -38,10 +39,18 @@ const subreddit = (state=initialState, action) => {
        title: action.data.title,
      };
     case FETCH_SUB_DETAIL_FAILURE:
-      return{
+      return {
         ...state,
         loading: false,
         error: action.error,
+      }
+    case SET_SUB_TO_HOME:
+    console.log(action)
+      return {
+        ...state,
+        loading: false,
+        error: null,
+        title: action.title,
       }
     default:
       return state;

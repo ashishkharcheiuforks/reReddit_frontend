@@ -1,9 +1,9 @@
 import React from 'react';
 
-
 import PostSegment from '../PostSegment';
 import Loader from '../ListLoader';
 import './styles.css';
+import SideBar from './SideBar';
 
 const PostList = (props) => {
   const {posts, loading, error} = props;
@@ -13,7 +13,7 @@ const PostList = (props) => {
     return <p> {error} </p>
   }
   
-  let postList = null;
+  let postList;
   if (loading) {
     postList =  <Loader />;
   } else {
@@ -22,17 +22,14 @@ const PostList = (props) => {
     });
   }
   
-  
   return (
     <div className='post-list-container'>
       <div className='list-container'>
-        <ul className='post-list-ul'>
+        <ul>
           {postList}
         </ul>
       </div>
-      <div className='sidebar-container'>
-        
-      </div>
+      <SideBar {...props} />
     </div>
   );
 }

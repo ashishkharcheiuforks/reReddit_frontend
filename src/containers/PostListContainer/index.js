@@ -2,13 +2,14 @@ import React, { Component } from 'react';
 import { connect } from 'react-redux';
 
 import { makeSubPostListRequest } from '../../actions/Posts';
+import { makeSubDetailRequest } from '../../actions/Subreddit';
 import PostList from '../../components/PostList';
 
 class PostListContainer extends Component {
   componentDidMount() {
     // If undefined converts to null
     const subredditTitle = this.props.match.params.subredditTitle || null;
-      
+        
     this.props.fetchPostList(subredditTitle, 'new');
   }
   

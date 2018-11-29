@@ -1,14 +1,14 @@
 import {
-  FETCH_POSTS_REQUEST,
-  FETCH_POSTS_SUCCESS,
-  FETCH_POSTS_FAILURE,
+  FETCH_SUB_DETAIL_REQUEST,
+  FETCH_SUB_DETAIL_SUCCESS,
+  FETCH_SUB_DETAIL_FAILURE,
 } from '../actions/actionTypes';
 import postList from './postList';
 
 const initialState = {
   title: null,
   postList: postList(undefined, {type:""}),
-  loading: null,
+  loading: false,
   error: null,
 }
 
@@ -23,13 +23,29 @@ const subreddit = (state=initialState, action) => {
     }
   };
   
-  return {...state};
-  
-  // switch (action.type) {
-  //   case '':
-  //   default:
-  //
-  // }
+  switch (action.type) {
+    case FETCH_SUB_DETAIL_REQUEST:
+      return {
+        ...state,
+        loading: true,
+        error: null,
+      }
+    case FETCH_SUB_DETAIL_SUCCESS:
+     return {
+       ...state,
+       loading: false,
+       error: null,
+       title: action.data.title,
+     };
+    case FETCH_SUB_DETAIL_FAILURE:
+      return{
+        ...state,
+        loading: false,
+        error: action.error,
+      }
+    default:
+      return state;
+  }
   
   
 }

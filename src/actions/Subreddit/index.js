@@ -14,7 +14,7 @@ export const makeSubDetailRequest = (subredditTitle) => (
       request: FETCH_SUB_DETAIL_REQUEST,
       success: FETCH_SUB_DETAIL_SUCCESS,
       failure: FETCH_SUB_DETAIL_FAILURE,
-    }
-    callAPI: getSubDetailApi(subredditTitle),
+    },
+    callAPI: () => getSubDetailApi(subredditTitle),
   }
 )

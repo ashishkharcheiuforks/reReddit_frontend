@@ -3,7 +3,6 @@ import React from 'react';
 import PostSegment from '../PostSegment';
 import Loader from '../ListLoader';
 import './styles.css';
-import SideBar from './SideBar';
 
 const PostList = (props) => {
   const {posts, loading, error} = props;
@@ -23,13 +22,10 @@ const PostList = (props) => {
   }
   
   return (
-    <div className='post-list-container'>
-      <div className='list-container'>
-        <ul>
-          {postList}
-        </ul>
-      </div>
-      <SideBar {...props} />
+    <div className='postlist-content'>
+      <ul>
+        {postList}
+      </ul>
     </div>
   );
 }

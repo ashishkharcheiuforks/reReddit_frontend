@@ -8,7 +8,7 @@ const SideBar = (props) => {
   } = props;
   
   return (
-    <div className='sidebar-container'>
+    <div className='sidebar-content'>
       r/
     </div>
   )

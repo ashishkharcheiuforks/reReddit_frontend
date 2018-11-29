@@ -1,34 +1,3 @@
-div.post-list-container {
-  display: flex;
-  flex-direction: row;
-  max-width: 100%;
-  padding: 2rem 2.4rem;
-  align-items: flex-start;
-}
-
-.post-list-container div.list-container {
-  flex: 2 3 auto;
-}
-.post-list-container div.sidebar-container {
-  margin-left: 5rem;
-  flex: 1 0 auto;
-  width: 10rem;
-  border: 1px solid black;
-  position: sticky;
-  top: 5rem;
+div.postlist-content {
   
-  text-align: center;
-  background: #D3D3D3;
-  font-size: 2rem;
-}
-
-div ul {
-  padding-left: 0;
-}
-
-@media (max-width: 640px)
-{
-  .post-list-container div.sidebar-container {
-    display: none;
-  }
 }

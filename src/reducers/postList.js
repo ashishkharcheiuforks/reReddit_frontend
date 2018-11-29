@@ -12,6 +12,7 @@ const initialState = {
 }
 
 const postList = (state=initialState, action) => {
+  console.log(state,"action",  action)
   switch (action.type) {
     case FETCH_POSTS_REQUEST:
       return {

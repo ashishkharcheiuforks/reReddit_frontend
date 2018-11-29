@@ -6,7 +6,7 @@ import PostList from '../../components/PostList';
 
 class PostListContainer extends Component {
   componentDidMount() {
-    // If undefined converts to null    
+    // If undefined converts to null
     const subredditTitle = this.props.match.params.subredditTitle || null;
       
     this.props.fetchPostList(subredditTitle, 'new');
@@ -31,9 +31,9 @@ class PostListContainer extends Component {
 
 const mapStateToProps = state => (
   {
-    loading: state.postList.loading,
-    posts: state.postList.posts,
-    error: state.postList.error,
+    loading: state.subreddit.postList.loading,
+    posts: state.subreddit.postList.posts,
+    error: state.subreddit.postList.error,
   }
 );
 

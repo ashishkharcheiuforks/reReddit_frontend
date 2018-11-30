@@ -12,17 +12,14 @@ const UnauthenticatedUser = ({showModal, middleWareTest}) => {
   return (
     <Nav pullRight className="right-user-links">
       <NavItem eventKey={4}>
-        <UserButton
-          onClick={() => showModal('login')}
-          content={"login"}
-          inverted
-        />
+        <UserButton onClick={() => showModal('login')} inverted>
+          login
+        </UserButton>
       </NavItem>
       <NavItem eventKey={5}>
-        <UserButton
-          onClick={() => showModal('register')}
-          content={"sign up"}
-        />
+        <UserButton onClick={() => showModal('register')}>
+          sign up
+        </UserButton>
       </NavItem>
     </Nav>
   );

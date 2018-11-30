@@ -4,14 +4,14 @@ import { Button } from 'react-bootstrap';
 import './styles.css';
 
 
-const UserButton = ({content, onClick, inverted}) => {
+const UserButton = ({children, onClick, inverted}) => {
   const userButtonId = inverted ? "user-button-inverted" : "user-button-default";
   return (
       <div>
         <Button onClick={onClick} id={userButtonId} className="user-button">
-          {content}
+          {children}
         </Button>
-      </div>  
+      </div>
     );
 };
 

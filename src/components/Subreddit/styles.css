@@ -13,14 +13,9 @@ div.sidebar-container {
   margin-left: 5rem;
   flex: 1 0 auto;
   width: 10rem;
-  max-width: 40rem;
-  border: 1px solid black;
+  max-width: 30rem;
   position: sticky;
   top: 5rem;
-  
-  text-align: center;
-  background: #D3D3D3;
-  font-size: 2rem;
 }
 
 div ul {

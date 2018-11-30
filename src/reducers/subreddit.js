@@ -37,6 +37,7 @@ const subreddit = (state=initialState, action) => {
        loading: false,
        error: null,
        title: action.data.title,
+       description: action.data.description,
      };
     case FETCH_SUB_DETAIL_FAILURE:
       return {

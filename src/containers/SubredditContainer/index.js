@@ -36,6 +36,7 @@ class SubredditContainer extends Component {
 const mapStateToProps = state => (
   {
     title: state.subreddit.title,
+    description: state.subreddit.description,
   }
 )
 

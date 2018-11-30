@@ -14,7 +14,7 @@ const Subreddit = (props) => {
         </ul>
       </div>
       <div className='sidebar-container'>
-        <SideBar title={props.title} />
+        <SideBar {...props} />
       </div>
     </div>
   )

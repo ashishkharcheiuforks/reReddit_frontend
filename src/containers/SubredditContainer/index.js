@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
 
-import { makeSubDetailRequest } from '../../actions/Subreddit';
+import { makeSubDetailRequest, makeSubSubscriptionRequest } from '../../actions/Subreddit';
 import Subreddit from '../../components/Subreddit';
 
 
@@ -44,6 +44,8 @@ const mapDispatchToProps = dispatch => (
   {
     fetchSubDetail: (subredditTitle) =>
       dispatch(makeSubDetailRequest(subredditTitle)),
+    makeSubscriptionRequest: (subredditTitle) =>
+      dispatch(makeSubSubscriptionRequest(subredditTitle)),
   }
 )
 

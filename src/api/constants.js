@@ -6,6 +6,9 @@ export const SUB_LIST_URL = API_ROOT_URL + 'subreddits/';
 export const SUB_DETAIL_URL = (subredditTitle) => (
   SUB_LIST_URL + 'sub/' + subredditTitle + '/'
 );
+export const SUB_SUBSCRIBE_URL = (subredditTitle) => (
+  SUB_LIST_URL + 'sub/' + subredditTitle + '/subscribe/'
+);
 
 export const USER_LIST_URL = API_ROOT_URL + 'users/';
 export const USER_LOGIN_URL = API_ROOT_URL + 'users/login/';
@@ -15,5 +18,3 @@ export const POST_LIST_URL = API_ROOT_URL + 'posts/';
 export const SUB_POST_LIST_URL = (subredditTitle) => (
   POST_LIST_URL + "subreddit-list/" + subredditTitle + '/'
 );
-
-  

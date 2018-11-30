@@ -7,10 +7,10 @@ export const getSubDetailApi = (subredditTitle) => (
   .then(response => response.data)
 )
 
-export const subredditSubscribeApi = (subredditTitle, token) => {
+export const subredditSubscribeApi = (subredditTitle, subAction, token) => {
   
   const headers = {'Authorization': `Token ${token}`,}
-  const data = {action: 'sub',}
+  const data = {action: subAction,}
   
   return (
     axios.post(SUB_SUBSCRIBE_URL(subredditTitle), data, {headers:headers})

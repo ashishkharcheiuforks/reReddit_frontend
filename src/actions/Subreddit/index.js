@@ -57,24 +57,12 @@ export const checkSubredditSubscription = (requestData) => {
   );
 }
 
-// export const makeSubSubscriptionRequest = (subredditTitle, token) => (
-//   {
-//     type: API_SUBREDDIT_SUBSCRIBE,
-//     types: {
-//       request: SUBREDDIT_SUBSCRIBE_REQUEST,
-//       success: SUBREDDIT_SUBSCRIBE_SUCCESS,
-//       failure: SUBREDDIT_SUBSCRIBE_FAILURE,
-//     },
-//     callAPI: () => subredditSubscribeApi(subredditTitle, token),
-//   }
-// )
-
 // Getting the current token into the subscriptoin request is
 // a little tricky. We could just get it from the store connection
 // to the subreddit container but it seems dumb to pass it all the way
 // down just to give it to makeSubSubscriptionRequest. Instead use
 // thunk middleware to do it.
-export const makeSubSubscriptionRequest = (subredditTitle) =>
+export const makeSubSubscriptionRequest = (subredditTitle, subAction) =>
   (dispatch, getState) => dispatch(
     {
       type: API_SUBREDDIT_SUBSCRIBE,
@@ -85,6 +73,7 @@ export const makeSubSubscriptionRequest = (subredditTitle) =>
       },
       callAPI: () => subredditSubscribeApi(
         subredditTitle,
+        subAction,
         getState().userAuth.token
       ),
     }

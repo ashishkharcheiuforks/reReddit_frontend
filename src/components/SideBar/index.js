@@ -2,6 +2,7 @@ import React from 'react';
 import { Button } from 'react-bootstrap';
 
 import './styles.css';
+import SubscriptionButton from './SubscriptionButton';
 
 const SideBar = (props) => {
   
@@ -9,6 +10,7 @@ const SideBar = (props) => {
     title,
     description,
     makeSubscriptionRequest,
+    subscribed,
   } = props;
   
   return (
@@ -20,14 +22,11 @@ const SideBar = (props) => {
       <div className="description">
         {description}
       </div>
-      
-      <Button
-        className='sidebar-button'
-        id='subscribe-button'
-        onClick= {() => makeSubscriptionRequest(title)}
-        >
-        SUBSCRIBE
-      </Button>
+      <SubscriptionButton
+        makeSubscriptionRequest={makeSubscriptionRequest}
+        subscribed={subscribed}
+        title={title}
+      />
       
       <Button
         id='create-post-button'

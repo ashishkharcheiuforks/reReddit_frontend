@@ -37,6 +37,7 @@ const mapStateToProps = state => (
   {
     title: state.subreddit.title,
     description: state.subreddit.description,
+    subscribed: state.subreddit.subscribed,
   }
 )
 
@@ -44,8 +45,8 @@ const mapDispatchToProps = dispatch => (
   {
     fetchSubDetail: (subredditTitle) =>
       dispatch(makeSubDetailRequest(subredditTitle)),
-    makeSubscriptionRequest: (subredditTitle) =>
-      dispatch(makeSubSubscriptionRequest(subredditTitle)),
+    makeSubscriptionRequest: (subredditTitle, subAction) =>
+      dispatch(makeSubSubscriptionRequest(subredditTitle, subAction)),
   }
 )
 

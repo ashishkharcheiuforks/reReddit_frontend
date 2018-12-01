@@ -11,6 +11,7 @@ const SideBar = (props) => {
     description,
     makeSubscriptionRequest,
     userSubs: {subscribed: userSubscriptions},
+    authenticatedUser,
   } = props;
   
   return (
@@ -26,6 +27,7 @@ const SideBar = (props) => {
         makeSubscriptionRequest={makeSubscriptionRequest}
         userSubscriptions={userSubscriptions}
         title={title}
+        authenticatedUser={authenticatedUser}
       />
       
       <Button

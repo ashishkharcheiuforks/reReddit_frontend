@@ -1,5 +1,6 @@
 import React from 'react';
 import { Button } from 'react-bootstrap';
+import { compose } from 'recompose';
 
 import './styles.css';
 
@@ -9,6 +10,11 @@ const withEither = (conditionalRenderingFn, EitherComponent) => (Component) => (
   conditionalRenderingFn(props)
     ? <EitherComponent {...props}/>
     : <Component {...props}/>
+
+const withMaybe = (conditionalRenderingFn) => (Component) => (props) =>
+  conditionalRenderingFn(props)
+    ? <Component {...props} />
+    : null
   
 const SubscribeButton = ({makeSubscriptionRequest, title}) =>
   <Button
@@ -29,10 +35,11 @@ const UnSubscribeButton = ({makeSubscriptionRequest, title}) =>
   </Button>
 
 const subscriptionConditionFn = props => props.userSubscriptions.includes(props.title);
+const authenticatedConditionFn = props => props.authenticatedUser;
 
-const SubscriptionButton = withEither(
-  subscriptionConditionFn,
-  UnSubscribeButton
+const SubscriptionButton = compose(
+  withMaybe(authenticatedConditionFn),  
+  withEither(subscriptionConditionFn, UnSubscribeButton),
 )(SubscribeButton);
 
 export default SubscriptionButton;

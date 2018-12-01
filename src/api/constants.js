@@ -13,6 +13,9 @@ export const SUB_SUBSCRIBE_URL = (subredditTitle) => (
 export const USER_LIST_URL = API_ROOT_URL + 'users/';
 export const USER_LOGIN_URL = API_ROOT_URL + 'users/login/';
 export const USER_REGISTER_URL = API_ROOT_URL + 'users/create/';
+export const USER_DETAIL_URL = (username) =>
+  USER_LIST_URL + `user/${username}/`;
+  
 
 export const POST_LIST_URL = API_ROOT_URL + 'posts/';
 export const SUB_POST_LIST_URL = (subredditTitle) => (

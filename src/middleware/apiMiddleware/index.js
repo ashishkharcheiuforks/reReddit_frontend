@@ -13,10 +13,13 @@ export const apiMiddleware = store => next => action => {
     store.dispatch({type: types.request})
     
     return callAPI()
-      .then(data => store.dispatch({
-        type: types.success,
-        data
-      }))
+      .then(data => typeof types.success === 'function'
+        ? types.success(data, store.getState, store.dispatch)
+        : store.dispatch({
+            type: types.success,
+            data
+          })
+      )
       .then(action => {
         if (successActionCreator){
           return store.dispatch(successActionCreator(action.data))

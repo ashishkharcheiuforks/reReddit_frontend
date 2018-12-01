@@ -6,9 +6,17 @@ import {
   USER_AUTH_REGISTER_REQUEST,
   USER_AUTH_REGISTER_SUCCESS,
   USER_AUTH_REGISTER_FAILURE,
+  API_USER_AUTH_UPDATE,
+  USER_AUTH_UPDATE_REQUEST,
+  USER_AUTH_UPDATE_SUCCESS,  
+  USER_AUTH_UPDATE_FAILURE,
 } from '../actionTypes';
 
-import { userLoginApi, userRegisterApi } from '../../api/UserAuth';
+import {
+  userLoginApi,
+  userRegisterApi,
+  userUpdateApi
+} from '../../api/UserAuth';
 import {
   showUserAuthModal,
   hideUserAuthModal,
@@ -59,4 +67,17 @@ const successMessage = "User profile create! Please log in."
 const registerSuccessLoginModal = () => showUserAuthModal(
   'login',
   successMessage
+)
+
+// Upon change to user backend we might need to reload the user data
+export const makeUserUpdateRequest = (username) => (
+  {
+  type: API_USER_AUTH_UPDATE,
+  types: {
+    request: USER_AUTH_UPDATE_REQUEST,
+    success: USER_AUTH_UPDATE_SUCCESS,
+    failure: USER_AUTH_UPDATE_FAILURE,
+  },
+  callAPI: () => userUpdateApi(username),
+  }
 )

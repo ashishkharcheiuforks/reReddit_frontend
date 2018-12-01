@@ -7,12 +7,11 @@ import {
   SUBREDDIT_SUBSCRIBE_REQUEST,
   SUBREDDIT_SUBSCRIBE_SUCCESS,
   SUBREDDIT_SUBSCRIBE_FAILURE,
-  API_SUBREDDIT_SUBSCRIBE,
-  SUBREDDIT_SUBSCRIPTION_CHECK
+  API_SUBREDDIT_SUBSCRIBE
 } from '../actionTypes'
 
 import { getSubDetailApi, subredditSubscribeApi } from '../../api/Subreddit';
-import { store } from '../../store';
+import { makeUserUpdateRequest } from '../../actions/UserAuth';
 
 export const makeSubDetailRequest = (subredditTitle) => {
   if (subredditTitle) {
@@ -25,7 +24,6 @@ export const makeSubDetailRequest = (subredditTitle) => {
           failure: FETCH_SUB_DETAIL_FAILURE,
         },
         callAPI: () => getSubDetailApi(subredditTitle),
-        successActionCreator: checkSubredditSubscription,
       }
     );
   }
@@ -38,26 +36,7 @@ export const makeSubDetailRequest = (subredditTitle) => {
   )
 }
 
-// After a successful fetch of the sub detail this is called
-// by the middleware. Check to see if user is logged in and if
-// so if they are subscribed to the subreddit
-export const checkSubredditSubscription = (requestData) => {
-  const subscribedSubs = store.getState().userAuth.subs.map(sub => sub.title);
-
-  let subscribed = false;
-  if (subscribedSubs && subscribedSubs.includes(requestData.title)) {
-    subscribed = true;
-  }
-  
-  return (
-    {
-    type: SUBREDDIT_SUBSCRIPTION_CHECK,
-    subscribed: subscribed,
-    }
-  );
-}
-
-// Getting the current token into the subscriptoin request is
+// Getting the current token into the subscription request is
 // a little tricky. We could just get it from the store connection
 // to the subreddit container but it seems dumb to pass it all the way
 // down just to give it to makeSubSubscriptionRequest. Instead use
@@ -68,7 +47,7 @@ export const makeSubSubscriptionRequest = (subredditTitle, subAction) =>
       type: API_SUBREDDIT_SUBSCRIBE,
       types: {
         request: SUBREDDIT_SUBSCRIBE_REQUEST,
-        success: SUBREDDIT_SUBSCRIBE_SUCCESS,
+        success: onSuccessfulSubscription,
         failure: SUBREDDIT_SUBSCRIBE_FAILURE,
       },
       callAPI: () => subredditSubscribeApi(
@@ -79,4 +58,18 @@ export const makeSubSubscriptionRequest = (subredditTitle, subAction) =>
     }
   )
 
+// When the request is successful we need to not only
+// indicate it success in the subreddit state tree
+// but also retrieve the modified user data from the backend
+const onSuccessfulSubscription = (data, getState, dispatch) => {
+  dispatch({
+    type: SUBREDDIT_SUBSCRIBE_SUCCESS,
+    data,
+  })
   
+  const username = getState().userAuth.username;
+  return username
+    ? dispatch(makeUserUpdateRequest(getState().userAuth.username))
+    : null
+  
+}

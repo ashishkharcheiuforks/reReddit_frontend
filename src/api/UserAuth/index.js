@@ -1,6 +1,10 @@
 import axios from 'axios';
 
-import { USER_LOGIN_URL, USER_REGISTER_URL } from '../constants';
+import {
+  USER_LOGIN_URL,
+  USER_REGISTER_URL,
+  USER_DETAIL_URL
+} from '../constants';
 
 export const userLoginApi = (credentials) => (
   axios.post(
@@ -15,5 +19,10 @@ export const userRegisterApi = (userData) => (
     USER_REGISTER_URL,
     userData
   )
+  .then(response => response.data)
+)
+
+export const userUpdateApi = (username) => (
+  axios.get(USER_DETAIL_URL(username))
   .then(response => response.data)
 )

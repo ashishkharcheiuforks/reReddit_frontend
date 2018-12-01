@@ -3,7 +3,6 @@ import {
   FETCH_SUB_DETAIL_SUCCESS,
   FETCH_SUB_DETAIL_FAILURE,
   SET_SUB_TO_HOME,
-  SUBREDDIT_SUBSCRIPTION_CHECK,
   SUBREDDIT_SUBSCRIBE_REQUEST,
   SUBREDDIT_SUBSCRIBE_FAILURE,
   SUBREDDIT_SUBSCRIBE_SUCCESS,
@@ -75,8 +74,6 @@ const subreddit = (state=initialState, action) => {
     default:
       return state;
   }
-  
-  
 }
 
 export default subreddit;

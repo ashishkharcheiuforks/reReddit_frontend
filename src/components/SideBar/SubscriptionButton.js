@@ -28,7 +28,7 @@ const UnSubscribeButton = ({makeSubscriptionRequest, title}) =>
     UNSUBSCRIBE
   </Button>
 
-const subscriptionConditionFn = props => props.subscribed;
+const subscriptionConditionFn = props => props.userSubscriptions.includes(props.title);
 
 const SubscriptionButton = withEither(
   subscriptionConditionFn,

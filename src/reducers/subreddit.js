@@ -16,7 +16,6 @@ const initialState = {
   error: null,
   title: null,
   description: null,
-  subscribed: false,
   subscriptionLoading: false,
 }
 
@@ -58,11 +57,6 @@ const subreddit = (state=initialState, action) => {
         error: null,
         title: action.title,
       }
-    case SUBREDDIT_SUBSCRIPTION_CHECK:
-      return {
-        ...state,
-        subscribed: action.subscribed,
-      }
     case SUBREDDIT_SUBSCRIBE_REQUEST:
       return {
         ...state,
@@ -72,7 +66,6 @@ const subreddit = (state=initialState, action) => {
       return {
         ...state,
         subscriptionLoading: false,
-        subscribed: true,
       }
     case SUBREDDIT_SUBSCRIBE_FAILURE:
       return {

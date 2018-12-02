@@ -2,20 +2,26 @@ import {
   USER_AUTH_LOGIN_REQUEST,
   USER_AUTH_LOGIN_SUCCESS,
   USER_AUTH_LOGIN_FAILURE,
-  USER_AUTH_LOGOUT,
   USER_AUTH_REGISTER_REQUEST,
   USER_AUTH_REGISTER_SUCCESS,
   USER_AUTH_REGISTER_FAILURE,
-  API_USER_AUTH_UPDATE,
   USER_AUTH_UPDATE_REQUEST,
-  USER_AUTH_UPDATE_SUCCESS,  
+  USER_AUTH_UPDATE_SUCCESS,
   USER_AUTH_UPDATE_FAILURE,
+  USER_AUTH_LOGOUT_REQUEST,
+  USER_AUTH_LOGOUT_SUCCESS,
+  USER_AUTH_LOGOUT_FAILURE,
+  API_USER_AUTH_UPDATE,
+  API_USER_AUTH_LOGOUT,
+  API_USER_AUTH_LOGIN,
+  API_USER_AUTH_REGISTER,
 } from '../actionTypes';
 
 import {
   userLoginApi,
+  userLogoutApi,
   userRegisterApi,
-  userUpdateApi
+  userUpdateApi,
 } from '../../api/UserAuth';
 import {
   showUserAuthModal,
@@ -25,7 +31,7 @@ import {
 
 export const makeUserLoginRequest = (username, password) => (
   {
-    type: 'API_USER_AUTH_LOGIN',
+    type: API_USER_AUTH_LOGIN,
     types: {
       request: USER_AUTH_LOGIN_REQUEST,
       success: USER_AUTH_LOGIN_SUCCESS,
@@ -39,7 +45,7 @@ export const makeUserLoginRequest = (username, password) => (
 
 export const makeUserRegisterRequest = (username, password, email) => (
   {
-    type: 'API_USER_AUTH_REGISTER',
+    type: API_USER_AUTH_REGISTER,
     types: {
       request: USER_AUTH_REGISTER_REQUEST,
       success: USER_AUTH_REGISTER_SUCCESS,
@@ -55,15 +61,22 @@ export const makeUserRegisterRequest = (username, password, email) => (
   }
 )
 
-export const userAuthLogout = () => (
+// Use a thunk and redux-thunk to get the token rather than prop drilling it
+export const userAuthLogout = () => (dispatch, getState) => dispatch(
   {
-    type: USER_AUTH_LOGOUT,
+    type: API_USER_AUTH_LOGOUT,
+    types: {
+      request: USER_AUTH_LOGOUT_REQUEST,
+      success: USER_AUTH_LOGOUT_SUCCESS,
+      failure: USER_AUTH_LOGOUT_FAILURE,
+    },
+    callAPI: () => userLogoutApi(getState().userAuth.token),
   }
 );
 
 // When succesfully registered launch the login modal with
 // success message
-const successMessage = "User profile create! Please log in."
+const successMessage = "User profile created! Please log in."
 const registerSuccessLoginModal = () => showUserAuthModal(
   'login',
   successMessage

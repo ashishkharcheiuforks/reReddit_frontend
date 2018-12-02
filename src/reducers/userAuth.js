@@ -2,7 +2,9 @@ import {
   USER_AUTH_LOGIN_REQUEST,
   USER_AUTH_LOGIN_SUCCESS,
   USER_AUTH_LOGIN_FAILURE,
-  USER_AUTH_LOGOUT,
+  USER_AUTH_LOGOUT_REQUEST,
+  USER_AUTH_LOGOUT_SUCCESS,
+  USER_AUTH_LOGOUT_FAILURE,
   USER_AUTH_UPDATE_SUCCESS,
 } from '../actions/actionTypes';
 
@@ -39,7 +41,7 @@ const userAuth = (state=initialState, action) => {
           loading: false,
           error: action.error
         };
-      case USER_AUTH_LOGOUT:
+      case USER_AUTH_LOGOUT_SUCCESS:
         return initialState;
       case USER_AUTH_UPDATE_SUCCESS:
         return {

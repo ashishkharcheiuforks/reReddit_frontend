@@ -1,6 +1,7 @@
 import React from 'react';
 import { Panel, Button } from 'react-bootstrap';
 import { FaShare } from 'react-icons/fa';
+import { Link } from 'react-router-dom';
 
 import './styles.css'
 
@@ -17,7 +18,9 @@ const PostSegment = ({post}) => (
       
       <div id='post-segment-info'>
         <strong>
-          <a href="/#">r/{post.subreddit_title}</a>
+          <Link to={"/r/" + post.subreddit_title}>
+            r/{post.subreddit_title}
+          </Link>
         </strong>
         - posted by:
         <a href="/#"> u/{post.poster_username} </a>

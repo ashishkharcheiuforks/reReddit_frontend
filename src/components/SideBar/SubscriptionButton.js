@@ -3,18 +3,7 @@ import { Button } from 'react-bootstrap';
 import { compose } from 'recompose';
 
 import './styles.css';
-
-// Playing around with HOC to conditionally render a subscribe
-// or unsubscribe button
-const withEither = (conditionalRenderingFn, EitherComponent) => (Component) => (props) =>
-  conditionalRenderingFn(props)
-    ? <EitherComponent {...props}/>
-    : <Component {...props}/>
-
-const withMaybe = (conditionalRenderingFn) => (Component) => (props) =>
-  conditionalRenderingFn(props)
-    ? <Component {...props} />
-    : null
+import { withMaybe, withEither } from '../../utilities/HOC';
   
 const SubscribeButton = ({makeSubscriptionRequest, title}) =>
   <Button
@@ -38,7 +27,7 @@ const subscriptionConditionFn = props => props.userSubscriptions.includes(props.
 const authenticatedConditionFn = props => props.authenticatedUser;
 
 const SubscriptionButton = compose(
-  withMaybe(authenticatedConditionFn),  
+  withMaybe(authenticatedConditionFn),
   withEither(subscriptionConditionFn, UnSubscribeButton),
 )(SubscribeButton);
 

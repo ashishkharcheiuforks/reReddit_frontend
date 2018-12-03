@@ -9,9 +9,7 @@ const Subreddit = (props) => {
   return (
     <div className='subreddit-container'>
       <div className='postlist-container'>
-        <ul>
           <PostListContainer {...props} />
-        </ul>
       </div>
       <div className='sidebar-container'>
         <SideBar {...props} />

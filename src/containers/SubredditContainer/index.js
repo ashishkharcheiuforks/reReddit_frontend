@@ -1,7 +1,10 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
 
-import { makeSubDetailRequest, makeSubSubscriptionRequest } from '../../actions/Subreddit';
+import {
+  makeSubDetailRequest,
+  makeSubSubscriptionRequest
+} from '../../actions/Subreddit';
 import Subreddit from '../../components/Subreddit';
 
 
@@ -35,7 +38,6 @@ const mapStateToProps = state => (
   {
     title: state.subreddit.title,
     description: state.subreddit.description,
-    subscribed: state.subreddit.subscribed,
     userSubs: {
       subscribed: state.userAuth.subs.map(sub => sub.title),
       moderated: state.userAuth.moderated_subs.map(sub => sub.title),

@@ -26,6 +26,11 @@ ReactDOM.render(
               <Switch>
                 <Route
                   exact
+                  path="/r/:subredditTitle/:createPost?"
+                  component={SubredditContainer}
+                />
+                <Route
+                  exact
                   path="/r/:subredditTitle"
                   component={SubredditContainer}
                 />

@@ -5,10 +5,13 @@ import SideBar from '../SideBar';
 import './styles.css';
 
 const Subreddit = (props) => {
-  
+  const skinnyContainer = props.match.params.createPost === 'createPost'
+    ? 'skinny-container'
+    : "";
+    
   return (
-    <div className='subreddit-container'>
-      <div className='postlist-container'>
+    <div className={'subreddit-container ' + skinnyContainer}>
+      <div className='primary-container'>
           <PostListContainer {...props} />
       </div>
       <div className='sidebar-container'>

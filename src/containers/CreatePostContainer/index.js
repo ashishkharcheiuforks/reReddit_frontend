@@ -3,6 +3,7 @@ import { connect } from 'react-redux';
 import { Button } from 'react-bootstrap';
 
 import TextEditor from '../../components/TextEditor';
+import FieldGroup from '../../components/FieldGroup';
 
 class CreatePostContainer extends Component {
   constructor(props) {
@@ -10,6 +11,7 @@ class CreatePostContainer extends Component {
     this.state = {
       submittedHtml: '',
       editorHtml: '',
+      title:'',
     }
     
     this.handleEditorChange = this.handleEditorChange.bind(this);
@@ -22,6 +24,7 @@ class CreatePostContainer extends Component {
   render () {
     return (
     <form>
+
       <TextEditor
           handleChange={this.handleTextEditorChange}
           placeHolder="Text (Optional)"

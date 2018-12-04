@@ -33,6 +33,7 @@ const SideBar = (props) => {
       <Button
         id='create-post-button'
         className='sidebar-button'
+        onClick={() => props.history.push(props.match.url + "/createPost/")}
       >
         CREATE POST
       </Button>

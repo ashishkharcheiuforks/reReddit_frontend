@@ -29,7 +29,15 @@ div ul {
 
 @media (max-width: 640px)
 {
-  .post-list-container div.sidebar-container {
+  .subreddit-container div.sidebar-container {
     display: none;
+  }
+  
+  div.subreddit-container {
+    margin: 0 1rem 0 0;
+    padding: 1rem;
+  }
+  div.subreddit-container.skinny-container {
+    margin: 0 2rem 0 1rem;
   }
 }

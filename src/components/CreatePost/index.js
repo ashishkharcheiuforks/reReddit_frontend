@@ -20,31 +20,38 @@ class CreatePost extends Component {
     this.setState({editorHtml: html});
   }
   
-  handleTitleChange= (e) => this.setState({title: e.target.value});
+  handleTitleChange = (e) => this.setState({title: e.target.value});
+  
+  handleSubmit = () => {
+    this.props.handleCreatePost()
+  }
   
   render () {
     return (
-    <form>
-      <FieldGroup
-        id="create-post-title"
-        placeholder='Title'
-        type='text'
-        value={this.state.title}
-        onChange={this.handleTitleChange}
-        name='username'
-      />
-      <TextEditor
-          handleChange={this.handleEditorChange}
-          placeHolder="Text (Optional)"
-          editorHtml={this.state.editorHtml}
-       />
-     <Button
-       type="submit"
-       onClick={() => this.handleSubmit}
-     >
-      Submit
-     </Button>
-    </form>
+      <div className="create-post-container">
+        <form>
+          <FieldGroup
+            id="create-post-title"
+            placeholder='Title'
+            type='text'
+            value={this.state.title}
+            onChange={this.handleTitleChange}
+            name='username'
+          />
+          <TextEditor
+              handleChange={this.handleEditorChange}
+              placeHolder="Text (Optional)"
+              editorHtml={this.state.editorHtml}
+           />
+         <Button
+           type="submit"
+           onClick={() => this.handleSubmit}
+           id='submit-button'
+         >
+          Submit
+         </Button>
+        </form>
+      </div>
   )
   }
 }

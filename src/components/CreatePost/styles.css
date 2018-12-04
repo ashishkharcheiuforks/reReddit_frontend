@@ -1,7 +1,23 @@
-#create-post-title {
+.create-post-container {
+}
+
+.create-post-container .ql-container {
+  border-bottom-left-radius: 0.5rem;
+  border-bottom-right-radius: 0.5rem;
+  border-top: 0;
+}
+
+.create-post-container .ql-toolbar {
+  border-top-left-radius: 0.5rem;
+  border-top-right-radius: 0.5rem;
+  border-bottom: 0;
+  background-color: #F0F0F0;
+}
+
+.create-post-container #create-post-title {
   border-radius: 0.5rem;
 }
 
-.ql-snow {
-  border-radius: 0.5rem;
+.create-post-container #submit-button {
+  margin-top: 15px; 
 }

@@ -17,7 +17,7 @@ div.primary-container {
 div.sidebar-container {
   margin-left: 3rem;
   flex: 1 0 auto;
-  width: 10rem;
+  width: 30rem;
   max-width: 30rem;
   position: sticky;
   top: 5rem;

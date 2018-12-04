@@ -19,7 +19,13 @@ const mapDispatchToProps = dispatch => (
   }
 )
 
+const mapStateToProps = state => (
+  {
+    errorMessage: state.subreddit.createPost.error,
+  }
+)
+
 export default connect(
-  null,
+  mapStateToProps,
   mapDispatchToProps
 )(CreatePostContainer);

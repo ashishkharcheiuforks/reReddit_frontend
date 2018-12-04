@@ -6,11 +6,13 @@ import {
   SUBREDDIT_SUBSCRIBE_REQUEST,
   SUBREDDIT_SUBSCRIBE_FAILURE,
   SUBREDDIT_SUBSCRIBE_SUCCESS,
-} from '../actions/actionTypes';
+} from '../../actions/actionTypes';
 import postList from './postList';
+import createPost from './createPost';
 
 const initialState = {
   postList: postList(undefined, {type:""}),
+  createPost: createPost(undefined, {type:""}),
   loading: false,
   error: null,
   title: null,
@@ -27,6 +29,13 @@ const subreddit = (state=initialState, action) => {
       },
     }
   };
+  
+  if (action.type && action.type.startsWith("CREATE_POST")) {
+    return {
+      ...state,
+      createPost: {...createPost(state.createPost, action)},
+    }
+  }
   
   switch (action.type) {
     case FETCH_SUB_DETAIL_REQUEST:

@@ -3,6 +3,7 @@ import { Modal, Alert } from 'react-bootstrap';
 import { FaTimes, FaCheck } from 'react-icons/fa';
 
 import './styles.css';
+import { SuccessAlert, ErrorAlert } from '../AlertMessage';
 
 const UserAuthModal = (props) => {
   
@@ -22,22 +23,16 @@ const UserAuthModal = (props) => {
   
   if (successMessage) {
     sMessage =
-      <Alert bsStyle='success' className="modal-alert">
-        <FaCheck color='green' size='3em' />
-        <p className="message" id="success-text" align='center'>
-          {successMessage}
-        </p>
-      </Alert>
+      <SuccessAlert>
+        {successMessage}
+      </SuccessAlert>
     }
 
     if (errorMessage) {
       eMessage =
-      <Alert bsStyle='danger' className="modal-alert">
-        <FaTimes color='red' size='3em' />
-        <p className="message" id="error-text" align='center'>
-          {errorMessage}
-        </p>
-      </Alert>
+      <ErrorAlert>
+        {errorMessage}
+      </ErrorAlert>
     }
   
   return (

@@ -3,7 +3,9 @@ import { Button } from 'react-bootstrap';
 
 import TextEditor from '../TextEditor';
 import FieldGroup from '../FieldGroup';
+import { ErrorAlert } from '../AlertMessage';
 import './styles.css';
+import withMaybe from '../../utilities/HOC';
 
 class CreatePost extends Component {
   constructor(props) {
@@ -30,8 +32,17 @@ class CreatePost extends Component {
   }
   
   render () {
+
+    const CreatePostErrorMessage = this.props.errorMessage
+      ? ErrorAlert
+      : () => null;
     return (
       <div className="create-post-container">
+        <div className="alert-message-container">
+          <CreatePostErrorMessage>
+            {this.props.errorMessage}
+          </CreatePostErrorMessage>
+        </div>
         <form>
           <FieldGroup
             id="create-post-title"
@@ -45,7 +56,7 @@ class CreatePost extends Component {
               handleChange={this.handleEditorChange}
               placeHolder="Text (Optional)"
               editorHtml={this.state.editorHtml}
-           />
+         />
          <Button
            onClick={() => this.handleSubmit()}
            id='submit-button'

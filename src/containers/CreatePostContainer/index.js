@@ -3,6 +3,7 @@ import { connect } from 'react-redux';
 import { Button } from 'react-bootstrap';
 
 import CreatePost from '../../components/CreatePost';
+import { makeCreatePostRequest } from '../../actions/Posts';
 
 class CreatePostContainer extends Component {
 
@@ -11,7 +12,14 @@ class CreatePostContainer extends Component {
   }
 }
 
+const mapDispatchToProps = dispatch => (
+  {
+    handleCreatePost: (title, body, subredditTitle) =>
+      dispatch(makeCreatePostRequest(title, body, subredditTitle))
+  }
+)
+
 export default connect(
   null,
-  null
+  mapDispatchToProps
 )(CreatePostContainer);

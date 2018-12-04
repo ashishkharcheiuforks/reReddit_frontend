@@ -23,7 +23,10 @@ class CreatePost extends Component {
   handleTitleChange = (e) => this.setState({title: e.target.value});
   
   handleSubmit = () => {
-    this.props.handleCreatePost()
+    this.props.handleCreatePost(
+        this.state.title,
+        this.state.editorHtml,
+        this.props.title);
   }
   
   render () {
@@ -44,8 +47,7 @@ class CreatePost extends Component {
               editorHtml={this.state.editorHtml}
            />
          <Button
-           type="submit"
-           onClick={() => this.handleSubmit}
+           onClick={() => this.handleSubmit()}
            id='submit-button'
          >
           Submit

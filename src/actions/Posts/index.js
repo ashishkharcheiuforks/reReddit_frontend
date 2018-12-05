@@ -1,7 +1,10 @@
 import {
-  FETCH_POSTS_REQUEST,
-  FETCH_POSTS_SUCCESS,
-  FETCH_POSTS_FAILURE,
+  FETCH_POST_LIST_REQUEST,
+  FETCH_POST_LIST_SUCCESS,
+  FETCH_POST_LIST_FAILURE,
+  FETCH_POST_DETAIL_REQUEST,
+  FETCH_POST_DETAIL_SUCCESS,
+  FETCH_POST_DETAIL_FAILURE,
   CREATE_POST_REQUEST,
   CREATE_POST_SUCCESS,
   CREATE_POST_FAILURE,
@@ -20,9 +23,9 @@ export const makeSubPostListRequest = (subredditTitle, orderBy) => (
   {
     type: API_SUB_POST_LIST,
     types: {
-      request: FETCH_POSTS_REQUEST,
-      success: FETCH_POSTS_SUCCESS,
-      failure: FETCH_POSTS_FAILURE,
+      request: FETCH_POST_LIST_REQUEST,
+      success: FETCH_POST_LIST_SUCCESS,
+      failure: FETCH_POST_LIST_FAILURE,
     },
     callAPI: subredditTitle?
               () => getSubPostListApi(subredditTitle, orderBy):

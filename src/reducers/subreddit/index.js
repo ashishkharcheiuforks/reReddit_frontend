@@ -21,7 +21,7 @@ const initialState = {
 }
 
 const subreddit = (state=initialState, action) => {
-  if (action.type && action.type.startsWith("FETCH_POSTS")) {
+  if (action.type && action.type.startsWith("FETCH_POST_LIST")) {
     return {
       ...state,
       postList: {

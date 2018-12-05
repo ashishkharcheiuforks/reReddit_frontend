@@ -10,11 +10,13 @@ import {
   CREATE_POST_FAILURE,
   API_SUB_POST_LIST,
   API_CREATE_POST,
+  API_POST_DETAIL,
 } from '../actionTypes';
 
 import {
   getSubPostListApi,
   getPostListApi,
+  getPostDetailApi,
   createPostApi,
 } from '../../api/Posts';
 
@@ -27,9 +29,9 @@ export const makeSubPostListRequest = (subredditTitle, orderBy) => (
       success: FETCH_POST_LIST_SUCCESS,
       failure: FETCH_POST_LIST_FAILURE,
     },
-    callAPI: subredditTitle?
-              () => getSubPostListApi(subredditTitle, orderBy):
-              () => getPostListApi(orderBy),
+    callAPI: subredditTitle
+      ? () => getSubPostListApi(subredditTitle, orderBy)
+      : () => getPostListApi(orderBy),
   }
 );
 
@@ -52,3 +54,15 @@ export const makeCreatePostRequest = (title, body, subredditTitle) =>
         )
       }
     )
+
+export const makePostDetailRequest = (postId) => (
+  {
+    type: API_POST_DETAIL,
+    types: {
+      request: FETCH_POST_DETAIL_REQUEST,
+      success: FETCH_POST_DETAIL_SUCCESS,
+      failure: FETCH_POST_DETAIL_FAILURE,
+    },
+    callAPI: () => getPostDetailApi(postId),
+  }
+)

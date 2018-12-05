@@ -2,6 +2,7 @@ import axios from 'axios';
 
 import {
   POST_LIST_URL,
+  POST_DETAIL_URL,
   SUB_POST_LIST_URL,
   CREATE_POST_URL,
 } from '../constants';
@@ -24,3 +25,8 @@ export const createPostApi = (title, body, subredditTitle, token) => {
   return axios.post(CREATE_POST_URL(subredditTitle), data, tokenContextObj(token))
            .then(response => response.data)
 }
+
+export const getPostDetailApi = (postId) => (
+  axios.get(POST_DETAIL_URL(postId))
+  .then(response => response.data)
+)

@@ -25,3 +25,4 @@ export const SUB_POST_LIST_URL = (subredditTitle) => (
 export const CREATE_POST_URL = (subredditTitle) => (
   SUB_DETAIL_URL(subredditTitle) + 'post/'
 )
+export const POST_DETAIL_URL = (postId) => POST_LIST_URL + postId + '/';

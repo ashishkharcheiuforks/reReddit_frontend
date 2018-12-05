@@ -7,6 +7,7 @@ import {
 const initialState = {
   title: null,
   body: null,
+  poster: null,
   error: null,
 }
 
@@ -16,6 +17,7 @@ const post = (state=initialState, action) => {
       return {
         title: action.data.title,
         body: action.data.body,
+        poster: action.data.poster_username,
         error: null,
       }
     case FETCH_POST_DETAIL_FAILURE:

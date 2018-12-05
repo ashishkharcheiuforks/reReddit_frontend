@@ -21,6 +21,7 @@ const mapStateToProps = (state) => (
   {
     postBody: state.post.body,
     postTitle: state.post.title,
+    postPoster: state.post.poster,
   }
 )
 

@@ -1,5 +1,43 @@
 .post-detail-content {
-  border: 1px solid black;
-  width: 10rem;
-  height: 10rem;
+  border: 1px solid white;
+  background: #333;
+  padding: 2rem 0 0 4rem;
+  border-radius: 0.5rem;
+  color: white;
+}
+
+.post-detail-content .post-title-container {
+  text-align: left;
+  font-size: 150%;
+  margin-bottom: 1rem;
+}
+
+/* PostInfoLine*/
+div.post-info-line {
+  display: inline;
+}
+.post-info-line .link-to-sub {
+  display: inline;
+}
+
+.post-info-line .link-to-sub a{
+  color: white;
+  font-size: 75%;
+  font-weight: bold;
+  flex: 1 1 auto;
+}
+
+.post-info-line .link-to-user {
+  display: inline;
+}
+
+.post-info-line .link-to-user a{
+  color: #B8B8B8;
+  font-size: 75%;
+  flex: 1 1 auto;
+}
+
+.post-info-line #divider {
+  margin: 3px;
+  display: inline;
 }

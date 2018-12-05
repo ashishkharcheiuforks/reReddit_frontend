@@ -1,11 +1,13 @@
 import React from 'react';
 
 import './styles.css';
+import PostInfoLine from './PostInfoLine';
 
 const PostDetail = (props) => {
   
   return (
     <div className='post-detail-content'>
+      <PostInfoLine title={props.title} poster={props.postPoster} />
       <div className='post-title-container'>
         {props.postTitle}
       </div>

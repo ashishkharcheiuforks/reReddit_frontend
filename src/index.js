@@ -26,18 +26,29 @@ ReactDOM.render(
               <Switch>
                 <Route
                   exact
-                  path="/r/:subredditTitle/:createPost?"
-                  component={SubredditContainer}
+                  path="/r/:subredditTitle/:createPost"
+                  render={ (props) =>
+                    <SubredditContainer
+                      {...props}
+                      skinny
+                      primaryComponent='CreatePost'
+                    />}
                 />
                 <Route
                   exact
                   path="/r/:subredditTitle"
-                  component={SubredditContainer}
+                  render={ (props) => <SubredditContainer
+                      {...props}
+                      primaryComponent='PostList'
+                    />}
                 />
                 <Route
                   exact
                   path="/"
-                  component={SubredditContainer}
+                  render={ (props) => <SubredditContainer
+                      {...props}
+                      primaryComponent='PostList'
+                    />}
                 />
             </Switch>
           </div>

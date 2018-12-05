@@ -6,20 +6,20 @@ import SideBar from '../SideBar';
 import { withEither } from '../../utilities/HOC';
 import './styles.css';
 
-const Subreddit = (props) => {
-  const skinnyContainer = props.match.params.createPost === 'createPost'
+const Subreddit = ({skinny, primaryComponent, ...props}) => {
+
+  const skinnyContainer = skinny
     ? 'skinny-container'
     : "";
   
-  const primaryConditionFn = (props) => props.match.params.createPost === 'createPost';
-  // const PrimaryContentContainer = withEither(
-  //   primaryConditionFn,
-  //   CreatePostContainer
-  // )(PostListContainer);
-
-  const PrimaryContentContainer = primaryConditionFn(props)
-    ? CreatePostContainer
-    : PostListContainer;
+  let PrimaryContent = null;
+  switch(primaryComponent) {
+    case "CreatePost":
+      PrimaryContent = <CreatePostContainer {...props} />;
+    case "PostList":
+      PrimaryContent = <PostListContainer {...props} />;
+    default:
+  }
   
     
   return (

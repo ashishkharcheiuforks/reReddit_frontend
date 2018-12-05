@@ -9,14 +9,13 @@ class PostDetailContainer extends Component {
   componentDidMount() {
     const postId = this.props.match.params.postId || null;
     
-    //this.props.fetchPostDetail(postId);
+    this.props.fetchPostDetail(postId);
   }
   
   render() {
     return <PostDetail {...this.props} />;
   }
 }
-
 
 const mapStateToProps = (state) => (
   {
@@ -25,7 +24,13 @@ const mapStateToProps = (state) => (
   }
 )
 
+const mapDispatchToProps = (dispatch) => (
+  {
+    fetchPostDetail: (postId) => dispatch(makePostDetailRequest(postId)),
+  }
+)
+
 export default connect(
   mapStateToProps,
-  null
+  mapDispatchToProps,
 )(PostDetailContainer);

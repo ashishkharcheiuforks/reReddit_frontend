@@ -10,7 +10,10 @@ const PostDetail = (props) => {
         {props.postTitle}
       </div>
       <div className='post-body-container'>
-        {props.postBody}
+        <div
+          className='body-html'
+          dangerouslySetInnerHTML={{__html: props.postBody}}
+        />
       </div>
     </div>
   )

@@ -13,7 +13,9 @@ const PostSegment = ({post}) => (
     
     <div id='post-segment-text-container'>
       <div id="post-segment-title">
-        {post.title}
+        <Link to={"/r/" + post.subreddit_title + "/postDetail/" + post.id}>
+          {post.title}
+        </Link>
       </div>
       
       <div id='post-segment-info'>

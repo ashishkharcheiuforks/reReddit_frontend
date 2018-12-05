@@ -1,6 +1,7 @@
 import React from 'react';
 
 import PostListContainer from '../../containers/PostListContainer';
+import PostDetailContainer from '../../containers/PostDetailContainer';
 import CreatePostContainer from '../../containers/CreatePostContainer';
 import SideBar from '../SideBar';
 import { withEither } from '../../utilities/HOC';
@@ -16,8 +17,13 @@ const Subreddit = ({skinny, primaryComponent, ...props}) => {
   switch(primaryComponent) {
     case "CreatePost":
       PrimaryContent = <CreatePostContainer {...props} />;
+      break;
     case "PostList":
       PrimaryContent = <PostListContainer {...props} />;
+      break;
+    case "PostDetail":
+      PrimaryContent = <PostDetailContainer {...props} />;
+      break;
     default:
   }
   
@@ -25,7 +31,7 @@ const Subreddit = ({skinny, primaryComponent, ...props}) => {
   return (
     <div className={'subreddit-container ' + skinnyContainer}>
       <div className='primary-container'>
-          <PrimaryContentContainer {...props} />
+          {PrimaryContent}
       </div>
       <div className='sidebar-container'>
         <SideBar {...props} />

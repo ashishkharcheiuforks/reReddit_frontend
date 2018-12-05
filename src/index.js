@@ -36,6 +36,15 @@ ReactDOM.render(
                 />
                 <Route
                   exact
+                  path="/r/:subredditTitle/postDetail/:postId"
+                  render={ (props) =>
+                    <SubredditContainer
+                      {...props}
+                      primaryComponent='PostDetail'
+                    />}
+                />
+                <Route
+                  exact
                   path="/r/:subredditTitle"
                   render={ (props) => <SubredditContainer
                       {...props}

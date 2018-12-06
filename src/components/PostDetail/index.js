@@ -17,6 +17,10 @@ const PostDetail = (props) => {
           dangerouslySetInnerHTML={{__html: props.postBody}}
         />
       </div>
+      
+      <div className="post-comments-container">
+        Test comment
+      </div>
     </div>
   )
 }

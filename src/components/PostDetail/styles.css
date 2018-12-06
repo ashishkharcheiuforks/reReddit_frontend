@@ -41,3 +41,7 @@ div.post-info-line {
   margin: 3px;
   display: inline;
 }
+
+.post-comments-container {
+  margin-top: 3rem;
+}

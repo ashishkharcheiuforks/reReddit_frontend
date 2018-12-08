@@ -17,7 +17,7 @@ const PostList = (props) => {
     postList =  <Loader />;
   } else {
       postList = posts.map((post) => {
-        return <PostSegment post={post} key={post.id} />
+        return <PostSegment post={post} key={post.pk} />
     });
   }
   

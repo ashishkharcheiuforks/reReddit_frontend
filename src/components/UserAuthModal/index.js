@@ -1,6 +1,5 @@
 import React from 'react';
-import { Modal, Alert } from 'react-bootstrap';
-import { FaTimes, FaCheck } from 'react-icons/fa';
+import { Modal } from 'react-bootstrap';
 
 import './styles.css';
 import { SuccessAlert, ErrorAlert } from '../AlertMessage';

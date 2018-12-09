@@ -4,7 +4,6 @@ import PostListContainer from '../../containers/PostListContainer';
 import PostDetailContainer from '../../containers/PostDetailContainer';
 import CreatePostContainer from '../../containers/CreatePostContainer';
 import SideBar from '../SideBar';
-import { withEither } from '../../utilities/HOC';
 import './styles.css';
 
 const Subreddit = ({skinny, primaryComponent, ...props}) => {

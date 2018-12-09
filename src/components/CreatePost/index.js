@@ -5,7 +5,6 @@ import TextEditor from '../TextEditor';
 import FieldGroup from '../FieldGroup';
 import { ErrorAlert } from '../AlertMessage';
 import './styles.css';
-import withMaybe from '../../utilities/HOC';
 
 class CreatePost extends Component {
   constructor(props) {
@@ -36,6 +35,7 @@ class CreatePost extends Component {
     const CreatePostErrorMessage = this.props.errorMessage
       ? ErrorAlert
       : () => null;
+      
     return (
       <div className="create-post-container">
         <div className="alert-message-container">

@@ -1,0 +1,48 @@
+.comment-tree-content {
+  margin: 1rem 1rem 0 0;
+  display: flex;
+  flex-direction: row;
+}
+
+.comment-tree-content .comment-voter-collapser {
+  flex: 0 0 auto;
+  min-width: 1rem;
+  margin-right: 0.8rem;
+  margin-top: 0.7rem;
+  display: flex;
+  flex-direction: column
+}
+
+.comment-voter-collapser .comment-thread-line {
+  border: 1px solid white;
+  flex: 1 1 auto;
+  margin: 0 45%;
+}
+
+.comment-tree-content .children-container {
+  padding-left: 2rem;
+}
+
+.comment-tree-content .poster-info-container {
+  display: inline;
+  font-size: 80%;
+  color: #818481;
+}
+
+.comment-tree-content .comment-links {
+
+}
+
+.comment-links .comment-icon {
+  display: inline-block;
+}
+
+.comment-tree-content .comment-links .comment-buttons {
+  background-color: #333;
+  color: #818481;
+  font-weight: bold;
+  border: 0;
+  display: inline-block;
+  padding-bottom: 0.7rem;
+  margin-top: 0.2rem;
+}

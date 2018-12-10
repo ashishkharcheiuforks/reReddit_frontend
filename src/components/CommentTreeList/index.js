@@ -2,6 +2,7 @@ import React from 'react';
 
 import Loader from '../ListLoader';
 import { ErrorAlert } from '../AlertMessage';
+import CommentTree from '../CommentTree';
 
 const CommentTreeList = (props) => {
   const {
@@ -22,7 +23,17 @@ const CommentTreeList = (props) => {
   if (loading)  {
     treeList = <Loader />;
   } else {
-    treeList = trees && trees.map(tree => <p>{tree.pk}</p>)
+    treeList = (!Array.isArray(trees) || !trees.length)
+      ? null
+      : trees.map(tree => (
+        <CommentTree
+          body={tree.body}
+          posterPk={tree.pk}
+          commentChildren={tree.children}
+          key={tree.pk}
+        />
+      )
+      )
   }
   
   return (

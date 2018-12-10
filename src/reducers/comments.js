@@ -1,29 +1,29 @@
 import {
-  FETCH_COMMENT_TREE_REQUEST,
-  FETCH_COMMENT_TREE_SUCCESS,
-  FETCH_COMMENT_TREE_FAILURE,
+  FETCH_POST_COMMENT_TREES_REQUEST,
+  FETCH_POST_COMMENT_TREES_SUCCESS,
+  FETCH_POST_COMMENT_TREES_FAILURE,
 } from '../actions/actionTypes';
  
 const initialState = {
-  tree: null
-  error: null
-  loading: null
+  trees: null,
+  error: null,
+  loading: null,
 }
 
 const comments = (state=initialState, action) => {
   switch (action.type) {
-    case FETCH_COMMENT_TREE_REQUEST:
+    case FETCH_POST_COMMENT_TREES_REQUEST:
       return {
         ...state,
         loading: true,
       }
-    case FETCH_COMMENT_TREE_SUCCESS:
+    case FETCH_POST_COMMENT_TREES_SUCCESS:
       return {
-        tree: action.data,
+        trees: action.data,
         error: null,
         loading: null,
       }
-    case FETCH_COMMENT_TREE_FAILURE:
+    case FETCH_POST_COMMENT_TREES_FAILURE:
       return {
         ...state,
         error: action.error,

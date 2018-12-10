@@ -8,6 +8,7 @@ const initialState = {
   title: null,
   body: null,
   poster: null,
+  pk: null,
   error: null,
 }
 
@@ -18,6 +19,7 @@ const post = (state=initialState, action) => {
         title: action.data.title,
         body: action.data.body,
         poster: action.data.poster_username,
+        pk: action.data.pk,
         error: null,
       }
     case FETCH_POST_DETAIL_FAILURE:

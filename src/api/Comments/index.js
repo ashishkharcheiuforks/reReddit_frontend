@@ -1,10 +1,10 @@
 import axios from 'axios';
 
 import {
- COMMENT_TREE_URL,
+ POST_COMMENT_TREES_URL,
 } from '../constants'
 
 export const getCommentTreeApi = (postPk) => (
-  axios.get(COMMENT_TREE_URL)
+  axios.get(POST_COMMENT_TREES_URL(postPk))
   .then(response => response.data)
 )

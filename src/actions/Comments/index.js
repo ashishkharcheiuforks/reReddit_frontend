@@ -1,18 +1,19 @@
 import {
-  FETCH_COMMENT_TREE_REQUEST,
-  FETCH_COMMENT_TREE_SUCCESS,
-  FETCH_COMMENT_TREE_FAILURE,
+  FETCH_POST_COMMENT_TREES_REQUEST,
+  FETCH_POST_COMMENT_TREES_SUCCESS,
+  FETCH_POST_COMMENT_TREES_FAILURE,
+  API_POST_COMMENT_TREES,
 } from '../actionTypes';
 import { getCommentTreeApi } from '../../api/Comments'
 
 export const makeCommentTreeRequest = (postPk) => (
   {
-    type: API_COMMENT_TREE,
+    type: API_POST_COMMENT_TREES,
     types: {
-      request: FETCH_COMMENT_TREE_REQUEST,
-      success: FETCH_COMMENT_TREE_SUCCESS,
-      failure: FETCH_COMMENT_TREE_FAILURE,
+      request: FETCH_POST_COMMENT_TREES_REQUEST,
+      success: FETCH_POST_COMMENT_TREES_SUCCESS,
+      failure: FETCH_POST_COMMENT_TREES_FAILURE,
     },
-    callAPI: getCommentTreeApi(postPk),
+    callAPI: () => getCommentTreeApi(postPk),
   }
 )

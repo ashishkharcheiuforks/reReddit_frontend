@@ -3,7 +3,7 @@ const apiRequestErrorHandler = (e) => {
     console.log("Response: " , e.response)
     if (!e.response) {
       return "Network Error";
-    } else if (e.response.data) {
+    } else if (e.response.data && typeof e.response.data != 'string') {
       const erd = e.response.data;
   
       if (erd.detail){
@@ -22,6 +22,8 @@ const apiRequestErrorHandler = (e) => {
         errorField.substring(1) + ":  " +
         errorMessage
       );
+    } else { // There is no response data
+      return `${e.response.status}: ${e.response.statusText}`;
     }
   }
   catch (error) {

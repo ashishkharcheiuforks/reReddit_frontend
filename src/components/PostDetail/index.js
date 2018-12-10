@@ -2,6 +2,7 @@ import React from 'react';
 
 import './styles.css';
 import PostInfoLine from './PostInfoLine';
+import CommentTreeListContainer from '../../containers/CommentTreeListContainer';
 
 const PostDetail = (props) => {
   
@@ -20,6 +21,7 @@ const PostDetail = (props) => {
       
       <div className="post-comments-container">
         Test comment
+        <CommentTreeListContainer />
       </div>
     </div>
   )

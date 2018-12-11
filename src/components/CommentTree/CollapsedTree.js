@@ -6,7 +6,7 @@ import './styles.css';
 const CollapsedTree = (props) => {
   const {
     posterPk,
-    handleExpansion,
+    handleToggleCollapse:handleExpansion,
     upvotes,
   } = props;
   

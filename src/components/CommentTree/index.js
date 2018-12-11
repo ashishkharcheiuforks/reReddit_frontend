@@ -27,16 +27,20 @@ class CommentTree extends Component {
     const {
       commentChildren,
       body,
-      posterPk,
+      posterUsername,
+      upvotes,
+      created,
     } = this.props
     
     const childrenList = (!Array.isArray(commentChildren) || !commentChildren.length)
       ? null
       : commentChildren.map(comment => (
           <CommentTree
-            body={comment.body}
-            posterPk={comment.pk}
             commentChildren={comment.children}
+            body={comment.body}
+            posterUsername={comment.poster.username}
+            upvotes={comment.upvotes}
+            created={comment.created}
             key={comment.pk}
           />
         )
@@ -49,11 +53,12 @@ class CommentTree extends Component {
         
     return (
       <CollapsibleTree
-        body={body}
-        posterPk={posterPk}
         childrenList={childrenList}
-        handleCollapse={this.handleCollapseToggle}
-        handleExpansion={this.handleCollapseToggle}
+        body={body}
+        posterUsername={posterUsername}
+        upvotes={upvotes}
+        created={created}
+        handleToggleCollapse={this.handleCollapseToggle}
         collapsed={this.state.collapsed}
       />
     )

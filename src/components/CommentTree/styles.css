@@ -89,3 +89,7 @@ div.thread-line {
   margin-top: 0.3rem;
   cursor: pointer;
 }
+
+.poster-info-container span{
+  margin: 0 0.4rem;
+}

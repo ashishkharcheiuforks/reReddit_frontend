@@ -28,8 +28,10 @@ const CommentTreeList = (props) => {
       : trees.map(tree => (
         <CommentTree
           body={tree.body}
-          posterPk={tree.pk}
+          posterUsername={tree.poster.username}
           commentChildren={tree.children}
+          upvotes={tree.upvotes}
+          created={tree.created}
           key={tree.pk}
         />
       )

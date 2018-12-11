@@ -7,10 +7,12 @@ import './styles.css';
 const ExpandedTree = (props) => {
   
   const {
-    body,
-    posterPk,
     childrenList,
-    handleCollapse
+    body,
+    posterUsername,
+    upvotes,
+    created,
+    handleToggleCollapse:handleCollapse,
   } = props;
   
   return (
@@ -32,7 +34,10 @@ const ExpandedTree = (props) => {
       </div>
       <div className="comment-panel">
         <div className="poster-info-container">
-          {posterPk} upvotes  -  age
+          <span>{`u/${posterUsername}`}</span>
+          <span>{`${upvotes} upvotes`}</span>
+          <span>{`created: ${created}`}</span>
+          
         </div>
         <div className="comment-body-container">
           {body}

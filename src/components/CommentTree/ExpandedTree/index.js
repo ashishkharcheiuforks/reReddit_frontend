@@ -35,9 +35,10 @@ const ExpandedTree = (props) => {
       </div>
       <div className="comment-panel">
         <CommentInfoLine {...{posterUsername, upvotes, created}}/>
-        <div className="comment-body-container">
-          {body}
-        </div>
+        <div
+          className="comment-body-container"
+          dangerouslySetInnerHTML={{__html: body}}
+          />
         <div className="comment-links">
           <div className="comment-icon">
             <FaComment/>

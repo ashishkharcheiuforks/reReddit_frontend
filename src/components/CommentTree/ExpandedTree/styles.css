@@ -1,0 +1,70 @@
+.comment-tree-content .comment-voter-collapser {
+  flex: 0 0 auto;
+  min-width: 1rem;
+  margin-right: 0.8rem;
+  display: flex;
+  flex-direction: column
+}
+
+.comment-voter {
+  flex: 0 0 auto;
+}
+
+.comment-voter span {
+  color: white;
+}
+
+.comment-voter.upvoter span:hover {
+  color: #cc3700;
+  cursor: pointer;
+}
+
+.comment-voter.downvoter span:hover {
+  color: #8DA8FF;
+  cursor: pointer;
+}
+
+span.thread-line-container {
+  flex: 1 1 auto;
+  cursor: pointer;
+  display: flex;
+  flex-direction: column;
+  border-color: #818481;
+}
+
+span.thread-line-container:hover {
+  border-color: white;
+}
+
+div.thread-line {
+  border: 1px solid white;
+  flex: 1 1 auto;
+  margin: 0 45%;
+  border-color: inherit;
+}
+
+.comment-panel {
+  display: flex;
+  flex-direction: column;
+}
+
+.comment-tree-content .comment-links {
+
+}
+
+.comment-links .comment-icon {
+  display: inline-block;
+}
+
+.comment-tree-content .comment-links .comment-buttons {
+  background-color: #333;
+  color: #818481;
+  font-weight: bold;
+  border: 0;
+  display: inline-block;
+  padding-bottom: 0.7rem;
+  margin-top: 0.2rem;
+}
+
+.comment-tree-content .children-container {
+}

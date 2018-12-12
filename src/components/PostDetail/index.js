@@ -22,7 +22,6 @@ const PostDetail = (props) => {
       <hr/>
       
       <div className="post-comments-container">
-        Test comment
         <CommentTreeListContainer />
       </div>
     </div>

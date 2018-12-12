@@ -13,10 +13,10 @@ class CommentTree extends Component {
       collapsed: false,
     }
     
-    this.handleCollapseToggle = this.handleCollapseToggle.bind(this);
+    this.handleToggleCollapse = this.handleToggleCollapse.bind(this);
   }
   
-  handleCollapseToggle() {
+  handleToggleCollapse() {
     this.setState({
       collapsed: !this.state.collapsed,
     })
@@ -34,14 +34,14 @@ class CommentTree extends Component {
     
     const childrenList = (!Array.isArray(commentChildren) || !commentChildren.length)
       ? null
-      : commentChildren.map(comment => (
+      : commentChildren.map(child => (
           <CommentTree
-            commentChildren={comment.children}
-            body={comment.body}
-            posterUsername={comment.poster.username}
-            upvotes={comment.upvotes}
-            created={comment.created}
-            key={comment.pk}
+            commentChildren={child.children}
+            body={child.body}
+            posterUsername={child.poster.username}
+            upvotes={child.upvotes}
+            created={child.created}
+            key={child.pk}
           />
         )
       )
@@ -58,7 +58,7 @@ class CommentTree extends Component {
         posterUsername={posterUsername}
         upvotes={upvotes}
         created={created}
-        handleToggleCollapse={this.handleCollapseToggle}
+        handleToggleCollapse={this.handleToggleCollapse}
         collapsed={this.state.collapsed}
       />
     )

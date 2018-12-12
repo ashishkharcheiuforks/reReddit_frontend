@@ -1,13 +1,16 @@
 import React from 'react';
-import { IoIosAddCircle } from "react-icons/io";
+import { IoIosAddCircle } from 'react-icons/io';
+import { Link } from 'react-router-dom';
 
+import CommentInfoLine from '../CommentInfoLine';
 import './styles.css';
 
 const CollapsedTree = (props) => {
   const {
-    posterPk,
-    handleToggleCollapse:handleExpansion,
+    posterUsername,
     upvotes,
+    created,
+    handleToggleCollapse:handleExpansion,
   } = props;
   
   return (
@@ -16,7 +19,7 @@ const CollapsedTree = (props) => {
         <IoIosAddCircle />
       </div>
       <div className='collapsed-links'>
-        This is collpased
+        <CommentInfoLine {...{posterUsername, upvotes, created,}}/>
       </div>
     </div>
   )

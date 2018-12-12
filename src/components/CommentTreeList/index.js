@@ -19,20 +19,20 @@ const CommentTreeList = (props) => {
     )
   }
   
-  let treeList;
+  let commentTreeRootList;
   if (loading)  {
-    treeList = <Loader />;
+    commentTreeRootList = <Loader />;
   } else {
-    treeList = (!Array.isArray(trees) || !trees.length)
+    commentTreeRootList = (!Array.isArray(trees) || !trees.length)
       ? null
-      : trees.map(tree => (
+      : trees.map(root => (
         <CommentTree
-          body={tree.body}
-          posterUsername={tree.poster.username}
-          commentChildren={tree.children}
-          upvotes={tree.upvotes}
-          created={tree.created}
-          key={tree.pk}
+          body={root.body}
+          posterUsername={root.poster.username}
+          commentChildren={root.children}
+          upvotes={root.upvotes}
+          created={root.created}
+          key={root.pk}
         />
       )
       )
@@ -41,7 +41,7 @@ const CommentTreeList = (props) => {
   return (
     <div className='comment-tree-list-container'>
       <ul>
-        {treeList}
+        {commentTreeRootList}
       </ul>
     </div>
   )

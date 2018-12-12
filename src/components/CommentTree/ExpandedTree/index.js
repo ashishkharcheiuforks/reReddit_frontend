@@ -3,6 +3,7 @@ import { Button } from 'react-bootstrap';
 import { FaComment, FaArrowUp, FaArrowDown, } from 'react-icons/fa';
 
 import './styles.css';
+import CommentInfoLine from '../CommentInfoLine';
 
 const ExpandedTree = (props) => {
   
@@ -33,12 +34,7 @@ const ExpandedTree = (props) => {
         </span>
       </div>
       <div className="comment-panel">
-        <div className="poster-info-container">
-          <span>{`u/${posterUsername}`}</span>
-          <span>{`${upvotes} upvotes`}</span>
-          <span>{`created: ${created}`}</span>
-          
-        </div>
+        <CommentInfoLine {...{posterUsername, upvotes, created}}/>
         <div className="comment-body-container">
           {body}
         </div>

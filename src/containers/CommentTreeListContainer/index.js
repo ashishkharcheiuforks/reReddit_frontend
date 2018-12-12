@@ -1,7 +1,10 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
 
-import { makeCommentTreeRequest } from '../../actions/Comments';
+import {
+  makeCommentTreeRequest,
+  makeCreateCommentRequest,
+} from '../../actions/Comments';
 import CommentTreeList from '../../components/CommentTreeList';
 
 class CommentTreeListContainer extends Component {
@@ -25,6 +28,8 @@ const mapStateToProps = state => (
     loading: state.comments.loading,
     trees: state.comments.trees,
     error: state.comments.error,
+    createCommentError: state.comments.createCommentError,
+    createCommentLoading: state.comments.createCommentLoading,    
     postPk: state.post.pk
   }
 )
@@ -32,6 +37,9 @@ const mapStateToProps = state => (
 const mapDispatchToProps = dispatch => (
   {
     fetchCommentList: (postId) => dispatch(makeCommentTreeRequest(postId)),
+    handleCreateComment: (body, parentFn) => dispatch(
+      makeCreateCommentRequest(body, parentFn)
+    )
   }
 )
 

@@ -41,6 +41,12 @@ class CommentEditor extends Component {
   }
   
   render() {
+    const {
+      postPk,
+      handleCreateComment
+    } = this.props;
+    
+    const parentFn = `t2_${postPk}`;
     return (
       <Fragment>
         <ReactQuill
@@ -50,7 +56,10 @@ class CommentEditor extends Component {
           modules={this.modules}
           formats={this.formats}
         />
-      <Button className='comment-submit-button'>
+      <Button
+        onClick={() => handleCreateComment(this.state.editorHtml, parentFn)}
+        className='comment-submit-button'
+      >
         Comment
       </Button>
       </Fragment>

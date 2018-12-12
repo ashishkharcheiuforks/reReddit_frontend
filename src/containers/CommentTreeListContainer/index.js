@@ -10,7 +10,7 @@ class CommentTreeListContainer extends Component {
   }
   
   componentDidUpdate(prevProps) {
-    if (prevProps.postPk != this.props.postPk) {
+    if (prevProps.postPk !== this.props.postPk) {
       this.props.fetchCommentList(this.props.postPk);
     }
   }

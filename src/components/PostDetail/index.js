@@ -19,8 +19,6 @@ const PostDetail = (props) => {
         />
       </div>
       
-      <hr/>
-      
       <div className="post-comments-container">
         <CommentTreeListContainer />
       </div>

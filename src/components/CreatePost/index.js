@@ -32,10 +32,6 @@ class CreatePost extends Component {
   }
   
   render () {
-
-    const CreatePostErrorMessage = this.props.errorMessage
-      ? ErrorAlert
-      : () => null;
       
     const CreatePostErrorAlert = withMaybe((props) => props.children)(ErrorAlert);
       

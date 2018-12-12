@@ -1,9 +1,10 @@
-import React, { Component } from 'react';
+import React, { Component, Fragment } from 'react';
 
 import './styles.css';
 import ExpandedTree from './ExpandedTree';
 import CollapsedTree from './CollapsedTree';
 import { withEither } from '../../utilities/HOC';
+
 
 class CommentTree extends Component {
   constructor(props) {
@@ -52,15 +53,17 @@ class CommentTree extends Component {
     )(ExpandedTree);
         
     return (
-      <CollapsibleTree
-        childrenList={childrenList}
-        body={body}
-        posterUsername={posterUsername}
-        upvotes={upvotes}
-        created={created}
-        handleToggleCollapse={this.handleToggleCollapse}
-        collapsed={this.state.collapsed}
-      />
+      <Fragment>
+        <CollapsibleTree
+          childrenList={childrenList}
+          body={body}
+          posterUsername={posterUsername}
+          upvotes={upvotes}
+          created={created}
+          handleToggleCollapse={this.handleToggleCollapse}
+          collapsed={this.state.collapsed}
+        />
+      </Fragment>
     )
   }
 }

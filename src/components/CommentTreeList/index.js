@@ -3,6 +3,7 @@ import React from 'react';
 import Loader from '../ListLoader';
 import { ErrorAlert } from '../AlertMessage';
 import CommentTree from '../CommentTree';
+import CommentEditor from '../CommentEditor';
 
 const CommentTreeList = (props) => {
   const {
@@ -40,6 +41,10 @@ const CommentTreeList = (props) => {
   
   return (
     <div className='comment-tree-list-container'>
+      <div className='top-comment-editor'>
+        <CommentEditor />
+      </div>
+
       <ul>
         {commentTreeRootList}
       </ul>

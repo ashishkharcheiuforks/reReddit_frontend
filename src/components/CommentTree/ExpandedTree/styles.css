@@ -48,6 +48,10 @@ div.thread-line {
   flex-direction: column;
 }
 
+.comment-panel .comment-body-container {
+  max-width: 75rem;
+}
+
 .comment-tree-content .comment-links {
 
 }

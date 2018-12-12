@@ -39,7 +39,6 @@ ReactDOM.render(
                   path="/r/:subredditTitle/postDetail/:postId"
                   render={ (props) =>
                     <SubredditContainer
-                      skinny
                       {...props}
                       primaryComponent='PostDetail'
                     />}

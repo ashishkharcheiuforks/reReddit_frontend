@@ -4,6 +4,7 @@ import { Button } from 'react-bootstrap';
 import TextEditor from '../TextEditor';
 import FieldGroup from '../FieldGroup';
 import { ErrorAlert } from '../AlertMessage';
+import { withMaybe } from '../../utilities/HOC';
 import './styles.css';
 
 class CreatePost extends Component {
@@ -36,12 +37,12 @@ class CreatePost extends Component {
       ? ErrorAlert
       : () => null;
       
+    const CreatePostErrorAlert = withMaybe((props) => props.children)(ErrorAlert);
+      
     return (
       <div className="create-post-container">
         <div className="alert-message-container">
-          <CreatePostErrorMessage>
-            {this.props.errorMessage}
-          </CreatePostErrorMessage>
+          <CreatePostErrorAlert children={this.props.errorMessage}/>
         </div>
         <form>
           <FieldGroup

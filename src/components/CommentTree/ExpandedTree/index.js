@@ -3,7 +3,7 @@ import { Button } from 'react-bootstrap';
 import { FaComment, FaArrowUp, FaArrowDown, } from 'react-icons/fa';
 
 import './styles.css';
-import CommentEditor from '../../CommentEditor';
+import CommentEditorContainer from '../../../containers/CommentEditorContainer';
 import CommentInfoLine from '../CommentInfoLine';
 import { withMaybe } from '../../../utilities/HOC';
 
@@ -32,12 +32,13 @@ class ExpandedTree extends Component {
       posterUsername,
       upvotes,
       created,
+      pk,
       handleToggleCollapse:handleCollapse,
     } = this.props;
     
     const HideableEditor = withMaybe(
       (props) => props.showEditor
-    )(CommentEditor);
+    )(CommentEditorContainer);
   
     return (
       <div className="comment-tree-content">
@@ -75,9 +76,9 @@ class ExpandedTree extends Component {
             <Button bsSize='xsmall' className='comment-buttons'> Share </Button>
           </div>
           <HideableEditor
-            postPk={2}
-            handleCreateComment={() => false}
             showEditor={this.state.showEditor}
+            rootComment={false}
+            commentParentPk={pk}
           />
           <div className="children-container">
             {childrenList}

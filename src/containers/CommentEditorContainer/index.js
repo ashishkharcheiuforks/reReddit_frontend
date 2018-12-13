@@ -8,10 +8,11 @@ const CommentEditorContainer = (props) => (
     <CommentEditor {...props} />
 )
 
-const mapStateToProps = (state) => (
+const mapStateToProps = (state, ownProps) => (
     {
-      postPk: state.post.pk,
-    }
+      parentPk: ownProps.commentParentPk || state.post.pk,
+      rootComment: ownProps.rootComment, // indicates whether this is a root comment
+    }                                    // or a comment on another comment
 )
 
 const mapDispatchToProps = (dispatch) => (

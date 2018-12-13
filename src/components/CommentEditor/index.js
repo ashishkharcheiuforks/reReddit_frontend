@@ -40,15 +40,15 @@ class CommentEditor extends Component {
     })
   }
   
-  handleSubmit = (editorHtml, postPk) => {
+  handleSubmit = (editorHtml, parentPk) => {
     this.setState({
       editorHtml: '',
     })
     
     const commentData ={
       body: editorHtml,
-      parentPk: postPk,
-      rootComment: true,
+      parentPk: parentPk,
+      rootComment: this.props.rootComment,
     }
     
     this.props.handleCreateComment(commentData);
@@ -56,7 +56,7 @@ class CommentEditor extends Component {
   
   render() {
     const {
-      postPk,
+      parentPk,
       handleCreateComment
     } = this.props;
     
@@ -70,7 +70,7 @@ class CommentEditor extends Component {
           formats={this.formats}
         />
       <Button
-        onClick={() => this.handleSubmit(this.state.editorHtml, postPk)}
+        onClick={() => this.handleSubmit(this.state.editorHtml, parentPk)}
         className='comment-submit-button'
       >
         Comment

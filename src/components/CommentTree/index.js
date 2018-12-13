@@ -31,6 +31,7 @@ class CommentTree extends Component {
       posterUsername,
       upvotes,
       created,
+      pk,
     } = this.props
     
     const childrenList = (!Array.isArray(commentChildren) || !commentChildren.length)
@@ -42,6 +43,7 @@ class CommentTree extends Component {
             posterUsername={child.poster.username}
             upvotes={child.upvotes}
             created={child.created}
+            pk={child.pk}
             key={child.pk}
           />
         )
@@ -60,6 +62,7 @@ class CommentTree extends Component {
           posterUsername={posterUsername}
           upvotes={upvotes}
           created={created}
+          pk={pk}
           handleToggleCollapse={this.handleToggleCollapse}
           collapsed={this.state.collapsed}
         />

@@ -14,6 +14,7 @@ const CommentTreeList = (props) => {
     handleCreateComment,
     createCommentError,
     createCommentLoading,
+    createdComment,
     postPk,
   } = props;
   
@@ -25,12 +26,12 @@ const CommentTreeList = (props) => {
     )
   }
   
-  let commentTreeRootList;
+  let commentTreeRootList = [];
   if (loading)  {
     commentTreeRootList = <Loader />;
   } else {
     commentTreeRootList = (!Array.isArray(trees) || !trees.length)
-      ? null
+      ? []
       : trees.map(root => (
         <CommentTree
           body={root.body}
@@ -40,9 +41,25 @@ const CommentTreeList = (props) => {
           created={root.created}
           key={root.pk}
         />
-      )
-      )
+      ))
+      
+    // If we just created a new comment put that on the top of the list
+    // createdComment will be set to false after the list is refetched
+    if (createdComment) {
+      const newCommentTree = (
+        <CommentTree
+          body={createdComment.body}
+          posterUsername={createdComment.poster}
+          commentChildren={null}
+          upvotes={createdComment.upvotes}
+          created={" just now"}
+          key={createdComment.pk}
+        />
+      );
+      commentTreeRootList.unshift(newCommentTree);
+    }
   }
+  
   
   const AlertOnError = withMaybe((props) =>
     props.children)(ErrorAlert)

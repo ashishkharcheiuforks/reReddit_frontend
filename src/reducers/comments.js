@@ -13,6 +13,7 @@ const initialState = {
   loading: false,
   createCommentError: null,
   createCommentLoading: false,
+  createdComment: null, //Used to temporarily bump created comment to top
 }
 
 
@@ -29,6 +30,7 @@ const comments = (state=initialState, action) => {
         trees: action.data,
         error: null,
         loading: null,
+        createdComment: null,
       }
     case FETCH_POST_COMMENT_TREES_FAILURE:
       return {
@@ -46,6 +48,13 @@ const comments = (state=initialState, action) => {
         ...state,
         createCommentLoading: false,
         createCommentError: action.error,
+      }
+    case CREATE_COMMENT_SUCCESS:
+      return {
+        ...state,
+        createCommentLoading: false,
+        createCommentError: null,
+        createdComment: action.data,
       }
     default:
       return state

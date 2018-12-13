@@ -38,6 +38,7 @@ const CommentTreeList = (props) => {
           upvotes={root.upvotes}
           created={root.created}
           pk={root.pk}
+          createdComment={createdComment}
           key={root.pk}
         />
       ))

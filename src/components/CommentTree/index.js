@@ -32,22 +32,43 @@ class CommentTree extends Component {
       upvotes,
       created,
       pk,
+      createdComment,
     } = this.props
     
-    const childrenList = (!Array.isArray(commentChildren) || !commentChildren.length)
-      ? null
-      : commentChildren.map(child => (
+    let childrenList = [];
+    if (Array.isArray(commentChildren) && commentChildren.length) {
+      childrenList =
+        commentChildren.map(child => (
+            <CommentTree
+              commentChildren={child.children}
+              body={child.body}
+              posterUsername={child.poster.username}
+              upvotes={child.upvotes}
+              created={child.created}
+              pk={child.pk}
+              key={child.pk}
+            />
+        ))
+        
+      // If the newly created comment is a child of this comment
+      // we want it to be posted at the top of the list
+      // the createdComment prop will become null when the
+      // list of comment trees is fetched again
+      if (createdComment && createdComment.parent) {
+        const newCommentTree = (
           <CommentTree
-            commentChildren={child.children}
-            body={child.body}
-            posterUsername={child.poster.username}
-            upvotes={child.upvotes}
-            created={child.created}
-            pk={child.pk}
-            key={child.pk}
+            body={createdComment.body}
+            posterUsername={createdComment.poster}
+            commentChildren={null}
+            upvotes={createdComment.upvotes}
+            created={" just now"}
+            pk={createdComment.pk}
+            key={createdComment.pk}
           />
         )
-      )
+        childrenList.unshift(newCommentTree);
+      }
+    }
       
     const CollapsibleTree = withEither(
       (props) => props.collapsed,

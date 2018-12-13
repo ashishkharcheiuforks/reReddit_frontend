@@ -31,6 +31,7 @@ const comments = (state=initialState, action) => {
         error: null,
         loading: null,
         createdComment: null,
+        createCommentError: null,
       }
     case FETCH_POST_COMMENT_TREES_FAILURE:
       return {

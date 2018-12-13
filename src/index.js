@@ -14,6 +14,9 @@ import { store, persistor } from './store'
 import SubredditContainer from './containers/SubredditContainer';
 import NavBarContainer from './containers/NavBarContainer';
 import UserAuthModalContainer from './containers/UserAuthModalContainer';
+import CreatePostContainer from './containers/CreatePostContainer';
+import PostListContainer from './containers/PostListContainer';
+import PostDetailContainer from './containers/PostDetailContainer';
 
 ReactDOM.render(
   <Provider store={store}>
@@ -31,7 +34,8 @@ ReactDOM.render(
                     <SubredditContainer
                       {...props}
                       skinny
-                      primaryComponent='CreatePost'
+                      primaryComponent={(props) =>
+                        <CreatePostContainer {...props} />}
                     />}
                 />
                 <Route
@@ -40,23 +44,28 @@ ReactDOM.render(
                   render={ (props) =>
                     <SubredditContainer
                       {...props}
-                      primaryComponent='PostDetail'
+                      primaryComponent={(props) =>
+                        <PostDetailContainer {...props} />}
                     />}
                 />
                 <Route
                   exact
                   path="/r/:subredditTitle"
-                  render={ (props) => <SubredditContainer
+                  render={ (props) =>
+                    <SubredditContainer
                       {...props}
-                      primaryComponent='PostList'
+                      primaryComponent={(props) =>
+                        <PostListContainer {...props} />}
                     />}
                 />
                 <Route
                   exact
                   path="/"
-                  render={ (props) => <SubredditContainer
+                  render={ (props) =>
+                    <SubredditContainer
                       {...props}
-                      primaryComponent='PostList'
+                      primaryComponent={(props) =>
+                        <PostListContainer {...props} />}
                     />}
                 />
             </Switch>

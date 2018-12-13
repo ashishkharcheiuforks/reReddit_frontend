@@ -3,7 +3,7 @@ import React from 'react';
 import Loader from '../ListLoader';
 import { ErrorAlert } from '../AlertMessage';
 import CommentTree from '../CommentTree';
-import CommentEditor from '../CommentEditor';
+import CommentEditorContainer from '../../containers/CommentEditorContainer';
 import { withMaybe } from '../../utilities/HOC';
 
 const CommentTreeList = (props) => {
@@ -11,11 +11,9 @@ const CommentTreeList = (props) => {
     trees,
     error,
     loading,
-    handleCreateComment,
     createCommentError,
     createCommentLoading,
     createdComment,
-    postPk,
   } = props;
   
   if (error) {
@@ -68,7 +66,7 @@ const CommentTreeList = (props) => {
     <div className='comment-tree-list-container'>
       <AlertOnError children={createCommentError} />
       <div className='top-comment-editor'>
-        <CommentEditor {...{postPk, handleCreateComment}}/>
+        <CommentEditorContainer />
       </div>
 
       <ul>

@@ -40,6 +40,14 @@ class CommentEditor extends Component {
     })
   }
   
+  handleSubmit = (editorHtml, parentFn) => {
+    this.setState({
+      editorHtml: '',
+    })
+    
+    this.props.handleCreateComment(editorHtml, parentFn)
+  }
+  
   render() {
     const {
       postPk,
@@ -57,7 +65,7 @@ class CommentEditor extends Component {
           formats={this.formats}
         />
       <Button
-        onClick={() => handleCreateComment(this.state.editorHtml, parentFn)}
+        onClick={() => this.handleSubmit(this.state.editorHtml, parentFn)}
         className='comment-submit-button'
       >
         Comment

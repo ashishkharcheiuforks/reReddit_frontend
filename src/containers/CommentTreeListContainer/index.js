@@ -29,7 +29,7 @@ const mapStateToProps = state => (
     trees: state.comments.trees,
     error: state.comments.error,
     createCommentError: state.comments.createCommentError,
-    createCommentLoading: state.comments.createCommentLoading,    
+    createCommentLoading: state.comments.createCommentLoading,
     postPk: state.post.pk
   }
 )
@@ -37,8 +37,8 @@ const mapStateToProps = state => (
 const mapDispatchToProps = dispatch => (
   {
     fetchCommentList: (postId) => dispatch(makeCommentTreeRequest(postId)),
-    handleCreateComment: (body, parentFn) => dispatch(
-      makeCreateCommentRequest(body, parentFn)
+    handleCreateComment: (commentData) => dispatch(
+      makeCreateCommentRequest(commentData)
     )
   }
 )

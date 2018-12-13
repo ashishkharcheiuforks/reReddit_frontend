@@ -40,12 +40,18 @@ class CommentEditor extends Component {
     })
   }
   
-  handleSubmit = (editorHtml, parentFn) => {
+  handleSubmit = (editorHtml, postPk) => {
     this.setState({
       editorHtml: '',
     })
     
-    this.props.handleCreateComment(editorHtml, parentFn)
+    const commentData ={
+      body: editorHtml,
+      parentPk: postPk,
+      rootComment: true,
+    }
+    
+    this.props.handleCreateComment(commentData);
   }
   
   render() {
@@ -54,7 +60,6 @@ class CommentEditor extends Component {
       handleCreateComment
     } = this.props;
     
-    const parentFn = `t2_${postPk}`;
     return (
       <Fragment>
         <ReactQuill
@@ -65,7 +70,7 @@ class CommentEditor extends Component {
           formats={this.formats}
         />
       <Button
-        onClick={() => this.handleSubmit(this.state.editorHtml, parentFn)}
+        onClick={() => this.handleSubmit(this.state.editorHtml, postPk)}
         className='comment-submit-button'
       >
         Comment

@@ -23,7 +23,7 @@ export const makeCommentTreeRequest = (postPk) => (
 )
 
 // Use redux-thunk to grab the userAuth token
-export const makeCreateCommentRequest = (body, parentFn) =>
+export const makeCreateCommentRequest = (commentData) =>
   (dispatch, getState) =>
     dispatch(
       {
@@ -34,8 +34,7 @@ export const makeCreateCommentRequest = (body, parentFn) =>
           failure: CREATE_COMMENT_FAILURE,
         },
         callAPI: () => createCommentApi(
-          body,
-          parentFn,
+          commentData,
           getState().userAuth.token
         ),
       }

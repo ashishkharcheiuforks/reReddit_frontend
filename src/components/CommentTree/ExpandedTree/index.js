@@ -24,6 +24,10 @@ class ExpandedTree extends Component {
     });
   }
   
+  handleVote = (vote_type) => (
+    this.props.handleCommentVote({comment_pk: this.props.pk, vote_type})
+  )
+  
   render() {
     
     const {
@@ -44,12 +48,12 @@ class ExpandedTree extends Component {
       <div className="comment-tree-content">
         <div className="comment-voter-collapser">
           <div className='comment-voter upvoter'>
-            <span onClick={() => false}>
+            <span onClick={() => this.handleVote(1)}>
               <FaArrowUp />
             </span>
           </div>
           <div className='comment-voter downvoter'>
-            <span onClick={() => false}>
+            <span onClick={() => this.handleVote(-1)}>
               <FaArrowDown />
             </span>
           </div>

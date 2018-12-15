@@ -3,6 +3,7 @@ export const API_ROOT_URL = process.env.NODE_ENV === 'development'
     : process.env.REACT_APP_PROD_API_ROOT;
     
 export const COMMENT_LIST_URL = API_ROOT_URL + 'comments/'
+export const COMMENT_VOTE_URL = COMMENT_LIST_URL + 'vote/'
 export const POST_COMMENT_TREES_URL = (postPk) => (
   `${COMMENT_LIST_URL}${postPk}/`
 )

@@ -7,8 +7,16 @@ import {
   CREATE_COMMENT_SUCCESS,
   CREATE_COMMENT_FAILURE,
   API_CREATE_COMMENT,
+  COMMENT_VOTE_REQUEST,
+  COMMENT_VOTE_SUCCESS,
+  COMMENT_VOTE_FAILURE,
+  API_COMMENT_VOTE,
 } from '../actionTypes';
-import { createCommentApi, getCommentTreeApi } from '../../api/Comments'
+import {
+  createCommentApi,
+  getCommentTreeApi,
+  commentVoteApi,
+} from '../../api/Comments'
 
 export const makeCommentTreeRequest = (postPk) => (
   {
@@ -39,3 +47,20 @@ export const makeCreateCommentRequest = (commentData) =>
         ),
       }
 )
+
+export const makeCommentVoteRequest = (voteData) =>
+  (dispatch, getState) =>
+   dispatch(
+     {
+       type: API_COMMENT_VOTE,
+       types: {
+         request: COMMENT_VOTE_REQUEST,
+         success: COMMENT_VOTE_SUCCESS,
+         failure: COMMENT_VOTE_FAILURE,
+       },
+       callAPI: () => commentVoteApi(
+         voteData,
+         getState().userAuth.token
+       )
+     }
+   )

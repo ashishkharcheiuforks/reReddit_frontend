@@ -14,6 +14,7 @@ const CommentTreeList = (props) => {
     createCommentError,
     createCommentLoading,
     createdComment,
+    handleCommentVote
   } = props;
   
   if (error) {
@@ -39,14 +40,15 @@ const CommentTreeList = (props) => {
           created={root.created}
           pk={root.pk}
           createdComment={createdComment}
+          handleCommentVote={handleCommentVote}          
           key={root.pk}
         />
       ))
       
-    // If we just created a new comment put that on the top of the list
+    // If we just now created a new root comment put that on the top of the list
     // createdComment will be set to false after the list is refetched
     // we only want this to happen with root comments (i.e. those made on
-    // posts)
+    // posts).
     if (createdComment && createdComment.post) {
       const newCommentTree = (
         <CommentTree
@@ -56,6 +58,7 @@ const CommentTreeList = (props) => {
           upvotes={createdComment.upvotes}
           created={" just now"}
           pk={createdComment.pk}
+          handleCommentVote={handleCommentVote}
           key={createdComment.pk}
         />
       );

@@ -18,17 +18,19 @@ import {
   commentVoteApi,
 } from '../../api/Comments'
 
-export const makeCommentTreeRequest = (postPk) => (
-  {
-    type: API_POST_COMMENT_TREES,
-    types: {
-      request: FETCH_POST_COMMENT_TREES_REQUEST,
-      success: FETCH_POST_COMMENT_TREES_SUCCESS,
-      failure: FETCH_POST_COMMENT_TREES_FAILURE,
-    },
-    callAPI: () => getCommentTreeApi(postPk),
-  }
-)
+// Use redux-thunk to get the userAuth username
+export const makeCommentTreeRequest = (postPk) =>
+  (dispatch, getState) => dispatch(
+    {
+      type: API_POST_COMMENT_TREES,
+      types: {
+        request: FETCH_POST_COMMENT_TREES_REQUEST,
+        success: FETCH_POST_COMMENT_TREES_SUCCESS,
+        failure: FETCH_POST_COMMENT_TREES_FAILURE,
+      },
+      callAPI: () => getCommentTreeApi(postPk, getState().userAuth.username),
+    }
+  )
 
 // Use redux-thunk to grab the userAuth token
 export const makeCreateCommentRequest = (commentData) =>

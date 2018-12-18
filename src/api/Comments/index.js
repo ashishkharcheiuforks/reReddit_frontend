@@ -7,10 +7,12 @@ import {
 } from '../constants'
 import { tokenContextObj } from '../apiUtils';
 
-export const getCommentTreeApi = (postPk) => (
-  axios.get(POST_COMMENT_TREES_URL(postPk))
-  .then(response => response.data)
-)
+export const getCommentTreeApi = (postPk, username) => {
+  const config = username ? {params: {username}} : {};
+  
+  return axios.get(POST_COMMENT_TREES_URL(postPk), config)
+      .then(response => response.data)
+}
 
 export const createCommentApi = (commentData, token) => {
   const {

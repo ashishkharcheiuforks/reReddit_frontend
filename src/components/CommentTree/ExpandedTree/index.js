@@ -35,6 +35,7 @@ class ExpandedTree extends Component {
       upvotes,
       created,
       pk,
+      voteDisplayState,
       handleToggleCollapse:handleCollapse,
     } = this.props;
     
@@ -46,7 +47,7 @@ class ExpandedTree extends Component {
       <div className="comment-tree-content">
         <div className="comment-voter-collapser">
           <VoterContainer
-            voteDisplayState={0}
+            voteDisplayState={voteDisplayState}
             itemType={'comment'}
             itemPk={pk}
           />

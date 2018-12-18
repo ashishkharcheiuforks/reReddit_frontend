@@ -32,6 +32,7 @@ class CommentTree extends Component {
       upvotes,
       created,
       pk,
+      voteDisplayState,
       createdComment,
     } = this.props
     
@@ -46,6 +47,7 @@ class CommentTree extends Component {
               upvotes={child.upvotes}
               created={child.created}
               pk={child.pk}
+              voteDisplayState={child.vote_state}
               key={child.pk}
             />
         ))
@@ -84,6 +86,7 @@ class CommentTree extends Component {
           upvotes={upvotes}
           created={created}
           pk={pk}
+          voteDisplayState={voteDisplayState}
           handleToggleCollapse={this.handleToggleCollapse}
           collapsed={this.state.collapsed}
         />

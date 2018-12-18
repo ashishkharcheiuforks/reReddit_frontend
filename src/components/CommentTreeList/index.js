@@ -14,7 +14,6 @@ const CommentTreeList = (props) => {
     createCommentError,
     createCommentLoading,
     createdComment,
-    handleCommentVote
   } = props;
   
   if (error) {
@@ -40,7 +39,6 @@ const CommentTreeList = (props) => {
           created={root.created}
           pk={root.pk}
           createdComment={createdComment}
-          handleCommentVote={handleCommentVote}          
           key={root.pk}
         />
       ))
@@ -58,14 +56,12 @@ const CommentTreeList = (props) => {
           upvotes={createdComment.upvotes}
           created={" just now"}
           pk={createdComment.pk}
-          handleCommentVote={handleCommentVote}
           key={createdComment.pk}
         />
       );
       commentTreeRootList.unshift(newCommentTree);
     }
   }
-  
   
   const AlertOnError = withMaybe((props) =>
     props.children)(ErrorAlert)

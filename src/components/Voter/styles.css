@@ -1,0 +1,17 @@
+.voter {
+  flex: 0 0 auto;
+}
+
+.voter span {
+  color: white;
+}
+
+.voter.upvoter span:hover {
+  color: #cc3700;
+  cursor: pointer;
+}
+
+.voter.downvoter span:hover {
+  color: #8DA8FF;
+  cursor: pointer;
+}

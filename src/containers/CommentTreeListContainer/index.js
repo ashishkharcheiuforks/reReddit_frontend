@@ -4,7 +4,6 @@ import { connect } from 'react-redux';
 import {
   makeCommentTreeRequest,
   makeCreateCommentRequest,
-  makeCommentVoteRequest,
 } from '../../actions/Comments';
 import CommentTreeList from '../../components/CommentTreeList';
 
@@ -39,7 +38,6 @@ const mapStateToProps = state => (
 const mapDispatchToProps = dispatch => (
   {
     fetchCommentList: (postId) => dispatch(makeCommentTreeRequest(postId)),
-    handleCommentVote: (voteData) => dispatch(makeCommentVoteRequest(voteData)),
   }
 )
 
@@ -47,4 +45,4 @@ const mapDispatchToProps = dispatch => (
 export default connect(
   mapStateToProps,
   mapDispatchToProps
-)(CommentTreeListContainer)
+)(CommentTreeListContainer);

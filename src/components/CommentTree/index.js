@@ -33,7 +33,6 @@ class CommentTree extends Component {
       created,
       pk,
       createdComment,
-      handleCommentVote,
     } = this.props
     
     let childrenList = [];
@@ -47,7 +46,6 @@ class CommentTree extends Component {
               upvotes={child.upvotes}
               created={child.created}
               pk={child.pk}
-              handleCommentVote={handleCommentVote}
               key={child.pk}
             />
         ))
@@ -65,7 +63,6 @@ class CommentTree extends Component {
             upvotes={createdComment.upvotes}
             created={" just now"}
             pk={createdComment.pk}
-            handleCommentVote={handleCommentVote}
             key={createdComment.pk}
           />
         )
@@ -88,7 +85,6 @@ class CommentTree extends Component {
           created={created}
           pk={pk}
           handleToggleCollapse={this.handleToggleCollapse}
-          handleCommentVote={handleCommentVote}
           collapsed={this.state.collapsed}
         />
       </Fragment>

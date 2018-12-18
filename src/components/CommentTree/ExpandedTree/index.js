@@ -1,11 +1,13 @@
 import React, { Component } from 'react';
 import { Button } from 'react-bootstrap';
-import { FaComment, FaArrowUp, FaArrowDown, } from 'react-icons/fa';
+import { FaComment } from 'react-icons/fa';
 
 import './styles.css';
 import CommentEditorContainer from '../../../containers/CommentEditorContainer';
 import CommentInfoLine from '../CommentInfoLine';
+import VoterContainer from '../../../containers/VoterContainer';
 import { withMaybe } from '../../../utilities/HOC';
+
 
 class ExpandedTree extends Component {
   constructor(props) {
@@ -23,10 +25,6 @@ class ExpandedTree extends Component {
       showEditor: !this.state.showEditor,
     });
   }
-  
-  handleVote = (vote_type) => (
-    this.props.handleCommentVote({comment_pk: this.props.pk, vote_type})
-  )
   
   render() {
     
@@ -47,16 +45,11 @@ class ExpandedTree extends Component {
     return (
       <div className="comment-tree-content">
         <div className="comment-voter-collapser">
-          <div className='comment-voter upvoter'>
-            <span onClick={() => this.handleVote(1)}>
-              <FaArrowUp />
-            </span>
-          </div>
-          <div className='comment-voter downvoter'>
-            <span onClick={() => this.handleVote(-1)}>
-              <FaArrowDown />
-            </span>
-          </div>
+          <VoterContainer
+            voteDisplayState={0}
+            itemType={'comment'}
+            itemPk={pk}
+          />
           <span onClick={() => handleCollapse()} className='thread-line-container'>
             <div className='thread-line'/>
           </span>

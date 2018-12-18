@@ -3,7 +3,7 @@ import axios from 'axios';
 import {
  POST_COMMENT_TREES_URL,
  COMMENT_LIST_URL,
- COMMENT_VOTE_URL,
+ VOTE_URL,
 } from '../constants'
 import { tokenContextObj } from '../apiUtils';
 
@@ -31,7 +31,7 @@ export const commentVoteApi = (voteData, token) => {
     comment_pk: comment,
   } = voteData;
   
-  const data = {vote_type, comment};
-  return axios.post(COMMENT_VOTE_URL, data, tokenContextObj(token))
+  const data = {vote_type, item_fn: `t1_${comment}`};//comment};
+  return axios.post(VOTE_URL, data, tokenContextObj(token))
     .then(response => response.data)
 }

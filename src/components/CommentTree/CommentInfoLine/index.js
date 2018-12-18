@@ -10,10 +10,11 @@ const CommentInfoLine = (props) => {
     created,
   } = props;
   
+  const upvotesLabel = upvotes^2===1 ? 'point' : 'points';
   return (
     <div className="poster-info-container">
       <span>{`u/${posterUsername}`}</span>
-      <span>{`${upvotes} upvotes`}</span>
+      <span>{`${upvotes} ${upvotesLabel}`}</span>
       <span>-</span>
       <span>{`created: ${created}`}</span>
     </div>

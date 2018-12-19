@@ -6,6 +6,7 @@ import {
   makeCreateCommentRequest,
 } from '../../actions/Comments';
 import CommentTreeList from '../../components/CommentTreeList';
+import { getRootComments } from '../../reducers/comments';
 
 class CommentTreeListContainer extends Component {
   componentDidMount() {
@@ -26,7 +27,7 @@ class CommentTreeListContainer extends Component {
 const mapStateToProps = state => (
   {
     loading: state.comments.loading,
-    trees: state.comments.trees,
+    rootComments: getRootComments(state),
     error: state.comments.error,
     createCommentError: state.comments.createCommentError,
     createCommentLoading: state.comments.createCommentLoading,

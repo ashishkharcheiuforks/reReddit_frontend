@@ -43,7 +43,7 @@ class CommentTree extends Component {
             <CommentTree
               commentChildren={child.children}
               body={child.body}
-              posterUsername={child.poster.username}
+              posterUsername={child.poster}
               upvotes={child.upvotes}
               created={child.created}
               pk={child.pk}
@@ -78,19 +78,17 @@ class CommentTree extends Component {
     )(ExpandedTree);
         
     return (
-      <Fragment>
-        <CollapsibleTree
-          childrenList={childrenList}
-          body={body}
-          posterUsername={posterUsername}
-          upvotes={upvotes}
-          created={created}
-          pk={pk}
-          voteDisplayState={voteDisplayState}
-          handleToggleCollapse={this.handleToggleCollapse}
-          collapsed={this.state.collapsed}
-        />
-      </Fragment>
+      <CollapsibleTree
+        childrenList={childrenList}
+        body={body}
+        posterUsername={posterUsername}
+        upvotes={upvotes}
+        created={created}
+        pk={pk}
+        voteDisplayState={voteDisplayState}
+        handleToggleCollapse={this.handleToggleCollapse}
+        collapsed={this.state.collapsed}
+      />
     )
   }
 }

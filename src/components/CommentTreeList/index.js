@@ -8,7 +8,7 @@ import { withMaybe } from '../../utilities/HOC';
 
 const CommentTreeList = (props) => {
   const {
-    trees,
+    rootComments,
     error,
     loading,
     createCommentError,
@@ -28,12 +28,12 @@ const CommentTreeList = (props) => {
   if (loading)  {
     commentTreeRootList = <Loader />;
   } else {
-    commentTreeRootList = (!Array.isArray(trees) || !trees.length)
+    commentTreeRootList = (!Array.isArray(rootComments) || !rootComments.length)
       ? []
-      : trees.map(root => (
+      : rootComments.map(root => (
         <CommentTree
           body={root.body}
-          posterUsername={root.poster.username}
+          posterPk={root.poster}
           commentChildren={root.children}
           upvotes={root.upvotes}
           created={root.created}
@@ -53,7 +53,7 @@ const CommentTreeList = (props) => {
         <CommentTree
           body={createdComment.body}
           posterUsername={createdComment.poster}
-          commentChildren={null}
+          commentChildren={[]}
           upvotes={createdComment.upvotes}
           created={" just now"}
           pk={createdComment.pk}
@@ -63,7 +63,8 @@ const CommentTreeList = (props) => {
       commentTreeRootList.unshift(newCommentTree);
     }
   }
-  
+
+  // Error with root comment creation
   const AlertOnError = withMaybe((props) =>
     props.children)(ErrorAlert)
   

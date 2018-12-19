@@ -8,7 +8,7 @@ import {
 } from '../actions/actionTypes';
 
 const initialState = {
-  trees: null,
+  entities: null,
   error: null,
   loading: false,
   createCommentError: null,
@@ -27,7 +27,7 @@ const comments = (state=initialState, action) => {
     case FETCH_POST_COMMENT_TREES_SUCCESS:
       return {
         ...state,
-        trees: action.data,
+        entities: action.data.entities,
         error: null,
         loading: null,
         createdComment: null,
@@ -60,6 +60,17 @@ const comments = (state=initialState, action) => {
     default:
       return state
   }
+}
+
+
+// Selectors
+
+export const getRootComments = (state) => {
+  const commentObj = state.comments.entities
+    ? state.comments.entities.comments
+    : {};
+  const comments = Object.values(commentObj);
+  return comments.filter(comment => comment.post)
 }
 
 export default comments

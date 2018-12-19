@@ -3,6 +3,7 @@ import React from 'react';
 import Loader from '../ListLoader';
 import { ErrorAlert } from '../AlertMessage';
 import CommentTree from '../CommentTree';
+import CommentContainer from '../../containers/CommentContainer';
 import CommentEditorContainer from '../../containers/CommentEditorContainer';
 import { withMaybe } from '../../utilities/HOC';
 

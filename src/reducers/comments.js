@@ -73,4 +73,7 @@ export const getRootComments = (state) => {
   return comments.filter(comment => comment.post)
 }
 
+export const getCommentById = (state, pk) =>
+  state.comments.entities.comments[pk];
+
 export default comments

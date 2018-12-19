@@ -1,3 +1,5 @@
+import { normalize, schema } from 'normalizr';
+
 import {
   FETCH_POST_COMMENT_TREES_REQUEST,
   FETCH_POST_COMMENT_TREES_SUCCESS,
@@ -25,12 +27,31 @@ export const makeCommentTreeRequest = (postPk) =>
       type: API_POST_COMMENT_TREES,
       types: {
         request: FETCH_POST_COMMENT_TREES_REQUEST,
-        success: FETCH_POST_COMMENT_TREES_SUCCESS,
+        success: normalizeCommentTree,
         failure: FETCH_POST_COMMENT_TREES_FAILURE,
       },
       callAPI: () => getCommentTreeApi(postPk, getState().userAuth.username),
     }
   )
+  
+// When comment trees are successfully fetched, normalize them for redux store
+const normalizeCommentTree = (nestedComments, getState, dispatch) => {
+  
+  const posterSchema = new schema.Entity('poster', {}, { idAttribute: 'pk' });
+  const commentSchema = new schema.Entity(
+    'comments',
+    {poster: posterSchema},
+    { idAttribute: 'pk',}
+  );
+  const commentListSchema = new schema.Array(commentSchema);
+  commentSchema.define({ children: commentListSchema })
+  const normalizedComments = normalize(nestedComments, commentListSchema);
+  
+  return dispatch({
+    type: FETCH_POST_COMMENT_TREES_SUCCESS,
+    data: normalizedComments.entities.comments,
+  })
+}
 
 // Use redux-thunk to grab the userAuth token
 export const makeCreateCommentRequest = (commentData) =>

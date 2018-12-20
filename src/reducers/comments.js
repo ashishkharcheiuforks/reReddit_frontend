@@ -17,17 +17,47 @@ const initialState = {
   createCommentLoading: false,
 }
 
+// Returns an object with rootCommentIds property to
+// That includes the newcomment id at the top
+const addRootCommentId = (state, newComment) => {
+  let newRoots = state.rootCommentIds.slice();
+  newRoots.splice(0,0,newComment.pk);
+  return { rootCommentIds: newRoots };
+}
 
-const addComment = (state, action) => {
-  const newComment = action.data;
+// Returns a new commentsById object with the parent object
+// updated to include the new child
+const addChildCommentId = (state, newComment) => {
+  const parentId = newComment.parent;
+  const oldParent = state.commentsById[parentId];
+  const newChildren = oldParent.children.slice();
+  newChildren.splice(0,0,newComment.pk);
+  const newParent = {
+    ...oldParent,
+    children: newChildren,
+  };
+  return { ...state.commentsById, [parentId]: newParent, };
+}
+
+// Handles adding the newComment id to either the rootCommentIds or
+// the children array of the parent (depending on which is appropriate)
+// Also adds the new comment to the commentsById object.
+const addComment = (state, newComment) => {
   // if it's a root comment
   if (newComment.post) {
-    
-  }
-  const oldComments = state.commentsById;
-  return {
-    ...state,
-    [newComment.pk]: newComment,
+    return (
+      {
+        ...addRootCommentId(state, newComment),
+        commentsById: {...state.commentsById, [newComment.pk]: newComment,}
+      }
+    )
+  } else if (newComment.parent) {
+    const newCommentsById = addChildCommentId(state, newComment);
+    return (
+      {
+      commentsById: {...newCommentsById, [newComment.pk]: newComment,}
+      }
+    )
   }
 }
 
@@ -56,9 +86,9 @@ const comments = (state=initialState, action) => {
     case CREATE_COMMENT_SUCCESS:
       return {
         ...state,
+        ...addComment(state, action.data),
         createCommentLoading: false,
         createCommentError: null,
-        commentsById: addComment(state, action),
       }
     case CREATE_COMMENT_REQUEST:
       return {
@@ -85,8 +115,9 @@ export const getRootCommentPks = (state) => state.comments.rootCommentIds;
 export const getCommentById = (state, pk) => state.comments.commentsById[pk];
 
 export const getPosterByCommentId = (state, pk) => {
+  console.log(pk);
   const posterId = state.comments.commentsById[pk].poster;
-  return state.comments.postersById[posterId];
+  return {username: "tommy"}//state.comments.postersById[posterId];
 }
   
 

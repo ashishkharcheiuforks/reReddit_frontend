@@ -1,5 +1,5 @@
 import React from 'react';
-import { connect } from'react-redux';
+import { connect } from 'react-redux';
 
 import Comment from '../../components/Comment';
 import { getCommentById, getPosterByCommentId } from '../../reducers/comments';

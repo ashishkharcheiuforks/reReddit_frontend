@@ -17,6 +17,15 @@ const initialState = {
 }
 
 
+const addComment = (state, action) => {
+  const { newComment } = action.data;
+  
+  return {
+    ...state,
+    [newComment.pk]: newComment,
+  }
+}
+
 const comments = (state=initialState, action) => {
   switch (action.type) {
     case FETCH_POST_COMMENT_TREES_REQUEST:
@@ -64,7 +73,6 @@ const comments = (state=initialState, action) => {
 
 
 // Selectors
-
 export const getRootComments = (state) => {
   const commentObj = state.comments.entities
     ? state.comments.entities.comments
@@ -73,7 +81,15 @@ export const getRootComments = (state) => {
   return comments.filter(comment => comment.post)
 }
 
-export const getCommentById = (state, pk) =>
-  state.comments.entities.comments[pk];
+export const getCommentById = (state, pk) => {
+  const comment = state.comments.entities.comments[pk];
+  return comment
+}
+
+export const getPosterByCommentId = (state, pk) => {
+  const posterId = state.comments.entities.comments[pk].poster;
+  return state.comments.entities.posters[posterId];
+}
+  
 
 export default comments

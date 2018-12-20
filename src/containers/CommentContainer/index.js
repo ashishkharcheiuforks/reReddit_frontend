@@ -1,8 +1,8 @@
-import React, { Component } from 'react';
+import React from 'react';
 import { connect } from'react-redux';
 
 import Comment from '../../components/Comment';
-import { getCommentById } from '../../reducers/comments';
+import { getCommentById, getPosterByCommentId } from '../../reducers/comments';
 
 const CommentContainer = (props) => {
   
@@ -14,7 +14,7 @@ const CommentContainer = (props) => {
     created,
     vote_state: voteDisplayState,
   } = commentData;
-  const { posterUsername, }  = posterData
+  const { username: posterUsername, }  = posterData
   return (
     <Comment
       {...{
@@ -33,6 +33,7 @@ const CommentContainer = (props) => {
 const mapStateToProps = (state, ownProps) => (
   {
       commentData: getCommentById(state, ownProps.pk),
+      posterData: getPosterByCommentId(state, ownProps.pk),
   }
 )
 

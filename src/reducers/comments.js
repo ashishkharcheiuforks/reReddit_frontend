@@ -8,18 +8,23 @@ import {
 } from '../actions/actionTypes';
 
 const initialState = {
-  entities: null,
+  commentsById: {},
+  rootCommentIds: [],
+  postersById: {},
   error: null,
   loading: false,
   createCommentError: null,
   createCommentLoading: false,
-  createdComment: null, //Used to temporarily bump created comment to top
 }
 
 
 const addComment = (state, action) => {
-  const { newComment } = action.data;
-  
+  const newComment = action.data;
+  // if it's a root comment
+  if (newComment.post) {
+    
+  }
+  const oldComments = state.commentsById;
   return {
     ...state,
     [newComment.pk]: newComment,
@@ -36,16 +41,24 @@ const comments = (state=initialState, action) => {
     case FETCH_POST_COMMENT_TREES_SUCCESS:
       return {
         ...state,
-        entities: action.data.entities,
+        commentsById: action.data.entities.comments,
+        postersById: action.data.entities.posters,
+        rootCommentIds: action.data.result,
         error: null,
         loading: null,
-        createdComment: null,
         createCommentError: null,
       }
     case FETCH_POST_COMMENT_TREES_FAILURE:
       return {
         ...state,
         error: action.error,
+      }
+    case CREATE_COMMENT_SUCCESS:
+      return {
+        ...state,
+        createCommentLoading: false,
+        createCommentError: null,
+        commentsById: addComment(state, action),
       }
     case CREATE_COMMENT_REQUEST:
       return {
@@ -59,36 +72,21 @@ const comments = (state=initialState, action) => {
         createCommentLoading: false,
         createCommentError: action.error,
       }
-    case CREATE_COMMENT_SUCCESS:
-      return {
-        ...state,
-        createCommentLoading: false,
-        createCommentError: null,
-        createdComment: action.data,
-      }
     default:
       return state
   }
 }
 
 
-// Selectors
-export const getRootComments = (state) => {
-  const commentObj = state.comments.entities
-    ? state.comments.entities.comments
-    : {};
-  const comments = Object.values(commentObj);
-  return comments.filter(comment => comment.post)
-}
+// // Selectors
+// Ordered array of root comments, based on api ordering
+export const getRootCommentPks = (state) => state.comments.rootCommentIds;
 
-export const getCommentById = (state, pk) => {
-  const comment = state.comments.entities.comments[pk];
-  return comment
-}
+export const getCommentById = (state, pk) => state.comments.commentsById[pk];
 
 export const getPosterByCommentId = (state, pk) => {
-  const posterId = state.comments.entities.comments[pk].poster;
-  return state.comments.entities.posters[posterId];
+  const posterId = state.comments.commentsById[pk].poster;
+  return state.comments.postersById[posterId];
 }
   
 

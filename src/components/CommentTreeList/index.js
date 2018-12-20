@@ -8,7 +8,7 @@ import { withMaybe } from '../../utilities/HOC';
 
 const CommentTreeList = (props) => {
   const {
-    rootComments,
+    rootCommentPks,
     error,
     loading,
     createCommentError,
@@ -27,12 +27,12 @@ const CommentTreeList = (props) => {
   if (loading)  {
     commentTreeRootList = <Loader />;
   } else {
-    commentTreeRootList = (!Array.isArray(rootComments) || !rootComments.length)
+    commentTreeRootList = (!Array.isArray(rootCommentPks) || !rootCommentPks.length)
       ? []
-      : rootComments.map(root => (
+      : rootCommentPks.map(rootPk => (
         <CommentContainer
-          pk={root.pk}
-          key={root.pk}
+          pk={rootPk}
+          key={rootPk}
         />
       ))
   }

@@ -69,7 +69,7 @@ export const makeCreateCommentRequest = (commentData) =>
           getState().userAuth.token
         ),
       }
-)
+    )
 
 export const makeCommentVoteRequest = (voteData) =>
   (dispatch, getState) =>

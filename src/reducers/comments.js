@@ -5,12 +5,14 @@ import {
   CREATE_COMMENT_REQUEST,
   CREATE_COMMENT_SUCCESS,
   CREATE_COMMENT_FAILURE,
+  VOTE_SUCCESS,
 } from '../actions/actionTypes';
+import { updateObject } from '../utilities/reducerUtils';
 
 const initialState = {
   commentsById: {},
-  rootCommentIds: [],
   postersById: {},
+  rootCommentIds: [],
   error: null,
   loading: false,
   createCommentError: null,
@@ -61,6 +63,7 @@ const addComment = (state, newComment) => {
   }
 }
 
+
 const comments = (state=initialState, action) => {
   switch (action.type) {
     case FETCH_POST_COMMENT_TREES_REQUEST:
@@ -102,6 +105,21 @@ const comments = (state=initialState, action) => {
         createCommentLoading: false,
         createCommentError: action.error,
       }
+    case VOTE_SUCCESS:
+      const commentId = action.data.comment;
+      const comment = state.commentsById[commentId];
+      const newComment = updateObject(
+        comment,
+        {
+          vote_state: action.data.vote_type,
+          upvotes: comment.upvotes + action.data.vote_type,
+        }
+      );
+      const newCommentsById = updateObject(
+        state.commentsById,
+        {[commentId]: newComment}
+      );
+      return updateObject(state, {commentsById: newCommentsById})
     default:
       return state
   }
@@ -115,10 +133,12 @@ export const getRootCommentPks = (state) => state.comments.rootCommentIds;
 export const getCommentById = (state, pk) => state.comments.commentsById[pk];
 
 export const getPosterByCommentId = (state, pk) => {
-  console.log(pk);
   const posterId = state.comments.commentsById[pk].poster;
-  return {username: "tommy"}//state.comments.postersById[posterId];
+  return state.comments.postersById[posterId];
 }
-  
 
-export default comments
+export const getVoteDisplayStateById = (state, pk) => (
+  state.comments.commentsById[pk].vote_state
+)
+
+export default comments;

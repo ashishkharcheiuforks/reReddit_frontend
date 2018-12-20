@@ -108,11 +108,18 @@ const comments = (state=initialState, action) => {
     case VOTE_SUCCESS:
       const commentId = action.data.comment;
       const comment = state.commentsById[commentId];
+      debugger;
       const newComment = updateObject(
         comment,
         {
-          vote_state: action.data.vote_type,
-          upvotes: comment.upvotes + action.data.vote_type,
+          vote_state: comment.vote_state === action.data.vote_type
+            ? 0
+            : action.data.vote_type,
+          upvotes: comment.vote_state === action.data.vote_type
+            ? comment.upvotes - action.data.vote_type
+            : comment.vote_state === 0
+              ? comment.upvotes + action.data.vote_type
+              : comment.upvotes + 2*action.data.vote_type
         }
       );
       const newCommentsById = updateObject(

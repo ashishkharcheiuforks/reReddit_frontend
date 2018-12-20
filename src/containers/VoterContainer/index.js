@@ -6,7 +6,7 @@ import { makeVoteRequest } from '../../actions/Voter';
 
 const VoterContainer = ({voteDisplayState, handleVote}) => (
   <Voter
-    initialDisplayState={voteDisplayState}
+    displayState={voteDisplayState}
     handleVote={handleVote}
   />
 )

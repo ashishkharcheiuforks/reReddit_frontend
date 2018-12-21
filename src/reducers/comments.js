@@ -109,7 +109,6 @@ const comments = (state=initialState, action) => {
     case VOTE_SUCCESS:
       const commentId = action.data.comment;
       const comment = state.commentsById[commentId];
-      debugger;
       const newComment = updateObject(
         comment,
         {
@@ -142,7 +141,6 @@ export const getCommentById = (state, pk) => state.comments.commentsById[pk];
 
 export const getPosterByCommentId = (state, pk) => {
   const posterId = state.comments.commentsById[pk].poster;
-  debugger;
   return state.comments.postersById[posterId];
 }
 

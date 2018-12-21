@@ -4,10 +4,11 @@ import { connect } from 'react-redux';
 import Voter from '../../components/Voter';
 import { makeVoteRequest } from '../../actions/Voter';
 
-const VoterContainer = ({voteDisplayState, handleVote}) => (
+const VoterContainer = ({voteDisplayState, handleVote, upvotes}) => (
   <Voter
     displayState={voteDisplayState}
     handleVote={handleVote}
+    upvotes={upvotes}
   />
 )
 

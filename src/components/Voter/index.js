@@ -15,23 +15,29 @@ class Voter extends Component {
   
   render() {
     
+    const {
+      upvotes,
+      displayState,
+      handleVote
+    } = this.props;
+    
     return (
       <div className='vote-container'>
         <div className='voter-arrow upvoter'>
           <span
-            style={this.props.displayState === 1 ? this.upvotedStyle : {}}
-            onClick={() => this.props.handleVote(1)}
+            style={displayState === 1 ? this.upvotedStyle : {}}
+            onClick={() => handleVote(1)}
           >
             <FaArrowUp />
           </span>
         </div>
         <div className='vote-count'>
-          123
+          {upvotes}
         </div>
         <div className='voter-arrow downvoter'>
           <span
-            style={this.props.displayState === -1 ? this.downvotedStyle : {}}
-            onClick={() => this.props.handleVote(-1)}
+            style={displayState === -1 ? this.downvotedStyle : {}}
+            onClick={() => handleVote(-1)}
           >
             <FaArrowDown />
           </span>

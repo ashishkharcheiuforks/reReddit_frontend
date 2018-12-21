@@ -4,6 +4,7 @@
   flex: 0 0 auto;
   justify-content: center;
   align-items: center;
+  width: 2rem;
 }
 
 .voter-arrow {
@@ -26,4 +27,6 @@
 
 .vote-count {
   flex: 0 0 auto;
+  margin-top: -0.4rem;
+  font-weight: 700;
 }

@@ -5,7 +5,7 @@ import {
   CREATE_COMMENT_REQUEST,
   CREATE_COMMENT_SUCCESS,
   CREATE_COMMENT_FAILURE,
-  VOTE_SUCCESS,
+  COMMENT_VOTE_SUCCESS,
 } from '../actions/actionTypes';
 import { updateObject } from '../utilities/reducerUtils';
 
@@ -106,7 +106,7 @@ const comments = (state=initialState, action) => {
         createCommentLoading: false,
         createCommentError: action.error,
       }
-    case VOTE_SUCCESS:
+    case COMMENT_VOTE_SUCCESS:
       const commentId = action.data.comment;
       const comment = state.commentsById[commentId];
       const newComment = updateObject(

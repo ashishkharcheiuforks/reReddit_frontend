@@ -2,6 +2,8 @@ import {
   VOTE_REQUEST,
   VOTE_SUCCESS,
   VOTE_FAILURE,
+  COMMENT_VOTE_SUCCESS,
+  POST_VOTE_SUCCESS,
   API_VOTE,
 } from '../actionTypes';
 
@@ -15,7 +17,7 @@ export const makeVoteRequest = (voteData) =>
         type: API_VOTE,
         types: {
           request: VOTE_REQUEST,
-          success: VOTE_SUCCESS,
+          success: onVoteSuccess,
           failure: VOTE_FAILURE,
         },
         callAPI: () => voteApi(
@@ -24,3 +26,23 @@ export const makeVoteRequest = (voteData) =>
         ),
       }
     )
+
+const onVoteSuccess = (data, getState, dispatch) => {
+  if (data.hasOwnProperty('comment')) {
+    dispatch({
+      type: COMMENT_VOTE_SUCCESS,
+      data
+    })
+  } else if (data.hasOwnProperty('post')) {
+    dispatch({
+      type: POST_VOTE_SUCCESS,
+      data
+    })
+  }
+  
+  throw new ReferenceError(
+    'Upvote is of unknown type',
+    'actions/Voter/index.js',
+    41
+  )
+}

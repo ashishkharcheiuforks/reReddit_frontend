@@ -16,8 +16,8 @@ class Voter extends Component {
   render() {
     
     return (
-      <Fragment>
-        <div className='voter upvoter'>
+      <div className='vote-container'>
+        <div className='voter-arrow upvoter'>
           <span
             style={this.props.displayState === 1 ? this.upvotedStyle : {}}
             onClick={() => this.props.handleVote(1)}
@@ -25,7 +25,10 @@ class Voter extends Component {
             <FaArrowUp />
           </span>
         </div>
-        <div className='voter downvoter'>
+        <div className='vote-count'>
+          123
+        </div>
+        <div className='voter-arrow downvoter'>
           <span
             style={this.props.displayState === -1 ? this.downvotedStyle : {}}
             onClick={() => this.props.handleVote(-1)}
@@ -33,7 +36,7 @@ class Voter extends Component {
             <FaArrowDown />
           </span>
         </div>
-      </Fragment>
+      </div>
     )
   }
 }

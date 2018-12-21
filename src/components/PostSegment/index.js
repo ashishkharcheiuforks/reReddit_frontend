@@ -3,22 +3,23 @@ import { Panel, Button } from 'react-bootstrap';
 import { FaShare } from 'react-icons/fa';
 import { Link } from 'react-router-dom';
 
-import './styles.css'
+import VoterContainer from '../../containers/VoterContainer';
+import './styles.css';
+
 
 const PostSegment = ({post}) => (
-  <Panel id="post-segment-panel">
-    <div id="post-segment-voter">
-      
-    </div>
+  <div className="post-segment-panel">
+      <VoterContainer />
+
     
-    <div id='post-segment-text-container'>
-      <div id="post-segment-title">
+    <div className='post-segment-text-container'>
+      <div className="post-segment-title">
         <Link to={"/r/" + post.subreddit_title + "/postDetail/" + post.pk}>
           {post.title}
         </Link>
       </div>
       
-      <div id='post-segment-info'>
+      <div className='post-segment-info'>
         <strong>
           <Link to={"/r/" + post.subreddit_title}>
             r/{post.subreddit_title}
@@ -29,7 +30,7 @@ const PostSegment = ({post}) => (
         {post.age_in_days} days ago
       </div>
       
-      <div id='post-segment-links'>
+      <div className='post-segment-links'>
         <Button bsSize='xsmall' className='post-buttons'> X Comments </Button>
         <Button bsSize='xsmall' className='post-buttons'>
            <FaShare /> Share
@@ -39,7 +40,7 @@ const PostSegment = ({post}) => (
     </div>
 
 
-  </Panel>
+  </div>
 );
 
 export default PostSegment;

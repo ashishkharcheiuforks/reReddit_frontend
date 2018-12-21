@@ -13,6 +13,11 @@ code {
     monospace;
 }
 
+div.whole-page {
+  background-color: black;
+}
+
 div.main-layout {
   margin: 0 auto;
+  margin-top: -2rem;
 }

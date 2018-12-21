@@ -22,7 +22,7 @@ ReactDOM.render(
   <Provider store={store}>
     <PersistGate loading={null} persistor={persistor}>
       <BrowserRouter>
-        <div>
+        <div className="whole-page">
           <NavBarContainer />
           <UserAuthModalContainer />
           <div className='main-layout'>

@@ -1,4 +1,12 @@
-.voter {
+.vote-container {
+  display: flex;
+  flex-direction: column;
+  flex: 0 0 auto;
+  justify-content: center;
+  align-items: center;
+}
+
+.voter-arrow {
   flex: 0 0 auto;
 }
 
@@ -6,12 +14,16 @@
   color: white;
 }
 
-.voter.upvoter span:hover {
+.voter-arrow.upvoter span:hover {
   color: #cc3700;
   cursor: pointer;
 }
 
-.voter.downvoter span:hover {
+.voter-arrow.downvoter span:hover {
   color: #8DA8FF;
   cursor: pointer;
+}
+
+.vote-count {
+  flex: 0 0 auto;
 }

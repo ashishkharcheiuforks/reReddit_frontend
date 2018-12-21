@@ -45,6 +45,7 @@ const addChildCommentId = (state, newComment) => {
 // the children array of the parent (depending on which is appropriate)
 // Also adds the new comment to the commentsById object.
 const addComment = (state, newComment) => {
+  newComment['created'] = 'just now'
   // if it's a root comment
   if (newComment.post) {
     return (
@@ -55,7 +56,6 @@ const addComment = (state, newComment) => {
     )
   } else if (newComment.parent) {
     const newCommentsById = addChildCommentId(state, newComment);
-    newComment = { ...newComment, posterId: state.userAuth.pk}
     return (
       {
       commentsById: {...newCommentsById, [newComment.pk]: newComment,}

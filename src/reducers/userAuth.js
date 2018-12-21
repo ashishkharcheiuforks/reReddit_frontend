@@ -11,6 +11,7 @@ import {
 const initialState = {
   token: null,
   username: null,
+  pk: null,
   subs: [],
   moderated_subs: [],
   error: null,
@@ -25,10 +26,12 @@ const userAuth = (state=initialState, action) => {
           loading: true,
         }
       case USER_AUTH_LOGIN_SUCCESS:
+        console.log(action.data)
         return {
           ...state,
           token: action.data.token,
           username: action.data.username,
+          pk: action.data.pk,
           subs: action.data.subs,
           moderated_subs: action.data.moderated_subs,
           loading: false,

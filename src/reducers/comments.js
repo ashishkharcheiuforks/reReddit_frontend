@@ -55,6 +55,7 @@ const addComment = (state, newComment) => {
     )
   } else if (newComment.parent) {
     const newCommentsById = addChildCommentId(state, newComment);
+    newComment = { ...newComment, posterId: state.userAuth.pk}
     return (
       {
       commentsById: {...newCommentsById, [newComment.pk]: newComment,}
@@ -141,6 +142,7 @@ export const getCommentById = (state, pk) => state.comments.commentsById[pk];
 
 export const getPosterByCommentId = (state, pk) => {
   const posterId = state.comments.commentsById[pk].poster;
+  debugger;
   return state.comments.postersById[posterId];
 }
 

@@ -46,6 +46,13 @@
 
 .post-buttons {
   border-width: 0;
+  background-color: #333;
+  color: #b8b8b8;
+  margin-right: 0.3rem;
+}
+
+.post-buttons:hover {
+  background-color: #818384;
 }
 
 .post-segment-panel a:hover,a {

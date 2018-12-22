@@ -9,10 +9,9 @@ import {
 } from '../../actions/actionTypes';
 import postList from './postList';
 import createPost from './createPost';
+import { combineReducersWithRoot } from '../../utilities/reducerUtils';
 
 const initialState = {
-  postList: postList(undefined, {type:""}),
-  createPost: createPost(undefined, {type:""}),
   loading: false,
   error: null,
   title: null,
@@ -21,22 +20,6 @@ const initialState = {
 }
 
 const subreddit = (state=initialState, action) => {
-  if (action.type && action.type.startsWith("FETCH_POST_LIST")) {
-    return {
-      ...state,
-      postList: {
-        ...postList(state.postList, action)
-      },
-    }
-  };
-  
-  if (action.type && action.type.startsWith("CREATE_POST")) {
-    return {
-      ...state,
-      createPost: {...createPost(state.createPost, action)},
-    }
-  }
-  
   switch (action.type) {
     case FETCH_SUB_DETAIL_REQUEST:
       return {
@@ -85,4 +68,7 @@ const subreddit = (state=initialState, action) => {
   }
 }
 
-export default subreddit;
+export default combineReducersWithRoot(subreddit, {
+  postList,
+  createPost,
+});

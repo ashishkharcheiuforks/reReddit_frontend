@@ -1,11 +1,11 @@
 import React from 'react';
 
-import PostSegment from '../PostSegment';
+import PostPanelContainer from '../../containers/PostPanelContainer';
 import Loader from '../ListLoader';
 import './styles.css';
 
 const PostList = (props) => {
-  const {posts, loading, error} = props;
+  const {posts, loading, error, allPosts} = props;
 
   
   if (error) {
@@ -16,8 +16,8 @@ const PostList = (props) => {
   if (loading) {
     postList =  <Loader />;
   } else {
-      postList = posts.map((post) => {
-        return <PostSegment post={post} key={post.pk} />
+      postList = allPosts.map((postPk) => {
+        return <PostPanelContainer postPk={postPk} key={postPk}/>
     });
   }
   

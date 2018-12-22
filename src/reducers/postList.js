@@ -5,7 +5,7 @@ import {
 } from '../actions/actionTypes';
 
 const initialState = {
-  posts: null,
+  postsById: {},
   allPosts: [],
   loading: true,
   error: null,
@@ -17,6 +17,14 @@ const allPosts = (postList) => {
     allPosts.push(post.pk)
   })
   return allPosts;
+}
+
+const postsById = (postList) => {
+  let postsById = {};
+  postList.forEach((post) => {
+    postsById[post.pk] = post;
+  })
+  return postsById;
 }
 
 const postList = (state=initialState, action) => {
@@ -32,8 +40,8 @@ const postList = (state=initialState, action) => {
         ...state,
         loading: false,
         error: null,
-        posts: action.data,
-        allPosts: allPosts(action.data)
+        postsById: postsById(action.data),
+        allPosts: allPosts(action.data),
       };
     case FETCH_POST_LIST_FAILURE:
       return {
@@ -45,5 +53,9 @@ const postList = (state=initialState, action) => {
       return state;
   }
 };
+
+// selectors
+
+export const getPostById = (state, pk) => state.postList.postsById[pk];
 
 export default postList;

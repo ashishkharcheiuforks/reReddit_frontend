@@ -6,10 +6,7 @@ import {
   SUBREDDIT_SUBSCRIBE_REQUEST,
   SUBREDDIT_SUBSCRIBE_FAILURE,
   SUBREDDIT_SUBSCRIBE_SUCCESS,
-} from '../../actions/actionTypes';
-import postList from './postList';
-import createPost from './createPost';
-import { combineReducersWithRoot } from '../../utilities/reducerUtils';
+} from '../actions/actionTypes';
 
 const initialState = {
   loading: false,
@@ -68,7 +65,4 @@ const subreddit = (state=initialState, action) => {
   }
 }
 
-export default combineReducersWithRoot(subreddit, {
-  postList,
-  createPost,
-});
+export default subreddit;

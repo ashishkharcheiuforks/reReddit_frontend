@@ -20,7 +20,7 @@ const mapDispatchToProps = dispatch => (
 
 const mapStateToProps = state => (
   {
-    errorMessage: state.subreddit.createPost.error,
+    errorMessage: state.createPost.error,
   }
 )
 

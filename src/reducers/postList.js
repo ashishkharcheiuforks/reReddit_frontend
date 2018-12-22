@@ -2,12 +2,21 @@ import {
   FETCH_POST_LIST_REQUEST,
   FETCH_POST_LIST_SUCCESS,
   FETCH_POST_LIST_FAILURE,
-} from '../../actions/actionTypes';
+} from '../actions/actionTypes';
 
 const initialState = {
   posts: null,
+  allPosts: [],
   loading: true,
   error: null,
+}
+
+const allPosts = (postList) => {
+  let allPosts = [];
+  postList.forEach((post) => {
+    allPosts.push(post.pk)
+  })
+  return allPosts;
 }
 
 const postList = (state=initialState, action) => {
@@ -24,6 +33,7 @@ const postList = (state=initialState, action) => {
         loading: false,
         error: null,
         posts: action.data,
+        allPosts: allPosts(action.data)
       };
     case FETCH_POST_LIST_FAILURE:
       return {

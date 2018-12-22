@@ -5,6 +5,8 @@ import userAuth from './userAuth';
 import userAuthModal from './userAuthModal';
 import post from './post';
 import comments from './comments';
+import postList from './postList';
+import createPost from './createPost';
 
 const rootReducer = combineReducers({
   subreddit,
@@ -12,6 +14,8 @@ const rootReducer = combineReducers({
   userAuthModal,
   post,
   comments,
+  postList,
+  createPost,
 });
 
 export default rootReducer;

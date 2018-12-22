@@ -31,9 +31,9 @@ class PostListContainer extends Component {
 
 const mapStateToProps = state => (
   {
-    loading: state.subreddit.postList.loading,
-    posts: state.subreddit.postList.posts,
-    error: state.subreddit.postList.error,
+    loading: state.postList.loading,
+    posts: state.postList.posts,
+    error: state.postList.error,
   }
 );
 

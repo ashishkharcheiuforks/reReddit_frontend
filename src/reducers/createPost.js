@@ -2,7 +2,7 @@ import {
   CREATE_POST_REQUEST,
   CREATE_POST_SUCCESS,
   CREATE_POST_FAILURE,
-} from '../../actions/actionTypes';
+} from '../actions/actionTypes';
 
 const initialState = {
   creating: false,

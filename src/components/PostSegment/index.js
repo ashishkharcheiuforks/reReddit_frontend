@@ -9,7 +9,12 @@ import './styles.css';
 
 const PostSegment = ({post}) => (
   <div className="post-segment-panel">
-      <VoterContainer upvotes={post.upvotes}/>
+      <VoterContainer
+        upvotes={post.upvotes}
+        voteDisplayState={0}
+        itemType={'post'}
+        itemPk={post.pk}
+      />
 
     
     <div className='post-segment-text-container'>

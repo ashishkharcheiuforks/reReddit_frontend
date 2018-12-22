@@ -12,6 +12,7 @@ const PostPanelContainer = ({post}) => {
     subreddit_title,
     poster_username,
     created,
+    voteDisplayState,
   } = post
   
   return (
@@ -23,6 +24,7 @@ const PostPanelContainer = ({post}) => {
         subreddit_title,
         poster_username,
         created,
+        voteDisplayState,
       }}
     />
   );

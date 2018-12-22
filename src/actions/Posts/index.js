@@ -21,7 +21,9 @@ import {
 } from '../../api/Posts';
 
 
-export const makeSubPostListRequest = (subredditTitle, orderBy) => (
+// use redux-thunk for userAuth username
+export const makeSubPostListRequest = (subredditTitle, orderBy) =>
+  (dispatch, getState) => dispatch(
   {
     type: API_SUB_POST_LIST,
     types: {
@@ -30,8 +32,12 @@ export const makeSubPostListRequest = (subredditTitle, orderBy) => (
       failure: FETCH_POST_LIST_FAILURE,
     },
     callAPI: subredditTitle
-      ? () => getSubPostListApi(subredditTitle, orderBy)
-      : () => getPostListApi(orderBy),
+      ? () => getSubPostListApi(
+        subredditTitle,
+        orderBy,
+        getState().userAuth.username
+      )
+      : () => getPostListApi(orderBy, getState().userAuth.username),
   }
 );
 

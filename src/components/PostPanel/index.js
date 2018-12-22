@@ -15,12 +15,13 @@ const PostPanel = (props) => {
     subreddit_title,
     poster_username,
     created,
+    voteDisplayState,
   } = props
   return (
     <div className="post-segment-panel">
         <VoterContainer
           upvotes={upvotes}
-          voteDisplayState={0}
+          voteDisplayState={voteDisplayState || 0}
           itemType={'post'}
           itemPk={pk}
         />

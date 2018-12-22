@@ -29,12 +29,12 @@ export const makeVoteRequest = (voteData) =>
 
 const onVoteSuccess = (data, getState, dispatch) => {
   if (data.hasOwnProperty('comment')) {
-    dispatch({
+    return dispatch({
       type: COMMENT_VOTE_SUCCESS,
       data
     })
   } else if (data.hasOwnProperty('post')) {
-    dispatch({
+    return dispatch({
       type: POST_VOTE_SUCCESS,
       data
     })

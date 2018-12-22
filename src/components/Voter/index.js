@@ -31,10 +31,19 @@ class Voter extends Component {
             <FaArrowUp />
           </span>
         </div>
-        <div className='vote-count'>
+        <div
+          className='vote-count'
+          style={
+            displayState === 1
+              ? this.upvotedStyle
+              : displayState === -1
+                ? this.downvotedStyle
+                : {}
+          }          
+        >
           {upvotes}
         </div>
-        <div className='voter-arrow downvoter'>
+        <div className='voter-arrow downvoter' >
           <span
             style={displayState === -1 ? this.downvotedStyle : {}}
             onClick={() => handleVote(-1)}

@@ -8,14 +8,14 @@ import {
 } from '../constants';
 import { tokenContextObj } from '../apiUtils';
 
-export const getPostListApi = (orderBy) => {
-  const params = {orderby: orderBy};
+export const getPostListApi = (orderBy, username) => {
+  const params = {orderby: orderBy, username};
   return axios.get(POST_LIST_URL, {params,})
           .then(response => response.data)
 }
 
-export const getSubPostListApi = (subredditTitle, orderBy) => {
-  const params = {orderby: orderBy};
+export const getSubPostListApi = (subredditTitle, orderBy, username) => {
+  const params = {orderby: orderBy, username};
   return axios.get(SUB_POST_LIST_URL(subredditTitle), {params,})
           .then(response => response.data)
 }

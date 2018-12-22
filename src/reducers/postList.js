@@ -4,13 +4,7 @@ import {
   FETCH_POST_LIST_FAILURE,
   POST_VOTE_SUCCESS,
 } from '../actions/actionTypes';
-
-const initialState = {
-  postsById: {},
-  allPosts: [],
-  loading: true,
-  error: null,
-}
+import { updateObjectOnVote } from '../utilities/reducerUtils';
 
 const allPosts = (postList) => {
   let allPosts = [];
@@ -29,24 +23,11 @@ const postsById = (postList) => {
   return postsById;
 }
 
-const updatePostOnVote = (oldPost, voteType) => {
-  const voteState = oldPost.voteDisplayState || 0;
-  const newVoteState = voteState === voteType
-    ? 0
-    : voteType;
-  
-  const upvotes = oldPost.upvotes;
-  const newUpvotes = voteState === voteType
-    ? upvotes - voteType
-    : voteState === 0
-      ? upvotes + voteType
-      : upvotes + 2*voteType
-  const newPost = {
-    ...oldPost,
-    voteDisplayState: newVoteState,
-    upvotes: newUpvotes,
-  }
-  return newPost;
+const initialState = {
+  postsById: {},
+  allPosts: [],
+  loading: true,
+  error: null,
 }
 
 const postList = (state=initialState, action) => {
@@ -77,7 +58,7 @@ const postList = (state=initialState, action) => {
         ...state,
         postsById: {
           ...state.postsById,
-          [postId]: updatePostOnVote(
+          [postId]: updateObjectOnVote(
             state.postsById[postId],
             action.data.vote_type,
           ),

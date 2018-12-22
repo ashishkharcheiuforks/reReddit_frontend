@@ -7,16 +7,14 @@ import {
   CREATE_COMMENT_FAILURE,
   COMMENT_VOTE_SUCCESS,
 } from '../actions/actionTypes';
-import { updateObject } from '../utilities/reducerUtils';
+import {
+  updateObjectOnVote,
+} from '../utilities/reducerUtils';
 
-const initialState = {
-  commentsById: {},
-  postersById: {},
-  rootCommentIds: [],
-  error: null,
-  loading: false,
-  createCommentError: null,
-  createCommentLoading: false,
+
+// Reformat incoming api list of comment objects
+const commentsById = (oldCommentsById) => {
+
 }
 
 // Returns an object with rootCommentIds property to
@@ -64,6 +62,15 @@ const addComment = (state, newComment) => {
   }
 }
 
+const initialState = {
+  commentsById: {},
+  postersById: {},
+  rootCommentIds: [],
+  error: null,
+  loading: false,
+  createCommentError: null,
+  createCommentLoading: false,
+}
 
 const comments = (state=initialState, action) => {
   switch (action.type) {
@@ -108,25 +115,16 @@ const comments = (state=initialState, action) => {
       }
     case COMMENT_VOTE_SUCCESS:
       const commentId = action.data.comment;
-      const comment = state.commentsById[commentId];
-      const newComment = updateObject(
-        comment,
-        {
-          vote_state: comment.vote_state === action.data.vote_type
-            ? 0
-            : action.data.vote_type,
-          upvotes: comment.vote_state === action.data.vote_type
-            ? comment.upvotes - action.data.vote_type
-            : comment.vote_state === 0
-              ? comment.upvotes + action.data.vote_type
-              : comment.upvotes + 2*action.data.vote_type
-        }
-      );
-      const newCommentsById = updateObject(
-        state.commentsById,
-        {[commentId]: newComment}
-      );
-      return updateObject(state, {commentsById: newCommentsById})
+      return {
+        ...state,
+        commentsById: {
+          ...state.commentsById,
+          [commentId]: updateObjectOnVote(
+            state.commentsById[commentId],
+            action.data.vote_type,
+          ),
+        },
+      }
     default:
       return state
   }
@@ -145,7 +143,7 @@ export const getPosterByCommentId = (state, pk) => {
 }
 
 export const getVoteDisplayStateById = (state, pk) => (
-  state.comments.commentsById[pk].vote_state
+  state.comments.commentsById[pk].voteDisplayState
 )
 
 export default comments;

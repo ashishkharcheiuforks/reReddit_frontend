@@ -12,7 +12,7 @@ const CommentContainer = (props) => {
     body,
     upvotes,
     created,
-    vote_state: voteDisplayState,
+    voteDisplayState,
   } = commentData;
   const { username: posterUsername, }  = posterData
   return (

@@ -24,7 +24,7 @@ export const makeCommentTreeRequest = (postPk) =>
       type: API_POST_COMMENT_TREES,
       types: {
         request: FETCH_POST_COMMENT_TREES_REQUEST,
-        success: normalizeCommentTree,
+        success: normalizeCommentTreeOnSuccess,
         failure: FETCH_POST_COMMENT_TREES_FAILURE,
       },
       callAPI: () => getCommentTreeApi(postPk, getState().userAuth.username),
@@ -32,7 +32,7 @@ export const makeCommentTreeRequest = (postPk) =>
   )
   
 // When comment trees are successfully fetched, normalize them for redux store
-const normalizeCommentTree = (nestedComments, getState, dispatch) => {
+const normalizeCommentTreeOnSuccess = (nestedComments, getState, dispatch) => {
   
   const posterSchema = new schema.Entity('posters', {}, { idAttribute: 'pk' });
   const commentSchema = new schema.Entity(
@@ -43,7 +43,13 @@ const normalizeCommentTree = (nestedComments, getState, dispatch) => {
   const commentListSchema = new schema.Array(commentSchema);
   commentSchema.define({ children: commentListSchema })
   const normalizedComments = normalize(nestedComments, commentListSchema);
-  console.log(normalizedComments)
+  Object.entries(normalizedComments.entities.comments).forEach((id, comment) => {
+    const {vote_state, ...newComment} = comment;
+    normalizedComments.entities.comments[id] = {
+      ...newComment,
+      voteDisplayState: vote_state
+    };
+  });
   return dispatch({
     type: FETCH_POST_COMMENT_TREES_SUCCESS,
     data: normalizedComments

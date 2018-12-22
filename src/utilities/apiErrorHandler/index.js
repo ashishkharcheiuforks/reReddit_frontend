@@ -1,4 +1,5 @@
 const apiRequestErrorHandler = (e) => {
+  console.log(e)
   try {
     console.log("Response: " , e.response)
     if (!e.response) {

@@ -14,3 +14,18 @@ export function combineReducersWithRoot(rootReducer, reducers) {
 export function updateObject(oldObject, newValues) {
   return Object.assign({}, oldObject, newValues)
 }
+
+// Pretty much just for comments and posts
+export function updateObjectOnVote(oldObj, voteType) {
+  const voteState = oldObj.voteDisplayState || 0;
+  const newVoteState = voteType
+  
+  const upvotes = oldObj.upvotes;
+  const newUpvotes = upvotes + (newVoteState - voteState)
+    
+  return ({
+    ...oldObj,
+    voteDisplayState: newVoteState,
+    upvotes: newUpvotes,
+  });
+}

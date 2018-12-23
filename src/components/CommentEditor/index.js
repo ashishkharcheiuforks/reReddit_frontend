@@ -31,7 +31,13 @@ class CommentEditor extends Component {
     }
     
     this.handleChange = this.handleChange.bind(this);
-    
+    this.quillNode = React.createRef();
+  }
+
+  componentDidMount() {
+    if (!this.props.rootComment) {
+      this.quillNode.current.focus();
+    }
   }
   
   handleChange(html) {
@@ -64,6 +70,7 @@ class CommentEditor extends Component {
           placeholder='What are your thoughts?'
           modules={this.modules}
           formats={this.formats}
+          ref={this.quillNode}
         />
       <Button
         onClick={() => this.handleSubmit(this.state.editorHtml)}

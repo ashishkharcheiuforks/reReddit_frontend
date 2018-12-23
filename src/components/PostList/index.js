@@ -1,6 +1,7 @@
 import React from 'react';
 
 import PostPanelContainer from '../../containers/PostPanelContainer';
+import { ErrorAlert } from '../AlertMessage';
 import Loader from '../ListLoader';
 import './styles.css';
 
@@ -9,7 +10,11 @@ const PostList = (props) => {
 
   
   if (error) {
-    return <p> {error} </p>
+    return(
+      <ErrorAlert>
+        {error}
+      </ErrorAlert>
+    )
   }
   
   let postList;

@@ -13,10 +13,6 @@ code {
     monospace;
 }
 
-div.whole-page {
-  background-color: #070707;
-}
-
 div.main-layout {
   margin: 0 auto;
   margin-top: -2rem;

@@ -18,7 +18,7 @@ const PostPanel = (props) => {
     voteDisplayState,
   } = props
   return (
-    <div className="post-segment-panel">
+    <div className="post-segment-panel" >
         <VoterContainer
           upvotes={upvotes}
           voteDisplayState={voteDisplayState || 0}

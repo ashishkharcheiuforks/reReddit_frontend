@@ -31,7 +31,7 @@ class ModalRegisterForm extends Component {
   
   render = () => (
     <div id="register-form-container">
-      <form>
+      <form onSubmit={this.handleSubmit}>
         <FieldGroup
           id="formControlsText"
           label="Username:"
@@ -40,6 +40,7 @@ class ModalRegisterForm extends Component {
           placeholder='username'
           name='username'
           onChange={this.handleChange}
+          autoFocus
         />
       
         <FieldGroup
@@ -68,6 +69,7 @@ class ModalRegisterForm extends Component {
             handleClick={this.handleSubmit}
             loading={this.props.loading}
             content='Register'
+            type='submit'
           />
         
           <FormButton

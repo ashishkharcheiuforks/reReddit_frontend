@@ -20,7 +20,7 @@ class ModalLoginForm extends Component {
     this.setState({[e.target.name]: e.target.value});
   }
   
-  handleSubmit = () => {
+  handleSubmit = (e) => {
     this.props.handleLogin(this.state.username, this.state.password);
   }
 
@@ -28,7 +28,7 @@ class ModalLoginForm extends Component {
   render() {
     return (
       <div id="login-form-container">
-        <form>
+        <form onSubmit={this.handleSubmit}>
           <FieldGroup
             id="formControlsText"
             label="Username:"
@@ -56,6 +56,7 @@ class ModalLoginForm extends Component {
               handleClick={this.handleSubmit}
               loading={this.props.loading}
               content='Login'
+              type='submit'
             />
           
             <FormButton

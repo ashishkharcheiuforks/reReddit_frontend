@@ -8,12 +8,12 @@ class ModalLoginForm extends Component {
   constructor(props) {
     super(props);
     
-    this.handleChange = this.handleChange.bind(this);
-    
     this.state = {
       username: '',
       password: '',
     };
+    
+    this.handleChange = this.handleChange.bind(this);
   }
   
   handleChange = (e) => {
@@ -23,48 +23,52 @@ class ModalLoginForm extends Component {
   handleSubmit = () => {
     this.props.handleLogin(this.state.username, this.state.password);
   }
+
   
-  render = () => (
-    <div id="login-form-container">
-      <form>
-        <FieldGroup
-          id="formControlsText"
-          label="Username:"
-          type="text"
-          value={this.state.username}
-          placeholder='username'
-          name='username'
-          onChange={this.handleChange}
-          />
-        
-        <FieldGroup
-          id="formControlsPassword"
-          label="Password:"
-          type="password"
-          value={this.state.password}
-          placeholder='password'
-          name='password'
-          onChange={this.handleChange}
-          />
-        
-        <div id="button-container">
-          <FormButton
-            bsStyle='primary'
-            handleClick={this.handleSubmit}
-            loading={this.props.loading}
-            content='Login'
-          />
-        
-          <FormButton
-              bsStyle='danger'
-              handleClick={this.props.handleHide}
-              loading={this.props.loading}
-              content='Cancel'
+  render() {
+    return (
+      <div id="login-form-container">
+        <form>
+          <FieldGroup
+            id="formControlsText"
+            label="Username:"
+            type="text"
+            value={this.state.username}
+            placeholder='username'
+            name='username'
+            onChange={this.handleChange}
+            autoFocus
             />
-        </div>
-      </form>
-    </div>
-  );
+          
+          <FieldGroup
+            id="formControlsPassword"
+            label="Password:"
+            type="password"
+            value={this.state.password}
+            placeholder='password'
+            name='password'
+            onChange={this.handleChange}
+            />
+          
+          <div id="button-container">
+            <FormButton
+              bsStyle='primary'
+              handleClick={this.handleSubmit}
+              loading={this.props.loading}
+              content='Login'
+            />
+          
+            <FormButton
+                bsStyle='danger'
+                handleClick={this.props.handleHide}
+                loading={this.props.loading}
+                content='Cancel'
+              />
+          </div>
+        </form>
+      </div>
+    );
+  }
 }
 
 export default ModalLoginForm;

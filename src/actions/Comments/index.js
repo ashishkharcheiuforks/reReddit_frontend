@@ -45,7 +45,6 @@ const normalizeCommentTreeOnSuccess = (nestedComments, getState, dispatch) => {
   const normalizedComments = normalize(nestedComments, commentListSchema);
   Object.entries(normalizedComments.entities.comments).forEach(([id, comment]) => {
     const {vote_state, ...newComment} = comment;
-    debugger;
     normalizedComments.entities.comments[id] = {
       ...newComment,
       voteDisplayState: vote_state

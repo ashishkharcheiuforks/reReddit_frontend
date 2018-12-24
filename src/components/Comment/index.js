@@ -33,9 +33,10 @@ class Comment extends Component {
       created,
       pk,
       voteDisplayState,
-      posterUsername
+      posterUsername,
+      authUsername,
     } = this.props
-    
+    debugger;
     let childrenList = [];
     if (Array.isArray(childrenPk) && childrenPk.length) {
       childrenList =
@@ -57,6 +58,7 @@ class Comment extends Component {
         childrenList={childrenList}
         body={body}
         posterUsername={posterUsername}
+        authUsername={authUsername}
         upvotes={upvotes}
         created={created}
         pk={pk}

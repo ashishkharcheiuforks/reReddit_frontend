@@ -12,11 +12,6 @@ import {
 } from '../utilities/reducerUtils';
 
 
-// Reformat incoming api list of comment objects
-const commentsById = (oldCommentsById) => {
-
-}
-
 // Returns an object with rootCommentIds property to
 // That includes the newcomment id at the top
 const addRootCommentId = (state, newComment) => {

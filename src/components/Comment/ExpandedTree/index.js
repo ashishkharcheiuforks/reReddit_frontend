@@ -1,10 +1,11 @@
 import React, { Component } from 'react';
 import { Button } from 'react-bootstrap';
-import { FaComment } from 'react-icons/fa';
+import { FaComment, FaEllipsisH } from 'react-icons/fa';
 
 import './styles.css';
 import CommentEditorContainer from '../../../containers/CommentEditorContainer';
 import CommentInfoLine from '../CommentInfoLine';
+import EllipsisButton from '../../EllipsisButton';
 import VoterContainer from '../../../containers/VoterContainer';
 import { withMaybe } from '../../../utilities/HOC';
 
@@ -32,6 +33,7 @@ class ExpandedTree extends Component {
       childrenList,
       body,
       posterUsername,
+      authUsername,
       upvotes,
       created,
       pk,
@@ -42,6 +44,10 @@ class ExpandedTree extends Component {
     const HideableEditor = withMaybe(
       (props) => props.showEditor
     )(CommentEditorContainer);
+    debugger;
+    const AuthEllipsis = withMaybe(
+      (props) => props.authUsername === props.posterUsername
+    )(EllipsisButton)
   
     return (
       <div className="comment-tree-content">
@@ -71,7 +77,15 @@ class ExpandedTree extends Component {
               onClick={() => this.handleToggleEditor()}>
                 Reply
             </Button>
-            <Button bsSize='xsmall' className='comment-buttons'> Share </Button>
+            <Button bsSize='xsmall' className='comment-buttons'>
+              Share
+            </Button>
+            <AuthEllipsis
+              {...{
+                authUsername,
+                posterUsername,
+              }}
+            />
           </div>
           <HideableEditor
             showEditor={this.state.showEditor}

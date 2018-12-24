@@ -60,4 +60,8 @@ const userAuth = (state=initialState, action) => {
     }
 };
 
+// Selectors
+
+export const getAuthUsername = (state) => state.userAuth.username;
+
 export default userAuth;

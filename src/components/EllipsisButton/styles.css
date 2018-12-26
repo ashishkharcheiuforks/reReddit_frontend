@@ -11,6 +11,20 @@
   background-color: #4d4d4d;
 }
 
- .toggle-button:active {
-  
+.ellipsis-dropdown-menu.dropdown-menu {
+  background-color: #4d4d4d;
+}
+
+.ellipsis-dropdown-menu.dropdown-menu>li {
+  background-color: #333;
+  font-weight: bold;
+}
+
+.ellipsis-dropdown-menu.dropdown-menu>li>a {
+  color: #b8b8b8;
+  font-weight: bold;
+}
+.ellipsis-dropdown-menu.dropdown-menu>li>a:hover {
+  background-color: #4FBCFF;
+  color: #333;
 }

@@ -10,7 +10,13 @@ import { makeDeleteCommentRequest } from '../../actions/Comments';
 
 const CommentContainer = (props) => {
   
-  const { commentData, posterData, authUsername, pk } = props;
+  const {
+    commentData,
+    posterData,
+    authUsername,
+    handleDeleteComment,
+    pk
+    } = props;
   const {
     children: childrenPk,
     body,
@@ -32,6 +38,7 @@ const CommentContainer = (props) => {
         deleted,
         posterUsername,
         authUsername,
+        handleDeleteComment,
         }}
     />
   )
@@ -45,9 +52,9 @@ const mapStateToProps = (state, ownProps) => (
   }
 )
 
-const mapDispatchToProps = dispatch => (
+const mapDispatchToProps = (dispatch, ownProps) => (
   {
-    handleDeleteComment: (pk) => makeDeleteCommentRequest(pk),
+    handleDeleteComment: () => dispatch(makeDeleteCommentRequest(ownProps.pk)),
   }
 )
 

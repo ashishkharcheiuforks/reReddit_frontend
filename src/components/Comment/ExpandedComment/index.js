@@ -1,5 +1,5 @@
 import React, { Component, Fragment } from 'react';
-import { Button } from 'react-bootstrap';
+import { Button, MenuItem } from 'react-bootstrap';
 import { FaComment, FaEllipsisH } from 'react-icons/fa';
 
 import './styles.css';
@@ -93,7 +93,14 @@ class ExpandedComment extends Component {
                     posterUsername,
                     handleDeleteComment,
                   }}
-                />
+                >
+                  <MenuItem
+                    eventKey={1}
+                    onSelect={handleDeleteComment}
+                  >
+                    delete
+                  </MenuItem>
+                </AuthEllipsis>
               </div>
             </Fragment>
           }

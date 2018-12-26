@@ -9,12 +9,17 @@ import {
   CREATE_COMMENT_SUCCESS,
   CREATE_COMMENT_FAILURE,
   API_CREATE_COMMENT,
+  DELETE_COMMENT_REQUEST,
+  DELETE_COMMENT_SUCCESS,
+  DELETE_COMMENT_FAILURE,
+  API_DELETE_COMMENT,
   COMMENT_VOTE_SUCCESS,
 } from '../actionTypes';
 import {
   createCommentApi,
   getCommentTreeApi,
   commentVoteApi,
+  deleteCommentApi,
 } from '../../api/Comments'
 
 // Use redux-thunk to get the userAuth username
@@ -73,3 +78,23 @@ export const makeCreateCommentRequest = (commentData) =>
         ),
       }
     )
+    
+// Use redux-thunk to grab the userAuth token
+export const makeDeleteCommentRequest = (pk) =>
+  (dispatch, getState) =>
+    dispatch(
+      {
+        type: API_DELETE_COMMENT,
+        types: {
+          request: DELETE_COMMENT_REQUEST,
+          success: DELETE_COMMENT_SUCCESS,
+          failure: DELETE_COMMENT_FAILURE,
+        },
+        callAPI: () => deleteCommentApi(
+          pk,
+          getState().userAuth.token
+        ),
+      }
+    )
+    
+  

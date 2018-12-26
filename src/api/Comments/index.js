@@ -4,6 +4,7 @@ import {
  POST_COMMENT_TREES_URL,
  COMMENT_LIST_URL,
  VOTE_URL,
+ COMMENT_DELETE_URL,
 } from '../constants'
 import { tokenContextObj } from '../apiUtils';
 
@@ -24,6 +25,11 @@ export const createCommentApi = (commentData, token) => {
   const parentFn = rootComment ? `t2_${parentPk}` : `t1_${parentPk}`;
   const data = {body, parent_fn:parentFn};
   return axios.post(COMMENT_LIST_URL, data, tokenContextObj(token))
+    .then(response => response.data)
+}
+
+export const deleteCommentApi = (pk, token) => {
+  return axios.patch(COMMENT_DELETE_URL(pk), null, tokenContextObj(token))
     .then(response => response.data)
 }
 

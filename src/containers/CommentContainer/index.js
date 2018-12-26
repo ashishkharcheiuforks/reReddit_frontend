@@ -6,6 +6,7 @@ import {
   getCommentById,
   getPosterByCommentId, } from '../../reducers/comments';
 import { getAuthUsername } from '../../reducers/userAuth';
+import { makeDeleteCommentRequest } from '../../actions/Comments';
 
 const CommentContainer = (props) => {
   
@@ -44,6 +45,13 @@ const mapStateToProps = (state, ownProps) => (
   }
 )
 
+const mapDispatchToProps = dispatch => (
+  {
+    handleDeleteComment: (pk) => makeDeleteCommentRequest(pk),
+  }
+)
+
 export default connect(
   mapStateToProps,
+  mapDispatchToProps
 )(CommentContainer);

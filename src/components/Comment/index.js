@@ -36,6 +36,7 @@ class Comment extends Component {
       deleted,
       posterUsername,
       authUsername,
+      handleDeleteComment,
     } = this.props;
 
     let childrenList = [];
@@ -67,6 +68,7 @@ class Comment extends Component {
             deleted,
             posterUsername,
             authUsername,
+            handleDeleteComment,
           }
         }
         handleToggleCollapse={this.handleToggleCollapse}

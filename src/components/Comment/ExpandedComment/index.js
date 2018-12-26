@@ -40,6 +40,7 @@ class ExpandedComment extends Component {
       voteDisplayState,
       deleted,
       handleToggleCollapse:handleCollapse,
+      handleDeleteComment,
     } = this.props;
     
     const HideableEditor = withMaybe(
@@ -90,6 +91,7 @@ class ExpandedComment extends Component {
                   {...{
                     authUsername,
                     posterUsername,
+                    handleDeleteComment,
                   }}
                 />
               </div>

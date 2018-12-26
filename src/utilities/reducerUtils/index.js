@@ -12,7 +12,7 @@ export function combineReducersWithRoot(rootReducer, reducers) {
 
 // Update, avoid mutation
 export function updateObject(oldObject, newValues) {
-  return Object.assign({}, oldObject, newValues)
+  return { ...oldObject, ...newValues}
 }
 
 // Pretty much just for comments and posts

@@ -12,6 +12,7 @@ import {
 } from '../actions/actionTypes';
 import {
   updateObjectOnVote,
+  updateObject,
 } from '../utilities/reducerUtils';
 
 
@@ -58,6 +59,18 @@ const addComment = (state, newComment) => {
       }
     )
   }
+}
+
+// Update a particular comment with id and new object properties newProps
+const updateComment = (state, id, newProps) => {
+  const oldComment = state.commentsById[id];
+  return ({
+    ...state,
+    commentsById: {
+      ...state.commentsById,
+      [id]: updateObject(oldComment, newProps),
+    },
+  });
 }
 
 const initialState = {
@@ -122,7 +135,15 @@ const comments = (state=initialState, action) => {
             action.data.vote_type,
           ),
         },
-      }
+      };
+    case DELETE_COMMENT_SUCCESS:
+      return updateComment(
+        state,
+        action.data.pk,
+        {
+            deleted: true,
+        }
+      );
     default:
       return state
   }

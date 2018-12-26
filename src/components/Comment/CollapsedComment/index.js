@@ -10,6 +10,7 @@ const CollapsedComment = (props) => {
     posterUsername,
     upvotes,
     created,
+    deleted,
     handleToggleCollapse:handleExpansion,
   } = props;
   
@@ -19,7 +20,7 @@ const CollapsedComment = (props) => {
         <IoIosAddCircle />
       </div>
       <div className='collapsed-links'>
-        <CommentInfoLine {...{posterUsername, upvotes, created,}}/>
+        <CommentInfoLine {...{posterUsername, upvotes, created, deleted,}}/>
       </div>
     </div>
   )

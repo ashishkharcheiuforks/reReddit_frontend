@@ -1,9 +1,10 @@
 .comment-tree-content .comment-voter-collapser {
   flex: 0 0 auto;
   min-width: 1rem;
-  margin-right: 0.8rem;
   display: flex;
-  flex-direction: column
+  flex-direction: column;
+  align-items: center;
+  min-width: 20px;
 }
 
 .comment-voter {
@@ -30,6 +31,8 @@ span.thread-line-container {
   display: flex;
   flex-direction: column;
   border-color: #818481;
+  align-items: center;
+  width: 100%;
 }
 
 span.thread-line-container:hover {

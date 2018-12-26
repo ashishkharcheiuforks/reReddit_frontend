@@ -1,4 +1,4 @@
-import React, { Component } from 'react';
+import React, { Component, Fragment } from 'react';
 import { Button } from 'react-bootstrap';
 import { FaComment, FaEllipsisH } from 'react-icons/fa';
 
@@ -38,6 +38,7 @@ class ExpandedComment extends Component {
       created,
       pk,
       voteDisplayState,
+      deleted,
       handleToggleCollapse:handleCollapse,
     } = this.props;
     
@@ -52,41 +53,48 @@ class ExpandedComment extends Component {
     return (
       <div className="comment-tree-content">
         <div className="comment-voter-collapser">
-          <VoterContainer
-            voteDisplayState={voteDisplayState}
-            itemType={'comment'}
-            itemPk={pk}
-          />
+          {deleted ||
+            <VoterContainer
+              voteDisplayState={voteDisplayState}
+              itemType={'comment'}
+              itemPk={pk}
+            />
+          }
           <span onClick={() => handleCollapse()} className='thread-line-container'>
             <div className='thread-line'/>
           </span>
         </div>
         <div className="comment-panel">
-          <CommentInfoLine {...{posterUsername, upvotes, created}}/>
-          <div
-            className="comment-body-container"
-            dangerouslySetInnerHTML={{__html: body}}
-            />
-          <div className="comment-links">
-            <div className="comment-icon">
-              <FaComment/>
-            </div>
-            <Button
-              bsSize='xsmall'
-              className='comment-buttons'
-              onClick={() => this.handleToggleEditor()}>
-                Reply
-            </Button>
-            <Button bsSize='xsmall' className='comment-buttons'>
-              Share
-            </Button>
-            <AuthEllipsis
-              {...{
-                authUsername,
-                posterUsername,
-              }}
-            />
-          </div>
+          <CommentInfoLine {...{posterUsername, upvotes, created, deleted}}/>
+          
+          { deleted ||
+            <Fragment>
+              <div
+                className="comment-body-container"
+                dangerouslySetInnerHTML={{__html: body}}
+                />
+              <div className="comment-links">
+                <div className="comment-icon">
+                  <FaComment/>
+                </div>
+                <Button
+                  bsSize='xsmall'
+                  className='comment-buttons'
+                  onClick={() => this.handleToggleEditor()}>
+                    Reply
+                </Button>
+                <Button bsSize='xsmall' className='comment-buttons'>
+                  Share
+                </Button>
+                <AuthEllipsis
+                  {...{
+                    authUsername,
+                    posterUsername,
+                  }}
+                />
+              </div>
+            </Fragment>
+          }
           <HideableEditor
             showEditor={this.state.showEditor}
             rootComment={false}

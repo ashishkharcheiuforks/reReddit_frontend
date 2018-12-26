@@ -48,7 +48,7 @@ class Comment extends Component {
             />
         ))
       }
-      
+    
     const CollapsibleComment = withEither(
       (props) => props.collapsed,
       CollapsedComment

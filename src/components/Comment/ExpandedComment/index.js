@@ -66,7 +66,9 @@ class ExpandedComment extends Component {
           </span>
         </div>
         <div className="comment-panel">
-          <CommentInfoLine {...{posterUsername, upvotes, created, deleted}}/>
+          <div className='comment-info-line-container'>
+            <CommentInfoLine {...{posterUsername, upvotes, created, deleted}}/>
+          </div>
           
           { deleted ||
             <Fragment>

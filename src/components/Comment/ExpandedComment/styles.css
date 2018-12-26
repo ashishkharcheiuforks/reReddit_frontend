@@ -55,8 +55,8 @@ div.thread-line {
   max-width: 75rem;
 }
 
-.comment-tree-content .comment-links {
-
+.comment-panel .comment-info-line-container, .comment-body-container, .comment-links {
+  padding-left: 0.6rem;
 }
 
 .comment-links .comment-icon {

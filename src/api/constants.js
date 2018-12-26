@@ -7,11 +7,11 @@ export const VOTE_URL = API_ROOT_URL + 'vote/';
 
 export const COMMENT_LIST_URL = API_ROOT_URL + 'comments/';
 export const POST_COMMENT_TREES_URL = (postPk) => (
-  `${COMMENT_LIST_URL}${postPk}/`
+  `${COMMENT_LIST_URL}post/${postPk}/`
 );
 export const COMMENT_DELETE_URL = (commentPk) => (
   `${COMMENT_LIST_URL}delete/${commentPk}/`
-)
+);
   
 export const SUB_LIST_URL = API_ROOT_URL + 'subreddits/';
 export const SUB_DETAIL_URL = (subredditTitle) => (

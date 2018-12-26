@@ -10,7 +10,7 @@ import VoterContainer from '../../../containers/VoterContainer';
 import { withMaybe } from '../../../utilities/HOC';
 
 
-class ExpandedTree extends Component {
+class ExpandedComment extends Component {
   constructor(props) {
     super(props);
     
@@ -44,7 +44,7 @@ class ExpandedTree extends Component {
     const HideableEditor = withMaybe(
       (props) => props.showEditor
     )(CommentEditorContainer);
-    debugger;
+    
     const AuthEllipsis = withMaybe(
       (props) => props.authUsername === props.posterUsername
     )(EllipsisButton)
@@ -101,4 +101,4 @@ class ExpandedTree extends Component {
   }
 }
 
-export default ExpandedTree;
+export default ExpandedComment;

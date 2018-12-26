@@ -16,6 +16,7 @@ const CommentContainer = (props) => {
     upvotes,
     created,
     voteDisplayState,
+    deleted,
   } = commentData;
   const posterUsername  = posterData && posterData.username;
   return (
@@ -27,6 +28,7 @@ const CommentContainer = (props) => {
         created,
         pk,
         voteDisplayState,
+        deleted,
         posterUsername,
         authUsername,
         }}

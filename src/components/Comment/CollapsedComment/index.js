@@ -5,7 +5,7 @@ import { Link } from 'react-router-dom';
 import CommentInfoLine from '../CommentInfoLine';
 import './styles.css';
 
-const CollapsedTree = (props) => {
+const CollapsedComment = (props) => {
   const {
     posterUsername,
     upvotes,
@@ -25,4 +25,4 @@ const CollapsedTree = (props) => {
   )
 }
 
-export default CollapsedTree;
+export default CollapsedComment;

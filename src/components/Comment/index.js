@@ -1,8 +1,8 @@
 import React, { Component, Fragment } from 'react';
 
 import './styles.css';
-import ExpandedTree from './ExpandedTree';
-import CollapsedTree from './CollapsedTree';
+import ExpandedComment from './ExpandedComment';
+import CollapsedComment from './CollapsedComment';
 import { withEither } from '../../utilities/HOC';
 import CommentContainer from '../../containers/CommentContainer';
 
@@ -33,10 +33,11 @@ class Comment extends Component {
       created,
       pk,
       voteDisplayState,
+      deleted,
       posterUsername,
       authUsername,
-    } = this.props
-    debugger;
+    } = this.props;
+
     let childrenList = [];
     if (Array.isArray(childrenPk) && childrenPk.length) {
       childrenList =
@@ -48,21 +49,26 @@ class Comment extends Component {
         ))
       }
       
-    const CollapsibleTree = withEither(
+    const CollapsibleComment = withEither(
       (props) => props.collapsed,
-      CollapsedTree
-    )(ExpandedTree);
+      CollapsedComment
+    )(ExpandedComment);
         
     return (
-      <CollapsibleTree
-        childrenList={childrenList}
-        body={body}
-        posterUsername={posterUsername}
-        authUsername={authUsername}
-        upvotes={upvotes}
-        created={created}
-        pk={pk}
-        voteDisplayState={voteDisplayState}
+      <CollapsibleComment
+        {
+          ...{
+            childrenList,
+            body,
+            upvotes,
+            created,
+            pk,
+            voteDisplayState,
+            deleted,
+            posterUsername,
+            authUsername,
+          }
+        }
         handleToggleCollapse={this.handleToggleCollapse}
         collapsed={this.state.collapsed}
       />

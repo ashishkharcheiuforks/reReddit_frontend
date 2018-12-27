@@ -37,7 +37,7 @@ export const deleteCommentApi = (pk, token) => {
 }
 
 export const updateCommentApi = (commentData, token) => {
-  return axios.delete(
+  return axios.patch(
     COMMENT_DETAIL_URL(commentData.pk),
     commentData,
     tokenContextObj(token)

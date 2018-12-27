@@ -1,4 +1,5 @@
 import React, { Component, Fragment } from 'react';
+import PropTypes from 'prop-types';
 import ReactQuill from 'react-quill';
 import 'react-quill/dist/quill.snow.css';
 import { Button } from 'react-bootstrap';
@@ -10,7 +11,7 @@ class CommentEditor extends Component {
     super(props)
     
     this.state = {
-      editorHtml: '',
+      editorHtml: props.initialValue || '',
     }
     
     this.formats = [
@@ -51,30 +52,49 @@ class CommentEditor extends Component {
       editorHtml: '',
     })
     
-    this.props.handleCreateComment(editorHtml);
+    this.props.handleCommentSubmit(editorHtml);
   }
   
   render() {
+    
+    const {
+      initialValue,
+      usage,
+      onBlur
+    } = this.props;
+    
+    const submitButtonWord = usage === 'create'
+      ? "Comment"
+      : "Edit";
     
     return (
       <Fragment>
         <ReactQuill
           value={this.state.editorHtml}
           onChange={this.handleChange}
-          placeholder='What are your thoughts?'
+          placeholder={initialValue || 'What are your thoughts?'}
           modules={this.modules}
           formats={this.formats}
           ref={this.quillNode}
+          onBlur={onBlur}
         />
       <Button
         onClick={() => this.handleSubmit(this.state.editorHtml)}
         className='comment-submit-button'
       >
-        Comment
+        {submitButtonWord}
       </Button>
       </Fragment>
     )
   }
+}
+
+CommentEditor.propTypes = {
+  usage: PropTypes.string,
+  rootComment: PropTypes.bool,
+  initialValue: PropTypes.string,
+  onBlur: PropTypes.func,
+  handleCommentSubmit: PropTypes.func,
 }
 
 export default CommentEditor;

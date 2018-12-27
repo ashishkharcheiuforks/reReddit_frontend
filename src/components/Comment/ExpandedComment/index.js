@@ -60,6 +60,10 @@ class ExpandedComment extends Component {
       withMaybe((props) => !props.deleted),
       withEither((props) => props.showUpdateEditor, CommentEditorContainer)
     )(CommentBody);
+    
+    const updateEditorProps = {
+
+    }
   
     return (
       <div className="comment-tree-content">
@@ -89,6 +93,10 @@ class ExpandedComment extends Component {
               deleted,
               handleDeleteComment,
             }}
+            usage='update'
+            initialValue={body}
+            onBlur={this.handleToggleUpdateEditor}
+            onEditorSubmit={this.handleToggleUpdateEditor}
             showUpdateEditor={this.state.showUpdateEditor}
             handleToggleReplyEditor={this.handleToggleReplyEditor}
             handleToggleUpdateEditor={this.handleToggleUpdateEditor}

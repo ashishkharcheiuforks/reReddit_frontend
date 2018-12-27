@@ -10,7 +10,7 @@ export const POST_COMMENT_TREES_URL = (postPk) => (
   `${COMMENT_LIST_URL}post/${postPk}/`
 );
 export const COMMENT_DELETE_URL = (commentPk) => (
-  `${COMMENT_LIST_URL}delete/${commentPk}/`
+  `${COMMENT_LIST_URL}${commentPk}/`
 );
   
 export const SUB_LIST_URL = API_ROOT_URL + 'subreddits/';

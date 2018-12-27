@@ -1,13 +1,14 @@
 import React, { Component, Fragment } from 'react';
-import { Button, MenuItem } from 'react-bootstrap';
-import { FaComment, FaEllipsisH } from 'react-icons/fa';
+import { Button} from 'react-bootstrap';
+import { FaComment} from 'react-icons/fa';
+import { compose } from 'recompose';
 
 import './styles.css';
 import CommentEditorContainer from '../../../containers/CommentEditorContainer';
 import CommentInfoLine from '../CommentInfoLine';
-import EllipsisButton from '../../EllipsisButton';
+import CommentBody from '../CommentBody';
 import VoterContainer from '../../../containers/VoterContainer';
-import { withMaybe } from '../../../utilities/HOC';
+import { withMaybe, withEither } from '../../../utilities/HOC';
 
 
 class ExpandedComment extends Component {
@@ -15,16 +16,24 @@ class ExpandedComment extends Component {
     super(props);
     
     this.state={
-      showEditor: false,
+      showReplyEditor: false,
+      showUpdateEditor: false,
     }
     
-    this.handleToggleEditor = this.handleToggleEditor.bind(this);
+    this.handleToggleReplyEditor = this.handleToggleReplyEditor.bind(this);
+    this.handleToggleUpdateEditor = this.handleToggleUpdateEditor.bind(this);
   }
   
-  handleToggleEditor() {
+  handleToggleReplyEditor() {
     this.setState({
-      showEditor: !this.state.showEditor,
+      showReplyEditor: !this.state.showReplyEditor,
     });
+  }
+  
+  handleToggleUpdateEditor() {
+    this.setState({
+      showUpdateEditor: !this.state.showUpdateEditor,
+    })
   }
   
   render() {
@@ -43,13 +52,14 @@ class ExpandedComment extends Component {
       handleDeleteComment,
     } = this.props;
     
-    const HideableEditor = withMaybe(
+    const ReplyEditorWithHide = withMaybe(
       (props) => props.showEditor
     )(CommentEditorContainer);
     
-    const AuthEllipsis = withMaybe(
-      (props) => props.authUsername === props.posterUsername
-    )(EllipsisButton)
+    const CommentBodyWithDeleteAndUpdateEditor = compose(
+      withMaybe((props) => !props.deleted),
+      withEither((props) => props.showUpdateEditor, CommentEditorContainer)
+    )(CommentBody);
   
     return (
       <div className="comment-tree-content">
@@ -70,44 +80,22 @@ class ExpandedComment extends Component {
             <CommentInfoLine {...{posterUsername, upvotes, created, deleted}}/>
           </div>
           
-          { deleted ||
-            <Fragment>
-              <div
-                className="comment-body-container"
-                dangerouslySetInnerHTML={{__html: body}}
-                />
-              <div className="comment-links">
-                <div className="comment-icon">
-                  <FaComment/>
-                </div>
-                <Button
-                  bsSize='xsmall'
-                  className='comment-buttons'
-                  onClick={() => this.handleToggleEditor()}>
-                    Reply
-                </Button>
-                <Button bsSize='xsmall' className='comment-buttons'>
-                  Share
-                </Button>
-                <AuthEllipsis
-                  {...{
-                    authUsername,
-                    posterUsername,
-                    handleDeleteComment,
-                  }}
-                >
-                  <MenuItem
-                    eventKey={1}
-                    onSelect={handleDeleteComment}
-                  >
-                    delete
-                  </MenuItem>
-                </AuthEllipsis>
-              </div>
-            </Fragment>
-          }
-          <HideableEditor
-            showEditor={this.state.showEditor}
+          <CommentBodyWithDeleteAndUpdateEditor
+            {...{
+              body,
+              posterUsername,
+              authUsername,
+              pk,
+              deleted,
+              handleDeleteComment,
+            }}
+            showUpdateEditor={this.state.showUpdateEditor}
+            handleToggleReplyEditor={this.handleToggleReplyEditor}
+            handleToggleUpdateEditor={this.handleToggleUpdateEditor}
+          />
+          
+          <ReplyEditorWithHide
+            showEditor={this.state.showReplyEditor}
             rootComment={false}
             commentParentPk={pk}
           />

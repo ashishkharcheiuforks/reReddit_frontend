@@ -1,0 +1,21 @@
+.comment-body-container {
+  max-width: 75rem;
+}
+
+.comment-body-container, .comment-links {
+  padding-left: 0.6rem;
+}
+
+.comment-links .comment-icon {
+  display: inline-block;
+}
+
+.comment-links .comment-buttons {
+  background-color: #333;
+  color: #818481;
+  font-weight: bold;
+  border: 0;
+  display: inline-block;
+  padding-bottom: 0.7rem;
+  margin-top: 0.2rem;
+}

@@ -45,7 +45,7 @@ const CommentTreeList = (props) => {
     <div className='comment-tree-list-container'>
       <AlertOnError children={createCommentError} />
       <div className='top-comment-editor'>
-        <CommentEditorContainer rootComment={true}/>
+        <CommentEditorContainer rootComment={true} usage='create'/>
       </div>
 
       <ul>

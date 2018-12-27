@@ -98,6 +98,7 @@ class ExpandedComment extends Component {
             showEditor={this.state.showReplyEditor}
             rootComment={false}
             commentParentPk={pk}
+            usage='create'
           />
           <div className="children-container">
             {childrenList}

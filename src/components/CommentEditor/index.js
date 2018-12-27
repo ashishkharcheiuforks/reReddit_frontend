@@ -51,13 +51,7 @@ class CommentEditor extends Component {
       editorHtml: '',
     })
     
-    const commentData ={
-      body: editorHtml,
-      parentPk: this.props.parentPk,
-      rootComment: this.props.rootComment,
-    }
-    
-    this.props.handleCreateComment(commentData);
+    this.props.handleCreateComment(editorHtml);
   }
   
   render() {

@@ -8,6 +8,9 @@ import {
   DELETE_COMMENT_REQUEST,
   DELETE_COMMENT_SUCCESS,
   DELETE_COMMENT_FAILURE,
+  UPDATE_COMMENT_REQUEST,
+  UPDATE_COMMENT_SUCCESS,
+  UPDATE_COMMENT_FAILURE,
   COMMENT_VOTE_SUCCESS,
 } from '../actions/actionTypes';
 import {
@@ -142,6 +145,14 @@ const comments = (state=initialState, action) => {
         action.data.pk,
         {
             deleted: true,
+        }
+      );
+    case UPDATE_COMMENT_SUCCESS:
+      return updateComment(
+        state,
+        action.data.pk,
+        {
+          ...action.data,
         }
       );
     default:

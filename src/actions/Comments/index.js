@@ -13,6 +13,10 @@ import {
   DELETE_COMMENT_SUCCESS,
   DELETE_COMMENT_FAILURE,
   API_DELETE_COMMENT,
+  UPDATE_COMMENT_REQUEST,
+  UPDATE_COMMENT_SUCCESS,
+  UPDATE_COMMENT_FAILURE,
+  API_UPDATE_COMMENT,
   COMMENT_VOTE_SUCCESS,
 } from '../actionTypes';
 import {
@@ -20,6 +24,7 @@ import {
   getCommentTreeApi,
   commentVoteApi,
   deleteCommentApi,
+  updateCommentApi,
 } from '../../api/Comments'
 
 // Use redux-thunk to get the userAuth username
@@ -97,4 +102,20 @@ export const makeDeleteCommentRequest = (pk) =>
       }
     )
     
-  
+// Use redux-thunk to grab the userAuth token
+export const makeUpdateCommentRequest = (commentData) =>
+  (dispatch, getState) =>
+    dispatch(
+      {
+        type: API_UPDATE_COMMENT,
+        types: {
+          request: UPDATE_COMMENT_REQUEST,
+          success: UPDATE_COMMENT_SUCCESS,
+          failure: UPDATE_COMMENT_FAILURE,
+        },
+        callAPI: () => updateCommentApi(
+          commentData,
+          getState().userAuth.token
+        ),
+      }
+    )

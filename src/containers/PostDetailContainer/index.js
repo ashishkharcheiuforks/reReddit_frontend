@@ -8,6 +8,7 @@ import {
   getPostDetailBody,
   getPostDetailTitle,
   getPostDetailPosterUsername,
+  getPostDetailLoading,
 } from '../../reducers/postDetail';
 
 
@@ -35,6 +36,7 @@ const mapStateToProps = (state) => (
     postTitle: getPostDetailTitle(state),
     postPoster: getPostDetailPosterUsername(state),
     postPk: getPostDetailPk(state),
+    loading: getPostDetailLoading(state),
   }
 )
 

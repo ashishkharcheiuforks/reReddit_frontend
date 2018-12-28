@@ -1,10 +1,15 @@
 import React from 'react';
 
 import './styles.css';
+import { PanelListLoader } from '../Loaders';
 import PostInfoLine from './PostInfoLine';
 import CommentTreeListContainer from '../../containers/CommentTreeListContainer';
 
 const PostDetail = (props) => {
+  
+  const {
+    loading
+  } = props;
   
   return (
     <div className='post-detail-content'>
@@ -20,7 +25,7 @@ const PostDetail = (props) => {
       </div>
       
       <div className="post-comments-container">
-        <CommentTreeListContainer />
+        {loading ? <PanelListLoader/> : <CommentTreeListContainer />}
       </div>
     </div>
   )

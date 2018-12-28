@@ -8,7 +8,6 @@ const PanelListLoader = ({ panelNumber }) => {
   const panelList = [...Array(panelNumber).keys()].map(
     (id) => <PanelLoader key={id} />
   )
-  
   return (
     <ul>
       {panelList}

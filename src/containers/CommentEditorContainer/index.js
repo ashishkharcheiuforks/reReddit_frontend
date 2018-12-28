@@ -66,7 +66,7 @@ const mergeProps = (stateProps, dispatchProps, ownProps) => {
       handleCommentSubmit,
     });
   }
-  return {...stateProps, ...dispatchProps, ...ownProps};
+  return {...ownProps, ...stateProps, ...dispatchProps};
 }
 
 CommentEditorContainer.propTypes = {

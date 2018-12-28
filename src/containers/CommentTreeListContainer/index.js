@@ -6,7 +6,7 @@ import {
   makeCreateCommentRequest,
 } from '../../actions/Comments';
 import CommentTreeList from '../../components/CommentTreeList';
-import { getRootCommentPks } from '../../reducers/comments';
+import { getRootCommentPks, getCommentsLoading, } from '../../reducers/comments';
 import { getPostDetailPk } from '../../reducers/postDetail';
 
 class CommentTreeListContainer extends Component {
@@ -27,7 +27,7 @@ class CommentTreeListContainer extends Component {
 
 const mapStateToProps = state => (
   {
-    loading: state.comments.loading,
+    loading: getCommentsLoading(state),
     rootCommentPks: getRootCommentPks(state),
     error: state.comments.error,
     createCommentError: state.comments.createCommentError,

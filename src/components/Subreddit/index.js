@@ -11,7 +11,6 @@ const Subreddit = ({skinny, primaryComponent, ...props}) => {
     ? 'skinny-container'
     : "";
     
-  debugger;
   const SideBarWithLoader = withEither(
     (props) => props.loading, SideBarLoader
   )(SideBar)

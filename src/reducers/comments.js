@@ -100,7 +100,7 @@ const comments = (state=initialState, action) => {
         postersById: action.data.entities.posters,
         rootCommentIds: action.data.result,
         error: null,
-        loading: null,
+        loading: false,
         createCommentError: null,
       }
     case FETCH_POST_COMMENT_TREES_FAILURE:
@@ -170,10 +170,12 @@ export const getCommentById = (state, pk) => state.comments.commentsById[pk];
 export const getPosterByCommentId = (state, pk) => {
   const posterId = state.comments.commentsById[pk].poster;
   return state.comments.postersById[posterId];
-}
+};
 
 export const getVoteDisplayStateById = (state, pk) => (
   state.comments.commentsById[pk].voteDisplayState
-)
+);
+
+export const getCommentsLoading = (state) => state.comments.loading;
 
 export default comments;

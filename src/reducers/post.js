@@ -25,7 +25,7 @@ const post = (state=initialState, action) => {
     case FETCH_POST_DETAIL_FAILURE:
       return {
         ...state,
-        error: action.error
+        error: action.error,
       }
     default:
      return state;

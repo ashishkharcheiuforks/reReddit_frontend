@@ -32,7 +32,7 @@ const mapStateToProps = state => (
     createCommentError: state.comments.createCommentError,
     createCommentLoading: state.comments.createCommentLoading,
     createdComment: state.comments.createdComment,
-    postPk: state.post.pk
+    postPk: state.post.pk,
   }
 )
 

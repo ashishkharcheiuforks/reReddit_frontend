@@ -12,6 +12,12 @@ class PostDetailContainer extends Component {
     this.props.fetchPostDetail(postId);
   }
   
+  componentDidUpdate(prevProps) {
+    if (prevProps.postPk !== this.props.postPk) {
+      this.prochCommentList(this.props.postPk);
+    }
+  }
+  
   render() {
     return <PostDetail {...this.props} />;
   }
@@ -22,6 +28,7 @@ const mapStateToProps = (state) => (
     postBody: state.post.body,
     postTitle: state.post.title,
     postPoster: state.post.poster,
+    postPk: state.post.pk,
   }
 )
 

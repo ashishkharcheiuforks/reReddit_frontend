@@ -1,13 +1,20 @@
 import React from 'react';
 
 import SideBar from '../SideBar';
+import { SideBarLoader } from '../../components/Loaders';
+import { withEither } from '../../utilities/HOC';
 import './styles.css';
 
-const Subreddit = ({skinny, primaryComponent, loading, ...props}) => {
+const Subreddit = ({skinny, primaryComponent, ...props}) => {
 
   const skinnyContainer = skinny
     ? 'skinny-container'
     : "";
+    
+  debugger;
+  const SideBarWithLoader = withEither(
+    (props) => props.loading, SideBarLoader
+  )(SideBar)
   
   return (
     <div className={'subreddit-container ' + skinnyContainer}>
@@ -15,7 +22,7 @@ const Subreddit = ({skinny, primaryComponent, loading, ...props}) => {
           {primaryComponent(props)}
       </div>
       <div className='sidebar-container'>
-        <SideBar {...props} />
+        <SideBarWithLoader {...props} />
       </div>
     </div>
   )

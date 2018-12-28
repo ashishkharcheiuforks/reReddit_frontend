@@ -2,7 +2,7 @@ import React from 'react';
 
 import PostPanelContainer from '../../containers/PostPanelContainer';
 import { ErrorAlert } from '../AlertMessage';
-import PanelListLoader from '../Loaders/PanelListLoader';
+import { PanelListLoader } from '../Loaders';
 import './styles.css';
 
 const PostList = (props) => {

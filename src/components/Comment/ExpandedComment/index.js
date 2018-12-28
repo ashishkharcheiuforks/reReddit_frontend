@@ -107,6 +107,7 @@ class ExpandedComment extends Component {
             rootComment={false}
             commentParentPk={pk}
             usage='create'
+            onBlur={this.handleToggleReplyEditor}
           />
           <div className="children-container">
             {childrenList}

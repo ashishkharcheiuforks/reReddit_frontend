@@ -6,7 +6,8 @@ import CommentEditor from '../../components/CommentEditor';
 import {
   makeCreateCommentRequest,
   makeUpdateCommentRequest
-} from '../../actions/Comments'
+} from '../../actions/Comments';
+import { getPostDetailPk } from '../../reducers/postDetail';
 
 const CommentEditorContainer = (props) => (
     <CommentEditor {...props} />
@@ -14,7 +15,7 @@ const CommentEditorContainer = (props) => (
 
 const mapStateToProps = (state, ownProps) => (
     {
-      parentPk: ownProps.commentParentPk || state.post.pk,
+      parentPk: ownProps.commentParentPk || getPostDetailPk(state),
       rootComment: ownProps.rootComment, // indicates whether this is a root comment
     }                                    // or a comment on another comment
 )

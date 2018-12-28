@@ -3,6 +3,12 @@ import { connect } from 'react-redux';
 
 import { makePostDetailRequest } from '../../actions/Posts';
 import PostDetail from '../../components/PostDetail';
+import {
+  getPostDetailPk,
+  getPostDetailBody,
+  getPostDetailTitle,
+  getPostDetailPosterUsername,
+} from '../../reducers/postDetail';
 
 
 class PostDetailContainer extends Component {
@@ -25,10 +31,10 @@ class PostDetailContainer extends Component {
 
 const mapStateToProps = (state) => (
   {
-    postBody: state.post.body,
-    postTitle: state.post.title,
-    postPoster: state.post.poster,
-    postPk: state.post.pk,
+    postBody: getPostDetailBody(state),
+    postTitle: getPostDetailTitle(state),
+    postPoster: getPostDetailPosterUsername(state),
+    postPk: getPostDetailPk(state),
   }
 )
 

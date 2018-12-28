@@ -12,7 +12,7 @@ const initialState = {
   error: null,
 }
 
-const post = (state=initialState, action) => {
+const postDetail = (state=initialState, action) => {
   switch (action.type) {
     case FETCH_POST_DETAIL_SUCCESS:
       return {
@@ -32,4 +32,12 @@ const post = (state=initialState, action) => {
   }
 }
 
-export default post;
+// Selectors
+
+export const getPostDetailTitle = (state) => state.postDetail.title;
+export const getPostDetailBody = (state) => state.postDetail.body;
+export const getPostDetailPosterUsername = (state) => state.postDetail.poster;
+export const getPostDetailPk = (state) => state.postDetail.pk;
+
+
+export default postDetail;

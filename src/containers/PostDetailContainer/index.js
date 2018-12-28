@@ -14,7 +14,7 @@ class PostDetailContainer extends Component {
   
   componentDidUpdate(prevProps) {
     if (prevProps.postPk !== this.props.postPk) {
-      this.prochCommentList(this.props.postPk);
+      this.props.fetchPostDetail(this.props.postPk);
     }
   }
   

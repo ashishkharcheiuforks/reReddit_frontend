@@ -3,7 +3,7 @@ import React from 'react';
 import SideBar from '../SideBar';
 import './styles.css';
 
-const Subreddit = ({skinny, primaryComponent, ...props}) => {
+const Subreddit = ({skinny, primaryComponent, loading, ...props}) => {
 
   const skinnyContainer = skinny
     ? 'skinny-container'

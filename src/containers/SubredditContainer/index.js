@@ -38,6 +38,7 @@ const mapStateToProps = state => (
   {
     title: state.subreddit.title,
     description: state.subreddit.description,
+    loading: state.subreddit.loading,
     userSubs: {
       subscribed: state.userAuth.subs.map(sub => sub.title),
       moderated: state.userAuth.moderated_subs.map(sub => sub.title),

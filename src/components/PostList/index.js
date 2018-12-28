@@ -2,7 +2,7 @@ import React from 'react';
 
 import PostPanelContainer from '../../containers/PostPanelContainer';
 import { ErrorAlert } from '../AlertMessage';
-import Loader from '../ListLoader';
+import PanelListLoader from '../Loaders/PanelListLoader';
 import './styles.css';
 
 const PostList = (props) => {
@@ -19,7 +19,7 @@ const PostList = (props) => {
   
   let postList;
   if (loading) {
-    postList =  <Loader />;
+    postList =  <PanelListLoader panelNumber={15}/>;
   } else {
       postList = allPosts.map((postPk) => {
         return <PostPanelContainer postPk={postPk} key={postPk}/>

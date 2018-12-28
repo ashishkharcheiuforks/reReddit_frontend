@@ -4,7 +4,7 @@ import { PulseLoader } from 'react-spinners';
 
 import './styles.css';
 
-const ListLoader = () => (
+const PanelLoader = () => (
   <div>
     <Panel>
       <Panel.Body id="pulse-loader-panel-body">
@@ -14,4 +14,4 @@ const ListLoader = () => (
 </div>    
 );
 
-export default ListLoader;
+export default PanelLoader;

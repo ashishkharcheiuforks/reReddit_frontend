@@ -1,6 +1,6 @@
 import React from 'react';
 
-import Loader from '../ListLoader';
+import PanelLoader from '../Loaders/PanelLoader';
 import { ErrorAlert } from '../AlertMessage';
 import CommentContainer from '../../containers/CommentContainer';
 import CommentEditorContainer from '../../containers/CommentEditorContainer';
@@ -25,7 +25,7 @@ const CommentTreeList = (props) => {
   
   let commentTreeRootList = [];
   if (loading)  {
-    commentTreeRootList = <Loader />;
+    commentTreeRootList = <PanelLoader />;
   } else {
     commentTreeRootList = (!Array.isArray(rootCommentPks) || !rootCommentPks.length)
       ? []

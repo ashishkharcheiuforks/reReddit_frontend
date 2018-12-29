@@ -15,14 +15,7 @@ import {
 class PostDetailContainer extends Component {
   componentDidMount() {
     const postId = this.props.match.params.postId || null;
-    
     this.props.fetchPostDetail(postId);
-  }
-  
-  componentDidUpdate(prevProps) {
-    if (prevProps.postPk !== this.props.postPk) {
-      this.props.fetchPostDetail(this.props.postPk);
-    }
   }
   
   render() {

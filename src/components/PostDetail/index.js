@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { Fragment } from 'react';
 
 import './styles.css';
 import { PanelListLoader } from '../Loaders';
@@ -13,20 +13,27 @@ const PostDetail = (props) => {
   
   return (
     <div className='post-detail-content'>
-      <PostInfoLine title={props.title} poster={props.postPoster} />
-      <div className='post-title-container'>
-        {props.postTitle}
-      </div>
-      <div className='post-body-container'>
-        <div
-          className='body-html'
-          dangerouslySetInnerHTML={{__html: props.postBody}}
-        />
-      </div>
-      
-      <div className="post-comments-container">
-        {loading ? <PanelListLoader/> : <CommentTreeListContainer />}
-      </div>
+      {loading
+        ? <PanelListLoader/>
+        :
+          <Fragment>
+          <PostInfoLine title={props.title} poster={props.postPoster} />
+          <div className='post-title-container'>
+            {props.postTitle}
+          </div>
+          <div className='post-body-container'>
+            <div
+              className='body-html'
+              dangerouslySetInnerHTML={{__html: props.postBody}}
+            />
+          </div>
+          
+          <div className="post-comments-container">
+            <CommentTreeListContainer />
+          </div>
+          </Fragment>
+      }
+
     </div>
   )
 }

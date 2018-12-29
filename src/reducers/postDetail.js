@@ -23,6 +23,7 @@ const postDetail = (state=initialState, action) => {
       }
     case FETCH_POST_DETAIL_SUCCESS:
       return {
+        ...state,
         title: action.data.title,
         body: action.data.body,
         poster: action.data.poster_username,

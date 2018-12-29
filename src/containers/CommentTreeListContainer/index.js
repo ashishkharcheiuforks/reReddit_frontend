@@ -1,5 +1,6 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
+import { withRouter } from 'react-router';
 
 import {
   makeCommentTreeRequest,
@@ -11,12 +12,10 @@ import { getPostDetailPk } from '../../reducers/postDetail';
 
 class CommentTreeListContainer extends Component {
   componentDidMount() {
-    this.props.fetchCommentList(this.props.postPk)
-  }
-  
-  componentDidUpdate(prevProps) {
-    if (prevProps.postPk !== this.props.postPk) {
-      this.props.fetchCommentList(this.props.postPk);
+    // wait to submit comment request untill postPk is updated in redux store
+    // the router pk is updated immediately.
+    if (Number(this.props.match.params.postId) === this.props.postPk) {
+        this.props.fetchCommentList(this.props.postPk)
     }
   }
   
@@ -44,7 +43,7 @@ const mapDispatchToProps = dispatch => (
 )
 
 
-export default connect(
+export default withRouter(connect(
   mapStateToProps,
   mapDispatchToProps
-)(CommentTreeListContainer);
+)(CommentTreeListContainer));

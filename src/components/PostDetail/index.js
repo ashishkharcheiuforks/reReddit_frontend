@@ -13,11 +13,11 @@ import { withMaybe } from '../../utilities/HOC';
 const PostDetail = (props) => {
   
   const {
-    title: subredditTitle,
+    subredditTitle,
     posterUsername,
     authUsername,
-    postTitle,
-    postBody,
+    title,
+    body,
     loading,
     handleDeletePost,
   } = props;
@@ -34,12 +34,12 @@ const PostDetail = (props) => {
           <Fragment>
           <PostInfoLine title={subredditTitle} poster={posterUsername} />
           <div className='post-title-container'>
-            {postTitle}
+            {title}
           </div>
           <div className='post-body-container'>
             <div
               className='body-html'
-              dangerouslySetInnerHTML={{__html: postBody}}
+              dangerouslySetInnerHTML={{__html: body}}
             />
           </div>
           

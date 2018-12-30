@@ -23,14 +23,36 @@ class PostDetailContainer extends Component {
   }
   
   render() {
-    return <PostDetail {...this.props} />;
+        
+    const {
+      body,
+      title,
+      subredditTitle,
+      posterUsername,
+      authUsername,
+      pk,
+      loading,
+      handleDeletePost,
+    } = this.props;
+    
+    return <PostDetail {...{
+        body,
+        title,
+        subredditTitle,
+        posterUsername,
+        authUsername,
+        pk,
+        loading,
+        handleDeletePost,
+      }} />;
   }
 }
 
-const mapStateToProps = (state) => (
+const mapStateToProps = (state, ownProps) => (
   {
-    postBody: getPostDetailBody(state),
-    postTitle: getPostDetailTitle(state),
+    subredditTitle: ownProps.title,
+    body: getPostDetailBody(state),
+    title: getPostDetailTitle(state),
     posterUsername: getPostDetailPosterUsername(state),
     postPk: getPostDetailPk(state),
     loading: getPostDetailLoading(state),

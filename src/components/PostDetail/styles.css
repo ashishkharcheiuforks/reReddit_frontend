@@ -12,7 +12,26 @@
   margin-bottom: 1rem;
 }
 
+.link-bar-container {
+  display: flex;
+  margin-top: 1rem;
+}
+
+.link-bar-container .post-buttons {
+  border-width: 0;
+  background-color: #333;
+  color: #b8b8b8;
+  margin-right: 0.3rem;
+}
+
+.link-bar-container .post-buttons:hover {
+  background-color: #818384;
+}
+
+
+
 /* PostInfoLine*/
+
 div.post-info-line {
   display: inline;
 }

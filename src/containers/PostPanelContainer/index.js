@@ -4,7 +4,7 @@ import {connect} from 'react-redux';
 import PostPanel from '../../components/PostPanel';
 import { getPostById } from '../../reducers/postList';
 import { getAuthUsername } from '../../reducers/userAuth';
-import { makeDeletePostRequest } from '../../actions/Posts'
+import { makeDeletePostRequest } from '../../actions/Posts';
 
 const PostPanelContainer = (props) => {
   const {post, handleDeletePost, authUsername} = props;

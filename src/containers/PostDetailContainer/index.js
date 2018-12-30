@@ -1,8 +1,11 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
 
-import { makePostDetailRequest } from '../../actions/Posts';
 import PostDetail from '../../components/PostDetail';
+import {
+  makePostDetailRequest,
+  makeDeletePostRequest
+} from '../../actions/Posts';
 import {
   getPostDetailPk,
   getPostDetailBody,
@@ -10,6 +13,7 @@ import {
   getPostDetailPosterUsername,
   getPostDetailLoading,
 } from '../../reducers/postDetail';
+import { getAuthUsername, } from '../../reducers/userAuth';
 
 
 class PostDetailContainer extends Component {
@@ -27,15 +31,17 @@ const mapStateToProps = (state) => (
   {
     postBody: getPostDetailBody(state),
     postTitle: getPostDetailTitle(state),
-    postPoster: getPostDetailPosterUsername(state),
+    posterUsername: getPostDetailPosterUsername(state),
     postPk: getPostDetailPk(state),
     loading: getPostDetailLoading(state),
+    authUsername: getAuthUsername(state),
   }
 )
 
-const mapDispatchToProps = (dispatch) => (
+const mapDispatchToProps = (dispatch, ownProps,) => (
   {
     fetchPostDetail: (postId) => dispatch(makePostDetailRequest(postId)),
+    handleDeletePost: () => dispatch(makeDeletePostRequest(ownProps.match.params.postId)),
   }
 )
 

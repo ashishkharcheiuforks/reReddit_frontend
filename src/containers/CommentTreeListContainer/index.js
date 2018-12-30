@@ -15,7 +15,7 @@ class CommentTreeListContainer extends Component {
     // wait to submit comment request untill postPk is updated in redux store
     // the router pk is updated immediately.
     if (Number(this.props.match.params.postId) === this.props.postPk) {
-        this.props.fetchCommentList(this.props.postPk)
+      this.props.fetchCommentList(this.props.postPk)
     }
   }
   

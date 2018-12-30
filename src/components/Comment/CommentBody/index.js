@@ -22,7 +22,7 @@ class CommentBody extends Component {
     
     const AuthEllipsis = withMaybe(
       (props) => props.authUsername === props.posterUsername
-    )(EllipsisButton)
+    )(EllipsisButton);
     
     return (
       <Fragment>
@@ -48,7 +48,6 @@ class CommentBody extends Component {
             {...{
               authUsername,
               posterUsername,
-              handleDeleteComment,
             }}
           >
             <MenuItem
@@ -56,7 +55,7 @@ class CommentBody extends Component {
               onSelect={handleToggleUpdateEditor}
             >
               edit
-            </MenuItem>          
+            </MenuItem>
             <MenuItem
               eventKey={1}
               onSelect={handleDeleteComment}

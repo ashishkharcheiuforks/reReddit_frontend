@@ -30,3 +30,8 @@ export const getPostDetailApi = (postId) => (
   axios.get(POST_DETAIL_URL(postId))
   .then(response => response.data)
 )
+
+export const deletePostApi = (pk, token) => {
+  return axios.delete(POST_DETAIL_URL(pk), tokenContextObj(token))
+    .then(response => response.data)
+}

@@ -8,8 +8,12 @@ import {
   CREATE_POST_REQUEST,
   CREATE_POST_SUCCESS,
   CREATE_POST_FAILURE,
+  DELETE_POST_REQUEST,
+  DELETE_POST_SUCCESS,
+  DELETE_POST_FAILURE,
   API_SUB_POST_LIST,
   API_CREATE_POST,
+  API_DELETE_POST,  
   API_POST_DETAIL,
 } from '../actionTypes';
 
@@ -18,6 +22,7 @@ import {
   getPostListApi,
   getPostDetailApi,
   createPostApi,
+  deletePostApi,
 } from '../../api/Posts';
 
 
@@ -58,6 +63,20 @@ export const makeCreatePostRequest = (title, body, subredditTitle) =>
           subredditTitle,
           getState().userAuth.token
         )
+      }
+    )
+    
+export const makeDeletePostRequest = (pk) =>
+  (dispatch, getState) =>
+    dispatch(
+      {
+        type: API_DELETE_POST,
+        types: {
+          request: DELETE_POST_REQUEST,
+          success: DELETE_POST_SUCCESS,
+          failure: DELETE_POST_FAILURE,
+        },
+        callAPI: () => deletePostApi(pk, getState().userAuth.token),
       }
     )
 

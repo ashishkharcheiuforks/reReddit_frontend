@@ -1,4 +1,5 @@
 import React, { Component, Fragment } from 'react';
+import PropTypes from 'prop-types';
 
 import './styles.css';
 import ExpandedComment from './ExpandedComment';
@@ -76,6 +77,19 @@ class Comment extends Component {
       />
     )
   }
+}
+
+Comment.propTypes = {
+  childrenPk: PropTypes.arrayOf(PropTypes.number),
+  body: PropTypes.string,
+  upvotes: PropTypes.number,
+  created: PropTypes.string,
+  pk: PropTypes.number,
+  voteDisplayState: PropTypes.number,
+  deleted: PropTypes.bool,
+  posterUsername: PropTypes.string,
+  authUsername: PropTypes.string,
+  handleDeleteComment: PropTypes.func,
 }
 
 export default Comment;

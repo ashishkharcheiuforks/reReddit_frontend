@@ -29,11 +29,8 @@ export const createCommentApi = (commentData, token) => {
 }
 
 export const deleteCommentApi = (pk, token) => {
-  return axios.delete(COMMENT_DETAIL_URL(pk), null, tokenContextObj(token))
-    .then(response => {
-      debugger;
-      return response.data
-    })
+  return axios.delete(COMMENT_DETAIL_URL(pk), tokenContextObj(token))
+    .then(response => response.data)
 }
 
 export const updateCommentApi = (commentData, token) => {

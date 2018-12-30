@@ -3,17 +3,21 @@ import {connect} from 'react-redux';
 
 import PostPanel from '../../components/PostPanel';
 import { getPostById } from '../../reducers/postList';
+import { getAuthUsername } from '../../reducers/userAuth';
+import { makeDeletePostRequest } from '../../actions/Posts'
 
-const PostPanelContainer = ({post}) => {
+const PostPanelContainer = (props) => {
+  const {post, handleDeletePost, authUsername} = props;
+  
   const {
     upvotes,
     pk,
     title,
-    subreddit_title,
-    poster_username,
+    subreddit_title: subredditTitle,
+    poster_username: posterUsername,
     created,
     voteDisplayState,
-  } = post
+  } = post;
   
   return (
     <PostPanel
@@ -21,21 +25,27 @@ const PostPanelContainer = ({post}) => {
         upvotes,
         pk,
         title,
-        subreddit_title,
-        poster_username,
+        subredditTitle,
+        posterUsername,
+        authUsername,
         created,
         voteDisplayState,
+        handleDeletePost,
       }}
     />
   );
 }
 
-const mapStateToProps = (state, ownProps) => (
-  {
+const mapStateToProps = (state, ownProps) => ({
     post: getPostById(state, ownProps.postPk),
-  }
-)
+    authUsername: getAuthUsername(state),
+  })
+
+const mapDispatchToProps = (dispatch, ownProps) => ({
+  handleDeletePost: () => dispatch(makeDeletePostRequest(ownProps.postPk)),
+})
 
 export default connect(
   mapStateToProps,
+  mapDispatchToProps,
 )(PostPanelContainer);

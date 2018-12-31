@@ -20,6 +20,8 @@ export const SUB_DETAIL_URL = (subredditTitle) => (
 export const SUB_SUBSCRIBE_URL = (subredditTitle) => (
   SUB_LIST_URL + 'sub/' + subredditTitle + '/subscribe/'
 );
+export const CREATE_SUBREDDIT_URL = SUB_LIST_URL;
+export const DELETE_SUBREDDIT_URL = SUB_DETAIL_URL;
 
 export const USER_LIST_URL = API_ROOT_URL + 'users/';
 export const USER_LOGIN_URL = USER_LIST_URL + 'login/';

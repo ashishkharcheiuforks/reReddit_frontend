@@ -27,12 +27,17 @@ class CreatePost extends Component {
   handleTitleChange = (e) => this.setState({title: e.target.value});
   
   async handleSubmit() {
-    await this.props.handleCreatePost(
+    
+    try {
+      const postCreation = await this.props.handleCreatePost(
         this.state.title,
         this.state.editorHtml,
-        this.props.title);
-        
-    this.props.history.replace(`/r/${this.props.subredditTitle}`);
+        this.props.title,
+      )
+      this.props.history.replace(`/r/${this.props.subredditTitle}`);
+    } catch {
+      this.forceUpdate()
+    }
   }
   
   render () {

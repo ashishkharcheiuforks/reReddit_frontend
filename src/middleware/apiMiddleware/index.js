@@ -9,8 +9,11 @@ export const apiMiddleware = store => next => action => {
       successActionCreator,
       failureActionCreator,
     } = action;
+
+    typeof types.request === 'function'
+      ? store.dispatch(types.request) // let thunk handle it
+      : store.dispatch({type: types.request})
     
-    store.dispatch({type: types.request})
     
     return callAPI()
       .then(data => typeof types.success === 'function'

@@ -55,14 +55,16 @@ class CreatePost extends Component {
           <CreatePostErrorAlert children={this.props.errorMessage}/>
         </div>
         <form>
-          <FieldGroup
-            id="create-post-title"
-            placeholder='Title'
-            type='text'
-            value={this.state.title}
-            onChange={this.handleTitleChange}
-            name='username'
-          />
+          <div className='title-input-container'>
+            <FieldGroup
+              id="create-post-title"
+              placeholder='Title'
+              type='text'
+              value={this.state.title}
+              onChange={this.handleTitleChange}
+              name='username'
+            />
+          </div>
           <TextEditor
             handleChange={this.handleEditorChange}
             placeHolder="Text (Optional)"

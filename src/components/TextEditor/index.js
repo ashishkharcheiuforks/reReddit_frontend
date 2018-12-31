@@ -2,6 +2,8 @@ import React, { Component } from 'react';
 import ReactQuill from 'react-quill';
 import 'react-quill/dist/quill.snow.css';
 
+import './styles.css';
+
 class TextEditor extends Component {
   constructor(props) {
     super(props);
@@ -26,13 +28,17 @@ class TextEditor extends Component {
   
 
   render () {
-    return <ReactQuill
-              value={this.props.editorHtml}
-              onChange={this.props.handleChange}
-              placeholder={this.props.placeHolder}
-              modules={this.modules}
-              formats={this.formats}
-            />
+    return (
+      <div className='text-editor-container'>
+        <ReactQuill
+          value={this.props.editorHtml}
+          onChange={this.props.handleChange}
+          placeholder={this.props.placeHolder}
+          modules={this.modules}
+          formats={this.formats}
+        />
+      </div>
+    )
   }
 }
 

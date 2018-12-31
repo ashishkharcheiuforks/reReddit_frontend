@@ -1,0 +1,5 @@
+.text-editor-container > .quill > .ql-container {
+  background-color: #333333;
+  color: white;
+  font-size: 105%;
+}

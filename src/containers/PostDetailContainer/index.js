@@ -63,7 +63,9 @@ const mapStateToProps = (state, ownProps) => (
 const mapDispatchToProps = (dispatch, ownProps,) => (
   {
     fetchPostDetail: (postId) => dispatch(makePostDetailRequest(postId)),
-    handleDeletePost: () => dispatch(makeDeletePostRequest(ownProps.match.params.postId)),
+    handleDeletePost: () => dispatch(makeDeletePostRequest(
+        Number(ownProps.match.params.postId)
+      )),
   }
 )
 

@@ -34,7 +34,7 @@ const deletePost = (state, postId) => {
     ...rest
   } = state.postsById;
   delete rest[postId];
-  
+
   const newAllPosts = [...state.allPosts];
   const deletionIndex = newAllPosts.indexOf(postId);
   newAllPosts.splice(deletionIndex,1);
@@ -53,6 +53,7 @@ const initialState = {
   loading: true,
   error: null,
   deletionPostId: null,
+  deleteError: null,
 }
 
 const postList = (state=initialState, action) => {
@@ -92,12 +93,18 @@ const postList = (state=initialState, action) => {
     case DELETE_POST_REQUEST:
       return {
         ...state,
-        deletionPostId: action.pk,
+        deleteError: null,
+        deletionPostId: Number(action.pk),
       };
     case DELETE_POST_SUCCESS:
       return deletePost(state, state.deletionPostId)
     default:
       return state;
+    case DELETE_POST_FAILURE:
+      return {
+        ...state,
+        deleteError: action.error,
+      }
   }
 };
 

@@ -3,6 +3,9 @@ import {
   FETCH_POST_LIST_SUCCESS,
   FETCH_POST_LIST_FAILURE,
   POST_VOTE_SUCCESS,
+  DELETE_POST_REQUEST,
+  DELETE_POST_SUCCESS,
+  DELETE_POST_FAILURE,
 } from '../actions/actionTypes';
 import { updateObjectOnVote } from '../utilities/reducerUtils';
 
@@ -23,11 +26,33 @@ const postsById = (postList) => {
   return postsById;
 }
 
+// TODO: figure out why this descruture isnt working right on postsById.
+// For some reason rest still contains the postId element
+const deletePost = (state, postId) => {
+  const {
+    [postId]: deletedOne ,
+    ...rest
+  } = state.postsById;
+  delete rest[postId];
+  
+  const newAllPosts = [...state.allPosts];
+  const deletionIndex = newAllPosts.indexOf(postId);
+  newAllPosts.splice(deletionIndex,1);
+
+  return {
+    ...state,
+    postsById: {...rest},
+    allPosts: [...newAllPosts],
+    deletionPostId: null,
+  }
+}
+
 const initialState = {
   postsById: {},
   allPosts: [],
   loading: true,
   error: null,
+  deletionPostId: null,
 }
 
 const postList = (state=initialState, action) => {
@@ -64,6 +89,13 @@ const postList = (state=initialState, action) => {
           ),
         },
       }
+    case DELETE_POST_REQUEST:
+      return {
+        ...state,
+        deletionPostId: action.pk,
+      };
+    case DELETE_POST_SUCCESS:
+      return deletePost(state, state.deletionPostId)
     default:
       return state;
   }

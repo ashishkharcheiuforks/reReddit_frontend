@@ -13,7 +13,7 @@ import {
   DELETE_POST_FAILURE,
   API_SUB_POST_LIST,
   API_CREATE_POST,
-  API_DELETE_POST,  
+  API_DELETE_POST,
   API_POST_DETAIL,
 } from '../actionTypes';
 
@@ -72,13 +72,19 @@ export const makeDeletePostRequest = (pk) =>
       {
         type: API_DELETE_POST,
         types: {
-          request: DELETE_POST_REQUEST,
+          request: onDeletePostRequest(pk),
           success: DELETE_POST_SUCCESS,
           failure: DELETE_POST_FAILURE,
         },
         callAPI: () => deletePostApi(pk, getState().userAuth.token),
       }
     )
+    
+// Use a thunk action creator to get the pk added to the REQUEST action
+const onDeletePostRequest = (pk) => (dispatch) => dispatch({
+      type: DELETE_POST_REQUEST,
+      pk,
+})
 
 export const makePostDetailRequest = (postId) => (
   {

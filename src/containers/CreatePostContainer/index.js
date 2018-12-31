@@ -3,6 +3,13 @@ import { connect } from 'react-redux';
 
 import CreatePost from '../../components/CreatePost';
 import { makeCreatePostRequest } from '../../actions/Posts';
+import {
+  getCreatePostError,
+  getCreatePostLoading,
+} from '../../reducers/createPost';
+import {
+  getSubredditTitle,
+} from '../../reducers/subreddit';
 
 class CreatePostContainer extends Component {
 
@@ -11,18 +18,16 @@ class CreatePostContainer extends Component {
   }
 }
 
-const mapDispatchToProps = dispatch => (
-  {
+const mapDispatchToProps = (dispatch) => ({
     handleCreatePost: (title, body, subredditTitle) =>
-      dispatch(makeCreatePostRequest(title, body, subredditTitle))
-  }
-)
+      dispatch(makeCreatePostRequest(title, body, subredditTitle)),
+})
 
-const mapStateToProps = state => (
-  {
-    errorMessage: state.createPost.error,
-  }
-)
+const mapStateToProps = (state) => ({
+    errorMessage: getCreatePostError(state),
+    loading: getCreatePostLoading(state),
+    subredditTitle: getSubredditTitle(state),
+})
 
 export default connect(
   mapStateToProps,

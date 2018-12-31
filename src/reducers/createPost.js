@@ -4,9 +4,11 @@ import {
   CREATE_POST_FAILURE,
 } from '../actions/actionTypes';
 
+
 const initialState = {
   creating: false,
   error: null,
+  loading: false,
 }
 
 const createPost = (state=initialState, action) => {
@@ -23,9 +25,20 @@ const createPost = (state=initialState, action) => {
         loading: true,
         error: null,
       };
+    case CREATE_POST_SUCCESS:
+      return {
+        ...state,
+        loading: false,
+        error: null,
+      }
     default:
       return state;
   }
 }
+
+// selectors
+
+export const getCreatePostLoading = (state) => state.createPost.loading;
+export const getCreatePostError = (state) => state.createPost.error;
 
 export default createPost;

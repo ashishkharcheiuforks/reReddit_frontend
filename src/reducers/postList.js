@@ -90,6 +90,7 @@ const postList = (state=initialState, action) => {
           ),
         },
       }
+  
     case DELETE_POST_REQUEST:
       return {
         ...state,

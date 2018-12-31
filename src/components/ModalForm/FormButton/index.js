@@ -20,7 +20,7 @@ const FormButton = ({bsStyle, handleClick, loading, content, type}) => {
   return (
     <div id='single-button'>
       <Button
-        bsStyle={bsStyle}
+        bsStyle={bsStyle || null}
         className='login-buttons'
         onClick={() => handleClick()}
         disabled={loading}

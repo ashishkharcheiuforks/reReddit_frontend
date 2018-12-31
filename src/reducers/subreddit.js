@@ -65,4 +65,8 @@ const subreddit = (state=initialState, action) => {
   }
 }
 
+// selectors
+
+export const getSubredditTitle = (state) => state.subreddit.title;
+
 export default subreddit;

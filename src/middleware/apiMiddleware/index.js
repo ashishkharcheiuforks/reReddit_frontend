@@ -33,10 +33,14 @@ export const apiMiddleware = store => next => action => {
         if (failureActionCreator) {
           store.dispatch(failureActionCreator(errorMessage))
         }
-        return store.dispatch({
-          type: types.failure,
-          error: errorMessage,
-        })
+        // In case the original callers are waiting on news of how this went
+        // see CreatePost for example
+        return Promise.reject(
+          store.dispatch({
+            type: types.failure,
+            error: errorMessage,
+          })
+        )
       })
   }
   else {

@@ -29,15 +29,23 @@
     padding-left: 0.8rem;
     color: white;
 }
+
 .post-segment-title {
   font-weight: bold;
   font-size: 1.3em;
+}
+
+.post-segment-title a#post-title:hover {
+  
 }
 
 .post-segment-info {
   font-size: 85%;
 }
 
+.post-segment-info a:hover {
+  color: white;
+}
 
 .post-segment-links {
   margin-top: 0.3rem;
@@ -57,7 +65,11 @@
   color: #b8b8b8;
 }
 
-.post-segment-panel a:hover,a {
+.post-segment-links a:hover, .post-segment-title a#post-title:hover, a {
   color: white;
   text-decoration: none;
+}
+
+a:focus {
+  color: white;
 }

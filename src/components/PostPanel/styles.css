@@ -1,6 +1,7 @@
 .post-segment-panel {
   margin: 0;
   min-height: 6rem;
+  min-width: 100%;
   border: 1px solid #4d4d4d;
   border-bottom: 0;
   display: flex;
@@ -8,6 +9,7 @@
   color: white;
   padding: 0.5rem;
   cursor: pointer;
+  background-color: #333333;
 }
 
 .post-segment-panel:last-child {

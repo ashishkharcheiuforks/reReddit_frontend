@@ -3,6 +3,7 @@ import React from 'react';
 import PostPanelContainer from '../../containers/PostPanelContainer';
 import { ErrorAlert } from '../AlertMessage';
 import { PanelListLoader } from '../Loaders';
+import EmptyPostList from './EmptyPostList';
 import './styles.css';
 
 const PostList = (props) => {
@@ -19,18 +20,18 @@ const PostList = (props) => {
   
   let postList;
   if (loading) {
-    postList =  <PanelListLoader panelNumber={15}/>;
-  } else {
-      postList = allPosts.map((postPk) => {
-        return <PostPanelContainer postPk={postPk} key={postPk}/>
-    });
+    postList =  <PanelListLoader panelNumber={8}/>;
+  } else if (allPosts.length === 0 ){
+    postList = <EmptyPostList />;
+  } else{
+      const postPanels = allPosts.map((postPk) => {
+        return <PostPanelContainer postPk={postPk} key={postPk}/>});
+      postList = <ul>{postPanels}</ul>
   }
   
   return (
     <div className='postlist-content'>
-      <ul>
         {postList}
-      </ul>
     </div>
   );
 }

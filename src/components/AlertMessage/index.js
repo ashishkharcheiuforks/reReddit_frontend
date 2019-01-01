@@ -2,6 +2,7 @@ import React from 'react';
 import { Alert } from 'react-bootstrap';
 import { FaTimes, FaCheck } from 'react-icons/fa';
 
+import { withMaybe } from '../../utilities/HOC';
 import './styles.css';
 
 export const SuccessAlert = (props) => (
@@ -22,3 +23,7 @@ export const ErrorAlert = (props) => (
     </p>
   </Alert>
 )
+
+export const ErrorAlertWithError = withMaybe(
+    (props) => props.children
+  )(ErrorAlert);

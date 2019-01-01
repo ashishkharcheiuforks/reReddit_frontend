@@ -1,4 +1,5 @@
 import React , {Component} from 'react';
+import PropTypes from 'prop-types';
 import { withRouter } from 'react-router';
 
 import TextEditor from '../TextEditor';
@@ -32,7 +33,7 @@ class CreatePost extends Component {
       const postCreation = await this.props.handleCreatePost(
         this.state.title,
         this.state.editorHtml,
-        this.props.title,
+        this.props.subredditTitle,
       )
       this.props.history.replace(`/r/${this.props.subredditTitle}`);
     } catch {
@@ -86,5 +87,12 @@ class CreatePost extends Component {
   )
   }
 }
+
+CreatePost.propTypes = {
+  errorMessage: PropTypes.string,
+  loading: PropTypes.bool,
+  subredditTitle: PropTypes.string,
+  handleCreatePost: PropTypes.func,
+};
 
 export default withRouter(CreatePost);

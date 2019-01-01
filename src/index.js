@@ -17,6 +17,7 @@ import UserAuthModalContainer from './containers/UserAuthModalContainer';
 import CreatePostContainer from './containers/CreatePostContainer';
 import PostListContainer from './containers/PostListContainer';
 import PostDetailContainer from './containers/PostDetailContainer';
+import CreateSubredditContainer from './containers/CreateSubredditContainer';
 
 ReactDOM.render(
   <Provider store={store}>
@@ -58,6 +59,17 @@ ReactDOM.render(
                         <PostListContainer {...props} />}
                     />}
                 />
+              <Route
+                exact
+                path="/createSubreddit/"
+                render={
+                  (props) =>
+                  <CreateSubredditContainer
+                      match={props.match}
+                      history={props.history}
+                  />
+                }
+              />
                 <Route
                   exact
                   path="/"

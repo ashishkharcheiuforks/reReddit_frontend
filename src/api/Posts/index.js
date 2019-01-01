@@ -26,6 +26,12 @@ export const createPostApi = (title, body, subredditTitle, token) => {
            .then(response => response.data)
 }
 
+export const updatePostApi = (pk, body, token) => {
+  const data = { body };
+  return axios.patch(POST_DETAIL_URL(pk), data, tokenContextObj(token))
+           .then(response => response.data)
+}
+
 export const getPostDetailApi = (postId) => (
   axios.get(POST_DETAIL_URL(postId))
   .then(response => response.data)

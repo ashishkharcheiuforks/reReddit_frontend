@@ -11,6 +11,9 @@ import {
   DELETE_POST_REQUEST,
   DELETE_POST_SUCCESS,
   DELETE_POST_FAILURE,
+  UPDATE_POST_REQUEST,
+  UPDATE_POST_SUCCESS,
+  UPDATE_POST_FAILURE,
   API_SUB_POST_LIST,
   API_CREATE_POST,
   API_DELETE_POST,
@@ -23,6 +26,7 @@ import {
   getPostDetailApi,
   createPostApi,
   deletePostApi,
+  updatePostApi,
 } from '../../api/Posts';
 
 
@@ -61,6 +65,25 @@ export const makeCreatePostRequest = (title, body, subredditTitle) =>
           title,
           body,
           subredditTitle,
+          getState().userAuth.token
+        )
+      }
+    )
+    
+// Using redux-thunk to get an auth token
+export const makeUpdatePostRequest = (pk, body) =>
+  (dispatch, getState) =>
+    dispatch(
+      {
+        type: API_CREATE_POST,
+        types: {
+          request: CREATE_POST_REQUEST,
+          success: CREATE_POST_SUCCESS,
+          failure: CREATE_POST_FAILURE,
+        },
+        callAPI: () => updatePostApi(
+          pk,
+          body,
           getState().userAuth.token
         )
       }

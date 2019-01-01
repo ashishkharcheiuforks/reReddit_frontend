@@ -72,11 +72,13 @@ class CreatePost extends Component {
           />
           <div className="submit-button">
             <FormButton
-             content="Create Post"
              bsStyle="primary"
              handleClick={this.handleSubmit}
              loading={loading}
-            />
+            >
+              Create Post
+            </FormButton>
+            
           </div>
 
         </form>

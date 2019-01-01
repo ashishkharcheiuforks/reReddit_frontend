@@ -4,7 +4,15 @@ import { CircleLoader } from 'react-spinners';
 
 import './styles.css'
 
-const FormButton = ({bsStyle, handleClick, loading, content, type}) => {
+const FormButton = (props) => {
+  
+  const {
+    bsStyle,
+    handleClick,
+    loading,
+    children,
+    type,
+  } = props;
   
   const spinnerStyle = 'display: inline-block;'
   
@@ -14,8 +22,6 @@ const FormButton = ({bsStyle, handleClick, loading, content, type}) => {
       className={spinnerStyle}
     /> :
     null;
-  
-  
 
   return (
     <div id='single-button'>
@@ -26,7 +32,7 @@ const FormButton = ({bsStyle, handleClick, loading, content, type}) => {
         disabled={loading}
         type={type || 'button'}
       >
-        {spinner ? spinner : content}
+        {spinner ? spinner : children}
       </Button>
     </div>
   );

@@ -55,7 +55,7 @@ class ModalLoginForm extends Component {
               bsStyle='primary'
               handleClick={this.handleSubmit}
               loading={this.props.loading}
-              content='Login'
+              children='Login'
               type='submit'
             />
           
@@ -63,7 +63,7 @@ class ModalLoginForm extends Component {
                 bsStyle='danger'
                 handleClick={this.props.handleHide}
                 loading={this.props.loading}
-                content='Cancel'
+                children='Cancel'
               />
           </div>
         </form>

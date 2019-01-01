@@ -68,7 +68,7 @@ class ModalRegisterForm extends Component {
             bsStyle='primary'
             handleClick={this.handleSubmit}
             loading={this.props.loading}
-            content='Register'
+            children='Register'
             type='submit'
           />
         
@@ -76,7 +76,7 @@ class ModalRegisterForm extends Component {
               bsStyle='danger'
               handleClick={this.props.handleHide}
               loading={this.props.loading}
-              content='Cancel'
+              children='Cancel'
             />
         </div>
       </form>

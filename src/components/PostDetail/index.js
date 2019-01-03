@@ -1,6 +1,6 @@
 import React, { Component, Fragment } from 'react';
 import PropTypes from 'prop-types';
-import { Panel, Button, MenuItem } from 'react-bootstrap';
+import { Panel, Button, MenuItem, Tooltip, OverlayTrigger } from 'react-bootstrap';
 import { FaShare } from 'react-icons/fa';
 import { withRouter } from 'react-router';
 
@@ -14,9 +14,56 @@ import { withMaybe } from '../../utilities/HOC';
 
 class PostDetail extends Component{
   constructor(props) {
-    super(props)
+    super(props);
+    
+    this.state = {
+      showCopyTooltip: false,
+    }
+    
+    this.commentListNode = React.createRef()
+    this.copyNode = React.createRef();
     
     this.handleDelete = this.handleDelete.bind(this);
+    
+    this.copyTooltip = (
+      <Tooltip id="copy-tooltip" a>
+        <stong>Copied Link</stong>
+      </Tooltip>
+    );
+  }
+  
+  componentDidMount() {
+    if (this.props.commentScroll) {
+      this.scrollToCommentList();
+    } else {
+      window.scrollTo(0,0);
+    }
+  }
+  
+  // Only scroll to comments when first navigating to page
+  componentDidUpdate(prevProps) {
+    if (this.props.commentScroll && (prevProps.pk !== this.props.pk)) {
+      this.scrollToCommentList();
+    }
+  }
+  
+  scrollToCommentList = () => {
+    window.scrollTo({
+      top: this.commentListNode.current.offsetTop,
+      behavior: "smooth",
+    })
+  }
+  
+  copyToClipboard = (e) => {
+    this.copyNode.current.select();
+    document.execCommand("copy");
+    
+    this.toggleCopied();
+    setTimeout(this.toggleCopied, 4000);
+  }
+  
+  toggleCopied = () => {
+    this.setState({showCopyTooltip: !this.state.copied})
   }
   
   async handleDelete() {
@@ -59,9 +106,29 @@ class PostDetail extends Component{
             </div>
             
             <div className='link-bar-container'>
-              <Button bsSize='xsmall' className='post-buttons'>
-                <FaShare /> Share
-              </Button>
+              <OverlayTrigger
+                placement="bottom"
+                overlay={this.copyTooltip}
+                trigger='focus'
+                delayHide={4000}
+              >
+                <Button
+                  bsSize='xsmall'
+                  className='post-buttons'
+                  onClick={this.copyToClipboard}
+                >
+                  <FaShare /> Share
+                </Button>
+              </OverlayTrigger>
+
+              <form>
+                <input
+                  id="hidden-copy-input"
+                  readOnly
+                  ref={this.copyNode}
+                  value={`${window.location.href}`}
+                  aria-hidden="true"/>
+              </form>
               
               <AuthEllipsis
                 showEllipsis={authUsername===posterUsername}
@@ -78,7 +145,7 @@ class PostDetail extends Component{
             </Fragment>
           }
           
-          <div className="post-comments-container">
+          <div className="post-comments-container" ref={this.commentListNode}>
             <CommentTreeListContainer />
           </div>
 
@@ -94,6 +161,7 @@ PostDetail.propTypes = {
   postTitle: PropTypes.string,
   postBody: PropTypes.string,
   loading: PropTypes.bool,
+  commentScroll: PropTypes.bool,
   handleDeletePost: PropTypes.func,
 }
 

@@ -15,6 +15,8 @@ class CommentTreeListContainer extends Component {
     this.props.fetchCommentList(this.props.match.params.postId)
   }
   
+  
+  
   render() {
     return <CommentTreeList {...this.props} />
   }
@@ -39,7 +41,7 @@ const mapDispatchToProps = dispatch => (
 )
 
 
-export default withRouter(connect(
+export default  withRouter(connect(
   mapStateToProps,
   mapDispatchToProps
 )(CommentTreeListContainer));

@@ -32,6 +32,7 @@ class PostDetailContainer extends Component {
       authUsername,
       pk,
       loading,
+      commentScroll,
       handleDeletePost,
     } = this.props;
     
@@ -43,6 +44,7 @@ class PostDetailContainer extends Component {
         authUsername,
         pk,
         loading,
+        commentScroll,
         handleDeletePost,
       }} />;
   }
@@ -54,7 +56,7 @@ const mapStateToProps = (state, ownProps) => (
     body: getPostDetailBody(state),
     title: getPostDetailTitle(state),
     posterUsername: getPostDetailPosterUsername(state),
-    postPk: getPostDetailPk(state),
+    pk: getPostDetailPk(state),
     loading: getPostDetailLoading(state),
     authUsername: getAuthUsername(state),
   }

@@ -64,3 +64,8 @@ div.post-info-line {
 .post-comments-container {
   margin-top: 3rem;
 }
+
+input#hidden-copy-input {
+  position: absolute;
+  left: -999rem;
+}

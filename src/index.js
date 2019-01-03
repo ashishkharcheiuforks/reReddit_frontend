@@ -49,6 +49,17 @@ ReactDOM.render(
                         <PostDetailContainer {...props} />}
                     />}
                 />
+              // Go directly to comments but otherwise same as postDetail
+                <Route
+                  exact
+                  path="/r/:subredditTitle/postDetail/:postId/comments"
+                  render={ (props) =>
+                    <SubredditContainer
+                      {...props}
+                      primaryComponent={(props) =>
+                        <PostDetailContainer {...props} commentScroll />}
+                    />}
+                />
                 <Route
                   exact
                   path="/r/:subredditTitle"

@@ -2,6 +2,7 @@ import {
   FETCH_POST_DETAIL_REQUEST,
   FETCH_POST_DETAIL_SUCCESS,
   FETCH_POST_DETAIL_FAILURE,
+  FETCH_POST_LIST_SUCCESS,
 } from '../actions/actionTypes';
 
 const initialState = {
@@ -37,6 +38,12 @@ const postDetail = (state=initialState, action) => {
         loading: false,
         error: action.error,
       }
+    case FETCH_POST_LIST_SUCCESS:
+      // This makes the scroll to comments in PostDetail work
+      return {
+        ...state,
+        pk: null,
+      };
     default:
      return state;
   }

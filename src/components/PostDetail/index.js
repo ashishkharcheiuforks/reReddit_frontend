@@ -79,12 +79,12 @@ class PostDetail extends Component{
               </AuthEllipsis>
               
             </div>
-            
-            <div className="post-comments-container">
-              <CommentTreeListContainer />
-            </div>
             </Fragment>
-        }
+          }
+          
+          <div className="post-comments-container">
+            <CommentTreeListContainer />
+          </div>
 
       </div>
     )

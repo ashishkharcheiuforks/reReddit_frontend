@@ -6,7 +6,7 @@ import { withRouter } from 'react-router';
 
 
 import './styles.css';
-import { PanelListLoader } from '../Loaders';
+import { PanelListLoader, BlockLoader } from '../Loaders';
 import PostInfoLine from './PostInfoLine';
 import CommentTreeListContainer from '../../containers/CommentTreeListContainer';
 import EllipsisButton from '../EllipsisButton';
@@ -17,6 +17,10 @@ class PostDetail extends Component{
     super(props)
     
     this.handleDelete = this.handleDelete.bind(this);
+  }
+  
+  componentDidUpdate() {
+    debugger;
   }
   
   async handleDelete() {
@@ -44,7 +48,7 @@ class PostDetail extends Component{
     return (
       <div className='post-detail-content'>
         {loading
-          ? <PanelListLoader/>
+          ? <BlockLoader/>
           :
             <Fragment>
             <PostInfoLine title={subredditTitle} poster={posterUsername} />

@@ -80,7 +80,15 @@ class PostPanel extends Component {
           </div>
           
           <div className='post-segment-links'>
-            <Button bsSize='xsmall' className='post-buttons'> X Comments </Button>
+            <Link to={`/r/${subredditTitle}/postDetail/${pk}`}>
+              <Button
+                bsSize='xsmall'
+                className='post-buttons'
+              >
+                Comments
+              </Button>
+            </Link>
+            
             <Button bsSize='xsmall' className='post-buttons'>
                <FaShare /> Share
              </Button>

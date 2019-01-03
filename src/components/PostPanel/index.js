@@ -7,6 +7,7 @@ import { Link } from 'react-router-dom';
 
 import VoterContainer from '../../containers/VoterContainer';
 import EllipsisButton from '../EllipsisButton';
+import ShareButton from '../ShareButton';
 import { withMaybe } from '../../utilities/HOC';
 import './styles.css';
 
@@ -88,10 +89,9 @@ class PostPanel extends Component {
                 Comments
               </Button>
             </Link>
-            
-            <Button bsSize='xsmall' className='post-buttons'>
-               <FaShare /> Share
-             </Button>
+
+            <ShareButton shareUrl={`${window.location}/postDetail/${pk}`}/>
+
             <AuthEllipsis
               showEllipsis={authUsername === posterUsername}
             >

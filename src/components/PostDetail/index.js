@@ -10,26 +10,16 @@ import { PanelListLoader, BlockLoader } from '../Loaders';
 import PostInfoLine from './PostInfoLine';
 import CommentTreeListContainer from '../../containers/CommentTreeListContainer';
 import EllipsisButton from '../EllipsisButton';
+import ShareButton from '../ShareButton';
 import { withMaybe } from '../../utilities/HOC';
 
 class PostDetail extends Component{
   constructor(props) {
     super(props);
     
-    this.state = {
-      showCopyTooltip: false,
-    }
-    
     this.commentListNode = React.createRef()
-    this.copyNode = React.createRef();
     
     this.handleDelete = this.handleDelete.bind(this);
-    
-    this.copyTooltip = (
-      <Tooltip id="copy-tooltip" a>
-        <stong>Copied Link</stong>
-      </Tooltip>
-    );
   }
   
   componentDidMount() {
@@ -52,18 +42,6 @@ class PostDetail extends Component{
       top: this.commentListNode.current.offsetTop,
       behavior: "smooth",
     })
-  }
-  
-  copyToClipboard = (e) => {
-    this.copyNode.current.select();
-    document.execCommand("copy");
-    
-    this.toggleCopied();
-    setTimeout(this.toggleCopied, 4000);
-  }
-  
-  toggleCopied = () => {
-    this.setState({showCopyTooltip: !this.state.copied})
   }
   
   async handleDelete() {
@@ -106,29 +84,7 @@ class PostDetail extends Component{
             </div>
             
             <div className='link-bar-container'>
-              <OverlayTrigger
-                placement="bottom"
-                overlay={this.copyTooltip}
-                trigger='focus'
-                delayHide={4000}
-              >
-                <Button
-                  bsSize='xsmall'
-                  className='post-buttons'
-                  onClick={this.copyToClipboard}
-                >
-                  <FaShare /> Share
-                </Button>
-              </OverlayTrigger>
-
-              <form>
-                <input
-                  id="hidden-copy-input"
-                  readOnly
-                  ref={this.copyNode}
-                  value={`${window.location.href}`}
-                  aria-hidden="true"/>
-              </form>
+              <ShareButton shareUrl={`${window.location.href}`} />
               
               <AuthEllipsis
                 showEllipsis={authUsername===posterUsername}

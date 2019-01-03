@@ -1,10 +1,11 @@
 import React from 'react';
+import PropTypes from 'prop-types';
 
-import PanelLoader from '../Loaders/PanelLoader';
+import { PanelListLoader } from '../Loaders';
 import { ErrorAlert } from '../AlertMessage';
 import CommentContainer from '../../containers/CommentContainer';
 import CommentEditorContainer from '../../containers/CommentEditorContainer';
-import { withMaybe } from '../../utilities/HOC';
+import { withMaybe, withEither } from '../../utilities/HOC';
 
 const CommentTreeList = (props) => {
   const {
@@ -23,13 +24,10 @@ const CommentTreeList = (props) => {
     )
   }
   
-  let commentTreeRootList = [];
-  if (loading)  {
-    commentTreeRootList = <PanelLoader />;
-  } else {
-    commentTreeRootList = (!Array.isArray(rootCommentPks) || !rootCommentPks.length)
-      ? []
-      : rootCommentPks.map(rootPk => (
+  let commentRootList = [];
+  if (Array.isArray(rootCommentPks) && rootCommentPks.length) {
+    commentRootList =
+      rootCommentPks.map(rootPk => (
         <CommentContainer
           pk={rootPk}
           key={rootPk}
@@ -38,21 +36,33 @@ const CommentTreeList = (props) => {
   }
 
   // Error with root comment creation
-  const AlertOnError = withMaybe((props) =>
-    props.children)(ErrorAlert)
+  const AlertOnError = withMaybe(
+    (props) => props.children)(ErrorAlert)
+    
+  const CommentListWithLoading = withEither (
+    (props) => props.loading, PanelListLoader
+  )(() => commentRootList)
   
   return (
-    <div className='comment-tree-list-container'>
-      <AlertOnError children={createCommentError} />
-      <div className='top-comment-editor'>
-        <CommentEditorContainer rootComment={true} usage='create'/>
-      </div>
+        <div className='comment-tree-list-container'>
+          <AlertOnError children={createCommentError} />
+          <div className='top-comment-editor'>
+            <CommentEditorContainer rootComment={true} usage='create'/>
+          </div>
 
-      <ul>
-        {commentTreeRootList}
-      </ul>
-    </div>
+          <ul>
+            <CommentListWithLoading loading={loading} panelNumber={10} />
+          </ul>
+        </div>
   )
+}
+
+CommentTreeList.propTypes = {
+  rootCommentPks: PropTypes.arrayOf(PropTypes.number),
+  error: PropTypes.string,
+  loading: PropTypes.bool,
+  createCommentError: PropTypes.string,
+  createCommentLoading: PropTypes.bool,
 }
 
 export default CommentTreeList;

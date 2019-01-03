@@ -19,10 +19,6 @@ class PostDetail extends Component{
     this.handleDelete = this.handleDelete.bind(this);
   }
   
-  componentDidUpdate() {
-    debugger;
-  }
-  
   async handleDelete() {
     // Make sure the post is actually deleted before rerouting which
     // causes the list to reload

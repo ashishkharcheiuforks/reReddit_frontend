@@ -33,11 +33,14 @@ PostEditorContainer.propTypes = {
 };
 
 const mapDispatchToProps = (dispatch, ownProps) => ({
-  handleSubmit: (body) => {
+  handleSubmit: async (body) => {
+    try {
+      await dispatch(makeUpdatePostRequest(ownProps.pk, body));
+    } catch {
+    }
     // Callback to effect some change when submission occurs (like hide the editor)
-    ownProps.onEditorSubmit && ownProps.onEditorSubmit();
+    ownProps.onEditorSubmitSuccess && ownProps.onEditorSubmitSuccess();
     
-    return dispatch(makeUpdatePostRequest(ownProps.pk, body));
   },
 });
 

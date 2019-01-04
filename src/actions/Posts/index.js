@@ -18,6 +18,7 @@ import {
   API_CREATE_POST,
   API_DELETE_POST,
   API_POST_DETAIL,
+  TOGGLE_POST_EDITOR,
 } from '../actionTypes';
 
 import {
@@ -77,9 +78,9 @@ export const makeUpdatePostRequest = (pk, body) =>
       {
         type: API_CREATE_POST,
         types: {
-          request: CREATE_POST_REQUEST,
-          success: CREATE_POST_SUCCESS,
-          failure: CREATE_POST_FAILURE,
+          request: UPDATE_POST_REQUEST,
+          success: UPDATE_POST_SUCCESS,
+          failure: UPDATE_POST_FAILURE,
         },
         callAPI: () => updatePostApi(
           pk,
@@ -120,3 +121,7 @@ export const makePostDetailRequest = (postId) => (
     callAPI: () => getPostDetailApi(postId),
   }
 )
+
+export const togglePostEditor = () => ({
+  type: TOGGLE_POST_EDITOR,
+})

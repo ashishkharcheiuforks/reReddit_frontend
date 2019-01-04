@@ -18,10 +18,6 @@ class PostDetail extends Component{
   constructor(props) {
     super(props);
     
-    this.state = {
-      postEditMode: props.postEditMode ? true : true,
-    };
-    
     this.commentListNode = React.createRef()
     
     this.handleDelete = this.handleDelete.bind(this);
@@ -56,10 +52,6 @@ class PostDetail extends Component{
     this.props.history.replace(`/r/${this.props.subredditTitle}`);
   }
   
-  postEditModeToggle = () => {
-    this.setState({ postEditMode: !this.state.postEditMode});
-  }
-  
   render () {
     const {
       subredditTitle,
@@ -69,7 +61,9 @@ class PostDetail extends Component{
       pk,
       body,
       loading,
+      showPostEditor,
       handleDeletePost,
+      togglePostEditor,
     } = this.props;
     
     const AuthEllipsis = withMaybe(
@@ -87,11 +81,11 @@ class PostDetail extends Component{
               {title}
             </div>
             <div className='post-body-container'>
-              {this.state.postEditMode
+              {showPostEditor
                 ? (
                   <PostEditorContainer
                     {...{body, pk,}}
-                    onEditorSubmit={this.postEditModeToggle}
+                    onEditorSubmitSuccess={togglePostEditor}
                   />
                 )
                 : (
@@ -117,7 +111,7 @@ class PostDetail extends Component{
                 </MenuItem>
                 <MenuItem
                   eventKey={2}
-                  onSelect={this.postEditModeToggle}
+                  onSelect={togglePostEditor}
                 >
                   edit
                 </MenuItem>
@@ -144,8 +138,10 @@ PostDetail.propTypes = {
   postTitle: PropTypes.string,
   postBody: PropTypes.string,
   loading: PropTypes.bool,
+  showPostEditor: PropTypes.bool,
   commentScroll: PropTypes.bool,
   handleDeletePost: PropTypes.func,
+  togglePostEditor: PropTypes.func,
 }
 
 export default withRouter(PostDetail);

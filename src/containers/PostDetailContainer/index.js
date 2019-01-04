@@ -4,7 +4,8 @@ import { connect } from 'react-redux';
 import PostDetail from '../../components/PostDetail';
 import {
   makePostDetailRequest,
-  makeDeletePostRequest
+  makeDeletePostRequest,
+  togglePostEditor,
 } from '../../actions/Posts';
 import {
   getPostDetailPk,
@@ -14,6 +15,10 @@ import {
   getPostDetailLoading,
 } from '../../reducers/postDetail';
 import { getAuthUsername, } from '../../reducers/userAuth';
+import {
+  getPostEditorShowState,
+  getEditPostError,
+} from '../../reducers/editPost';
 
 
 class PostDetailContainer extends Component {
@@ -32,8 +37,11 @@ class PostDetailContainer extends Component {
       authUsername,
       pk,
       loading,
+      showPostEditor,
+      editPostError,
       commentScroll,
       handleDeletePost,
+      togglePostEditor,
     } = this.props;
     
     return <PostDetail {...{
@@ -44,8 +52,11 @@ class PostDetailContainer extends Component {
         authUsername,
         pk,
         loading,
+        showPostEditor,
+        editPostError,
         commentScroll,
         handleDeletePost,
+        togglePostEditor,
       }} />;
   }
 }
@@ -58,6 +69,8 @@ const mapStateToProps = (state, ownProps) => (
     posterUsername: getPostDetailPosterUsername(state),
     pk: getPostDetailPk(state),
     loading: getPostDetailLoading(state),
+    showPostEditor: getPostEditorShowState(state),
+    editPostError: getEditPostError(state),
     authUsername: getAuthUsername(state),
   }
 )
@@ -68,6 +81,7 @@ const mapDispatchToProps = (dispatch, ownProps,) => (
     handleDeletePost: () => dispatch(makeDeletePostRequest(
         Number(ownProps.match.params.postId)
       )),
+    togglePostEditor: () => dispatch(togglePostEditor()),
   }
 )
 

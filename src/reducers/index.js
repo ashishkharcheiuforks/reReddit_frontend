@@ -8,6 +8,7 @@ import comments from './comments';
 import postList from './postList';
 import createPost from './createPost';
 import createSubreddit from './createSubreddit';
+import editPost from './editPost';
 
 const rootReducer = combineReducers({
   subreddit,
@@ -18,6 +19,7 @@ const rootReducer = combineReducers({
   postList,
   createPost,
   createSubreddit,
+  editPost,
 });
 
 export default rootReducer;

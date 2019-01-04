@@ -46,5 +46,6 @@ const editPost = (state=initialState, action) => {
 //
 export const getPostEditorShowState = (state) => state.editPost.showDetailPostEditor;
 export const getEditPostError = (state) => state.editPost.error;
+export const getEditPostLoading = (state) => state.editPost.loading;
 
 export default editPost;

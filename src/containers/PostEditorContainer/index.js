@@ -9,12 +9,16 @@ import {
 import {
   getPostDetailBody
 } from '../../reducers/postDetail';
+import {
+  getEditPostLoading,
+} from '../../reducers/editPost';
 
 
 const PostEditorContainer = (props) => {
   const {
     handleSubmit,
     body,
+    loading,
   } = props;
   
   return (
@@ -22,6 +26,8 @@ const PostEditorContainer = (props) => {
       handleSubmit={handleSubmit}
       placeholder={body}
       initialValue={body}
+      usage="update"
+      loading={loading}
     />
   )
 }
@@ -31,6 +37,10 @@ PostEditorContainer.propTypes = {
   handleSubmit: PropTypes.func,
   body: PropTypes.string,
 };
+
+const mapStateToProps = (state) => ({
+  loading: getEditPostLoading(state),
+})
 
 const mapDispatchToProps = (dispatch, ownProps) => ({
   handleSubmit: async (body) => {
@@ -46,6 +56,6 @@ const mapDispatchToProps = (dispatch, ownProps) => ({
 
 
 export default connect(
-  null,
+  mapStateToProps,
   mapDispatchToProps,
 )(PostEditorContainer);

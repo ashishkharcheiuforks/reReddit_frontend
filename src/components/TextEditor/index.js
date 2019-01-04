@@ -2,8 +2,8 @@ import React, { Component, Fragment } from 'react';
 import PropTypes from 'prop-types';
 import ReactQuill from 'react-quill';
 import 'react-quill/dist/quill.snow.css';
-import { Button } from 'react-bootstrap';
 
+import { LoadingButton } from '../Buttons';
 import './styles.css';
 
 class TextEditor extends Component {
@@ -59,7 +59,7 @@ class TextEditor extends Component {
       onBlur,
       loading,
     } = this.props;
-    
+
     let submitButtonWord = "Submit"
     switch (usage) {
       case "create":
@@ -83,12 +83,13 @@ class TextEditor extends Component {
           ref={this.quillNode}
           onBlur={onBlur}
         />
-        <Button
+      <LoadingButton
           onClick={() => this.handleSubmitClick(this.state.editorHtml)}
-          className='comment-submit-button'
+          className='submit-button'
+          loading={loading}
         >
           {submitButtonWord}
-        </Button>
+        </LoadingButton>
       </Fragment>
     )
   }

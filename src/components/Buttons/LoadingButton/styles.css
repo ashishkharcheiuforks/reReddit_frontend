@@ -1,0 +1,11 @@
+div.loading-button-container {
+  display: inline-block;
+  margin: 0 1rem 0 1rem;
+  min-width: 7rem;
+  min-height: 3.5rem;
+  text-align: center;
+}
+
+.loading-button {
+  display: inline-block;
+}

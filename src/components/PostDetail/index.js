@@ -8,6 +8,7 @@ import { withRouter } from 'react-router';
 import './styles.css';
 import { PanelListLoader, BlockLoader } from '../Loaders';
 import PostInfoLine from './PostInfoLine';
+import PostEditorContainer from '../../containers/PostEditorContainer';
 import CommentTreeListContainer from '../../containers/CommentTreeListContainer';
 import EllipsisButton from '../EllipsisButton';
 import ShareButton from '../ShareButton';
@@ -18,7 +19,7 @@ class PostDetail extends Component{
     super(props);
     
     this.state = {
-      postEditMode: props.postEditMode ? true : false,
+      postEditMode: props.postEditMode ? true : true,
     };
     
     this.commentListNode = React.createRef()
@@ -55,7 +56,7 @@ class PostDetail extends Component{
     this.props.history.replace(`/r/${this.props.subredditTitle}`);
   }
   
-  postEditModeToggle= () => {
+  postEditModeToggle = () => {
     this.setState({ postEditMode: !this.state.postEditMode});
   }
   
@@ -65,6 +66,7 @@ class PostDetail extends Component{
       posterUsername,
       authUsername,
       title,
+      pk,
       body,
       loading,
       handleDeletePost,
@@ -85,10 +87,20 @@ class PostDetail extends Component{
               {title}
             </div>
             <div className='post-body-container'>
-              <div
-                className='body-html'
-                dangerouslySetInnerHTML={{__html: body}}
-              />
+              {this.state.postEditMode
+                ? (
+                  <PostEditorContainer
+                    {...{body, pk,}}
+                    onEditorSubmit={this.postEditModeToggle}
+                  />
+                )
+                : (
+                  <div
+                    className='body-html'
+                    dangerouslySetInnerHTML={{__html: body}}
+                  />
+                )
+              }
             </div>
             
             <div className='link-bar-container'>

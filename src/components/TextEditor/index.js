@@ -60,7 +60,8 @@ class TextEditor extends Component {
     const {
       placeholder,
       usage,
-      onBlur
+      onBlur,
+      loading,
     } = this.props;
     
     let submitButtonWord = "Submit"
@@ -100,6 +101,7 @@ class TextEditor extends Component {
 TextEditor.propTypes = {
   usage: PropTypes.string,
   rootComment: PropTypes.bool,
+  placeholder: PropTypes.string,
   initialValue: PropTypes.string,
   onBlur: PropTypes.func,
   handleSubmit: PropTypes.func,

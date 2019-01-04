@@ -2,13 +2,10 @@ import React from 'react';
 import PropTypes from 'prop-types';
 import { connect } from 'react-redux';
 
-import PostEditor from '../../components/PostEditor'
+import TextEditor from '../../components/TextEditor'
 import {
   makeUpdatePostRequest,
 } from '../../actions/Posts';
-import {
-  getPostBodyById,
-} from '../../reducers/postList';
 import {
   getPostDetailBody
 } from '../../reducers/postDetail';
@@ -16,30 +13,36 @@ import {
 
 const PostEditorContainer = (props) => {
   const {
-    handleUpdateComment,
+    handleSubmit,
     body,
   } = props;
   
   return (
-    <PostEditor  {...{handleUpdateComment, initialValue: body}}/>
+    <TextEditor
+      handleSubmit={handleSubmit}
+      placeholder={body}
+      initialValue={body}
+    />
   )
 }
 
 PostEditorContainer.propTypes = {
-  handleUpdateComment: PropTypes.func,
+  onEditorSubmit: PropTypes.func,
+  handleSubmit: PropTypes.func,
+  body: PropTypes.string,
 };
 
-mapStateToProps = (state, ownProps) => ({
-  body: getPostBodyByPk(state, ownProps.pk) || getPostDetailBody(state);
-})
-
-mapDispatchToProps = (dispatch, ownProps) => ({
-  handleUpdateComment: dispatch(makeUpdatePostRequest(ownProps.pk)),
+const mapDispatchToProps = (dispatch, ownProps) => ({
+  handleSubmit: (body) => {
+    // Callback to effect some change when submission occurs (like hide the editor)
+    ownProps.onEditorSubmit && ownProps.onEditorSubmit();
+    
+    return dispatch(makeUpdatePostRequest(ownProps.pk, body));
+  },
 });
 
 
 export default connect(
   null,
   mapDispatchToProps,
-  mergeProps,
-)
+)(PostEditorContainer);

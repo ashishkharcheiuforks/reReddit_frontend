@@ -2,7 +2,7 @@ import React from 'react';
 import { connect } from 'react-redux';
 import PropTypes from 'prop-types';
 
-import CommentEditor from '../../components/CommentEditor';
+import TextEditor from '../../components/TextEditor';
 import {
   makeCreateCommentRequest,
   makeUpdateCommentRequest
@@ -10,14 +10,15 @@ import {
 import { getPostDetailPk } from '../../reducers/postDetail';
 
 const CommentEditorContainer = (props) => (
-    <CommentEditor {...props} />
+    <TextEditor {...props} />
 )
 
 const mapStateToProps = (state, ownProps) => (
     {
       parentPk: ownProps.commentParentPk || getPostDetailPk(state),
-      rootComment: ownProps.rootComment, // indicates whether this is a root comment
-    }                                    // or a comment on another comment
+      // should the editor be focues on after mounting?
+      focusOnEditor: ownProps.rootComment,
+    }
 )
 
 const mapDispatchToProps = (dispatch, ownProps) => {
@@ -34,7 +35,7 @@ const mapDispatchToProps = (dispatch, ownProps) => {
       
       return {handleCreateCommentWrapper}
     case 'update': {
-      const handleCommentSubmit = (body) => {
+      const handleSubmit = (body) => {
         // onEditorSubmit is a hook so that the parent component
         // can effect changes beyond the action dispatch, e.g. toggle editor
         ownProps.onEditorSubmit && ownProps.onEditorSubmit()
@@ -46,7 +47,7 @@ const mapDispatchToProps = (dispatch, ownProps) => {
           })
         );
       }
-      return ({ handleCommentSubmit, })
+      return ({ handleSubmit, })
     }
     default:
       return {}
@@ -56,14 +57,14 @@ const mapDispatchToProps = (dispatch, ownProps) => {
 const mergeProps = (stateProps, dispatchProps, ownProps) => {
   // This mess is caused by the late determination of parentPk in mapStateToProps
   if (ownProps.usage === 'create') {
-    const handleCommentSubmit = dispatchProps.handleCreateCommentWrapper(
+    const handleSubmit = dispatchProps.handleCreateCommentWrapper(
       stateProps.parentPk
     );
     
     return ({
       ...stateProps,
       ...ownProps,
-      handleCommentSubmit,
+      handleSubmit,
     });
   }
   return {...ownProps, ...stateProps, ...dispatchProps};

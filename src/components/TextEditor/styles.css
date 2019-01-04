@@ -1,5 +1,28 @@
-.text-editor-container > .quill > .ql-container {
-  background-color: #333333;
-  color: white;
+.quill div.ql-toolbar {
+  border-top-right-radius: 0.5rem;
+  border-top-left-radius: 0.5rem;
+  border-bottom: 0;
+  background-color: #818481;
+
+}
+.quill div.ql-container {
+  border-bottom-right-radius: 0.3rem;
+  border-bottom-left-radius: 0.3rem
+}
+
+.quill div.ql-editor {
   font-size: 105%;
+  min-height: 15rem;
+  color: white;
+}
+
+.quill div.ql-blank:before{
+  color: white;
+}
+
+/* Button */
+.comment-submit-button {
+  margin-top: 1rem;
+  margin-bottom: 1.0rem;
+  font-weight: bold;
 }

@@ -3,7 +3,6 @@ import PropTypes from 'prop-types';
 import { withRouter } from 'react-router';
 
 import TextEditor from '../TextEditor';
-import CommentEditor from '../CommentEditor';
 import FieldGroup from '../FieldGroup';
 import { ErrorAlert } from '../AlertMessage';
 import { withMaybe } from '../../utilities/HOC';
@@ -13,27 +12,22 @@ import './styles.css';
 class CreatePost extends Component {
   constructor(props) {
     super(props);
+    
     this.state = {
-      editorHtml: '',
       title:'',
     }
     
-    this.handleEditorChange = this.handleEditorChange.bind(this);
     this.handleSubmit = this.handleSubmit.bind(this);
-  }
-  
-  handleEditorChange (html) {
-    this.setState({editorHtml: html});
   }
   
   handleTitleChange = (e) => this.setState({title: e.target.value});
   
-  async handleSubmit() {
+  async handleSubmit(editorHtml) {
     
     try {
       const postCreation = await this.props.handleCreatePost(
         this.state.title,
-        this.state.editorHtml,
+        editorHtml,
         this.props.subredditTitle,
       )
       this.props.history.replace(`/r/${this.props.subredditTitle}`);
@@ -42,7 +36,7 @@ class CreatePost extends Component {
     }
   }
   
-  render () {
+  render() {
     
     const {
       errorMessage,
@@ -67,21 +61,12 @@ class CreatePost extends Component {
               name='username'
             />
           </div>
+
           <TextEditor
-            handleChange={this.handleEditorChange}
-            placeHolder="Text (Optional)"
-            editorHtml={this.state.editorHtml}
+            handleCommentSubmit={this.handleSubmit}
+            usage="create"
+            placeholder="Text (optional)"
           />
-          <div className="submit-button">
-            <FormButton
-             bsStyle="primary"
-             handleClick={this.handleSubmit}
-             loading={loading}
-            >
-              Create Post
-            </FormButton>
-            
-          </div>
 
         </form>
       </div>

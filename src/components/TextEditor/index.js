@@ -1,13 +1,19 @@
-import React, { Component } from 'react';
+import React, { Component, Fragment } from 'react';
+import PropTypes from 'prop-types';
 import ReactQuill from 'react-quill';
 import 'react-quill/dist/quill.snow.css';
+import { Button } from 'react-bootstrap';
 
 import './styles.css';
 
 class TextEditor extends Component {
   constructor(props) {
-    super(props);
-        
+    super(props)
+    
+    this.state = {
+      editorHtml: props.initialValue || '',
+    }
+    
     this.formats = [
       'header', 'font', 'size', 'bold', 'italic', 'underline',
       'strike', 'blockquote','list', 'bullet', 'indent', 'code'
@@ -24,22 +30,79 @@ class TextEditor extends Component {
         ['clean']
       ],
     }
+    
+    this.handleChange = this.handleChange.bind(this);
+    this.quillNode = React.createRef();
+  }
+
+  componentDidMount() {
+    if (!this.props.focusOnEditor) {
+      this.quillNode.current.focus();
+    }
   }
   
-
-  render () {
+  handleChange(html) {
+    this.setState({
+      editorHtml: html,
+    })
+  }
+  
+  handleSubmitClick = (editorHtml) => {
+    this.setState({
+      editorHtml: '',
+    })
+    
+    this.props.handleSubmit(editorHtml);
+  }
+  
+  render() {
+    
+    const {
+      placeholder,
+      usage,
+      onBlur
+    } = this.props;
+    
+    let submitButtonWord = "Submit"
+    switch (usage) {
+      case "create":
+        submitButtonWord = "Post"
+        break;
+      case "update":
+        submitButtonWord = "Edit"
+        break;
+      default:
+        break;
+    }
+    
     return (
-      <div className='text-editor-container'>
+      <Fragment>
         <ReactQuill
-          value={this.props.editorHtml}
-          onChange={this.props.handleChange}
-          placeholder={this.props.placeHolder}
+          value={this.state.editorHtml}
+          onChange={this.handleChange}
+          placeholder={placeholder || 'What are your thoughts?'}
           modules={this.modules}
           formats={this.formats}
+          ref={this.quillNode}
+          onBlur={onBlur}
         />
-      </div>
+        <Button
+          onClick={() => this.handleSubmitClick(this.state.editorHtml)}
+          className='comment-submit-button'
+        >
+          {submitButtonWord}
+        </Button>
+      </Fragment>
     )
   }
+}
+
+TextEditor.propTypes = {
+  usage: PropTypes.string,
+  rootComment: PropTypes.bool,
+  initialValue: PropTypes.string,
+  onBlur: PropTypes.func,
+  handleSubmit: PropTypes.func,
 }
 
 export default TextEditor;

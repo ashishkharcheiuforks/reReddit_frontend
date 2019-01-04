@@ -17,6 +17,10 @@ class PostDetail extends Component{
   constructor(props) {
     super(props);
     
+    this.state = {
+      postEditMode: props.postEditMode ? true : false,
+    };
+    
     this.commentListNode = React.createRef()
     
     this.handleDelete = this.handleDelete.bind(this);
@@ -49,6 +53,10 @@ class PostDetail extends Component{
     // causes the list to reload
     await this.props.handleDeletePost();
     this.props.history.replace(`/r/${this.props.subredditTitle}`);
+  }
+  
+  postEditModeToggle= () => {
+    this.setState({ postEditMode: !this.state.postEditMode});
   }
   
   render () {
@@ -95,6 +103,13 @@ class PostDetail extends Component{
                 >
                   delete
                 </MenuItem>
+                <MenuItem
+                  eventKey={2}
+                  onSelect={this.postEditModeToggle}
+                >
+                  edit
+                </MenuItem>
+                
               </AuthEllipsis>
               
             </div>

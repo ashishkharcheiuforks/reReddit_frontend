@@ -110,7 +110,11 @@ const postList = (state=initialState, action) => {
 };
 
 // selectors
-
 export const getPostById = (state, pk) => state.postList.postsById[pk];
+export const getPostBodyById = (state, pk) => (
+  getPostById(state, pk)
+    ? getPostById(state, pk).body
+    : null
+  );
 
 export default postList;

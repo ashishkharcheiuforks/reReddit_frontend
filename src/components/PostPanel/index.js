@@ -43,8 +43,6 @@ class PostPanel extends Component {
       (props) => props.showEllipsis
     )(EllipsisButton);
 
-  //
-  //<{`/r/${subredditTitle}`}>
     return (
       <div
         className="post-segment-panel"
@@ -101,6 +99,15 @@ class PostPanel extends Component {
               >
                 delete
               </MenuItem>
+                      
+              <MenuItem
+                eventKey={2}
+                onSelect={() => null}
+              >
+                edit
+              </MenuItem>
+
+
             </AuthEllipsis>
           </div>
         </div>

@@ -3,6 +3,7 @@ import PropTypes from 'prop-types';
 import { withRouter } from 'react-router';
 
 import TextEditor from '../TextEditor';
+import CommentEditor from '../CommentEditor';
 import FieldGroup from '../FieldGroup';
 import { ErrorAlert } from '../AlertMessage';
 import { withMaybe } from '../../utilities/HOC';

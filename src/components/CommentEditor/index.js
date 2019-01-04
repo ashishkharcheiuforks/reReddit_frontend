@@ -78,12 +78,12 @@ class CommentEditor extends Component {
           ref={this.quillNode}
           onBlur={onBlur}
         />
-      <Button
-        onClick={() => this.handleSubmit(this.state.editorHtml)}
-        className='comment-submit-button'
-      >
-        {submitButtonWord}
-      </Button>
+        <Button
+          onClick={() => this.handleSubmit(this.state.editorHtml)}
+          className='comment-submit-button'
+        >
+          {submitButtonWord}
+        </Button>
       </Fragment>
     )
   }

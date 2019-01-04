@@ -27,6 +27,12 @@ class PostDetailContainer extends Component {
     this.props.fetchPostDetail(postId);
   }
   
+  componentWillUnmount() {
+    if (this.props.showPostEditor) {
+      this.props.togglePostEditor();
+    }
+  }
+  
   render() {
         
     const {

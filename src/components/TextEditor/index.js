@@ -48,15 +48,11 @@ class TextEditor extends Component {
   }
   
   handleSubmitClick = (editorHtml) => {
-    this.setState({
-      editorHtml: '',
-    })
     
     this.props.handleSubmit(editorHtml);
   }
   
   render() {
-    
     const {
       placeholder,
       usage,

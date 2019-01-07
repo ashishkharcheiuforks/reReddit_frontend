@@ -4,6 +4,7 @@ import {connect} from 'react-redux';
 import PostPanel from '../../components/PostPanel';
 import { getPostById } from '../../reducers/postList';
 import { getAuthUsername } from '../../reducers/userAuth';
+import { getSearchPostById } from '../../reducers/search';
 import { makeDeletePostRequest } from '../../actions/Posts';
 
 const PostPanelContainer = (props) => {
@@ -13,8 +14,8 @@ const PostPanelContainer = (props) => {
     upvotes,
     pk,
     title,
-    subreddit_title: subredditTitle,
-    poster_username: posterUsername,
+    subredditTitle,
+    posterUsername,
     created,
     voteDisplayState,
   } = post;
@@ -36,8 +37,8 @@ const PostPanelContainer = (props) => {
   );
 }
 
-const mapStateToProps = (state, ownProps) => ({
-    post: getPostById(state, ownProps.postPk),
+const mapStateToProps = (state, { postPk, }) => ({
+    post: getPostById(state, postPk) || getSearchPostById(state, postPk),
     authUsername: getAuthUsername(state),
   })
 

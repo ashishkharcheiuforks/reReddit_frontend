@@ -7,7 +7,7 @@ import EmptyPostList from './EmptyPostList';
 import './styles.css';
 
 const PostList = (props) => {
-  const {posts, loading, error, allPosts} = props;
+  const { loading, error, allPosts } = props;
 
   
   if (error) {

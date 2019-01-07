@@ -7,24 +7,11 @@ import {
   DELETE_POST_SUCCESS,
   DELETE_POST_FAILURE,
 } from '../actions/actionTypes';
-import { updateObjectOnVote } from '../utilities/reducerUtils';
-
-const allPosts = (postList) => {
-  let allPosts = [];
-  postList.forEach((post) => {
-    allPosts.push(post.pk)
-  })
-  return allPosts;
-}
-
-const postsById = (postList) => {
-  let postsById = {};
-  postList.forEach((post) => {
-    const { vote_state, ...newPost } = post;
-    postsById[post.pk] = { ...newPost, voteDisplayState: vote_state, };
-  })
-  return postsById;
-}
+import {
+  updateObjectOnVote,
+  postsById,
+  allIds
+} from '../utilities/reducerUtils';
 
 // TODO: figure out why this descruture isnt working right on postsById.
 // For some reason rest still contains the postId element
@@ -70,7 +57,7 @@ const postList = (state=initialState, action) => {
         loading: false,
         error: null,
         postsById: postsById(action.data),
-        allPosts: allPosts(action.data),
+        allPosts: allIds(action.data),
       };
     case FETCH_POST_LIST_FAILURE:
       return {

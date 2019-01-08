@@ -13,7 +13,6 @@ const PostList = (props) => {
     loading,
     error,
     allPosts,
-    usage,
   } = props;
 
   
@@ -32,7 +31,7 @@ const PostList = (props) => {
     postList = <EmptyPostList />;
   } else{
       const postPanels = allPosts.map((postPk) => {
-        return <PostPanelContainer postPk={postPk} key={postPk} usage={usage}/>});
+        return <PostPanelContainer postPk={postPk} key={postPk} />});
       postList = <ul>{postPanels}</ul>
   }
   
@@ -47,7 +46,6 @@ PostList.propTypes = {
   loading: PropTypes.bool,
   error: PropTypes.string,
   allPosts: PropTypes.arrayOf(PropTypes.number),
-  usage: PropTypes.string, // is list in a subreddit view or search results?
 }
 
 export default withRouter(PostList);

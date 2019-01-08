@@ -2,7 +2,7 @@ import React from 'react';
 import { connect } from 'react-redux';
 
 import SearchBar from '../../components/SearchBar';
-import { makeSearchRequest } from '../../actions/Search';
+import { setSearchQuery } from '../../actions/Search';
 
 const SearchBarContainer = (props) => {
   
@@ -16,7 +16,7 @@ const SearchBarContainer = (props) => {
 }
 
 const mapDispatchToProps = (dispatch) => ({
-  handleSearchRequest: (q) => dispatch(makeSearchRequest(q))
+  handleSearchRequest: (q) => dispatch(setSearchQuery(q))
 });
 
 export default connect(

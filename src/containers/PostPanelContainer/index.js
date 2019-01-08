@@ -6,7 +6,6 @@ import { withRouter } from 'react-router';
 import PostPanel from '../../components/PostPanel';
 import { getPostById } from '../../reducers/postList';
 import { getAuthUsername } from '../../reducers/userAuth';
-import { getSearchPostById } from '../../reducers/search';
 import { makeDeletePostRequest } from '../../actions/Posts';
 
 
@@ -46,10 +45,7 @@ const mapStateToProps = (state, ownProps) => {
   } = ownProps;
 
   return ({
-      // used for both search and normal subreddit post lists
-      post: usage === 'search'
-        ? getSearchPostById(state, postPk)
-        : getPostById(state, postPk),
+      post: getPostById(state, postPk),
       authUsername: getAuthUsername(state),
     })
 }

@@ -6,6 +6,7 @@ import {
   DELETE_POST_REQUEST,
   DELETE_POST_SUCCESS,
   DELETE_POST_FAILURE,
+  SEARCH_SUCCESS,
 } from '../actions/actionTypes';
 import {
   updateObjectOnVote,
@@ -77,7 +78,6 @@ const postList = (state=initialState, action) => {
           ),
         },
       }
-  
     case DELETE_POST_REQUEST:
       return {
         ...state,
@@ -86,13 +86,21 @@ const postList = (state=initialState, action) => {
       };
     case DELETE_POST_SUCCESS:
       return deletePost(state, state.deletionPostId)
-    default:
-      return state;
     case DELETE_POST_FAILURE:
       return {
         ...state,
         deleteError: action.error,
       }
+    case SEARCH_SUCCESS:
+      return {
+        ...state,
+        loading: false,
+        error: null,
+        postsById: postsById(action.data.posts),
+        allPosts: allIds(action.data.posts),
+      }
+    default:
+      return state;
   }
 };
 
@@ -103,5 +111,6 @@ export const getPostBodyById = (state, pk) => (
     ? getPostById(state, pk).body
     : null
   );
+export const getAllPosts = (state) => state.postList.allPosts;
 
 export default postList;

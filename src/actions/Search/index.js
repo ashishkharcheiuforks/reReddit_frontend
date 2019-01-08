@@ -3,6 +3,7 @@ import {
   SEARCH_SUCCESS,
   SEARCH_FAILURE,
   API_SEARCH,
+  SET_SEARCH_QUERY,
 } from '../actionTypes';
 
 import {
@@ -14,10 +15,15 @@ export const makeSearchRequest = (q) => {
   return ({
     type: API_SEARCH,
     types: {
-      request: (dispatch) => dispatch({type: SEARCH_REQUEST, query: q}),
+      request: SEARCH_REQUEST,
       success: SEARCH_SUCCESS,
       failure: SEARCH_FAILURE,
     },
     callAPI: () => searchApi(q),
   });
 };
+
+export const setSearchQuery = (q) => ({
+  type: SET_SEARCH_QUERY,
+  query: q,
+})

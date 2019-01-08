@@ -9,14 +9,16 @@ class SearchResults extends Component {
   render() {
     
     const {
-      allPosts
+      allPosts,
+      loading,
+      error,
     } = this.props
     
     return(
       <div className="search-results-container">
         
         <div className="results-list-container">
-          <PostList {...{allPosts}} usage="search" />
+          <PostList {...{allPosts, error, loading}} />
         </div>
       </div>
     )

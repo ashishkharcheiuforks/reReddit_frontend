@@ -2,13 +2,11 @@ import {
   SEARCH_REQUEST,
   SEARCH_SUCCESS,
   SEARCH_FAILURE,
+  SET_SEARCH_QUERY,
 } from '../actions/actionTypes';
-import { postsById, allIds } from '../utilities/reducerUtils';
 
 const initialState = {
   query: '',
-  allPosts: [], // pks
-  postsById: {},
   userResults: [], // username
   subredditResults: [], //subreddit titles
   error: null,
@@ -20,7 +18,6 @@ const search = (state=initialState, action) => {
     case SEARCH_REQUEST:
       return {
         ...state,
-        query: action.query,
         loading: true,
         error: null,
       };
@@ -29,8 +26,6 @@ const search = (state=initialState, action) => {
         ...state,
         loading: false,
         error: null,
-        allPosts: allIds(action.data.posts),
-        postsById: postsById(action.data.posts),
         userResults: action.data.users,
         subredditResults: action.data.subreddits,
       };
@@ -40,15 +35,20 @@ const search = (state=initialState, action) => {
         loading: false,
         error: action.error,
       };
+    case SET_SEARCH_QUERY:
+      return {
+        ...state,
+        query: action.query,
+      }
     default:
       return state
   }
 }
 
-export const getSearchPostById = (state, id) => state.search.postsById[id];
-export const getSearchAllPosts = (state) => state.search.allPosts;
 export const getSearchUserResults = (state) => state.search.userResults;
 export const getSearchSubredditResults = (state) => state.search.subredditResults;
 export const getSearchError = (state) => state.search.error;
+export const getSearchLoading = (state) => state.search.loading;
+export const getSearchQuery = (state) => state.search.query;
 
 export default search;

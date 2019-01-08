@@ -1,7 +1,7 @@
 import React from 'react';
 import { connect } from 'react-redux';
 
-import PostList from '../../components/PostList';
+import SearchResults from '../../components/SearchResults';
 import {
   getSearchPostById,
   getSearchAllPosts,
@@ -15,7 +15,7 @@ const SearchResultsContainer = (props) => {
   } = props;
   
   return (
-    <PostList allPosts={allPosts} />
+    <SearchResults allPosts={allPosts} />
   )
 }
 

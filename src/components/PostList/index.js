@@ -1,11 +1,11 @@
 import React from 'react';
+import PropTypes from 'prop-types';
 import { withRouter } from 'react-router';
 
 import PostPanelContainer from '../../containers/PostPanelContainer';
 import { ErrorAlert } from '../AlertMessage';
 import { PanelListLoader } from '../Loaders';
 import EmptyPostList from './EmptyPostList';
-import { SEARCH_URL, urlMatch } from '../../urls';
 import './styles.css';
 
 const PostList = (props) => {
@@ -13,13 +13,9 @@ const PostList = (props) => {
     loading,
     error,
     allPosts,
-    match: {
-      url
-    }
+    usage,
   } = props;
 
-  // Is this the list of posts for a subreddit or for search results?
-  const usage = urlMatch(SEARCH_URL, url) ? 'search' : 'subreddit';
   
   if (error) {
     return(
@@ -45,6 +41,13 @@ const PostList = (props) => {
         {postList}
     </div>
   );
+}
+
+PostList.propTypes = {
+  loading: PropTypes.bool,
+  error: PropTypes.string,
+  allPosts: PropTypes.arrayOf(PropTypes.number),
+  usage: PropTypes.string, // is list in a subreddit view or search results?
 }
 
 export default withRouter(PostList);

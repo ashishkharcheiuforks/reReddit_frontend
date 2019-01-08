@@ -45,20 +45,34 @@ const addChildCommentId = (state, newComment) => {
 // the children array of the parent (depending on which is appropriate)
 // Also adds the new comment to the commentsById object.
 const addComment = (state, newComment) => {
-  newComment['created'] = 'just now'
+  
+  // First to some fixes particular to a nacsent comment
+  const {
+    vote_state,
+    ...rest
+  } = newComment;
+  const updatedComment = {
+    ...rest,
+    voteDisplayState: vote_state,
+    created: 'just now'};
+    
   // if it's a root comment
   if (newComment.post) {
     return (
       {
-        ...addRootCommentId(state, newComment),
-        commentsById: {...state.commentsById, [newComment.pk]: newComment,}
+        ...addRootCommentId(state, updatedComment),
+        commentsById: { ...state.commentsById, [newComment.pk]: updatedComment }
       }
     )
   } else if (newComment.parent) {
-    const newCommentsById = addChildCommentId(state, newComment);
+    // or it it is a child comment
+    const newCommentsById = addChildCommentId(state, updatedComment);
     return (
       {
-      commentsById: {...newCommentsById, [newComment.pk]: newComment,}
+        commentsById: {
+          ...newCommentsById,
+          [newComment.pk]: updatedComment
+        }
       }
     )
   }

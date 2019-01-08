@@ -25,7 +25,7 @@ const CommentContainer = (props) => {
     voteDisplayState,
     deleted,
   } = commentData;
-  const posterUsername  = posterData && posterData.username;
+  const posterUsername  = (posterData && posterData.username) || authUsername;
   return (
     <Comment
       {...{

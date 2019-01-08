@@ -6,6 +6,7 @@ import {
 import { postsById, allIds } from '../utilities/reducerUtils';
 
 const initialState = {
+  query: '',
   allPosts: [], // pks
   postsById: {},
   userResults: [], // username
@@ -19,6 +20,7 @@ const search = (state=initialState, action) => {
     case SEARCH_REQUEST:
       return {
         ...state,
+        query: action.query,
         loading: true,
         error: null,
       };

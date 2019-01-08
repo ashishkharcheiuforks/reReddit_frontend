@@ -10,7 +10,8 @@ import {
 import { PersistGate } from 'redux-persist/integration/react';
 
 import './index.css';
-import { store, persistor } from './store'
+import * as urls from './urls';
+import { store, persistor } from './store';
 import SubredditContainer from './containers/SubredditContainer';
 import NavBarContainer from './containers/NavBarContainer';
 import UserAuthModalContainer from './containers/UserAuthModalContainer';
@@ -73,7 +74,7 @@ ReactDOM.render(
                 />
                 <Route
                   exact
-                  path="/createSubreddit/"
+                  path="/createSubreddit"
                   render={
                     (props) =>
                     <CreateSubredditContainer
@@ -84,7 +85,7 @@ ReactDOM.render(
                 />
                 <Route
                   exact
-                  path="/search/"
+                  path={urls.SEARCH_URL}
                   render={
                     (props) =>
                     <SearchResultsContainer

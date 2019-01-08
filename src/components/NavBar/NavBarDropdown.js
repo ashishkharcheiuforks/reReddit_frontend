@@ -10,8 +10,8 @@ import './styles.css'
 const NavBarDropdown = ({subscribed}) => {
   
   const subscribedSubs = subscribed.map( sub =>
-    <LinkContainer key={sub.id} exact to={"/r/" + sub.title}>
-      <MenuItem eventKey={sub.id}>
+    <LinkContainer key={sub.pk} exact to={"/r/" + sub.title}>
+      <MenuItem eventKey={sub.pk}>
         {sub.title}
       </MenuItem>
     </LinkContainer>

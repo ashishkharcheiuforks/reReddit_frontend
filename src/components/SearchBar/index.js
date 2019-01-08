@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 import PropTypes from 'prop-types';
-
+import { withRouter } from 'react-router';
 import {
   Navbar,
   Nav,
@@ -11,6 +11,7 @@ import {
 
 import FieldGroup from '../FieldGroup';
 import { LoadingButton } from '../Buttons';
+import { SEARCH_URL } from '../../urls';
 import './styles.css';
 
 class SearchBar extends Component {
@@ -20,17 +21,24 @@ class SearchBar extends Component {
     this.state = {
       query: ''
     };
+    
+    this.handleSearchSubmit = this.handleSearchSubmit.bind(this);
   }
   
   handleChange = (e) => {
     this.setState({query: e.target.value});
   }
   
-  handleSearchSubmit = (e) => {
+  async handleSearchSubmit(e) {
     e.preventDefault();
     
-    this.props.handleSearchRequest(this.state.query);
-    this.setState({query: ''});
+    try{
+      await this.props.handleSearchRequest(this.state.query);
+    } catch {
+      this.forceUpdate()
+    }
+    this.setState({query:''})
+    this.props.history.push(SEARCH_URL);
   }
   
   render() {
@@ -69,4 +77,4 @@ SearchBar.propTypes = {
   handleSearchRequest: PropTypes.func,
 }
 
-export default SearchBar;
+export default withRouter(SearchBar);

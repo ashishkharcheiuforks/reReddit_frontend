@@ -8,11 +8,10 @@ import { getPostById } from '../../reducers/postList';
 import { getAuthUsername } from '../../reducers/userAuth';
 import { getSearchPostById } from '../../reducers/search';
 import { makeDeletePostRequest } from '../../actions/Posts';
-import { SEARCH_URL, urlMatch } from '../../urls';
+
 
 const PostPanelContainer = (props) => {
-  const {post, handleDeletePost, authUsername} = props;
-  
+  const { post, handleDeletePost, authUsername, usage } = props;
   const {
     upvotes,
     pk,
@@ -43,14 +42,12 @@ const PostPanelContainer = (props) => {
 const mapStateToProps = (state, ownProps) => {
   const {
     postPk,
-    match :{
-      url
-    },
+    usage,
   } = ownProps;
-  
+
   return ({
       // used for both search and normal subreddit post lists
-      post: urlMatch(SEARCH_URL, url)
+      post: usage === 'search'
         ? getSearchPostById(state, postPk)
         : getPostById(state, postPk),
       authUsername: getAuthUsername(state),
@@ -62,15 +59,21 @@ const mapDispatchToProps = (dispatch, ownProps) => ({
 })
 
 PostPanelContainer.propTypes = {
-  upvotes: PropTypes.number,
-  pk: PropTypes.number,
-  title: PropTypes.string,
-  subredditTitle: PropTypes.string,
-  posterUsername: PropTypes.string,
-  created: PropTypes.string,
-  voteDisplayState: PropTypes.oneOf([0,-1,1]),
+  post: PropTypes.shape({
+    upvotes: PropTypes.number,
+    pk: PropTypes.number,
+    title: PropTypes.string,
+    subredditTitle: PropTypes.string,
+    posterUsername: PropTypes.string,
+    created: PropTypes.string,
+    voteDisplayState: PropTypes.oneOf([0,-1,1]),
+  }),
+  handleDeletePost: PropTypes.func,
+  authUsername: PropTypes.string,
+  usage: PropTypes.oneOf(['subreddit', 'search']),
 }
-export default withRouter(connect(
+
+export default connect(
   mapStateToProps,
   mapDispatchToProps,
-)(PostPanelContainer));
+)(PostPanelContainer);

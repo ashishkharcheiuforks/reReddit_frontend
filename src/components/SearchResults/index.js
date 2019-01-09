@@ -3,6 +3,7 @@ import PropTypes from "prop-types";
 import { Button } from "react-bootstrap";
 
 import PostList from "../PostList";
+import SubredditList from "../SubredditList";
 import NavSelectorButton from "../Buttons/NavSelectorButton";
 import { withEither } from "../../utilities/HOC";
 import { compose } from "recompose";
@@ -22,11 +23,18 @@ class SearchResults extends Component {
   };
 
   render() {
-    const { allPosts, loading, error, query } = this.props;
+    const {
+      allPosts,
+      allSubreddits,
+      allUsers,
+      loading,
+      error,
+      query
+    } = this.props;
 
     const ConditionalResultsList = compose(
       withEither(props => props.view === "users", () => null),
-      withEither(props => props.view === "subreddits", () => null)
+      withEither(props => props.view === "subreddits", SubredditList)
     )(PostList);
 
     return (
@@ -62,7 +70,13 @@ class SearchResults extends Component {
 
         <div className="results-list-container">
           <ConditionalResultsList
-            {...{ allPosts, error, loading }}
+            {...{
+              allPosts,
+              allSubreddits,
+              allUsers,
+              error,
+              loading
+            }}
             view={this.state.currentResultsView}
           />
         </div>

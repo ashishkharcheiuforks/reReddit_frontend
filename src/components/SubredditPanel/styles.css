@@ -1,0 +1,32 @@
+div.subreddit-panel {
+  display: flex;
+  justify-content: space-between;
+}
+
+div.subreddit-panel > div.title-and-subscriptions {
+  display: flex;
+  flex-direction: column;
+  justify-content: space-around;
+  margin-left: 2rem;
+  margin-right: 2rem;
+  min-width: 18rem;
+}
+
+div.subreddit-panel > div.title-and-subscriptions > h1 {
+  font-size: 92%;
+  margin-bottom: 0.5em;
+  margin-top: 1rem;
+}
+
+div.subreddit-panel > div.title-and-subscriptions > p {
+  opacity: 0.3;
+  font-size: 80%;
+}
+
+div.subreddit-panel > div.description {
+  opacity: 0.3;
+  font-size: 85%;
+  display: flex;
+  justify-content: flex-start;
+  flex-grow: 1;
+}

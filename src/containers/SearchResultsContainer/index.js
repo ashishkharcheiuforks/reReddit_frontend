@@ -7,7 +7,9 @@ import { getAllPosts } from "../../reducers/postList";
 import {
   getSearchError,
   getSearchQuery,
-  getSearchLoading
+  getSearchLoading,
+  getSearchAllSubreddits,
+  getSearchAllUsers
 } from "../../reducers/search";
 
 class SearchResultsContainer extends Component {
@@ -22,12 +24,21 @@ class SearchResultsContainer extends Component {
   }
 
   render() {
-    const { allPosts, error, loading, query } = this.props;
+    const {
+      allPosts,
+      allSubreddits,
+      allUsers,
+      error,
+      loading,
+      query
+    } = this.props;
 
     return (
       <SearchResults
         {...{
           allPosts,
+          allSubreddits,
+          allUsers,
           loading,
           error,
           query
@@ -40,6 +51,8 @@ class SearchResultsContainer extends Component {
 const mapStateToProps = state => ({
   query: getSearchQuery(state),
   allPosts: getAllPosts(state),
+  allSubreddits: getSearchAllSubreddits(state),
+  allUsers: getSearchAllUsers(state),
   error: getSearchError(state),
   loading: getSearchLoading(state)
 });

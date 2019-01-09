@@ -5,6 +5,12 @@ div.search-results-container {
   margin: 0 auto;
 }
 
+div.search-navbar {
+  display: flex;
+  flex-direction: column;
+  align-content: flex-start;
+}
+
 div.results-list-container {
   margin-top: 3rem;
 }

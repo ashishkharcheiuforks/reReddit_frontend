@@ -4,8 +4,8 @@ import PropTypes from "prop-types";
 import SubscriptionButtonContainer from "../../containers/SubscriptionButtonContainer";
 import "./styles.css";
 
-const SubredditPanel = ({ subreddit }) => (
-  <div className="subreddit-panel">
+const SubredditPanel = ({ subreddit, handleSubredditRedirect }) => (
+  <div className="subreddit-panel" onClick={handleSubredditRedirect}>
     <div className="title-and-subscriptions">
       <h1>r/{subreddit.title}</h1>
       <p>{subreddit.members.length} Subscribers </p>
@@ -15,8 +15,18 @@ const SubredditPanel = ({ subreddit }) => (
       <p>{subreddit.description}</p>
     </div>
 
-    <div className="subscription-button" />
+    <div className="subscription-button">
+      <SubscriptionButtonContainer subredditTitle={subreddit.title} />
+    </div>
   </div>
 );
+
+SubredditPanel.propTypes = {
+  subreddit: PropTypes.shape({
+    title: PropTypes.string,
+    members: PropTypes.arrayOf(PropTypes.string),
+    description: PropTypes.string
+  })
+};
 
 export default SubredditPanel;

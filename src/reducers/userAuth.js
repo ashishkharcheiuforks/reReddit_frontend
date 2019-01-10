@@ -26,7 +26,6 @@ const userAuth = (state = initialState, action) => {
         loading: true
       };
     case USER_AUTH_LOGIN_SUCCESS:
-      console.log(action.data);
       return {
         ...state,
         token: action.data.token,
@@ -63,8 +62,7 @@ const userAuth = (state = initialState, action) => {
 // Selectors
 
 export const getAuthUsername = state => state.userAuth.username;
-export const getAuthUserSubredditTitles = state => {
+export const getAuthUserSubredditTitles = state =>
   state.userAuth.subs.map(subreddit => subreddit.title);
-};
 
 export default userAuth;

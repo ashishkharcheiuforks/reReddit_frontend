@@ -2,7 +2,8 @@ import {
   SEARCH_REQUEST,
   SEARCH_SUCCESS,
   SEARCH_FAILURE,
-  SET_SEARCH_QUERY
+  SET_SEARCH_QUERY,
+  SET_SEARCH_RESULTS_VIEW
 } from "../actions/actionTypes";
 import { allIds, objectById } from "../utilities/reducerUtils";
 
@@ -12,6 +13,7 @@ const initialState = {
   subredditsById: {},
   allUsers: [],
   usersById: {},
+  searchResultsView: "posts",
   error: null,
   loading: false
 };
@@ -43,7 +45,13 @@ const search = (state = initialState, action) => {
     case SET_SEARCH_QUERY:
       return {
         ...state,
-        query: action.query
+        query: action.query,
+        searchResultsView: "posts"
+      };
+    case SET_SEARCH_RESULTS_VIEW:
+      return {
+        ...state,
+        searchResultsView: action.viewName
       };
     default:
       return state;
@@ -60,5 +68,6 @@ export const getSearchAllUsers = state => state.search.allUsers;
 export const getSearchSubredditById = (state, id) =>
   state.search.subredditsById[id];
 export const getSearchUserById = (state, id) => state.search.UsersById[id];
+export const getSearchResultsView = state => state.search.searchResultsView;
 
 export default search;

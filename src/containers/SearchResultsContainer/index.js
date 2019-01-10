@@ -9,8 +9,10 @@ import {
   getSearchQuery,
   getSearchLoading,
   getSearchAllSubreddits,
-  getSearchAllUsers
+  getSearchAllUsers,
+  getSearchResultsView
 } from "../../reducers/search";
+import { setSearchResultsView } from "../../actions/Search";
 
 class SearchResultsContainer extends Component {
   componentDidMount() {
@@ -30,7 +32,9 @@ class SearchResultsContainer extends Component {
       allUsers,
       error,
       loading,
-      query
+      query,
+      resultsView,
+      changeResultsView
     } = this.props;
 
     return (
@@ -41,7 +45,9 @@ class SearchResultsContainer extends Component {
           allUsers,
           loading,
           error,
-          query
+          query,
+          resultsView,
+          changeResultsView
         }}
       />
     );
@@ -54,11 +60,13 @@ const mapStateToProps = state => ({
   allSubreddits: getSearchAllSubreddits(state),
   allUsers: getSearchAllUsers(state),
   error: getSearchError(state),
-  loading: getSearchLoading(state)
+  loading: getSearchLoading(state),
+  resultsView: getSearchResultsView(state)
 });
 
 const mapDispatchToProps = dispatch => ({
-  searchRequest: q => dispatch(makeSearchRequest(q))
+  searchRequest: q => dispatch(makeSearchRequest(q)),
+  changeResultsView: view => dispatch(setSearchResultsView(view))
 });
 
 export default connect(

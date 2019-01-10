@@ -11,24 +11,6 @@ div.description {
   font-size: 0.9em;
 }
 
-div.title {
-  
-}
-
-.sidebar-content .sidebar-button {
+.sidebar-button {
   margin: 1.5rem 0.4rem;
-}
-
-#subscribe-button {
-  border: 1.5px solid white;
-  background: #333;
-  color: white;
-}
-
-#subscribe-button:hover {
-  background: #4d4d4d;
-}
-
-#subscribe-button:active {
-  background: #8c8c8c;
 }

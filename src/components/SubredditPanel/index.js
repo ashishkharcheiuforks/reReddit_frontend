@@ -1,6 +1,7 @@
 import React from "react";
 import PropTypes from "prop-types";
 
+import SubscriptionButtonContainer from "../../containers/SubscriptionButtonContainer";
 import "./styles.css";
 
 const SubredditPanel = ({ subreddit }) => (

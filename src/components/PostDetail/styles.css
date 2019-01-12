@@ -17,7 +17,6 @@
   margin-top: 1rem;
 }
 
-
 /* PostInfoLine*/
 
 div.post-info-line {
@@ -27,7 +26,7 @@ div.post-info-line {
   display: inline;
 }
 
-.post-info-line .link-to-sub a{
+.post-info-line .link-to-sub a {
   color: white;
   font-size: 75%;
   font-weight: bold;
@@ -38,8 +37,8 @@ div.post-info-line {
   display: inline;
 }
 
-.post-info-line .link-to-user a{
-  color: #B8B8B8;
+.post-info-line .link-to-user a {
+  color: #b8b8b8;
   font-size: 75%;
   flex: 1 1 auto;
 }
@@ -53,7 +52,7 @@ div.post-info-line {
   margin-top: 3rem;
 }
 
-input#hidden-copy-input {
+input.hidden-copy-input {
   position: absolute;
   left: -999rem;
 }

@@ -1,52 +1,43 @@
-import React, { Component, Fragment } from 'react';
-import {Button, Tooltip, OverlayTrigger } from 'react-bootstrap';
-import { FaShare } from 'react-icons/fa';
+import React, { Component, Fragment } from "react";
+import { Button, Tooltip, OverlayTrigger } from "react-bootstrap";
+import { FaShare } from "react-icons/fa";
 
-import './styles.css';
-
+import "./styles.css";
 
 class ShareButton extends Component {
   constructor(props) {
     super(props);
-    
-  this.state = {
-    showTooltip: false,
-  }
-  
-  this.copyNode = React.createRef();
-  
-    this.copyTooltip = (
-      <Tooltip id="copy-tooltip" >
-        Copied Link
-      </Tooltip>
-    );
-  }
 
+    this.state = {
+      showTooltip: false
+    };
+
+    this.copyNode = React.createRef();
+
+    this.copyTooltip = <Tooltip id="copy-tooltip">Copied Link</Tooltip>;
+  }
 
   toggleTooltip = () => {
-    this.setState({showTooltip: !this.state.showTooltip});
+    this.setState({ showTooltip: !this.state.showTooltip });
   };
-  
-  copyToClipboard = (e) => {
+
+  copyToClipboard = e => {
     this.copyNode.current.select();
     document.execCommand("copy");
-    
+
     this.toggleTooltip();
     setTimeout(this.toggleTooltip, 4000);
   };
-  
+
   render() {
-    
-    const {
-      shareUrl,
-    } = this.props;
-    
+    const { shareUrl } = this.props;
+
     return (
       <Fragment>
         <OverlayTrigger
           placement="bottom"
           overlay={this.copyTooltip}
-          trigger='focus'
+          trigger="focus"
           delayHide={4000}
         >
           <Button
@@ -59,7 +50,7 @@ class ShareButton extends Component {
         </OverlayTrigger>
         <form>
           <input
-            id="hidden-copy-input"
+            className="hidden-copy-input"
             readOnly
             ref={this.copyNode}
             value={shareUrl}
@@ -67,7 +58,7 @@ class ShareButton extends Component {
           />
         </form>
       </Fragment>
-    )
+    );
   }
 }
 

@@ -18,110 +18,95 @@ import {
   API_CREATE_POST,
   API_DELETE_POST,
   API_POST_DETAIL,
-  TOGGLE_POST_EDITOR,
-} from '../actionTypes';
+  TOGGLE_POST_EDITOR
+} from "../actionTypes";
 
 import {
   getSubPostListApi,
-  getPostListApi,
   getPostDetailApi,
   createPostApi,
   deletePostApi,
-  updatePostApi,
-} from '../../api/Posts';
-
+  updatePostApi
+} from "../../api/Posts";
+import { getAuthUsername, getAuthUserToken } from "../../reducers/userAuth";
 
 // use redux-thunk for userAuth username
-export const makeSubPostListRequest = (subredditTitle, orderBy) =>
-  (dispatch, getState) => dispatch(
-  {
+export const makeSubPostListRequest = (subredditTitle, orderBy) => (
+  dispatch,
+  getState
+) =>
+  dispatch({
     type: API_SUB_POST_LIST,
     types: {
       request: FETCH_POST_LIST_REQUEST,
       success: FETCH_POST_LIST_SUCCESS,
-      failure: FETCH_POST_LIST_FAILURE,
+      failure: FETCH_POST_LIST_FAILURE
     },
-    callAPI: subredditTitle
-      ? () => getSubPostListApi(
+    callAPI: () =>
+      getSubPostListApi(
         subredditTitle,
         orderBy,
-        getState().userAuth.username
+        getAuthUsername(getState()),
+        getAuthUserToken(getState())
       )
-      : () => getPostListApi(orderBy, getState().userAuth.username),
-  }
-);
+  });
 
 // Using redux-thunk to get an auth token
-export const makeCreatePostRequest = (title, body, subredditTitle) =>
-  (dispatch, getState) =>
-    dispatch(
-      {
-        type: API_CREATE_POST,
-        types: {
-          request: CREATE_POST_REQUEST,
-          success: CREATE_POST_SUCCESS,
-          failure: CREATE_POST_FAILURE,
-        },
-        callAPI: () => createPostApi(
-          title,
-          body,
-          subredditTitle,
-          getState().userAuth.token
-        )
-      }
-    )
-    
-// Using redux-thunk to get an auth token
-export const makeUpdatePostRequest = (pk, body) =>
-  (dispatch, getState) =>
-    dispatch(
-      {
-        type: API_CREATE_POST,
-        types: {
-          request: UPDATE_POST_REQUEST,
-          success: UPDATE_POST_SUCCESS,
-          failure: UPDATE_POST_FAILURE,
-        },
-        callAPI: () => updatePostApi(
-          pk,
-          body,
-          getState().userAuth.token
-        )
-      }
-    )
-    
-export const makeDeletePostRequest = (pk) =>
-  (dispatch, getState) =>
-    dispatch(
-      {
-        type: API_DELETE_POST,
-        types: {
-          request: onDeletePostRequest(pk),
-          success: DELETE_POST_SUCCESS,
-          failure: DELETE_POST_FAILURE,
-        },
-        callAPI: () => deletePostApi(pk, getState().userAuth.token),
-      }
-    )
-    
-// Use a thunk action creator to get the pk added to the REQUEST action
-const onDeletePostRequest = (pk) => (dispatch) => dispatch({
-      type: DELETE_POST_REQUEST,
-      pk,
-})
-
-export const makePostDetailRequest = (postId) => (
-  {
-    type: API_POST_DETAIL,
+export const makeCreatePostRequest = (title, body, subredditTitle) => (
+  dispatch,
+  getState
+) =>
+  dispatch({
+    type: API_CREATE_POST,
     types: {
-      request: FETCH_POST_DETAIL_REQUEST,
-      success: FETCH_POST_DETAIL_SUCCESS,
-      failure: FETCH_POST_DETAIL_FAILURE,
+      request: CREATE_POST_REQUEST,
+      success: CREATE_POST_SUCCESS,
+      failure: CREATE_POST_FAILURE
     },
-    callAPI: () => getPostDetailApi(postId),
-  }
-)
+    callAPI: () =>
+      createPostApi(title, body, subredditTitle, getState().userAuth.token)
+  });
+
+// Using redux-thunk to get an auth token
+export const makeUpdatePostRequest = (pk, body) => (dispatch, getState) =>
+  dispatch({
+    type: API_CREATE_POST,
+    types: {
+      request: UPDATE_POST_REQUEST,
+      success: UPDATE_POST_SUCCESS,
+      failure: UPDATE_POST_FAILURE
+    },
+    callAPI: () => updatePostApi(pk, body, getState().userAuth.token)
+  });
+
+export const makeDeletePostRequest = pk => (dispatch, getState) =>
+  dispatch({
+    type: API_DELETE_POST,
+    types: {
+      request: onDeletePostRequest(pk),
+      success: DELETE_POST_SUCCESS,
+      failure: DELETE_POST_FAILURE
+    },
+    callAPI: () => deletePostApi(pk, getState().userAuth.token)
+  });
+
+// Use a thunk action creator to get the pk added to the REQUEST action
+const onDeletePostRequest = pk => dispatch =>
+  dispatch({
+    type: DELETE_POST_REQUEST,
+    pk
+  });
+
+export const makePostDetailRequest = postId => ({
+  type: API_POST_DETAIL,
+  types: {
+    request: FETCH_POST_DETAIL_REQUEST,
+    success: FETCH_POST_DETAIL_SUCCESS,
+    failure: FETCH_POST_DETAIL_FAILURE
+  },
+  callAPI: () => getPostDetailApi(postId)
+});
 
 export const togglePostEditor = () => ({
-  type: TOGGLE_POST_EDITOR,
-})
+  type: TOGGLE_POST_EDITOR
+});

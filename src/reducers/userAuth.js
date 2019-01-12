@@ -62,6 +62,7 @@ const userAuth = (state = initialState, action) => {
 // Selectors
 
 export const getAuthUsername = state => state.userAuth.username;
+export const getAuthUserToken = state => state.userAuth.token;
 export const getAuthUserSubredditTitles = state =>
   state.userAuth.subs.map(subreddit => subreddit.title);
 

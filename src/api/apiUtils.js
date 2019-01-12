@@ -1,5 +1,9 @@
-export const tokenContextObj = (token) => ({
-  headers:{
-    Authorization: `Token ${token}`,
-  },
-});
+// If there is a token then grab set it, if not then return nothing
+export const tokenContextObj = token =>
+  token
+    ? {
+        headers: {
+          Authorization: `Token ${token}`
+        }
+      }
+    : {};

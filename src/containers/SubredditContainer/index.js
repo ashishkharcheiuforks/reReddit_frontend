@@ -11,13 +11,13 @@ import Subreddit from "../../components/Subreddit";
 class SubredditContainer extends Component {
   componentDidMount() {
     // a null subredditTitle implies we are at the home url
-    const subredditTitle = this.props.match.params.subredditTitle || null;
+    const subredditTitle = this.props.match.params.subredditTitle || "home";
     this.props.fetchSubDetail(subredditTitle);
   }
 
   componentDidUpdate(prevProps) {
     // a null subredditTitle implies we are at the home url
-    const subredditTitle = this.props.match.params.subredditTitle || null;
+    const subredditTitle = this.props.match.params.subredditTitle || "home";
     if (
       this.props.match.params.subredditTitle !==
       prevProps.match.params.subredditTitle

@@ -14,7 +14,6 @@ const CommentEditorContainer = props => {
 };
 
 const mapStateToProps = (state, ownProps) => ({
-  parentPk: ownProps.commentParentPk || getPostDetailPk(state),
   // should the editor be focues on after mounting?
   focusOnEditor: ownProps.rootComment
 });
@@ -27,7 +26,7 @@ const mapDispatchToProps = (dispatch, ownProps) => {
         dispatch(
           makeCreateCommentRequest({
             body: commentBody,
-            parentPk: ownProps.postPk,
+            parentPk: ownProps.parentPk,
             rootComment: ownProps.rootComment
           })
         );

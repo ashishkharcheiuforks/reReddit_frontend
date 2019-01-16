@@ -1,43 +1,41 @@
-import React, { Component, Fragment } from 'react';
-import { Button} from 'react-bootstrap';
-import { FaComment} from 'react-icons/fa';
-import { compose } from 'recompose';
+import React, { Component, Fragment } from "react";
+import { Button } from "react-bootstrap";
+import { FaComment } from "react-icons/fa";
+import { compose } from "recompose";
 
-import './styles.css';
-import CommentEditorContainer from '../../../containers/CommentEditorContainer';
-import CommentInfoLine from '../CommentInfoLine';
-import CommentBody from '../CommentBody';
-import VoterContainer from '../../../containers/VoterContainer';
-import { withMaybe, withEither } from '../../../utilities/HOC';
-
+import "./styles.css";
+import CommentEditorContainer from "../../../containers/CommentEditorContainer";
+import CommentInfoLine from "../CommentInfoLine";
+import CommentBody from "../CommentBody";
+import VoterContainer from "../../../containers/VoterContainer";
+import { withMaybe, withEither } from "../../../utilities/HOC";
 
 class ExpandedComment extends Component {
   constructor(props) {
     super(props);
-    
-    this.state={
+
+    this.state = {
       showReplyEditor: false,
-      showUpdateEditor: false,
-    }
-    
+      showUpdateEditor: false
+    };
+
     this.handleToggleReplyEditor = this.handleToggleReplyEditor.bind(this);
     this.handleToggleUpdateEditor = this.handleToggleUpdateEditor.bind(this);
   }
-  
+
   handleToggleReplyEditor() {
     this.setState({
-      showReplyEditor: !this.state.showReplyEditor,
+      showReplyEditor: !this.state.showReplyEditor
     });
   }
-  
+
   handleToggleUpdateEditor() {
     this.setState({
-      showUpdateEditor: !this.state.showUpdateEditor,
-    })
+      showUpdateEditor: !this.state.showUpdateEditor
+    });
   }
-  
+
   render() {
-    
     const {
       childrenList,
       body,
@@ -48,42 +46,45 @@ class ExpandedComment extends Component {
       pk,
       voteDisplayState,
       deleted,
-      handleToggleCollapse:handleCollapse,
-      handleDeleteComment,
+      handleToggleCollapse: handleCollapse,
+      handleDeleteComment
     } = this.props;
-    
-    const ReplyEditorWithHide = withMaybe(
-      (props) => props.showEditor
-    )(CommentEditorContainer);
-    
-    const CommentBodyWithDeleteAndUpdateEditor = compose(
-      withMaybe((props) => !props.deleted),
-      withEither((props) => props.showUpdateEditor, CommentEditorContainer)
-    )(CommentBody);
-    
-    const updateEditorProps = {
 
-    }
-  
+    const ReplyEditorWithHide = withMaybe(props => props.showEditor)(
+      CommentEditorContainer
+    );
+
+    const CommentBodyWithDeleteAndUpdateEditor = compose(
+      withMaybe(props => !props.deleted),
+      withEither(props => props.showUpdateEditor, CommentEditorContainer)
+    )(CommentBody);
+
+    const updateEditorProps = {};
+
     return (
       <div className="comment-tree-content">
         <div className="comment-voter-collapser">
-          {deleted ||
+          {deleted || (
             <VoterContainer
               voteDisplayState={voteDisplayState}
-              itemType={'comment'}
+              itemType={"comment"}
               itemPk={pk}
             />
-          }
-          <span onClick={() => handleCollapse()} className='thread-line-container'>
-            <div className='thread-line'/>
+          )}
+          <span
+            onClick={() => handleCollapse()}
+            className="thread-line-container"
+          >
+            <div className="thread-line" />
           </span>
         </div>
         <div className="comment-panel">
-          <div className='comment-info-line-container'>
-            <CommentInfoLine {...{posterUsername, upvotes, created, deleted}}/>
+          <div className="comment-info-line-container">
+            <CommentInfoLine
+              {...{ posterUsername, upvotes, created, deleted }}
+            />
           </div>
-          
+
           <CommentBodyWithDeleteAndUpdateEditor
             {...{
               body,
@@ -91,9 +92,9 @@ class ExpandedComment extends Component {
               authUsername,
               pk,
               deleted,
-              handleDeleteComment,
+              handleDeleteComment
             }}
-            usage='update'
+            usage="update"
             initialValue={body}
             onBlur={this.handleToggleUpdateEditor}
             onEditorSubmit={this.handleToggleUpdateEditor}
@@ -101,20 +102,18 @@ class ExpandedComment extends Component {
             handleToggleReplyEditor={this.handleToggleReplyEditor}
             handleToggleUpdateEditor={this.handleToggleUpdateEditor}
           />
-          
+
           <ReplyEditorWithHide
             showEditor={this.state.showReplyEditor}
             rootComment={false}
-            commentParentPk={pk}
-            usage='create'
+            parentPk={pk}
+            usage="create"
             onBlur={this.handleToggleReplyEditor}
           />
-          <div className="children-container">
-            {childrenList}
-          </div>
+          <div className="children-container">{childrenList}</div>
         </div>
       </div>
-    )
+    );
   }
 }
 

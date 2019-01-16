@@ -41,7 +41,7 @@ const CommentTreeList = props => {
       <AlertOnError children={createCommentError} />
       <div className="top-comment-editor">
         <CommentEditorContainer
-          postPk={postPk}
+          parentPk={postPk}
           rootComment={true}
           usage="create"
         />

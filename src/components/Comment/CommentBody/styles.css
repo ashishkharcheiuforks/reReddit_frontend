@@ -2,8 +2,8 @@
   max-width: 75rem;
 }
 
-.comment-body-container, .comment-links {
-  padding-left: 0.6rem;
+.comment-body-container > p {
+  margin: 0;
 }
 
 .comment-links .comment-icon {
@@ -18,4 +18,8 @@
   display: inline-block;
   padding-bottom: 0.7rem;
   margin-top: 0.2rem;
+}
+
+.comment-links .comment-buttons:hover {
+  text-decoration: underline;
 }

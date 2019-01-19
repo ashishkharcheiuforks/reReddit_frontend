@@ -6,8 +6,9 @@
 # testing
 /coverage
 
+# can't build on ec2 for some reason
 # production
-/build
+#/build
 
 # misc
 .DS_Store

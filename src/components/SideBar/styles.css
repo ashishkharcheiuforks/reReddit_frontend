@@ -1,14 +1,35 @@
 div.sidebar-content {
   text-align: center;
-  background: #333;
+  background: #333333;
   font-size: 2rem;
   color: white;
   border-radius: 2px;
+  padding-top: 1rem;
+  font-family: "Poppins";
+  font-weight: 500;
+}
+
+div.sidebar-content > p.sidebar-header {
+  text-align: left;
+  padding-left: 1.5rem;
+  font-size: 0.55em;
+  color: #818384;
+}
+
+div.sidebar-content > div.title {
+  text-align: left;
+  padding-left: 2rem;
+}
+
+div.sidebar-content > div.title > h2 {
+  font-size: 0.85em;
 }
 
 div.description {
   margin-top: 2rem;
-  font-size: 0.9em;
+  font-size: 0.75em;
+  text-align: left;
+  padding-left: 1.5rem;
 }
 
 .sidebar-button {

@@ -24,7 +24,10 @@ const SideBar = props => {
 
   return (
     <div className="sidebar-content">
-      <div className="title">r/{subredditTitle}</div>
+      <p className="sidebar-header">SUBREDDIT DETAILS</p>
+      <div className="title">
+        <h2>r/{subredditTitle}</h2>
+      </div>
 
       <div className="description">{description}</div>
       <SubscriptionButtonContainer subredditTitle={subredditTitle} />

@@ -5,68 +5,73 @@ import {
   SET_SUB_TO_HOME,
   SUBREDDIT_SUBSCRIBE_REQUEST,
   SUBREDDIT_SUBSCRIBE_FAILURE,
-  SUBREDDIT_SUBSCRIBE_SUCCESS,
-} from '../actions/actionTypes';
+  SUBREDDIT_SUBSCRIBE_SUCCESS
+} from "../actions/actionTypes";
 
 const initialState = {
   loading: false,
   error: null,
   title: null,
   description: null,
-  subscriptionLoading: false,
-}
+  subscriptionLoading: false
+};
 
-const subreddit = (state=initialState, action) => {
+const subreddit = (state = initialState, action) => {
   switch (action.type) {
     case FETCH_SUB_DETAIL_REQUEST:
       return {
         ...state,
         loading: true,
-        error: null,
-      }
+        error: null
+      };
     case FETCH_SUB_DETAIL_SUCCESS:
-     return {
-       ...state,
-       loading: false,
-       error: null,
-       title: action.data.title,
-       description: action.data.description,
-     };
+      return {
+        ...state,
+        loading: false,
+        error: null,
+        title: action.data.title,
+        description: action.data.description
+      };
     case FETCH_SUB_DETAIL_FAILURE:
       return {
         ...state,
         loading: false,
-        error: action.error,
-      }
+        error: action.error
+      };
     case SET_SUB_TO_HOME:
       return {
         ...state,
         loading: false,
         error: null,
-        title: action.title,
-      }
+        title: action.title
+      };
     case SUBREDDIT_SUBSCRIBE_REQUEST:
       return {
         ...state,
-        subscriptionLoading: true,
-      }
+        subscriptionLoading: true
+      };
     case SUBREDDIT_SUBSCRIBE_SUCCESS:
       return {
         ...state,
-        subscriptionLoading: false,
-      }
+        subscriptionLoading: false
+      };
     case SUBREDDIT_SUBSCRIBE_FAILURE:
       return {
         ...state,
-        subscriptionLoading: false,
-      }
+        subscriptionLoading: false
+      };
     default:
       return state;
   }
-}
+};
 
 // selectors
-
-export const getSubredditTitle = (state) => state.subreddit.title;
+export const getSubredditTitle = state => state.subreddit.title;
+export const getSubredditData = state => ({
+  title: state.subreddit.title,
+  description: state.subreddit.description,
+  loading: state.subreddit.loading,
+  error: state.subreddit.error
+});
 
 export default subreddit;

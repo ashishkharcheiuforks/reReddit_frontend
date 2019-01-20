@@ -1,34 +1,38 @@
 import React from "react";
 import { Button } from "react-bootstrap";
+import { withRouter } from "react-router";
 
 import "./styles.css";
-import { SubscriptionButton } from "../Buttons";
+import SubscriptionButtonContainer from "../../containers/SubscriptionButtonContainer";
 
 const SideBar = props => {
   const {
-    title,
+    subredditTitle,
     description,
-    makeSubscriptionRequest,
-    userSubs: { subscribed: userSubscriptions },
-    authenticatedUsername
+    authenticatedUsername,
+    showUserAuthRegisterModal,
+    history
   } = props;
+
+  const handleCreatePostClick = () => {
+    if (authenticatedUsername) {
+      return history.push(`/r/${subredditTitle}/createPost`);
+    } else {
+      return showUserAuthRegisterModal();
+    }
+  };
 
   return (
     <div className="sidebar-content">
-      <div className="title">r/{title}</div>
+      <div className="title">r/{subredditTitle}</div>
 
       <div className="description">{description}</div>
-      <SubscriptionButton
-        makeSubscriptionRequest={makeSubscriptionRequest}
-        userSubscriptions={userSubscriptions}
-        subredditTitle={title}
-        authenticatedUsername={authenticatedUsername}
-      />
+      <SubscriptionButtonContainer subredditTitle={subredditTitle} />
 
       <Button
         id="create-post-button"
         className="sidebar-button"
-        onClick={() => props.history.push(`/r/${props.title}/createPost`)}
+        onClick={handleCreatePostClick}
       >
         CREATE POST
       </Button>
@@ -36,4 +40,4 @@ const SideBar = props => {
   );
 };
 
-export default SideBar;
+export default withRouter(SideBar);

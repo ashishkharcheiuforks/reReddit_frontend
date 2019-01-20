@@ -75,10 +75,10 @@
           description: null,
           subscriptionLoading: !1
         },
-        y = function(e) {
+        g = function(e) {
           return e.subreddit.title;
         },
-        O = function() {
+        y = function() {
           var e =
               arguments.length > 0 && void 0 !== arguments[0]
                 ? arguments[0]
@@ -111,7 +111,7 @@
               return e;
           }
         },
-        g = {
+        O = {
           token: null,
           username: null,
           pk: null,
@@ -132,7 +132,7 @@
           var e =
               arguments.length > 0 && void 0 !== arguments[0]
                 ? arguments[0]
-                : g,
+                : O,
             t = arguments.length > 1 ? arguments[1] : void 0;
           switch (t.type) {
             case "USER_AUTH_LOGIN_REQUEST":
@@ -154,7 +154,7 @@
                 error: t.error
               });
             case "USER_AUTH_LOGOUT_SUCCESS":
-              return g;
+              return O;
             case "USER_AUTH_UPDATE_SUCCESS":
               return Object(S.a)({}, e, {
                 username: t.data.username,
@@ -628,13 +628,13 @@
         ve = function(e) {
           return e.search.allUsers;
         },
-        ye = function(e, t) {
+        ge = function(e, t) {
           return e.search.subredditsById[t];
         },
-        Oe = function(e) {
+        ye = function(e) {
           return e.search.searchResultsView;
         },
-        ge = function() {
+        Oe = function() {
           var e =
               arguments.length > 0 && void 0 !== arguments[0]
                 ? arguments[0]
@@ -666,7 +666,7 @@
           }
         },
         Te = Object(p.c)({
-          subreddit: O,
+          subreddit: y,
           userAuth: C,
           userAuthModal: j,
           postDetail: w,
@@ -675,7 +675,7 @@
           createPost: ae,
           createSubreddit: ie,
           editPost: pe,
-          search: ge
+          search: Oe
         }),
         _e = function(e) {
           console.log(e);
@@ -754,19 +754,50 @@
         we = n(13),
         Ne = n(21),
         Le = n.n(Ne),
-        Me = function(e) {
-          return "".concat("?comments/").concat(e, "/");
-        },
-        He = function(e) {
-          return "?subreddits/sub/" + e + "/";
-        },
-        Be = function(e) {
-          return "?posts/" + e + "/";
-        },
+        Me = "https://rereddit.api.clintdunn.org/",
+        He = Me + "vote/",
+        Be = Me + "comments/",
         Fe = function(e) {
+          return "".concat(Be).concat(e, "/");
+        },
+        qe = Me + "subreddits/",
+        xe = function(e) {
+          return qe + "sub/" + e + "/";
+        },
+        Qe = Me + "users/",
+        Ve = Me + "posts/",
+        Ge = function(e) {
+          return Ve + e + "/";
+        },
+        Ke = function(e) {
           return e ? { headers: { Authorization: "Token ".concat(e) } } : {};
         },
-        qe = function(e) {
+        We = function(e, t, n) {
+          var r = { action: t };
+          return Le.a
+            .post(
+              (function(e) {
+                return qe + "sub/" + e + "/subscribe/";
+              })(e),
+              r,
+              Ke(n)
+            )
+            .then(function(e) {
+              return e.data;
+            });
+        },
+        ze = function(e) {
+          return Le.a
+            .get(
+              (function(e) {
+                return Qe + "user/".concat(e, "/");
+              })(e)
+            )
+            .then(function(e) {
+              return e.data;
+            });
+        },
+        Je = function(e) {
           return {
             type: "SHOW_USER_AUTH_MODAL",
             displayType: e,
@@ -780,13 +811,13 @@
                 : null
           };
         },
-        xe = function() {
+        Xe = function() {
           return { type: "HIDE_USER_AUTH_MODAL" };
         },
-        Qe = function(e) {
+        Ye = function(e) {
           return { type: "UPDATE_USER_AUTH_MODAL_ERROR", errorMessage: e };
         },
-        Ve = function(e, t) {
+        $e = function(e, t) {
           return {
             type: "API_USER_AUTH_LOGIN",
             types: {
@@ -797,17 +828,19 @@
             callAPI: function() {
               return (
                 (n = { username: e, password: t }),
-                Le.a.post("?users/login/", n).then(function(e) {
-                  return e.data;
-                })
+                Le.a
+                  .post("https://rereddit.api.clintdunn.org/users/login/", n)
+                  .then(function(e) {
+                    return e.data;
+                  })
               );
               var n;
             },
-            successActionCreator: xe,
-            failureActionCreator: Qe
+            successActionCreator: Xe,
+            failureActionCreator: Ye
           };
         },
-        Ge = function(e, t, n) {
+        Ze = function(e, t, n) {
           return {
             type: "API_USER_AUTH_REGISTER",
             types: {
@@ -818,17 +851,19 @@
             callAPI: function() {
               return (
                 (r = { username: e, password: t, email: n }),
-                Le.a.post("?users/create/", r).then(function(e) {
-                  return e.data;
-                })
+                Le.a
+                  .post("https://rereddit.api.clintdunn.org/users/create/", r)
+                  .then(function(e) {
+                    return e.data;
+                  })
               );
               var r;
             },
-            failureActionCreator: Qe,
-            successActionCreator: We
+            failureActionCreator: Ye,
+            successActionCreator: tt
           };
         },
-        Ke = function() {
+        et = function() {
           return function(e, t) {
             return e({
               type: "API_USER_AUTH_LOGOUT",
@@ -840,42 +875,25 @@
               callAPI: function() {
                 return (
                   (e = t().userAuth.token),
-                  Le.a.post("?users/logout/", null, Fe(e)).then(function(e) {
-                    return e.data;
-                  })
+                  Le.a
+                    .post(
+                      "https://rereddit.api.clintdunn.org/users/logout/",
+                      null,
+                      Ke(e)
+                    )
+                    .then(function(e) {
+                      return e.data;
+                    })
                 );
                 var e;
               }
             });
           };
         },
-        We = function() {
-          return qe("login", "User profile created! Please log in.");
+        tt = function() {
+          return Je("login", "User profile created! Please log in.");
         },
-        ze = function(e) {
-          return {
-            type: "API_USER_AUTH_UPDATE",
-            types: {
-              request: "USER_AUTH_UPDATE_REQUEST",
-              success: "USER_AUTH_UPDATE_SUCCESS",
-              failure: "USER_AUTH_UPDATE_FAILURE"
-            },
-            callAPI: function() {
-              return (function(e) {
-                return Le.a
-                  .get(
-                    (function(e) {
-                      return "?users/" + "user/".concat(e, "/");
-                    })(e)
-                  )
-                  .then(function(e) {
-                    return e.data;
-                  });
-              })(e);
-            }
-          };
-        },
-        Je = function(e) {
+        nt = function(e) {
           return {
             type: "API_SUB_DETAIL",
             types: {
@@ -885,14 +903,14 @@
             },
             callAPI: function() {
               return (function(e) {
-                return Le.a.get(He(e)).then(function(e) {
+                return Le.a.get(xe(e)).then(function(e) {
                   return e.data;
                 });
               })(e);
             }
           };
         },
-        Xe = function(e) {
+        rt = function(e) {
           return function(t, n) {
             return t({
               type: "API_CREATE_SUBREDDIT",
@@ -903,57 +921,66 @@
               },
               callAPI: function() {
                 return (function(e, t) {
-                  return Le.a.post("?subreddits/", e, Fe(t)).then(function(e) {
-                    return e.data;
-                  });
+                  return Le.a
+                    .post(
+                      "https://rereddit.api.clintdunn.org/subreddits/",
+                      e,
+                      Ke(t)
+                    )
+                    .then(function(e) {
+                      return e.data;
+                    });
                 })(e, n().userAuth.token);
               }
             });
           };
         },
-        Ye = function(e, t) {
+        at = function(e, t) {
           return function(n, r) {
             return n({
               type: "API_SUBREDDIT_SUBSCRIBE",
               types: {
                 request: "SUBREDDIT_SUBSCRIBE_REQUEST",
-                success: $e,
+                success: ot,
                 failure: "SUBREDDIT_SUBSCRIBE_FAILURE"
               },
               callAPI: function() {
-                return (function(e, t, n) {
-                  var r = { action: t };
-                  return Le.a
-                    .post(
-                      (function(e) {
-                        return "?subreddits/sub/" + e + "/subscribe/";
-                      })(e),
-                      r,
-                      Fe(n)
-                    )
-                    .then(function(e) {
-                      return e.data;
-                    });
-                })(e, t, r().userAuth.token);
+                return We(e, t, r().userAuth.token);
               }
             });
           };
         },
-        $e = function(e, t, n) {
+        ot = function(e, t, n) {
           return (
             n({ type: "SUBREDDIT_SUBSCRIBE_SUCCESS", data: e }),
-            t().userAuth.username ? n(ze(t().userAuth.username)) : null
+            t().userAuth.username
+              ? n(
+                  (function(e) {
+                    return {
+                      type: "API_USER_AUTH_UPDATE",
+                      types: {
+                        request: "USER_AUTH_UPDATE_REQUEST",
+                        success: "USER_AUTH_UPDATE_SUCCESS",
+                        failure: "USER_AUTH_UPDATE_FAILURE"
+                      },
+                      callAPI: function() {
+                        return ze(e);
+                      }
+                    };
+                  })(t().userAuth.username)
+                )
+              : null
           );
         },
-        Ze = n(146),
-        et = (n(254), n(42)),
-        tt = (n(312),
+        st = n(146),
+        ct = (n(254), n(42)),
+        it = (n(312),
         function(e) {
           var t = e.loading,
             n = e.children,
             r = e.className,
             o = Object(N.a)(e, ["loading", "children", "className"]),
-            s = a.a.createElement(et.CircleLoader, {
+            s = a.a.createElement(ct.CircleLoader, {
               size: 20,
               className: "display: inline-block"
             });
@@ -961,7 +988,7 @@
             "div",
             { className: "loading-button-container" },
             a.a.createElement(
-              Ze.a,
+              st.a,
               Object.assign({}, o, {
                 className: r || "loading-button",
                 disabled: t
@@ -970,7 +997,7 @@
             )
           );
         }),
-        nt = (n(324),
+        lt = (n(324),
         function(e) {
           var t = e.active,
             n = e.children,
@@ -986,8 +1013,8 @@
             a.a.createElement("p", null, n)
           );
         }),
-        rt = n(75),
-        at = (n(326),
+        ut = n(75),
+        dt = (n(326),
         function(e, t) {
           return function(n) {
             return function(r) {
@@ -995,18 +1022,18 @@
             };
           };
         }),
-        ot = function(e) {
+        mt = function(e) {
           return function(t) {
             return function(n) {
               return e(n) ? a.a.createElement(t, n) : null;
             };
           };
         },
-        st = Object(rt.a)(
-          ot(function(e) {
+        pt = Object(ut.a)(
+          mt(function(e) {
             return e.authenticatedUsername;
           }),
-          at(
+          dt(
             function(e) {
               return e.userSubscriptions.includes(e.subredditTitle);
             },
@@ -1014,7 +1041,7 @@
               var t = e.makeSubscriptionRequest,
                 n = e.subredditTitle;
               return a.a.createElement(
-                Ze.a,
+                st.a,
                 {
                   className: "subscribe-button",
                   onClick: function() {
@@ -1029,7 +1056,7 @@
           var t = e.makeSubscriptionRequest,
             n = e.subredditTitle;
           return a.a.createElement(
-            Ze.a,
+            st.a,
             {
               className: "subscribe-button",
               onClick: function() {
@@ -1039,7 +1066,7 @@
             "SUBSCRIBE"
           );
         }),
-        ct = function(e) {
+        Et = function(e) {
           var t = e.title,
             n = e.description,
             r = e.makeSubscriptionRequest,
@@ -1050,14 +1077,14 @@
             { className: "sidebar-content" },
             a.a.createElement("div", { className: "title" }, "r/", t),
             a.a.createElement("div", { className: "description" }, n),
-            a.a.createElement(st, {
+            a.a.createElement(pt, {
               makeSubscriptionRequest: r,
               userSubscriptions: o,
               subredditTitle: t,
               authenticatedUsername: s
             }),
             a.a.createElement(
-              Ze.a,
+              st.a,
               {
                 id: "create-post-button",
                 className: "sidebar-button",
@@ -1069,19 +1096,19 @@
             )
           );
         },
-        it = n(550),
-        lt = (n(328),
+        ht = n(550),
+        ft = (n(328),
         function() {
           return a.a.createElement(
             "div",
             null,
             a.a.createElement(
-              it.a,
+              ht.a,
               null,
               a.a.createElement(
-                it.a.Body,
+                ht.a.Body,
                 { id: "pulse-loader-panel-body" },
-                a.a.createElement(et.PulseLoader, {
+                a.a.createElement(ct.PulseLoader, {
                   className: "panel-clip-loader",
                   color: "#BFEFFF"
                 })
@@ -1089,40 +1116,40 @@
             )
           );
         }),
-        ut = function(e) {
+        bt = function(e) {
           var t = e.panelNumber,
             n = Object(J.a)(Array(t).keys()).map(function(e) {
-              return a.a.createElement(lt, { key: e });
+              return a.a.createElement(ft, { key: e });
             });
           return a.a.createElement("ul", null, n);
         };
-      ut.defaultProps = { panelNumber: 5 };
-      var dt = ut,
-        mt = (n(344),
+      bt.defaultProps = { panelNumber: 5 };
+      var St = bt,
+        vt = (n(344),
         function() {
           return a.a.createElement(
             "div",
             { className: "sidebar-loader-container" },
-            a.a.createElement(et.PulseLoader, { color: "#BFEFFF" })
+            a.a.createElement(ct.PulseLoader, { color: "#BFEFFF" })
           );
         }),
-        pt = (n(346),
+        gt = (n(346),
         function() {
           return a.a.createElement(
             "div",
             { className: "block-loader-container" },
-            a.a.createElement(et.PulseLoader, { color: "#BFEFFF" })
+            a.a.createElement(ct.PulseLoader, { color: "#BFEFFF" })
           );
         }),
-        Et = (n(348),
+        yt = (n(348),
         function(e) {
           var t = e.skinny,
             n = e.primaryComponent,
             r = Object(N.a)(e, ["skinny", "primaryComponent"]),
             o = t ? "skinny-container" : "",
-            s = at(function(e) {
+            s = dt(function(e) {
               return e.loading;
-            }, mt)(ct);
+            }, vt)(Et);
           return a.a.createElement(
             "div",
             { className: "subreddit-container " + o },
@@ -1134,7 +1161,7 @@
             )
           );
         }),
-        ht = (function(e) {
+        Ot = (function(e) {
           function t() {
             return (
               Object(ke.a)(this, t),
@@ -1163,14 +1190,14 @@
               {
                 key: "render",
                 value: function() {
-                  return a.a.createElement(Et, this.props);
+                  return a.a.createElement(yt, this.props);
                 }
               }
             ]),
             t
           );
         })(r.Component),
-        ft = Object(c.b)(
+        Tt = Object(c.b)(
           function(e) {
             return {
               title: e.subreddit.title,
@@ -1190,30 +1217,30 @@
           function(e) {
             return {
               fetchSubDetail: function(t) {
-                return e(Je(t));
+                return e(nt(t));
               },
               makeSubscriptionRequest: function(t, n) {
-                return e(Ye(t, n));
+                return e(at(t, n));
               }
             };
           }
-        )(ht),
-        bt = n(551),
-        St = n(546),
-        vt = n(119),
-        yt = (n(116), n(541)),
-        Ot = n(542),
-        gt = n(96),
-        Tt = function(e) {
+        )(Ot),
+        _t = n(551),
+        Ct = n(546),
+        Ut = n(119),
+        jt = (n(116), n(541)),
+        Rt = n(542),
+        At = n(96),
+        kt = function(e) {
           var t = e.subscribed.map(function(e) {
             return a.a.createElement(
-              gt.LinkContainer,
+              At.LinkContainer,
               { key: e.pk, exact: !0, to: "/r/" + e.title },
-              a.a.createElement(yt.a, { eventKey: e.pk }, e.title)
+              a.a.createElement(jt.a, { eventKey: e.pk }, e.title)
             );
           });
           return a.a.createElement(
-            Ot.a,
+            Rt.a,
             {
               className: "feed-dropdown",
               eventKey: 3,
@@ -1221,46 +1248,46 @@
               id: "basic-nav-dropdown"
             },
             a.a.createElement(
-              gt.LinkContainer,
+              At.LinkContainer,
               { exact: !0, to: "/" },
-              a.a.createElement(yt.a, { eventKey: 3.1 }, "Home")
+              a.a.createElement(jt.a, { eventKey: 3.1 }, "Home")
             ),
             a.a.createElement(
-              gt.LinkContainer,
+              At.LinkContainer,
               { exact: !0, to: "/r/popular" },
-              a.a.createElement(yt.a, { eventKey: 3.2 }, "Popular")
+              a.a.createElement(jt.a, { eventKey: 3.2 }, "Popular")
             ),
             a.a.createElement(
-              gt.LinkContainer,
+              At.LinkContainer,
               { exact: !0, to: "/r/all" },
-              a.a.createElement(yt.a, { eventKey: 3.3 }, "All")
+              a.a.createElement(jt.a, { eventKey: 3.3 }, "All")
             ),
-            a.a.createElement(yt.a, { divider: !0, eventKey: 3.4 }),
+            a.a.createElement(jt.a, { divider: !0, eventKey: 3.4 }),
             t
           );
         },
-        _t = n(28),
-        Ct = n.n(_t),
-        Ut = n(39),
-        jt = n(18),
-        Rt = n(353),
-        At = n(543),
-        kt = n(544),
-        Pt = n(553),
-        It = n(545),
-        Dt = function(e) {
+        Pt = n(28),
+        It = n.n(Pt),
+        Dt = n(39),
+        wt = n(18),
+        Nt = n(353),
+        Lt = n(543),
+        Mt = n(544),
+        Ht = n(553),
+        Bt = n(545),
+        Ft = function(e) {
           var t = e.id,
             n = e.label,
             r = e.help,
             o = Object(N.a)(e, ["id", "label", "help"]);
           return a.a.createElement(
-            At.a,
+            Lt.a,
             { controlId: t },
-            a.a.createElement(kt.a, null, n),
-            a.a.createElement(Pt.a, o, r && a.a.createElement(It.a, null, r))
+            a.a.createElement(Mt.a, null, n),
+            a.a.createElement(Ht.a, o, r && a.a.createElement(Bt.a, null, r))
           );
         },
-        wt = (n(364),
+        qt = (n(364),
         (function(e) {
           function t(e) {
             var n;
@@ -1274,7 +1301,7 @@
               }),
               (n.state = { query: "" }),
               (n.handleSearchSubmit = n.handleSearchSubmit.bind(
-                Object(jt.a)(Object(jt.a)(n))
+                Object(wt.a)(Object(wt.a)(n))
               )),
               n
             );
@@ -1285,9 +1312,9 @@
               {
                 key: "handleSearchSubmit",
                 value: (function() {
-                  var e = Object(Ut.a)(
-                    Ct.a.mark(function e(t) {
-                      return Ct.a.wrap(
+                  var e = Object(Dt.a)(
+                    It.a.mark(function e(t) {
+                      return It.a.wrap(
                         function(e) {
                           for (;;)
                             switch ((e.prev = e.next)) {
@@ -1333,12 +1360,12 @@
                     t = e.loading;
                   e.error;
                   return a.a.createElement(
-                    bt.a.Form,
+                    _t.a.Form,
                     { pullLeft: !0 },
                     a.a.createElement(
                       "form",
                       { onSubmit: this.handleSearchSubmit },
-                      a.a.createElement(Dt, {
+                      a.a.createElement(Ft, {
                         id: "search-bar-input",
                         type: "text",
                         placeholder: "Search...",
@@ -1347,7 +1374,7 @@
                         value: this.state.query
                       }),
                       a.a.createElement(
-                        tt,
+                        it,
                         { type: "submit", loading: t },
                         "Search"
                       )
@@ -1359,8 +1386,8 @@
             t
           );
         })(r.Component)),
-        Nt = Object(Rt.a)(wt),
-        Lt = function(e) {
+        xt = Object(Nt.a)(qt),
+        Qt = function(e) {
           return {
             type: "API_SEARCH",
             types: {
@@ -1371,7 +1398,9 @@
             callAPI: function() {
               return (function(e) {
                 return Le.a
-                  .get("?search/", { params: { q: e } })
+                  .get("https://rereddit.api.clintdunn.org/search/", {
+                    params: { q: e }
+                  })
                   .then(function(e) {
                     return e.data;
                   });
@@ -1379,7 +1408,7 @@
             }
           };
         },
-        Mt = Object(c.b)(null, function(e) {
+        Vt = Object(c.b)(null, function(e) {
           return {
             handleSearchRequest: function(t) {
               return e(
@@ -1391,34 +1420,34 @@
           };
         })(function(e) {
           var t = e.handleSearchRequest;
-          return a.a.createElement(Nt, { handleSearchRequest: t });
+          return a.a.createElement(xt, { handleSearchRequest: t });
         }),
-        Ht = function(e) {
+        Gt = function(e) {
           var t = e.children,
             n = e.subscribed;
           return a.a.createElement(
-            bt.a,
+            _t.a,
             { inverse: !0, fixed: "true", fluid: !0 },
             a.a.createElement(
-              bt.a.Header,
+              _t.a.Header,
               null,
               a.a.createElement(
-                bt.a.Brand,
+                _t.a.Brand,
                 null,
-                a.a.createElement(vt.a, { exact: !0, to: "/" }, "reReddit")
+                a.a.createElement(Ut.a, { exact: !0, to: "/" }, "reReddit")
               )
             ),
             a.a.createElement(
-              St.a,
+              Ct.a,
               null,
-              a.a.createElement(Tt, { subscribed: n })
+              a.a.createElement(kt, { subscribed: n })
             ),
-            a.a.createElement(Mt, null),
+            a.a.createElement(Vt, null),
             t
           );
         },
-        Bt = n(547),
-        Ft = (n(366),
+        Kt = n(547),
+        Wt = (n(366),
         function(e) {
           var t = e.children,
             n = e.onClick,
@@ -1427,24 +1456,24 @@
             "div",
             null,
             a.a.createElement(
-              Ze.a,
+              st.a,
               { onClick: n, id: r, className: "user-button" },
               t
             )
           );
         }),
-        qt = (n(182),
+        zt = (n(182),
         function(e) {
           var t = e.showModal;
           e.middleWareTest;
           return a.a.createElement(
-            St.a,
+            Ct.a,
             { pullRight: !0, className: "right-user-links" },
             a.a.createElement(
-              Bt.a,
+              Kt.a,
               { eventKey: 4 },
               a.a.createElement(
-                Ft,
+                Wt,
                 {
                   onClick: function() {
                     return t("login");
@@ -1455,10 +1484,10 @@
               )
             ),
             a.a.createElement(
-              Bt.a,
+              Kt.a,
               { eventKey: 5 },
               a.a.createElement(
-                Ft,
+                Wt,
                 {
                   onClick: function() {
                     return t("register");
@@ -1469,26 +1498,26 @@
             )
           );
         }),
-        xt = function(e) {
+        Jt = function(e) {
           var t = e.username,
             n = e.handleLogout;
           return a.a.createElement(
-            St.a,
+            Ct.a,
             { pullRight: !0, className: "auth-dropdown-container" },
             a.a.createElement(
-              Ot.a,
+              Rt.a,
               {
                 className: "user-dropdown",
                 eventKey: 3,
                 title: t,
                 id: "user-nav-dropdown"
               },
-              a.a.createElement(yt.a, { eventKey: 3.1 }, "Action"),
-              a.a.createElement(yt.a, { eventKey: 3.2 }, "Another action"),
-              a.a.createElement(yt.a, { eventKey: 3.3 }, "Something else here"),
-              a.a.createElement(yt.a, { divider: !0 }),
+              a.a.createElement(jt.a, { eventKey: 3.1 }, "Action"),
+              a.a.createElement(jt.a, { eventKey: 3.2 }, "Another action"),
+              a.a.createElement(jt.a, { eventKey: 3.3 }, "Something else here"),
+              a.a.createElement(jt.a, { divider: !0 }),
               a.a.createElement(
-                yt.a,
+                jt.a,
                 {
                   eventKey: 3.4,
                   onClick: function() {
@@ -1500,16 +1529,16 @@
             )
           );
         },
-        Qt = function(e) {
+        Xt = function(e) {
           var t = e.showModal,
             n = e.username,
             r = e.handleLogout;
           e.middleWareTest;
           return n
-            ? a.a.createElement(xt, { username: n, handleLogout: r })
-            : a.a.createElement(qt, { showModal: t });
+            ? a.a.createElement(Jt, { username: n, handleLogout: r })
+            : a.a.createElement(zt, { showModal: t });
         },
-        Vt = (function(e) {
+        Yt = (function(e) {
           function t() {
             var e, n;
             Object(ke.a)(this, t);
@@ -1521,9 +1550,9 @@
                 (e = Object(De.a)(t)).call.apply(e, [this].concat(o))
               )).render = function() {
                 return a.a.createElement(
-                  Ht,
+                  Gt,
                   { subscribed: n.props.subscribed },
-                  a.a.createElement(Qt, {
+                  a.a.createElement(Xt, {
                     showModal: n.props.showModal,
                     username: n.props.username,
                     handleLogout: n.props.handleLogout
@@ -1535,7 +1564,7 @@
           }
           return Object(we.a)(t, e), t;
         })(r.Component),
-        Gt = Object(c.b)(
+        $t = Object(c.b)(
           function(e) {
             return {
               username: e.userAuth.username,
@@ -1545,25 +1574,25 @@
           function(e) {
             return {
               showModal: function(t) {
-                return e(qe(t));
+                return e(Je(t));
               },
               handleLogout: function() {
-                return e(Ke());
+                return e(et());
               }
             };
           },
           null,
           { pure: !1 }
-        )(Vt),
-        Kt = n(552),
-        Wt = (n(369), n(548)),
-        zt = n(33),
-        Jt = (n(371),
+        )(Yt),
+        Zt = n(552),
+        en = (n(369), n(548)),
+        tn = n(33),
+        nn = (n(371),
         function(e) {
           return a.a.createElement(
-            Wt.a,
+            en.a,
             { bsStyle: "success", className: "alert-message" },
-            a.a.createElement(zt.c, { color: "green", size: "3em" }),
+            a.a.createElement(tn.c, { color: "green", size: "3em" }),
             a.a.createElement(
               "p",
               { className: "alert-text", id: "success-text", align: "center" },
@@ -1571,11 +1600,11 @@
             )
           );
         }),
-        Xt = function(e) {
+        rn = function(e) {
           return a.a.createElement(
-            Wt.a,
+            en.a,
             { bsStyle: "danger", className: "alert-message" },
-            a.a.createElement(zt.g, { color: "red", size: "3em" }),
+            a.a.createElement(tn.g, { color: "red", size: "3em" }),
             a.a.createElement(
               "p",
               { className: "alert-text", id: "error-text", align: "center" },
@@ -1583,10 +1612,10 @@
             )
           );
         },
-        Yt = ot(function(e) {
+        an = mt(function(e) {
           return e.children;
-        })(Xt),
-        $t = function(e) {
+        })(rn),
+        on = function(e) {
           var t,
             n = e.handleHide,
             r = e.title,
@@ -1596,21 +1625,21 @@
             i = s.successMessage,
             l = null;
           return (
-            i && (l = a.a.createElement(Jt, null, i)),
-            c && (t = a.a.createElement(Xt, null, c)),
+            i && (l = a.a.createElement(nn, null, i)),
+            c && (t = a.a.createElement(rn, null, c)),
             a.a.createElement(
-              Kt.a,
+              Zt.a,
               { onHide: n, show: !0 },
               a.a.createElement(
-                Kt.a.Header,
+                Zt.a.Header,
                 { closeButton: !0 },
-                a.a.createElement(Kt.a.Title, null, r)
+                a.a.createElement(Zt.a.Title, null, r)
               ),
-              a.a.createElement(Kt.a.Body, null, l, t, o)
+              a.a.createElement(Zt.a.Body, null, l, t, o)
             )
           );
         },
-        Zt = (n(387),
+        sn = (n(387),
         function(e) {
           var t = e.bsStyle,
             n = e.handleClick,
@@ -1618,7 +1647,7 @@
             o = e.children,
             s = e.type,
             c = r
-              ? a.a.createElement(et.CircleLoader, {
+              ? a.a.createElement(ct.CircleLoader, {
                   size: 20,
                   className: "display: inline-block;"
                 })
@@ -1627,7 +1656,7 @@
             "div",
             { id: "single-button" },
             a.a.createElement(
-              Ze.a,
+              st.a,
               {
                 bsStyle: t || null,
                 className: "login-buttons",
@@ -1641,7 +1670,7 @@
             )
           );
         }),
-        en = (n(389),
+        cn = (n(389),
         (function(e) {
           function t(e) {
             var n;
@@ -1655,10 +1684,10 @@
               }),
               (n.state = { username: "", password: "" }),
               (n.handleChange = n.handleChange.bind(
-                Object(jt.a)(Object(jt.a)(n))
+                Object(wt.a)(Object(wt.a)(n))
               )),
               (n.handleSubmit = n.handleSubmit.bind(
-                Object(jt.a)(Object(jt.a)(n))
+                Object(wt.a)(Object(wt.a)(n))
               )),
               n
             );
@@ -1669,9 +1698,9 @@
               {
                 key: "handleSubmit",
                 value: (function() {
-                  var e = Object(Ut.a)(
-                    Ct.a.mark(function e() {
-                      return Ct.a.wrap(
+                  var e = Object(Dt.a)(
+                    It.a.mark(function e() {
+                      return It.a.wrap(
                         function(e) {
                           for (;;)
                             switch ((e.prev = e.next)) {
@@ -1716,7 +1745,7 @@
                     a.a.createElement(
                       "form",
                       { onSubmit: this.handleSubmit },
-                      a.a.createElement(Dt, {
+                      a.a.createElement(Ft, {
                         id: "formControlsText",
                         label: "Username:",
                         type: "text",
@@ -1726,7 +1755,7 @@
                         onChange: this.handleChange,
                         autoFocus: !0
                       }),
-                      a.a.createElement(Dt, {
+                      a.a.createElement(Ft, {
                         id: "formControlsPassword",
                         label: "Password:",
                         type: "password",
@@ -1738,14 +1767,14 @@
                       a.a.createElement(
                         "div",
                         { id: "button-container" },
-                        a.a.createElement(Zt, {
+                        a.a.createElement(sn, {
                           bsStyle: "primary",
                           handleClick: this.handleSubmit,
                           loading: this.props.loading,
                           children: "Login",
                           type: "submit"
                         }),
-                        a.a.createElement(Zt, {
+                        a.a.createElement(sn, {
                           bsStyle: "danger",
                           handleClick: this.props.handleHide,
                           loading: this.props.loading,
@@ -1760,8 +1789,8 @@
             t
           );
         })(r.Component)),
-        tn = Object(Rt.a)(en),
-        nn = Object(c.b)(
+        ln = Object(Nt.a)(cn),
+        un = Object(c.b)(
           function(e) {
             return { loading: e.userAuth.loading };
           },
@@ -1771,7 +1800,7 @@
                 return e({ type: "HIDE_USER_AUTH_MODAL" });
               },
               handleLogin: function(t, n) {
-                return e(Ve(t, n));
+                return e($e(t, n));
               }
             };
           }
@@ -1780,18 +1809,18 @@
             n = e.handleLogin,
             r = e.loading,
             o = e.messageProps;
-          return a.a.createElement($t, {
+          return a.a.createElement(on, {
             handleHide: t,
             title: "Login",
             messageProps: o,
-            formComponent: a.a.createElement(tn, {
+            formComponent: a.a.createElement(ln, {
               handleLogin: n,
               handleHide: t,
               loading: r
             })
           });
         }),
-        rn = (n(391),
+        dn = (n(391),
         (function(e) {
           function t(e) {
             var n;
@@ -1817,7 +1846,7 @@
                   a.a.createElement(
                     "form",
                     { onSubmit: n.handleSubmit },
-                    a.a.createElement(Dt, {
+                    a.a.createElement(Ft, {
                       id: "formControlsText",
                       label: "Username:",
                       type: "text",
@@ -1827,7 +1856,7 @@
                       onChange: n.handleChange,
                       autoFocus: !0
                     }),
-                    a.a.createElement(Dt, {
+                    a.a.createElement(Ft, {
                       id: "formControlsPassword",
                       label: "Password:",
                       type: "password",
@@ -1836,7 +1865,7 @@
                       name: "password",
                       onChange: n.handleChange
                     }),
-                    a.a.createElement(Dt, {
+                    a.a.createElement(Ft, {
                       id: "formControlsEmail",
                       label: "Email:",
                       type: "email",
@@ -1848,14 +1877,14 @@
                     a.a.createElement(
                       "div",
                       { id: "button-container" },
-                      a.a.createElement(Zt, {
+                      a.a.createElement(sn, {
                         bsStyle: "primary",
                         handleClick: n.handleSubmit,
                         loading: n.props.loading,
                         children: "Register",
                         type: "submit"
                       }),
-                      a.a.createElement(Zt, {
+                      a.a.createElement(sn, {
                         bsStyle: "danger",
                         handleClick: n.props.handleHide,
                         loading: n.props.loading,
@@ -1866,7 +1895,7 @@
                 );
               }),
               (n.handleChange = n.handleChange.bind(
-                Object(jt.a)(Object(jt.a)(n))
+                Object(wt.a)(Object(wt.a)(n))
               )),
               (n.state = { username: "", password: "", email: "" }),
               n
@@ -1874,7 +1903,7 @@
           }
           return Object(we.a)(t, e), t;
         })(r.Component)),
-        an = Object(c.b)(
+        mn = Object(c.b)(
           function(e) {
             return { loading: e.userAuth.loading };
           },
@@ -1884,7 +1913,7 @@
                 return e({ type: "HIDE_USER_AUTH_MODAL" });
               },
               handleRegister: function(t, n, r) {
-                return e(Ge(t, n, r));
+                return e(Ze(t, n, r));
               }
             };
           }
@@ -1893,18 +1922,18 @@
             n = e.handleRegister,
             r = e.loading,
             o = e.messageProps;
-          return a.a.createElement($t, {
+          return a.a.createElement(on, {
             handleHide: t,
             title: "Register",
             messageProps: o,
-            formComponent: a.a.createElement(rn, {
+            formComponent: a.a.createElement(dn, {
               handleRegister: n,
               handleHide: t,
               loading: r
             })
           });
         }),
-        on = Object(c.b)(function(e) {
+        pn = Object(c.b)(function(e) {
           return {
             displayType: e.userAuthModal.displayType,
             messageProps: {
@@ -1917,16 +1946,16 @@
             n = e.messageProps;
           switch (t) {
             case "login":
-              return a.a.createElement(nn, { messageProps: n });
+              return a.a.createElement(un, { messageProps: n });
             case "register":
-              return a.a.createElement(an, { messageProps: n });
+              return a.a.createElement(mn, { messageProps: n });
             default:
               return null;
           }
         }),
-        sn = n(217),
-        cn = n.n(sn),
-        ln = (n(496),
+        En = n(217),
+        hn = n.n(En),
+        fn = (n(496),
         n(498),
         (function(e) {
           function t(e) {
@@ -1975,7 +2004,7 @@
                 ]
               }),
               (n.handleChange = n.handleChange.bind(
-                Object(jt.a)(Object(jt.a)(n))
+                Object(wt.a)(Object(wt.a)(n))
               )),
               (n.quillNode = a.a.createRef()),
               n
@@ -2016,7 +2045,7 @@
                   return a.a.createElement(
                     r.Fragment,
                     null,
-                    a.a.createElement(cn.a, {
+                    a.a.createElement(hn.a, {
                       value: this.state.editorHtml,
                       onChange: this.handleChange,
                       placeholder: n || "What are your thoughts?",
@@ -2026,7 +2055,7 @@
                       onBlur: s
                     }),
                     a.a.createElement(
-                      tt,
+                      it,
                       {
                         onClick: function() {
                           return e.handleSubmitClick(e.state.editorHtml);
@@ -2043,7 +2072,7 @@
             t
           );
         })(r.Component)),
-        un = (n(500),
+        bn = (n(500),
         (function(e) {
           function t(e) {
             var n;
@@ -2057,7 +2086,7 @@
               }),
               (n.state = { title: "" }),
               (n.handleSubmit = n.handleSubmit.bind(
-                Object(jt.a)(Object(jt.a)(n))
+                Object(wt.a)(Object(wt.a)(n))
               )),
               n
             );
@@ -2068,9 +2097,9 @@
               {
                 key: "handleSubmit",
                 value: (function() {
-                  var e = Object(Ut.a)(
-                    Ct.a.mark(function e(t) {
-                      return Ct.a.wrap(
+                  var e = Object(Dt.a)(
+                    It.a.mark(function e(t) {
+                      return It.a.wrap(
                         function(e) {
                           for (;;)
                             switch ((e.prev = e.next)) {
@@ -2117,9 +2146,9 @@
                   var e = this.props,
                     t = (e.errorMessage,
                     e.loading,
-                    ot(function(e) {
+                    mt(function(e) {
                       return e.children;
-                    })(Xt));
+                    })(rn));
                   return a.a.createElement(
                     "div",
                     { className: "create-post-container" },
@@ -2136,7 +2165,7 @@
                       a.a.createElement(
                         "div",
                         { className: "title-input-container" },
-                        a.a.createElement(Dt, {
+                        a.a.createElement(Ft, {
                           id: "create-post-title",
                           placeholder: "Title",
                           type: "text",
@@ -2145,7 +2174,7 @@
                           name: "username"
                         })
                       ),
-                      a.a.createElement(ln, {
+                      a.a.createElement(fn, {
                         handleCommentSubmit: this.handleSubmit,
                         usage: "create",
                         placeholder: "Text (optional)"
@@ -2158,49 +2187,35 @@
             t
           );
         })(r.Component)),
-        dn = Object(Rt.a)(un),
-        mn = function(e, t, n, r) {
-          var a = { title: e, body: t };
+        Sn = Object(Nt.a)(bn),
+        vn = function(e, t, n, r) {
+          var a = { orderby: t, username: n };
           return Le.a
-            .post(
+            .get(
               (function(e) {
-                return He(e) + "post/";
-              })(n),
-              a,
-              Fe(r)
+                return Ve + "subreddit-list/" + e + "/";
+              })(e),
+              Object(S.a)({ params: a }, Ke(r))
             )
             .then(function(e) {
               return e.data;
             });
         },
-        pn = function(e, t) {
-          return function(n, r) {
-            return n({
-              type: "API_SUB_POST_LIST",
-              types: {
-                request: "FETCH_POST_LIST_REQUEST",
-                success: "FETCH_POST_LIST_SUCCESS",
-                failure: "FETCH_POST_LIST_FAILURE"
-              },
-              callAPI: function() {
-                return (function(e, t, n, r) {
-                  var a = { orderby: t, username: n };
-                  return Le.a
-                    .get(
-                      (function(e) {
-                        return "?posts/subreddit-list/" + e + "/";
-                      })(e),
-                      Object(S.a)({ params: a }, Fe(r))
-                    )
-                    .then(function(e) {
-                      return e.data;
-                    });
-                })(e, t, T(r()), r().userAuth.token);
-              }
+        gn = function(e, t, n, r) {
+          var a = { title: e, body: t };
+          return Le.a
+            .post(
+              (function(e) {
+                return xe(e) + "post/";
+              })(n),
+              a,
+              Ke(r)
+            )
+            .then(function(e) {
+              return e.data;
             });
-          };
         },
-        En = function(e, t) {
+        yn = function(e, t) {
           return function(n, r) {
             return n({
               type: "API_CREATE_POST",
@@ -2212,7 +2227,7 @@
               callAPI: function() {
                 return (function(e, t, n) {
                   var r = { body: t };
-                  return Le.a.patch(Be(e), r, Fe(n)).then(function(e) {
+                  return Le.a.patch(Ge(e), r, Ke(n)).then(function(e) {
                     return e.data;
                   });
                 })(e, t, r().userAuth.token);
@@ -2220,18 +2235,18 @@
             });
           };
         },
-        hn = function(e) {
+        On = function(e) {
           return function(t, n) {
             return t({
               type: "API_DELETE_POST",
               types: {
-                request: fn(e),
+                request: Tn(e),
                 success: "DELETE_POST_SUCCESS",
                 failure: "DELETE_POST_FAILURE"
               },
               callAPI: function() {
                 return (function(e, t) {
-                  return Le.a.delete(Be(e), Fe(t)).then(function(e) {
+                  return Le.a.delete(Ge(e), Ke(t)).then(function(e) {
                     return e.data;
                   });
                 })(e, n().userAuth.token);
@@ -2239,12 +2254,12 @@
             });
           };
         },
-        fn = function(e) {
+        Tn = function(e) {
           return function(t) {
             return t({ type: "DELETE_POST_REQUEST", pk: e });
           };
         },
-        bn = function(e) {
+        _n = function(e) {
           return {
             type: "API_POST_DETAIL",
             types: {
@@ -2254,14 +2269,14 @@
             },
             callAPI: function() {
               return (function(e) {
-                return Le.a.get(Be(e)).then(function(e) {
+                return Le.a.get(Ge(e)).then(function(e) {
                   return e.data;
                 });
               })(e);
             }
           };
         },
-        Sn = (function(e) {
+        Cn = (function(e) {
           function t() {
             return (
               Object(ke.a)(this, t),
@@ -2274,19 +2289,19 @@
               {
                 key: "render",
                 value: function() {
-                  return a.a.createElement(dn, this.props);
+                  return a.a.createElement(Sn, this.props);
                 }
               }
             ]),
             t
           );
         })(r.Component),
-        vn = Object(c.b)(
+        Un = Object(c.b)(
           function(e) {
             return {
               errorMessage: re(e),
               loading: ne(e),
-              subredditTitle: y(e)
+              subredditTitle: g(e)
             };
           },
           function(e) {
@@ -2303,7 +2318,7 @@
                           failure: "CREATE_POST_FAILURE"
                         },
                         callAPI: function() {
-                          return mn(e, t, n, a().userAuth.token);
+                          return gn(e, t, n, a().userAuth.token);
                         }
                       });
                     };
@@ -2312,9 +2327,9 @@
               }
             };
           }
-        )(Sn),
-        yn = n(87),
-        On = (n(502),
+        )(Cn),
+        jn = n(87),
+        Rn = (n(502),
         (function(e) {
           function t() {
             var e, n;
@@ -2354,7 +2369,7 @@
                             return r(1);
                           }
                         },
-                        a.a.createElement(zt.b, null)
+                        a.a.createElement(tn.b, null)
                       )
                     ),
                     a.a.createElement(
@@ -2381,7 +2396,7 @@
                             return r(-1);
                           }
                         },
-                        a.a.createElement(zt.a, null)
+                        a.a.createElement(tn.a, null)
                       )
                     )
                   );
@@ -2391,13 +2406,13 @@
             t
           );
         })(r.Component)),
-        gn = function(e) {
+        An = function(e) {
           return function(t, n) {
             return t({
               type: "API_VOTE",
               types: {
                 request: "VOTE_REQUEST",
-                success: Tn,
+                success: kn,
                 failure: "VOTE_FAILURE"
               },
               callAPI: function() {
@@ -2410,7 +2425,7 @@
                     ? (o = "t1_".concat(r))
                     : "post" === n && (o = "t2_".concat(r));
                   var s = { vote_type: a, item_fn: o };
-                  return Le.a.post("?vote/", s, Fe(t)).then(function(e) {
+                  return Le.a.post(He, s, Ke(t)).then(function(e) {
                     return e.data;
                   });
                 })(e, n().userAuth.token);
@@ -2418,7 +2433,7 @@
             });
           };
         },
-        Tn = function(e, t, n) {
+        kn = function(e, t, n) {
           if (e.hasOwnProperty("comment"))
             return n({ type: "COMMENT_VOTE_SUCCESS", data: e });
           if (e.hasOwnProperty("post"))
@@ -2429,11 +2444,11 @@
             41
           );
         },
-        _n = Object(c.b)(null, function(e, t) {
+        Pn = Object(c.b)(null, function(e, t) {
           return {
             handleVote: function(n) {
               return e(
-                gn({ voteType: n, itemType: t.itemType, itemPk: t.itemPk })
+                An({ voteType: n, itemType: t.itemType, itemPk: t.itemPk })
               );
             }
           };
@@ -2441,34 +2456,34 @@
           var t = e.voteDisplayState,
             n = e.handleVote,
             r = e.upvotes;
-          return a.a.createElement(On, {
+          return a.a.createElement(Rn, {
             displayState: t,
             handleVote: n,
             upvotes: r
           });
         }),
-        Cn = n(540),
-        Un = (n(504),
+        In = n(540),
+        Dn = (n(504),
         function(e) {
           var t = e.children;
           return a.a.createElement(
-            Cn.a,
+            In.a,
             { id: "ellipsis-dropdown" },
             a.a.createElement(
-              Cn.a.Toggle,
+              In.a.Toggle,
               { noCaret: !0, className: "toggle-button" },
-              a.a.createElement(zt.e, null)
+              a.a.createElement(tn.e, null)
             ),
             a.a.createElement(
-              Cn.a.Menu,
+              In.a.Menu,
               { className: "ellipsis-dropdown-menu" },
               t
             )
           );
         }),
-        jn = n(549),
-        Rn = n(554),
-        An = (n(506),
+        wn = n(549),
+        Nn = n(554),
+        Ln = (n(506),
         (function(e) {
           function t(e) {
             var n;
@@ -2489,7 +2504,7 @@
               (n.state = { showTooltip: !1 }),
               (n.copyNode = a.a.createRef()),
               (n.copyTooltip = a.a.createElement(
-                jn.a,
+                wn.a,
                 { id: "copy-tooltip" },
                 "Copied Link"
               )),
@@ -2507,7 +2522,7 @@
                     r.Fragment,
                     null,
                     a.a.createElement(
-                      Rn.a,
+                      Nn.a,
                       {
                         placement: "bottom",
                         overlay: this.copyTooltip,
@@ -2515,13 +2530,13 @@
                         delayHide: 4e3
                       },
                       a.a.createElement(
-                        Ze.a,
+                        st.a,
                         {
                           bsSize: "xsmall",
                           className: "share-button",
                           onClick: this.copyToClipboard
                         },
-                        a.a.createElement(zt.f, null),
+                        a.a.createElement(tn.f, null),
                         " Share"
                       )
                     ),
@@ -2543,7 +2558,7 @@
             t
           );
         })(r.Component)),
-        kn = (n(516),
+        Mn = (n(516),
         (function(e) {
           function t() {
             var e, n;
@@ -2582,9 +2597,9 @@
                     l = e.voteDisplayState,
                     u = e.handleDeletePost,
                     d = (e.history,
-                    ot(function(e) {
+                    mt(function(e) {
                       return e.showEllipsis;
-                    })(Un));
+                    })(Dn));
                   return a.a.createElement(
                     "div",
                     {
@@ -2592,7 +2607,7 @@
                       name: "postPanel",
                       onClick: this.handlePanelClick
                     },
-                    a.a.createElement(_n, {
+                    a.a.createElement(Pn, {
                       upvotes: t,
                       voteDisplayState: l || 0,
                       itemType: "post",
@@ -2605,7 +2620,7 @@
                         "div",
                         { className: "post-segment-title" },
                         a.a.createElement(
-                          yn.a,
+                          jn.a,
                           {
                             id: "post-title",
                             to: "/r/" + o + "/postDetail/" + n
@@ -2620,7 +2635,7 @@
                           "strong",
                           null,
                           a.a.createElement(
-                            yn.a,
+                            jn.a,
                             { to: "/r/".concat(o) },
                             "r/",
                             o
@@ -2634,19 +2649,19 @@
                         "div",
                         { className: "post-segment-links" },
                         a.a.createElement(
-                          yn.a,
+                          jn.a,
                           {
                             to: "/r/"
                               .concat(o, "/postDetail/")
                               .concat(n, "/comments")
                           },
                           a.a.createElement(
-                            Ze.a,
+                            st.a,
                             { bsSize: "xsmall", className: "post-buttons" },
                             "Comments"
                           )
                         ),
-                        a.a.createElement(An, {
+                        a.a.createElement(Ln, {
                           shareUrl: ""
                             .concat(window.location, "/postDetail/")
                             .concat(n)
@@ -2655,12 +2670,12 @@
                           d,
                           { showEllipsis: c === s },
                           a.a.createElement(
-                            yt.a,
+                            jt.a,
                             { eventKey: 1, onSelect: u },
                             "delete"
                           ),
                           a.a.createElement(
-                            yt.a,
+                            jt.a,
                             {
                               eventKey: 2,
                               onSelect: function() {
@@ -2679,8 +2694,8 @@
             t
           );
         })(r.Component)),
-        Pn = Object(Rt.a)(kn),
-        In = Object(c.b)(
+        Hn = Object(Nt.a)(Mn),
+        Bn = Object(c.b)(
           function(e, t) {
             var n = t.postPk;
             t.usage;
@@ -2689,7 +2704,7 @@
           function(e, t) {
             return {
               handleDeletePost: function() {
-                return e(hn(t.postPk));
+                return e(On(t.postPk));
               }
             };
           }
@@ -2704,7 +2719,7 @@
             l = t.posterUsername,
             u = t.created,
             d = t.voteDisplayState;
-          return a.a.createElement(Pn, {
+          return a.a.createElement(Hn, {
             upvotes: o,
             pk: s,
             title: c,
@@ -2716,31 +2731,31 @@
             handleDeletePost: n
           });
         }),
-        Dn = function() {
+        Fn = function() {
           return a.a.createElement(
             "div",
             { className: "empty-list-content" },
             a.a.createElement("h2", null, "Such Empty!")
           );
         },
-        wn = (n(518),
-        Object(Rt.a)(function(e) {
+        qn = (n(518),
+        Object(Nt.a)(function(e) {
           var t,
             n = e.loading,
             r = e.error,
             o = e.allPosts;
-          if (r) return a.a.createElement(Xt, null, r);
-          if (n) t = a.a.createElement(dt, { panelNumber: 8 });
-          else if (0 === o.length) t = a.a.createElement(Dn, null);
+          if (r) return a.a.createElement(rn, null, r);
+          if (n) t = a.a.createElement(St, { panelNumber: 8 });
+          else if (0 === o.length) t = a.a.createElement(Fn, null);
           else {
             var s = o.map(function(e) {
-              return a.a.createElement(In, { postPk: e, key: e });
+              return a.a.createElement(Bn, { postPk: e, key: e });
             });
             t = a.a.createElement("ul", null, s);
           }
           return a.a.createElement("div", { className: "postlist-content" }, t);
         })),
-        Nn = (function(e) {
+        xn = (function(e) {
           function t() {
             return (
               Object(ke.a)(this, t),
@@ -2769,14 +2784,14 @@
               {
                 key: "render",
                 value: function() {
-                  return a.a.createElement(wn, this.props);
+                  return a.a.createElement(qn, this.props);
                 }
               }
             ]),
             t
           );
         })(r.Component),
-        Ln = Object(c.b)(
+        Qn = Object(c.b)(
           function(e) {
             return {
               loading: e.postList.loading,
@@ -2787,12 +2802,28 @@
           function(e) {
             return {
               fetchPostList: function(t, n) {
-                return e(pn(t, n));
+                return e(
+                  (function(e, t) {
+                    return function(n, r) {
+                      return n({
+                        type: "API_SUB_POST_LIST",
+                        types: {
+                          request: "FETCH_POST_LIST_REQUEST",
+                          success: "FETCH_POST_LIST_SUCCESS",
+                          failure: "FETCH_POST_LIST_FAILURE"
+                        },
+                        callAPI: function() {
+                          return vn(e, t, T(r()), r().userAuth.token);
+                        }
+                      });
+                    };
+                  })(t, n)
+                );
               }
             };
           }
-        )(Nn),
-        Mn = (n(207),
+        )(xn),
+        Vn = (n(207),
         function(e) {
           var t = e.title,
             n = e.poster;
@@ -2802,35 +2833,35 @@
             a.a.createElement(
               "div",
               { className: "link-to-sub" },
-              a.a.createElement(yn.a, { to: "/r/".concat(t) }, "r/".concat(t))
+              a.a.createElement(jn.a, { to: "/r/".concat(t) }, "r/".concat(t))
             ),
             a.a.createElement("span", { id: "divider" }, "-"),
             a.a.createElement(
               "div",
               { className: "link-to-user" },
               a.a.createElement(
-                yn.a,
+                jn.a,
                 { to: "/u/".concat(n) },
                 "Posted by u/".concat(n)
               )
             )
           );
         }),
-        Hn = Object(c.b)(
+        Gn = Object(c.b)(
           function(e) {
             return { loading: me(e) };
           },
           function(e, t) {
             return {
               handleSubmit: (function() {
-                var n = Object(Ut.a)(
-                  Ct.a.mark(function n(r) {
-                    return Ct.a.wrap(
+                var n = Object(Dt.a)(
+                  It.a.mark(function n(r) {
+                    return It.a.wrap(
                       function(n) {
                         for (;;)
                           switch ((n.prev = n.next)) {
                             case 0:
-                              return (n.prev = 0), (n.next = 3), e(En(t.pk, r));
+                              return (n.prev = 0), (n.next = 3), e(yn(t.pk, r));
                             case 3:
                               n.next = 7;
                               break;
@@ -2860,7 +2891,7 @@
           var t = e.handleSubmit,
             n = e.body,
             r = e.loading;
-          return a.a.createElement(ln, {
+          return a.a.createElement(fn, {
             handleSubmit: t,
             placeholder: n,
             initialValue: n,
@@ -2868,53 +2899,39 @@
             loading: r
           });
         }),
-        Bn = n(221),
-        Fn = n(97),
-        qn = function(e) {
-          return function(t, n) {
-            return t({
-              type: "API_POST_COMMENT_TREES",
-              types: {
-                request: "FETCH_POST_COMMENT_TREES_REQUEST",
-                success: xn,
-                failure: "FETCH_POST_COMMENT_TREES_FAILURE"
-              },
-              callAPI: function() {
-                return (function(e, t) {
-                  var n = t ? { params: { username: t } } : {};
-                  return Le.a
-                    .get(
-                      (function(e) {
-                        return "".concat("?comments/", "post/").concat(e, "/");
-                      })(e),
-                      n
-                    )
-                    .then(function(e) {
-                      return e.data;
-                    });
-                })(e, n().userAuth.username);
-              }
+        Kn = n(221),
+        Wn = n(97),
+        zn = function(e, t) {
+          var n = t ? { params: { username: t } } : {};
+          return Le.a
+            .get(
+              (function(e) {
+                return "".concat(Be, "post/").concat(e, "/");
+              })(e),
+              n
+            )
+            .then(function(e) {
+              return e.data;
             });
-          };
         },
-        xn = function(e, t, n) {
+        Jn = function(e, t, n) {
           if (0 === e.length)
             return n({
               type: "FETCH_POST_COMMENT_TREES_SUCCESS",
               data: { entities: { comments: {}, posters: {} }, result: [] }
             });
-          var r = new Fn.b.Entity("posters", {}, { idAttribute: "pk" }),
-            a = new Fn.b.Entity(
+          var r = new Wn.b.Entity("posters", {}, { idAttribute: "pk" }),
+            a = new Wn.b.Entity(
               "comments",
               { poster: r },
               { idAttribute: "pk" }
             ),
-            o = new Fn.b.Array(a);
+            o = new Wn.b.Array(a);
           a.define({ children: o });
-          var s = Object(Fn.a)(e, o);
+          var s = Object(Wn.a)(e, o);
           return (
             Object.entries(s.entities.comments).forEach(function(e) {
-              var t = Object(Bn.a)(e, 2),
+              var t = Object(Kn.a)(e, 2),
                 n = t[0],
                 r = t[1],
                 a = r.vote_state,
@@ -2926,7 +2943,7 @@
             n({ type: "FETCH_POST_COMMENT_TREES_SUCCESS", data: s })
           );
         },
-        Qn = function(e) {
+        Xn = function(e) {
           return function(t, n) {
             return t({
               type: "API_CREATE_COMMENT",
@@ -2945,7 +2962,7 @@
                         ? "t2_".concat(r)
                         : "t1_".concat(r)
                     };
-                  return Le.a.post("?comments/", a, Fe(t)).then(function(e) {
+                  return Le.a.post(Be, a, Ke(t)).then(function(e) {
                     return e.data;
                   });
                 })(e, n().userAuth.token);
@@ -2953,7 +2970,7 @@
             });
           };
         },
-        Vn = function(e) {
+        Yn = function(e) {
           return function(t, n) {
             return t({
               type: "API_DELETE_COMMENT",
@@ -2964,7 +2981,7 @@
               },
               callAPI: function() {
                 return (function(e, t) {
-                  return Le.a.delete(Me(e), Fe(t)).then(function(e) {
+                  return Le.a.delete(Fe(e), Ke(t)).then(function(e) {
                     return e.data;
                   });
                 })(e, n().userAuth.token);
@@ -2972,7 +2989,7 @@
             });
           };
         },
-        Gn = function(e) {
+        $n = function(e) {
           return function(t, n) {
             return t({
               type: "API_UPDATE_COMMENT",
@@ -2983,7 +3000,7 @@
               },
               callAPI: function() {
                 return (function(e, t) {
-                  return Le.a.patch(Me(e.pk), e, Fe(t)).then(function(e) {
+                  return Le.a.patch(Fe(e.pk), e, Ke(t)).then(function(e) {
                     return e.data;
                   });
                 })(e, n().userAuth.token);
@@ -2991,7 +3008,7 @@
             });
           };
         },
-        Kn = (n(521),
+        Zn = (n(521),
         n(523),
         Object(c.b)(
           function(e, t) {
@@ -3003,7 +3020,7 @@
                 return {
                   handleSubmit: function(n) {
                     return e(
-                      Qn({
+                      Xn({
                         body: n,
                         parentPk: t.parentPk,
                         rootComment: t.rootComment
@@ -3016,7 +3033,7 @@
                   handleSubmit: function(n) {
                     return (
                       t.onEditorSubmit && t.onEditorSubmit(),
-                      e(Gn({ body: n, pk: t.pk }))
+                      e($n({ body: n, pk: t.pk }))
                     );
                   }
                 };
@@ -3025,9 +3042,9 @@
             }
           }
         )(function(e) {
-          return a.a.createElement(ln, e);
+          return a.a.createElement(fn, e);
         })),
-        Wn = (n(525),
+        er = (n(525),
         function(e) {
           var t = e.posterUsername,
             n = e.upvotes,
@@ -3036,7 +3053,7 @@
             s = !1 ^ n ? "point" : "points",
             c = o
               ? "comment deleted"
-              : a.a.createElement(yn.a, { to: "/" }, "u/".concat(t));
+              : a.a.createElement(jn.a, { to: "/" }, "u/".concat(t));
           return a.a.createElement(
             "div",
             { className: "poster-info-container" },
@@ -3046,7 +3063,7 @@
             a.a.createElement("span", null, "created: ".concat(r))
           );
         }),
-        zn = (n(527),
+        tr = (n(527),
         (function(e) {
           function t() {
             return (
@@ -3067,9 +3084,9 @@
                     s = (e.pk, e.handleDeleteComment),
                     c = e.handleToggleReplyEditor,
                     i = e.handleToggleUpdateEditor,
-                    l = ot(function(e) {
+                    l = mt(function(e) {
                       return e.authUsername === e.posterUsername;
-                    })(Un);
+                    })(Dn);
                   return a.a.createElement(
                     r.Fragment,
                     null,
@@ -3083,10 +3100,10 @@
                       a.a.createElement(
                         "div",
                         { className: "comment-icon" },
-                        a.a.createElement(zt.d, null)
+                        a.a.createElement(tn.d, null)
                       ),
                       a.a.createElement(
-                        Ze.a,
+                        st.a,
                         {
                           bsSize: "xsmall",
                           className: "comment-buttons",
@@ -3098,12 +3115,12 @@
                         l,
                         { authUsername: o, posterUsername: n },
                         a.a.createElement(
-                          yt.a,
+                          jt.a,
                           { eventKey: 2, onSelect: i },
                           "edit"
                         ),
                         a.a.createElement(
-                          yt.a,
+                          jt.a,
                           { eventKey: 1, onSelect: s },
                           "delete"
                         )
@@ -3116,7 +3133,7 @@
             t
           );
         })(r.Component)),
-        Jn = (function(e) {
+        nr = (function(e) {
           function t(e) {
             var n;
             return (
@@ -3126,10 +3143,10 @@
                 showUpdateEditor: !1
               }),
               (n.handleToggleReplyEditor = n.handleToggleReplyEditor.bind(
-                Object(jt.a)(Object(jt.a)(n))
+                Object(wt.a)(Object(wt.a)(n))
               )),
               (n.handleToggleUpdateEditor = n.handleToggleUpdateEditor.bind(
-                Object(jt.a)(Object(jt.a)(n))
+                Object(wt.a)(Object(wt.a)(n))
               )),
               n
             );
@@ -3168,17 +3185,17 @@
                     u = e.deleted,
                     d = e.handleToggleCollapse,
                     m = e.handleDeleteComment,
-                    p = ot(function(e) {
+                    p = mt(function(e) {
                       return e.showEditor;
-                    })(Kn),
-                    E = Object(rt.a)(
-                      ot(function(e) {
+                    })(Zn),
+                    E = Object(ut.a)(
+                      mt(function(e) {
                         return !e.deleted;
                       }),
-                      at(function(e) {
+                      dt(function(e) {
                         return e.showUpdateEditor;
-                      }, Kn)
-                    )(zn);
+                      }, Zn)
+                    )(tr);
                   return a.a.createElement(
                     "div",
                     { className: "comment-tree-content" },
@@ -3186,7 +3203,7 @@
                       "div",
                       { className: "comment-voter-collapser" },
                       u ||
-                        a.a.createElement(_n, {
+                        a.a.createElement(Pn, {
                           voteDisplayState: l,
                           itemType: "comment",
                           itemPk: i
@@ -3208,7 +3225,7 @@
                       a.a.createElement(
                         "div",
                         { className: "comment-info-line-container" },
-                        a.a.createElement(Wn, {
+                        a.a.createElement(er, {
                           posterUsername: r,
                           upvotes: s,
                           created: c,
@@ -3259,8 +3276,8 @@
             t
           );
         })(r.Component),
-        Xn = n(219),
-        Yn = (n(529),
+        rr = n(219),
+        ar = (n(529),
         function(e) {
           var t = e.posterUsername,
             n = e.upvotes,
@@ -3278,12 +3295,12 @@
                 },
                 className: "expander"
               },
-              a.a.createElement(Xn.a, null)
+              a.a.createElement(rr.a, null)
             ),
             a.a.createElement(
               "div",
               { className: "collapsed-links" },
-              a.a.createElement(Wn, {
+              a.a.createElement(er, {
                 posterUsername: t,
                 upvotes: n,
                 created: r,
@@ -3292,7 +3309,7 @@
             )
           );
         }),
-        $n = (function(e) {
+        or = (function(e) {
           function t(e) {
             var n;
             return (
@@ -3301,7 +3318,7 @@
                 collapsed: !1
               }),
               (n.handleToggleCollapse = n.handleToggleCollapse.bind(
-                Object(jt.a)(Object(jt.a)(n))
+                Object(wt.a)(Object(wt.a)(n))
               )),
               n
             );
@@ -3333,11 +3350,11 @@
                   Array.isArray(t) &&
                     t.length &&
                     (m = t.map(function(e) {
-                      return a.a.createElement(Zn, { pk: e, key: e });
+                      return a.a.createElement(sr, { pk: e, key: e });
                     }));
-                  var p = at(function(e) {
+                  var p = dt(function(e) {
                     return e.collapsed;
-                  }, Yn)(Jn);
+                  }, ar)(nr);
                   return a.a.createElement(
                     p,
                     Object.assign(
@@ -3365,7 +3382,7 @@
             t
           );
         })(r.Component),
-        Zn = Object(c.b)(
+        sr = Object(c.b)(
           function(e, t) {
             return {
               commentData: G(e, t.pk),
@@ -3376,7 +3393,7 @@
           function(e, t) {
             return {
               handleDeleteComment: function() {
-                return e(Vn(t.pk));
+                return e(Yn(t.pk));
               }
             };
           }
@@ -3393,7 +3410,7 @@
             d = t.voteDisplayState,
             m = t.deleted,
             p = (n && n.username) || r;
-          return a.a.createElement($n, {
+          return a.a.createElement(or, {
             childrenPk: c,
             body: i,
             upvotes: l,
@@ -3406,26 +3423,26 @@
             handleDeleteComment: o
           });
         }),
-        er = function(e) {
+        cr = function(e) {
           var t = e.rootCommentPks,
             n = e.error,
             r = e.loading,
             o = e.postPk,
             s = e.createCommentError;
           e.createCommentLoading;
-          if (n) return a.a.createElement(Xt, null, n);
+          if (n) return a.a.createElement(rn, null, n);
           var c = [];
           Array.isArray(t) &&
             t.length &&
             (c = t.map(function(e) {
-              return a.a.createElement(Zn, { pk: e, key: e });
+              return a.a.createElement(sr, { pk: e, key: e });
             }));
-          var i = ot(function(e) {
+          var i = mt(function(e) {
               return e.children;
-            })(Xt),
-            l = at(function(e) {
+            })(rn),
+            l = dt(function(e) {
               return e.loading;
-            }, dt)(function() {
+            }, St)(function() {
               return c;
             });
           return a.a.createElement(
@@ -3435,7 +3452,7 @@
             a.a.createElement(
               "div",
               { className: "top-comment-editor" },
-              a.a.createElement(Kn, {
+              a.a.createElement(Zn, {
                 parentPk: o,
                 rootComment: !0,
                 usage: "create"
@@ -3448,7 +3465,7 @@
             )
           );
         },
-        tr = (function(e) {
+        ir = (function(e) {
           function t() {
             return (
               Object(ke.a)(this, t),
@@ -3467,14 +3484,14 @@
               {
                 key: "render",
                 value: function() {
-                  return a.a.createElement(er, this.props);
+                  return a.a.createElement(cr, this.props);
                 }
               }
             ]),
             t
           );
         })(r.Component),
-        nr = Object(Rt.a)(
+        lr = Object(Nt.a)(
           Object(c.b)(
             function(e) {
               return {
@@ -3490,13 +3507,29 @@
             function(e) {
               return {
                 fetchCommentList: function(t) {
-                  return e(qn(t));
+                  return e(
+                    ((n = t),
+                    function(e, t) {
+                      return e({
+                        type: "API_POST_COMMENT_TREES",
+                        types: {
+                          request: "FETCH_POST_COMMENT_TREES_REQUEST",
+                          success: Jn,
+                          failure: "FETCH_POST_COMMENT_TREES_FAILURE"
+                        },
+                        callAPI: function() {
+                          return zn(n, t().userAuth.username);
+                        }
+                      });
+                    })
+                  );
+                  var n;
                 }
               };
             }
-          )(tr)
+          )(ir)
         ),
-        rr = (function(e) {
+        ur = (function(e) {
           function t(e) {
             var n;
             return (
@@ -3512,7 +3545,7 @@
               }),
               (n.commentListNode = a.a.createRef()),
               (n.handleDelete = n.handleDelete.bind(
-                Object(jt.a)(Object(jt.a)(n))
+                Object(wt.a)(Object(wt.a)(n))
               )),
               n
             );
@@ -3539,9 +3572,9 @@
               {
                 key: "handleDelete",
                 value: (function() {
-                  var e = Object(Ut.a)(
-                    Ct.a.mark(function e() {
-                      return Ct.a.wrap(
+                  var e = Object(Dt.a)(
+                    It.a.mark(function e() {
+                      return It.a.wrap(
                         function(e) {
                           for (;;)
                             switch ((e.prev = e.next)) {
@@ -3581,18 +3614,18 @@
                     l = e.loading,
                     u = e.showPostEditor,
                     d = (e.handleDeletePost, e.togglePostEditor),
-                    m = ot(function(e) {
+                    m = mt(function(e) {
                       return e.showEllipsis;
-                    })(Un);
+                    })(Dn);
                   return a.a.createElement(
                     "div",
                     { className: "post-detail-content" },
                     l
-                      ? a.a.createElement(pt, null)
+                      ? a.a.createElement(gt, null)
                       : a.a.createElement(
                           r.Fragment,
                           null,
-                          a.a.createElement(Mn, { title: t, poster: n }),
+                          a.a.createElement(Vn, { title: t, poster: n }),
                           a.a.createElement(
                             "div",
                             { className: "post-title-container" },
@@ -3603,7 +3636,7 @@
                             { className: "post-body-container" },
                             u
                               ? a.a.createElement(
-                                  Hn,
+                                  Gn,
                                   Object.assign(
                                     { body: i, pk: c },
                                     { onEditorSubmitSuccess: d }
@@ -3617,19 +3650,19 @@
                           a.a.createElement(
                             "div",
                             { className: "link-bar-container" },
-                            a.a.createElement(An, {
+                            a.a.createElement(Ln, {
                               shareUrl: "".concat(window.location.href)
                             }),
                             a.a.createElement(
                               m,
                               { showEllipsis: o === n },
                               a.a.createElement(
-                                yt.a,
+                                jt.a,
                                 { eventKey: 1, onSelect: this.handleDelete },
                                 "delete"
                               ),
                               a.a.createElement(
-                                yt.a,
+                                jt.a,
                                 { eventKey: 2, onSelect: d },
                                 "edit"
                               )
@@ -3642,7 +3675,7 @@
                         className: "post-comments-container",
                         ref: this.commentListNode
                       },
-                      a.a.createElement(nr, null)
+                      a.a.createElement(lr, null)
                     )
                   );
                 }
@@ -3651,8 +3684,8 @@
             t
           );
         })(r.Component),
-        ar = Object(Rt.a)(rr),
-        or = (function(e) {
+        dr = Object(Nt.a)(ur),
+        mr = (function(e) {
           function t() {
             return (
               Object(ke.a)(this, t),
@@ -3691,7 +3724,7 @@
                     d = e.commentScroll,
                     m = e.handleDeletePost,
                     p = e.togglePostEditor;
-                  return a.a.createElement(ar, {
+                  return a.a.createElement(dr, {
                     body: t,
                     title: n,
                     subredditTitle: r,
@@ -3711,7 +3744,7 @@
             t
           );
         })(r.Component),
-        sr = Object(c.b)(
+        pr = Object(c.b)(
           function(e, t) {
             return {
               subredditTitle: t.title,
@@ -3728,18 +3761,18 @@
           function(e, t) {
             return {
               fetchPostDetail: function(t) {
-                return e(bn(t));
+                return e(_n(t));
               },
               handleDeletePost: function() {
-                return e(hn(Number(t.match.params.postId)));
+                return e(On(Number(t.match.params.postId)));
               },
               togglePostEditor: function() {
                 return e({ type: "TOGGLE_POST_EDITOR" });
               }
             };
           }
-        )(or),
-        cr = (n(531),
+        )(mr),
+        Er = (n(531),
         (function(e) {
           function t(e) {
             var n;
@@ -3756,7 +3789,7 @@
               }),
               (n.state = { description: "", title: "" }),
               (n.handleSubmit = n.handleSubmit.bind(
-                Object(jt.a)(Object(jt.a)(n))
+                Object(wt.a)(Object(wt.a)(n))
               )),
               n
             );
@@ -3767,9 +3800,9 @@
               {
                 key: "handleSubmit",
                 value: (function() {
-                  var e = Object(Ut.a)(
-                    Ct.a.mark(function e() {
-                      return Ct.a.wrap(
+                  var e = Object(Dt.a)(
+                    It.a.mark(function e() {
+                      return It.a.wrap(
                         function(e) {
                           for (;;)
                             switch ((e.prev = e.next)) {
@@ -3826,14 +3859,14 @@
                         { className: "form-container" },
                         a.a.createElement("h2", null, "Create a Subreddit"),
                         a.a.createElement("hr", null),
-                        a.a.createElement(Yt, null, t),
+                        a.a.createElement(an, null, t),
                         a.a.createElement(
                           "form",
                           null,
                           a.a.createElement(
                             "div",
                             { className: "input-container" },
-                            a.a.createElement(Dt, {
+                            a.a.createElement(Ft, {
                               id: "title-input",
                               placeholder: "title",
                               type: "text",
@@ -3841,7 +3874,7 @@
                               onChange: this.handleTitleChange,
                               name: "title"
                             }),
-                            a.a.createElement(Dt, {
+                            a.a.createElement(Ft, {
                               id: "description-input",
                               placeholder: "description",
                               componentClass: "textarea",
@@ -3852,7 +3885,7 @@
                             "div",
                             { className: "submit-button" },
                             a.a.createElement(
-                              Zt,
+                              sn,
                               {
                                 bsStyle: "primary",
                                 handleClick: this.handleSubmit,
@@ -3871,8 +3904,8 @@
             t
           );
         })(r.Component)),
-        ir = Object(Rt.a)(cr),
-        lr = (function(e) {
+        hr = Object(Nt.a)(Er),
+        fr = (function(e) {
           function t() {
             return (
               Object(ke.a)(this, t),
@@ -3889,7 +3922,7 @@
                     t = e.errorMessage,
                     n = e.loading,
                     r = e.handleCreateSubreddit;
-                  return a.a.createElement(ir, {
+                  return a.a.createElement(hr, {
                     errorMessage: t,
                     loading: n,
                     handleCreateSubreddit: r
@@ -3900,26 +3933,26 @@
             t
           );
         })(r.Component),
-        ur = Object(c.b)(
+        br = Object(c.b)(
           function(e) {
             return { errorMessage: se(e), loading: ce(e) };
           },
           function(e) {
             return {
               handleCreateSubreddit: function(t) {
-                return e(Xe(t));
+                return e(rt(t));
               }
             };
           }
-        )(lr),
-        dr = Object(c.b)(
+        )(fr),
+        Sr = Object(c.b)(
           function(e) {
             return { authenticatedUsername: T(e), userSubscriptions: _(e) };
           },
           function(e) {
             return {
               makeSubscriptionRequest: function(t, n) {
-                return e(Ye(t, n));
+                return e(at(t, n));
               }
             };
           }
@@ -3928,14 +3961,14 @@
             n = e.userSubscriptions,
             r = e.subredditTitle,
             o = e.makeSubscriptionRequest;
-          return a.a.createElement(st, {
+          return a.a.createElement(pt, {
             authenticatedUsername: t,
             userSubscriptions: n,
             subredditTitle: r,
             makeSubscriptionRequest: o
           });
         }),
-        mr = (n(533),
+        vr = (n(533),
         function(e) {
           var t = e.subreddit,
             n = e.handleSubredditRedirect;
@@ -3956,11 +3989,11 @@
             a.a.createElement(
               "div",
               { className: "subscription-button" },
-              a.a.createElement(dr, { subredditTitle: t.title })
+              a.a.createElement(Sr, { subredditTitle: t.title })
             )
           );
         }),
-        pr = (function(e) {
+        gr = (function(e) {
           function t() {
             var e, n;
             Object(ke.a)(this, t);
@@ -3983,7 +4016,7 @@
                 key: "render",
                 value: function() {
                   var e = this.props.subreddit;
-                  return a.a.createElement(mr, {
+                  return a.a.createElement(vr, {
                     subreddit: e,
                     handleSubredditRedirect: this.handleSubredditRedirect
                   });
@@ -3993,17 +4026,17 @@
             t
           );
         })(r.Component),
-        Er = Object(Rt.a)(
+        yr = Object(Nt.a)(
           Object(c.b)(function(e, t) {
             var n = t.pk;
-            return { subreddit: ye(e, n) };
-          })(pr)
+            return { subreddit: ge(e, n) };
+          })(gr)
         ),
-        hr = (n(535),
+        Or = (n(535),
         function(e) {
           e.loading, e.error;
           var t = e.allSubreddits.map(function(e) {
-            return a.a.createElement(Er, { key: e, pk: e });
+            return a.a.createElement(yr, { key: e, pk: e });
           });
           return a.a.createElement(
             "div",
@@ -4011,7 +4044,7 @@
             t
           );
         }),
-        fr = (n(537),
+        Tr = (n(537),
         function(e) {
           var t = e.allPosts,
             n = e.allSubreddits,
@@ -4021,8 +4054,8 @@
             c = e.query,
             i = e.resultsView,
             l = e.changeResultsView,
-            u = Object(rt.a)(
-              at(
+            u = Object(ut.a)(
+              dt(
                 function(e) {
                   return "users" === e.view;
                 },
@@ -4030,10 +4063,10 @@
                   return null;
                 }
               ),
-              at(function(e) {
+              dt(function(e) {
                 return "subreddits" === e.view;
-              }, hr)
-            )(wn);
+              }, Or)
+            )(qn);
           return a.a.createElement(
             "div",
             { className: "search-results-container" },
@@ -4049,7 +4082,7 @@
                 "div",
                 { className: "search-view-selector" },
                 a.a.createElement(
-                  nt,
+                  lt,
                   {
                     active: "posts" === i,
                     onClick: function() {
@@ -4059,7 +4092,7 @@
                   "Posts"
                 ),
                 a.a.createElement(
-                  nt,
+                  lt,
                   {
                     active: "subreddits" === i,
                     onClick: function() {
@@ -4069,7 +4102,7 @@
                   "Subreddits"
                 ),
                 a.a.createElement(
-                  nt,
+                  lt,
                   {
                     active: "users" === i,
                     onClick: function() {
@@ -4099,7 +4132,7 @@
             )
           );
         }),
-        br = (function(e) {
+        _r = (function(e) {
           function t() {
             return (
               Object(ke.a)(this, t),
@@ -4134,7 +4167,7 @@
                     c = e.query,
                     i = e.resultsView,
                     l = e.changeResultsView;
-                  return a.a.createElement(fr, {
+                  return a.a.createElement(Tr, {
                     allPosts: t,
                     allSubreddits: n,
                     allUsers: r,
@@ -4150,7 +4183,7 @@
             t
           );
         })(r.Component),
-        Sr = Object(c.b)(
+        Cr = Object(c.b)(
           function(e) {
             return {
               query: be(e),
@@ -4159,13 +4192,13 @@
               allUsers: ve(e),
               error: he(e),
               loading: fe(e),
-              resultsView: Oe(e)
+              resultsView: ye(e)
             };
           },
           function(e) {
             return {
               searchRequest: function(t) {
-                return e(Lt(t));
+                return e(Qt(t));
               },
               changeResultsView: function(t) {
                 return e(
@@ -4182,7 +4215,7 @@
               }
             };
           }
-        )(br);
+        )(_r);
       s.a.render(
         a.a.createElement(
           c.a,
@@ -4196,8 +4229,8 @@
               a.a.createElement(
                 "div",
                 { className: "whole-page" },
-                a.a.createElement(Gt, null),
-                a.a.createElement(on, null),
+                a.a.createElement($t, null),
+                a.a.createElement(pn, null),
                 a.a.createElement(
                   "div",
                   { className: "main-layout" },
@@ -4209,11 +4242,11 @@
                       path: "/r/:subredditTitle/:createPost",
                       render: function(e) {
                         return a.a.createElement(
-                          ft,
+                          Tt,
                           Object.assign({}, e, {
                             skinny: !0,
                             primaryComponent: function(e) {
-                              return a.a.createElement(vn, e);
+                              return a.a.createElement(Un, e);
                             }
                           })
                         );
@@ -4224,10 +4257,10 @@
                       path: "/r/:subredditTitle/postDetail/:postId",
                       render: function(e) {
                         return a.a.createElement(
-                          ft,
+                          Tt,
                           Object.assign({}, e, {
                             primaryComponent: function(e) {
-                              return a.a.createElement(sr, e);
+                              return a.a.createElement(pr, e);
                             }
                           })
                         );
@@ -4239,11 +4272,11 @@
                       path: "/r/:subredditTitle/postDetail/:postId/comments",
                       render: function(e) {
                         return a.a.createElement(
-                          ft,
+                          Tt,
                           Object.assign({}, e, {
                             primaryComponent: function(e) {
                               return a.a.createElement(
-                                sr,
+                                pr,
                                 Object.assign({}, e, { commentScroll: !0 })
                               );
                             }
@@ -4256,10 +4289,10 @@
                       path: "/r/:subredditTitle",
                       render: function(e) {
                         return a.a.createElement(
-                          ft,
+                          Tt,
                           Object.assign({}, e, {
                             primaryComponent: function(e) {
-                              return a.a.createElement(Ln, e);
+                              return a.a.createElement(Qn, e);
                             }
                           })
                         );
@@ -4269,7 +4302,7 @@
                       exact: !0,
                       path: "/createSubreddit",
                       render: function(e) {
-                        return a.a.createElement(ur, {
+                        return a.a.createElement(br, {
                           match: e.match,
                           history: e.history
                         });
@@ -4279,7 +4312,7 @@
                       exact: !0,
                       path: "/search",
                       render: function(e) {
-                        return a.a.createElement(Sr, {
+                        return a.a.createElement(Cr, {
                           match: e.match,
                           history: e.history
                         });
@@ -4290,10 +4323,10 @@
                       path: "/",
                       render: function(e) {
                         return a.a.createElement(
-                          ft,
+                          Tt,
                           Object.assign({}, e, {
                             primaryComponent: function(e) {
-                              return a.a.createElement(Ln, e);
+                              return a.a.createElement(Qn, e);
                             }
                           })
                         );
@@ -4315,4 +4348,4 @@
   },
   [[222, 2, 1]]
 ]);
-//# sourceMappingURL=main.a5cc7eb9.chunk.js.map
+//# sourceMappingURL=main.1e9df6cf.chunk.js.map

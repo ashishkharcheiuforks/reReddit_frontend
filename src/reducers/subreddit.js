@@ -12,8 +12,20 @@ const initialState = {
   loading: false,
   error: null,
   title: null,
+  pseudo: false,
   description: null,
   subscriptionLoading: false
+};
+
+// psuedosubreddits are those like 'home' or 'popular'
+// They aren't true subreddits that can be posted to
+// but they do share enough similarities to be listed with
+// the others.
+// This is exported so that a title grabbed from the router can be
+// before the state is updated if necessary. (see Subreddit component)
+export const checkForPseudoSubreddits = title => {
+  const pseudos = ["popular", "home", "all"];
+  return pseudos.indexOf(title.toLowerCase()) >= 0;
 };
 
 const subreddit = (state = initialState, action) => {
@@ -30,6 +42,7 @@ const subreddit = (state = initialState, action) => {
         loading: false,
         error: null,
         title: action.data.title,
+        pseudo: checkForPseudoSubreddits(action.data.title),
         description: action.data.description
       };
     case FETCH_SUB_DETAIL_FAILURE:
@@ -70,6 +83,7 @@ export const getSubredditTitle = state => state.subreddit.title;
 export const getSubredditData = state => ({
   title: state.subreddit.title,
   description: state.subreddit.description,
+  pseudo: state.subreddit.psuedo,
   loading: state.subreddit.loading,
   error: state.subreddit.error
 });

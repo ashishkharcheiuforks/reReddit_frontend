@@ -1,5 +1,6 @@
 import React, { Component } from "react";
 import { connect } from "react-redux";
+import { withRouter } from "react-router";
 
 import { makeSubPostListRequest } from "../../actions/Posts";
 import PostList from "../../components/PostList";
@@ -40,7 +41,9 @@ const mapDispatchToProps = dispatch => ({
     dispatch(makeSubPostListRequest(subredditTitle, orderBy))
 });
 
-export default connect(
-  mapStateToProps,
-  mapDispatchToProps
-)(PostListContainer);
+export default withRouter(
+  connect(
+    mapStateToProps,
+    mapDispatchToProps
+  )(PostListContainer)
+);

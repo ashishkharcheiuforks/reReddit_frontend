@@ -6,6 +6,7 @@ import {
   makeSubSubscriptionRequest
 } from "../../actions/Subreddit";
 import { getAuthUsername } from "../../reducers/userAuth";
+import { getSubredditData } from "../../reducers/subreddit";
 import Subreddit from "../../components/Subreddit";
 
 class SubredditContainer extends Component {
@@ -27,19 +28,29 @@ class SubredditContainer extends Component {
   }
 
   render() {
-    return <Subreddit {...this.props} />;
+    const {
+      subredditData: { title, description, pseudo, loading },
+      primaryComponent,
+      skinny
+    } = this.props;
+
+    return (
+      <Subreddit
+        {...{
+          title,
+          description,
+          pseudo,
+          loading,
+          primaryComponent,
+          skinny
+        }}
+      />
+    );
   }
 }
 
 const mapStateToProps = state => ({
-  title: state.subreddit.title,
-  description: state.subreddit.description,
-  loading: state.subreddit.loading,
-  userSubs: {
-    subscribed: state.userAuth.subs.map(sub => sub.title),
-    moderated: state.userAuth.moderated_subs.map(sub => sub.title)
-  },
-  authenticatedUsername: getAuthUsername(state)
+  subredditData: getSubredditData(state)
 });
 
 const mapDispatchToProps = dispatch => ({

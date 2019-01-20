@@ -20,7 +20,7 @@ import SearchResultsContainer from "./containers/SearchResultsContainer";
 
 WebFont.load({
   google: {
-    families: ["Roboto Slab", "Noto Sans", "Poppins:400,500"]
+    families: ["Roboto Slab:400,700", "Noto Sans", "Poppins:400,500,700"]
   }
 });
 
@@ -101,6 +101,7 @@ ReactDOM.render(
                   />
                 )}
               />
+              // The home psuedo-subreddit
               <Route
                 exact
                 path="/"

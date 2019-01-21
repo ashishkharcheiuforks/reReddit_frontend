@@ -101,7 +101,7 @@ ReactDOM.render(
                   />
                 )}
               />
-              // The home psuedo-subreddit
+              // The 'home' psuedo-subreddit
               <Route
                 exact
                 path="/"

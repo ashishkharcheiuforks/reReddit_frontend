@@ -1,53 +1,42 @@
-import React, { Component } from 'react';
-import PropTypes from 'prop-types';
-import { withRouter } from 'react-router';
-import {
-  Navbar,
-  Nav,
-  FormGroup,
-  FormControl,
-  Button,
-} from 'react-bootstrap';
+import React, { Component } from "react";
+import PropTypes from "prop-types";
+import { withRouter } from "react-router";
+import { Navbar, Nav, FormGroup, FormControl, Button } from "react-bootstrap";
 
-import FieldGroup from '../FieldGroup';
-import { LoadingButton } from '../Buttons';
-import { SEARCH_URL } from '../../urls';
-import './styles.css';
+import FieldGroup from "../FieldGroup";
+import { LoadingButton } from "../Buttons";
+import { SEARCH_URL } from "../../urls";
+import "./styles.css";
 
 class SearchBar extends Component {
   constructor(props) {
     super(props);
-    
+
     this.state = {
-      query: ''
+      query: ""
     };
-    
+
     this.handleSearchSubmit = this.handleSearchSubmit.bind(this);
   }
-  
-  handleChange = (e) => {
-    this.setState({query: e.target.value});
-  }
-  
+
+  handleChange = e => {
+    this.setState({ query: e.target.value });
+  };
+
   async handleSearchSubmit(e) {
     e.preventDefault();
-    
-    try{
+    try {
       await this.props.handleSearchRequest(this.state.query);
     } catch {
-      this.forceUpdate()
+      this.forceUpdate();
     }
-    this.setState({query:''})
+    this.setState({ query: "" });
     this.props.history.push(SEARCH_URL);
   }
-  
+
   render() {
-    
-    const {
-      loading,
-      error,
-    } = this.props;
-    
+    const { loading, error } = this.props;
+
     return (
       <Navbar.Form pullLeft>
         <form onSubmit={this.handleSearchSubmit}>
@@ -59,22 +48,14 @@ class SearchBar extends Component {
             onChange={this.handleChange}
             value={this.state.query}
           />
-        <LoadingButton
-          type="submit"
-          loading={loading}
-        >
-          Search
-        </LoadingButton>
         </form>
-
       </Navbar.Form>
-    )
+    );
   }
-  
 }
 
 SearchBar.propTypes = {
-  handleSearchRequest: PropTypes.func,
-}
+  handleSearchRequest: PropTypes.func
+};
 
 export default withRouter(SearchBar);

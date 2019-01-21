@@ -1,8 +1,9 @@
 import React, { Component } from "react";
+import PropTypes from "prop-types";
 import { withRouter } from "react-router";
 
 import FieldGroup from "../../FieldGroup";
-import FormButton from "../FormButton";
+import { LoadingButton } from "../../Buttons";
 import { HOME_SUBREDDIT_URL } from "../../../urls";
 import "./styles.css";
 
@@ -23,7 +24,8 @@ class ModalLoginForm extends Component {
     this.setState({ [e.target.name]: e.target.value });
   };
 
-  async handleSubmit() {
+  async handleSubmit(e) {
+    e.preventDefault();
     try {
       await this.props.handleLogin(this.state.username, this.state.password);
       this.props.history.push(HOME_SUBREDDIT_URL);
@@ -33,9 +35,11 @@ class ModalLoginForm extends Component {
   }
 
   render() {
+    const { handleHide, showRegisterModal, loading } = this.props;
+
     return (
       <div id="login-form-container">
-        <form onSubmit={this.handleSubmit}>
+        <form id="userauth-login-form" onSubmit={this.handleSubmit}>
           <FieldGroup
             id="formControlsText"
             label="Username:"
@@ -58,25 +62,29 @@ class ModalLoginForm extends Component {
           />
 
           <div id="button-container">
-            <FormButton
+            <LoadingButton
               bsStyle="primary"
-              handleClick={this.handleSubmit}
-              loading={this.props.loading}
-              children="Login"
+              loading={loading}
+              children="Sign in"
               type="submit"
-            />
-
-            <FormButton
-              bsStyle="danger"
-              handleClick={this.props.handleHide}
-              loading={this.props.loading}
-              children="Cancel"
             />
           </div>
         </form>
+
+        <div className="register-redirect">
+          <p>New to reReddit?</p>
+          <span onClick={showRegisterModal}>REGISTER</span>
+        </div>
       </div>
     );
   }
 }
+
+ModalLoginForm.propTypes = {
+  loading: PropTypes.bool,
+  handleHide: PropTypes.func,
+  HandleRegister: PropTypes.func,
+  showRegisterModal: PropTypes.func
+};
 
 export default withRouter(ModalLoginForm);

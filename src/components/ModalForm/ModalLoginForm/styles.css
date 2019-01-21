@@ -1,17 +1,22 @@
-#login-form-container {
-  max-width: 80%;
-  margin: 0 auto;
+div#login-form-container {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
 }
 
-#button-container {
-  margin: 0 auto;
-  text-align: center;
+div#login-form-container #userauth-login-form {
+  min-width: 30rem;
 }
 
-#button-container .login-buttons {
-  display: inline-block;
-  margin: 0 1rem 0 1rem;
-  width: 7rem;
-  height: 3.5rem;
-  text-align: center;
+div#login-form-container > div.register-redirect {
+  margin-top: 3rem;
+  display: flex;
+  justify-content: space-between;
+  font-size: 0.85em;
+}
+
+div#login-form-container > div.register-redirect > span {
+  color: #0079d3;
+  margin-left: 0.6rem;
+  cursor: pointer;
 }

@@ -1,87 +1,99 @@
-import React, { Component } from 'react';
+import React, { Component } from "react";
+import PropTypes from "prop-types";
+import { Link } from "react-router-dom";
 
-import FieldGroup from '../../FieldGroup';
-import FormButton from '../FormButton';
-import './styles.css'
+import FieldGroup from "../../FieldGroup";
+import FormButton from "../FormButton";
+import { LoadingButton } from "../../Buttons";
+import "./styles.css";
 
 class ModalRegisterForm extends Component {
   constructor(props) {
     super(props);
-    
+
     this.handleChange = this.handleChange.bind(this);
-    
+
     this.state = {
-      username: '',
-      password: '',
-      email: '',
+      username: "",
+      password: "",
+      email: ""
     };
   }
-  
-  handleChange = (e) => {
-      this.setState({[e.target.name]: e.target.value});
-  }
-  
-  handleSubmit = () => {
+
+  handleChange = e => {
+    this.setState({ [e.target.name]: e.target.value });
+  };
+
+  handleSubmit = e => {
+    e.preventDefault();
     this.props.handleRegister(
       this.state.username,
       this.state.password,
       this.state.email
     );
-  }
-  
-  render = () => (
-    <div id="register-form-container">
-      <form onSubmit={this.handleSubmit}>
-        <FieldGroup
-          id="formControlsText"
-          label="Username:"
-          type="text"
-          value={this.state.username}
-          placeholder='username'
-          name='username'
-          onChange={this.handleChange}
-          autoFocus
-        />
-      
-        <FieldGroup
-          id="formControlsPassword"
-          label="Password:"
-          type="password"
-          value={this.state.password}
-          placeholder='password'
-          name='password'
-          onChange={this.handleChange}
-        />
-        
-        <FieldGroup
-          id="formControlsEmail"
-          label="Email:"
-          type="email"
-          value={this.state.email}
-          placeholder='email'
-          name='email'
-          onChange={this.handleChange}
-        />
-      
-        <div id="button-container">
-          <FormButton
-            bsStyle='primary'
-            handleClick={this.handleSubmit}
-            loading={this.props.loading}
-            children='Register'
-            type='submit'
+  };
+
+  render = () => {
+    const { handleHide, showLoginModal, loading } = this.props;
+
+    return (
+      <div id="register-form-container">
+        <form id="userauth-register-form" onSubmit={this.handleSubmit}>
+          <FieldGroup
+            id="formControlsText"
+            label="Username:"
+            type="text"
+            value={this.state.username}
+            placeholder="username"
+            name="username"
+            onChange={this.handleChange}
+            autoFocus
           />
-        
-          <FormButton
-              bsStyle='danger'
-              handleClick={this.props.handleHide}
-              loading={this.props.loading}
-              children='Cancel'
+
+          <FieldGroup
+            id="formControlsPassword"
+            label="Password:"
+            type="password"
+            value={this.state.password}
+            placeholder="password"
+            name="password"
+            onChange={this.handleChange}
+          />
+
+          <FieldGroup
+            id="formControlsEmail"
+            label="Email:"
+            type="email"
+            value={this.state.email}
+            placeholder="email"
+            name="email"
+            onChange={this.handleChange}
+          />
+
+          <div id="button-container">
+            <LoadingButton
+              bsStyle="primary"
+              loading={loading}
+              children="Register"
+              type="submit"
             />
+          </div>
+        </form>
+
+        <div className="login-redirect">
+          <p>Already signed up?</p>
+          <span onClick={showLoginModal}>LOG IN</span>
         </div>
-      </form>
-    </div>
-  )
+      </div>
+    );
+  };
 }
+
+ModalRegisterForm.propTypes = {
+  loading: PropTypes.bool,
+  handleHide: PropTypes.func,
+  HandleRegister: PropTypes.func,
+  showLoginModal: PropTypes.func
+};
 
 export default ModalRegisterForm;

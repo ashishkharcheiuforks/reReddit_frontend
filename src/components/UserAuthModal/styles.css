@@ -1,24 +1,49 @@
-#message-container {
+div.modal-dialog {
+  max-width: 55rem;
+  font-family: Roboto Slab;
+}
+
+div#custom-modal-contents {
   display: flex;
-  padding-left: 2em;
 }
 
-#success-text {
-  color: green;
-  font-size: 1.3em;
-}
-
-#error-text {
-  color: red;
-  font-size: 1.3em;
-}
-
-p.message {
-  padding-top: 0.4em;
-  padding-left: 1em;
-}
-
-div.modal-alert {
+div#custom-modal-contents > div#colorful-side {
+  min-width: 10rem;
+  background: url("./modalBackground.jpg") no-repeat;
+  background-size: cover;
   display: flex;
-  justify-content: center;
+  align-items: flex-end;
+  font-size: 0.4em;
+  color: #b8b8b8;
+}
+
+div#custom-modal-contents > #form-container {
+  flex-grow: 1;
+}
+
+div.modal-header {
+  padding-bottom: 0;
+  padding-top: 0;
+}
+
+div.modal-header > #modal-title {
+  font-size: 1.3em;
+  font-weight: 700;
+  margin-top: 4rem;
+}
+
+div.modal-header > #modal-subtitle {
+  font-size: 1.5em;
+  font-size: 0.9em;
+  font-weight: 400;
+}
+
+div.modal-header > button.close {
+  font-size: 3em;
+  color: #4d4d4d;
+  opacity: 0.6;
+}
+
+div.modal-header > button.close:hover {
+  opacity: 1;
 }

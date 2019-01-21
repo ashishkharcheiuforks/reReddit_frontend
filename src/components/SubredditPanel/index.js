@@ -24,7 +24,7 @@ const SubredditPanel = ({ subreddit, handleSubredditRedirect }) => (
 SubredditPanel.propTypes = {
   subreddit: PropTypes.shape({
     title: PropTypes.string,
-    members: PropTypes.arrayOf(PropTypes.string),
+    members: PropTypes.arrayOf(PropTypes.number),
     description: PropTypes.string
   })
 };

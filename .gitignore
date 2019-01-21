@@ -24,3 +24,6 @@ yarn-error.log*
 
 # My script
 rsync_build.sh
+
+# Emacs crap
+*~

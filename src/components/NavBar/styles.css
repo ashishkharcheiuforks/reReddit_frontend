@@ -1,7 +1,37 @@
-.navbar{
+#navbar-base {
+  font-family: Poppins;
+}
+.navbar {
   border-radius: 0px;
 }
 
-.feed-dropdown{
+.feed-dropdown {
   min-width: 15rem;
+}
+
+#home-nav-link {
+  padding: 0;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  padding-bottom: 0.3rem;
+  margin-left: 1rem;
+  margin-right: 1rem;
+}
+div.home-link-contents {
+  display: flex;
+  align-items: center;
+}
+
+#rereddit-icon {
+  max-width: 3.5rem;
+  display: inline-block;
+}
+
+#nav-home-link {
+  margin-bottom: -0.5rem;
+  margin-left: 0.3rem;
+  font-family: Poppins;
+  font-weight: 700;
+  font-size: 1.1em;
 }

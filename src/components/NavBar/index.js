@@ -9,7 +9,7 @@ import SearchBarContainer from "../../containers/SearchBarContainer";
 
 const NavBar = ({ children, subscribed }) => {
   return (
-    <Navbar id="navbar-base" inverse fixed="true" fluid>
+    <Navbar id="navbar-base" inverse fixedTop fixed="true" fluid>
       <Navbar.Header>
         <Navbar.Brand>
           <Link id="home-nav-link" to="/">

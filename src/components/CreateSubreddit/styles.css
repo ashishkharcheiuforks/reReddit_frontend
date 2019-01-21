@@ -1,11 +1,3 @@
-html, body, div#root, div.whole-page{
-  height: 100%;
-}
-
-div.main-layout {
-  height: calc(100% - 5.3rem);
-}
-
 .create-subreddit-container {
   background-color: #070707;
   height: 100%;
@@ -33,14 +25,15 @@ div.main-layout {
 }
 
 .form-container > h2 {
-font-size: 145%;
+  font-size: 145%;
 }
 
 .input-container {
   margin-top: 3rem;
 }
 
-#description-input, #title-input {
+#description-input,
+#title-input {
   width: 35rem;
   max-width: 35rem;
   background-color: #4d4d4d;
@@ -51,11 +44,10 @@ font-size: 145%;
   min-height: 8rem;
 }
 
-
 .input-container #title-input:-webkit-autofill,
 .input-container #title-input:-webkit-autofill:hover,
 .input-container #title-input:-webkit-autofill:focus,
-.input-container #title-input:-webkit-autofill:active  {
+.input-container #title-input:-webkit-autofill:active {
   transition: background-color 5000s ease-in-out 0s;
   -webkit-text-fill-color: white;
 }

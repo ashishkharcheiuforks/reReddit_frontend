@@ -65,5 +65,6 @@ export const getAuthUsername = state => state.userAuth.username;
 export const getAuthUserToken = state => state.userAuth.token;
 export const getAuthUserSubredditTitles = state =>
   state.userAuth.subs.map(subreddit => subreddit.title);
+export const getAuthUserSubreddits = state => state.userAuth.subs;
 
 export default userAuth;

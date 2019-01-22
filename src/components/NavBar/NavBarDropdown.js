@@ -1,5 +1,5 @@
 import React from "react";
-import { NavDropdown, MenuItem } from "react-bootstrap";
+import { NavDropdown, MenuItem, DropdownButton } from "react-bootstrap";
 import { LinkContainer } from "react-router-bootstrap";
 
 import "./styles.css";
@@ -12,9 +12,8 @@ const NavBarDropdown = ({ subscribed }) => {
   ));
 
   return (
-    <NavDropdown
+    <DropdownButton
       className="feed-dropdown"
-      eventKey={3}
       title="feed"
       id="basic-nav-dropdown"
     >
@@ -29,7 +28,7 @@ const NavBarDropdown = ({ subscribed }) => {
       </LinkContainer>
       <MenuItem divider eventKey={3.4} />
       {subscribedSubs}
-    </NavDropdown>
+    </DropdownButton>
   );
 };
 

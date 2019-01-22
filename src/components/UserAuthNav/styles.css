@@ -1,4 +1,4 @@
-/* Unauthenticated User buttons*/ 
+/* Unauthenticated User buttons*/
 .right-user-links {
   margin-right: 13rem;
   margin-top: -2px;
@@ -16,5 +16,5 @@
 #user-nav-dropdown {
   padding-top: 7px;
   padding-bottom: 7px;
-  min-width: 15rem;
+  width: 100%;
 }

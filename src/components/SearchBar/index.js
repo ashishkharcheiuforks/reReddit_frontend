@@ -39,7 +39,7 @@ class SearchBar extends Component {
 
     return (
       <Navbar.Form pullLeft>
-        <form onSubmit={this.handleSearchSubmit}>
+        <form autoComplete="off" onSubmit={this.handleSearchSubmit}>
           <FieldGroup
             id="search-bar-input"
             type="text"

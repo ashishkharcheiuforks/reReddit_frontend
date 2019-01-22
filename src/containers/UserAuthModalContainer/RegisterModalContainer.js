@@ -3,18 +3,11 @@ import { connect } from "react-redux";
 
 import UserAuthModal from "../../components/UserAuthModal";
 import ModalRegisterForm from "../../components/ModalForm/ModalRegisterForm";
-import { hideUserAuthModal } from "../../actions/UserAuthModal";
 import { makeUserRegisterRequest } from "../../actions/UserAuth";
 import { showUserAuthModal } from "../../actions/UserAuthModal";
 
 const RegisterModalContainer = props => {
-  const {
-    handleHide,
-    handleRegister,
-    showLoginModal,
-    loading,
-    messageProps
-  } = props;
+  const { handleRegister, showLoginModal, loading, messageProps } = props;
 
   const RegisterHeader = (
     <Fragment>
@@ -33,7 +26,6 @@ const RegisterModalContainer = props => {
 
   return (
     <UserAuthModal
-      handleHide={handleHide}
       title="Sign up"
       subtitle={subtitle}
       messageProps={messageProps}
@@ -41,7 +33,6 @@ const RegisterModalContainer = props => {
         <ModalRegisterForm
           {...{
             handleRegister,
-            handleHide,
             showLoginModal,
             loading
           }}
@@ -56,7 +47,6 @@ const mapStateToProps = state => ({
 });
 
 const mapDispatchToProps = dispatch => ({
-  handleHide: () => dispatch(hideUserAuthModal()),
   handleRegister: (username, password, email) =>
     dispatch(makeUserRegisterRequest(username, password, email)),
   showLoginModal: () => dispatch(showUserAuthModal("login"))

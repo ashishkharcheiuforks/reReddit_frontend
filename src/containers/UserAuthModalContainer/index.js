@@ -1,30 +1,45 @@
-import React from 'react';
-import { connect } from 'react-redux';
+import React from "react";
+import { connect } from "react-redux";
 
-import LoginModalContainer from './LoginModalContainer';
-import RegisterModalContainer from './RegisterModalContainer';
+import LoginModalContainer from "./LoginModalContainer";
+import RegisterModalContainer from "./RegisterModalContainer";
+import { hideUserAuthModal } from "../../actions/UserAuthModal";
+import { Modal } from "react-bootstrap";
 
-const UserAuthModalContainer = ({displayType, messageProps}) => {
+const UserAuthModalContainer = ({ displayType, messageProps, handleHide }) => {
+  let modalContent;
+
   switch (displayType) {
-    case 'login':
-      return <LoginModalContainer messageProps={messageProps}/>;
-    case 'register':
-      return <RegisterModalContainer messageProps={messageProps}/>;
+    case "login":
+      modalContent = <LoginModalContainer messageProps={messageProps} />;
+      break;
+    case "register":
+      modalContent = <RegisterModalContainer messageProps={messageProps} />;
+      break;
     default:
       return null;
   }
-}
 
-const mapStateToProps = state => (
-  {
-      displayType: state.userAuthModal.displayType,
-      messageProps: {
-        errorMessage: state.userAuthModal.errorMessage,
-        successMessage: state.userAuthModal.successMessage,
-      },
+  return (
+    <Modal onHide={handleHide} show>
+      {modalContent}
+    </Modal>
+  );
+};
+
+const mapStateToProps = state => ({
+  displayType: state.userAuthModal.displayType,
+  messageProps: {
+    errorMessage: state.userAuthModal.errorMessage,
+    successMessage: state.userAuthModal.successMessage
   }
-);
+});
+
+const mapDispatchToProps = dispatch => ({
+  handleHide: () => dispatch(hideUserAuthModal())
+});
 
 export default connect(
-  mapStateToProps
-) (UserAuthModalContainer);
+  mapStateToProps,
+  mapDispatchToProps
+)(UserAuthModalContainer);

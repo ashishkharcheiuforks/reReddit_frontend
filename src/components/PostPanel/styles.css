@@ -7,40 +7,45 @@
   display: flex;
   justify-content: center;
   color: white;
-  padding: 0.5rem;
   cursor: pointer;
   background-color: #333333;
+  font-family: Roboto Slab;
 }
 
 .post-segment-panel:last-child {
   border: 1px solid #4d4d4d;
 }
 
-.post-segment-panel:hover{
+.post-segment-panel:hover {
   border: 1px solid white;
 }
 
-.post-segment-panel:hover +.post-segment-panel {
+.post-segment-panel:hover + .post-segment-panel {
   border-top: 0;
 }
 
+div.post-segment-panel > div.voter-container {
+  background-color: #1a1a1a;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 3rem;
+}
+
 .post-segment-text-container {
-    flex: 2;
-    padding-left: 0.8rem;
-    color: white;
+  flex: 2;
+  padding: 0.5rem 0 0.5rem 1rem;
+  color: white;
 }
 
 .post-segment-title {
   font-weight: bold;
-  font-size: 1.3em;
-}
-
-.post-segment-title a#post-title:hover {
-  
+  font-size: 1.1em;
+  margin-bottom: 0.3rem;
 }
 
 .post-segment-info {
-  font-size: 85%;
+  font-size: 80%;
 }
 
 .post-segment-info a:hover {
@@ -65,7 +70,9 @@
   color: #b8b8b8;
 }
 
-.post-segment-links a:hover, .post-segment-title a#post-title:hover, a {
+.post-segment-links a:hover,
+.post-segment-title > a.post-title:hover,
+a {
   color: white;
   text-decoration: none;
 }

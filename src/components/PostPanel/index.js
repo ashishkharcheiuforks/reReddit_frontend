@@ -1,30 +1,26 @@
-import React, { Component } from 'react';
-import PropTypes from 'prop-types';
-import { withRouter } from 'react-router';
-import { Panel, Button, MenuItem } from 'react-bootstrap';
-import { FaShare } from 'react-icons/fa';
-import { Link } from 'react-router-dom';
+import React, { Component } from "react";
+import PropTypes from "prop-types";
+import { withRouter } from "react-router";
+import { Panel, Button, MenuItem } from "react-bootstrap";
+import { FaShare } from "react-icons/fa";
+import { Link } from "react-router-dom";
 
-import VoterContainer from '../../containers/VoterContainer';
-import EllipsisButton from '../EllipsisButton';
-import ShareButton from '../ShareButton';
-import { withMaybe } from '../../utilities/HOC';
-import './styles.css';
+import VoterContainer from "../../containers/VoterContainer";
+import EllipsisButton from "../EllipsisButton";
+import ShareButton from "../ShareButton";
+import { withMaybe } from "../../utilities/HOC";
+import { POST_DETAIL_URL } from "../../urls";
+import "./styles.css";
 
 class PostPanel extends Component {
-  
-  handlePanelClick = (e) => {
-    const {
-      subredditTitle,
-      pk,
-      history,
-    } = this.props;
-    
+  handlePanelClick = e => {
+    const { subredditTitle, pk, history } = this.props;
+
     if (e.target instanceof HTMLDivElement) {
-      history.push(`/r/${subredditTitle}/postDetail/${pk}`)
+      history.push(POST_DETAIL_URL(subredditTitle, pk));
     }
   };
-  
+
   render() {
     const {
       upvotes,
@@ -36,78 +32,58 @@ class PostPanel extends Component {
       created,
       voteDisplayState,
       handleDeletePost,
-      history,
+      history
     } = this.props;
-    
-    const AuthEllipsis = withMaybe(
-      (props) => props.showEllipsis
-    )(EllipsisButton);
+
+    const AuthEllipsis = withMaybe(props => props.showEllipsis)(EllipsisButton);
 
     return (
-      <div
-        className="post-segment-panel"
-        name="postPanel"
-        onClick={this.handlePanelClick}
-      >
+      <div className="post-segment-panel" onClick={this.handlePanelClick}>
+        <div className="voter-container">
           <VoterContainer
             upvotes={upvotes}
             voteDisplayState={voteDisplayState || 0}
-            itemType={'post'}
+            itemType={"post"}
             itemPk={pk}
           />
+        </div>
 
-        
-        <div className='post-segment-text-container'>
+        <div className="post-segment-text-container">
           <div className="post-segment-title">
             <Link
-              id="post-title"
+              className="post-title"
               to={"/r/" + subredditTitle + "/postDetail/" + pk}
             >
               {title}
             </Link>
           </div>
-          
-          <div className='post-segment-info'>
+
+          <div className="post-segment-info">
             <strong>
-              <Link to={`/r/${subredditTitle}`}>
-                r/{subredditTitle}
-              </Link>
+              <Link to={`/r/${subredditTitle}`}>r/{subredditTitle}</Link>
             </strong>
             - posted by:
             <a href="#"> u/{posterUsername} </a>
             {created}
           </div>
-          
-          <div className='post-segment-links'>
+
+          <div className="post-segment-links">
             <Link to={`/r/${subredditTitle}/postDetail/${pk}/comments`}>
-              <Button
-                bsSize='xsmall'
-                className='post-buttons'
-              >
+              <Button bsSize="xsmall" className="post-buttons">
                 Comments
               </Button>
             </Link>
 
-            <ShareButton shareUrl={`${window.location}/postDetail/${pk}`}/>
+            <ShareButton shareUrl={`${window.location}/postDetail/${pk}`} />
 
-            <AuthEllipsis
-              showEllipsis={authUsername === posterUsername}
-            >
-              <MenuItem
-                eventKey={1}
-                onSelect={handleDeletePost}
-              >
+            <AuthEllipsis showEllipsis={authUsername === posterUsername}>
+              <MenuItem eventKey={1} onSelect={handleDeletePost}>
                 delete
               </MenuItem>
-                      
-              <MenuItem
-                eventKey={2}
-                onSelect={() => null}
-              >
+
+              <MenuItem eventKey={2} onSelect={() => null}>
                 edit
               </MenuItem>
-
-
             </AuthEllipsis>
           </div>
         </div>
@@ -125,7 +101,7 @@ PostPanel.propTypes = {
   authUsername: PropTypes.string,
   created: PropTypes.string,
   voteDisplayState: PropTypes.number,
-  handleDeletePost: PropTypes.func,
-}
+  handleDeletePost: PropTypes.func
+};
 
 export default withRouter(PostPanel);

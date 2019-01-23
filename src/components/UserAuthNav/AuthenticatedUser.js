@@ -42,6 +42,7 @@ const AuthenticatedUser = props => {
           eventKey={3.5}
           onClick={() => handleLogout()}
           href="https://github.com/cdunn6754/reReddit_frontend"
+          target="_blank"
         >
           <IoLogoGithub /> reReddit GitHub
         </MenuItem>

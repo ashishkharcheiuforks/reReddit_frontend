@@ -4,11 +4,13 @@ import { withRouter } from "react-router";
 import { MenuItem, Dropdown } from "react-bootstrap";
 import {
   IoMdLogOut,
+  IoMdLogIn,
   IoMdCreate,
   IoMdSettings,
   IoLogoGithub,
   IoMdMenu
 } from "react-icons/io";
+import { FaUserPlus } from "react-icons/fa";
 
 import "./styles.css";
 
@@ -40,6 +42,7 @@ const MobileUserAuthNav = props => {
         eventKey={3.5}
         onClick={() => handleLogout()}
         href="https://github.com/cdunn6754/reReddit_frontend"
+        target="_blank"
       >
         <IoLogoGithub /> reReddit GitHub
       </MenuItem>
@@ -49,20 +52,25 @@ const MobileUserAuthNav = props => {
   const unAuthenticatedMenu = (
     <Fragment>
       <MenuItem eventKey="1" onClick={() => showModal("login")}>
-        Sign in
+        <IoMdLogIn /> Sign in
       </MenuItem>
+      <MenuItem eventKey="1" onClick={() => showModal("register")}>
+        <FaUserPlus /> Sign up
+      </MenuItem>
+      <MenuItem divider />
       <MenuItem
         eventKey="2"
         href="https://github.com/cdunn6754/reReddit_frontend"
+        target="_blank"
       >
-        reReddit Github
+        <IoLogoGithub /> reReddit Github
       </MenuItem>
     </Fragment>
   );
 
   return (
     <div id="mobile-user-auth-dropdown-container">
-      <Dropdown pullRight id="authenticated-user-dropdown">
+      <Dropdown pullRight id="mobile-user-dropdown">
         <Dropdown.Toggle>
           <IoMdMenu />
         </Dropdown.Toggle>

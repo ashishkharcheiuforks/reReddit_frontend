@@ -1,9 +1,23 @@
 import React from "react";
 import { Nav, DropdownButton, MenuItem } from "react-bootstrap";
+import {
+  IoMdLogOut,
+  IoMdCreate,
+  IoMdSettings,
+  IoLogoGithub
+} from "react-icons/io";
+import { GoMarkGithub } from "react-icons/go";
 
 import "./styles.css";
 
-const AuthenticatedUser = ({ username, handleLogout }) => {
+const AuthenticatedUser = props => {
+  const {
+    username,
+    handleLogout,
+    redirectToCreatePost,
+    redirectToCreateSubreddit
+  } = props;
+
   return (
     <div className="authenticated-user-dropdown-container">
       <DropdownButton
@@ -12,19 +26,25 @@ const AuthenticatedUser = ({ username, handleLogout }) => {
         pullRight
         id="user-nav-dropdown"
       >
-        <MenuItem eventKey={3.1}>Action</MenuItem>
-        <MenuItem eventKey={3.2}>Another action</MenuItem>
-        <MenuItem eventKey={3.3}>Something else here</MenuItem>
+        <MenuItem eventKey={3.1} onClick={redirectToCreatePost}>
+          <IoMdSettings /> Edit profile
+        </MenuItem>
+        <MenuItem eventKey={3.1} onClick={redirectToCreatePost}>
+          <IoMdCreate /> Create post
+        </MenuItem>
+        <MenuItem eventKey={3.2} onClick={redirectToCreateSubreddit}>
+          <IoMdCreate /> Create subreddit
+        </MenuItem>
         <MenuItem divider />
         <MenuItem eventKey={3.4} onClick={() => handleLogout()}>
-          Logout
+          <IoMdLogOut /> Logout
         </MenuItem>
         <MenuItem
           eventKey={3.5}
           onClick={() => handleLogout()}
           href="https://github.com/cdunn6754/reReddit_frontend"
         >
-          reReddit github
+          <GoMarkGithub /> reReddit GitHub
         </MenuItem>
       </DropdownButton>
     </div>

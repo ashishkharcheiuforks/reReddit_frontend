@@ -5,23 +5,26 @@ import UserAuthNav from "../../components/UserAuthNav";
 import { userAuthLogout } from "../../actions/UserAuth";
 import { showUserAuthModal } from "../../actions/UserAuthModal";
 import { getAuthUsername } from "../../reducers/userAuth";
+import { getSubredditTitle } from "../../reducers/subreddit";
 
 const UserAuthNavContainer = props => {
-  const { authUsername, handleLogout, showModal } = props;
+  const { authUsername, handleLogout, showModal, subredditTitle } = props;
 
   return (
     <UserAuthNav
       {...{
         authUsername,
         handleLogout,
-        showModal
+        showModal,
+        subredditTitle
       }}
     />
   );
 };
 
 const mapStateToProps = state => ({
-  authUsername: getAuthUsername(state)
+  authUsername: getAuthUsername(state),
+  subredditTitle: getSubredditTitle(state)
 });
 
 const mapDispatchToProps = dispatch => ({

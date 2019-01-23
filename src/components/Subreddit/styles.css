@@ -37,7 +37,7 @@ div.subreddit-content.skinny-container {
 }
 
 div.primary-container {
-  flex: 2 0 auto;
+  flex: 2 1 auto;
 }
 div.sidebar-container {
   margin-left: 3rem;

@@ -28,7 +28,8 @@ div.subreddit-content {
   max-width: 100%;
   padding: 2rem 2.4rem;
   align-items: flex-start;
-  margin: 0 5rem;
+  margin-right: 3rem;
+  margin-left: 1rem;
 }
 
 div.subreddit-content.skinny-container {
@@ -36,12 +37,12 @@ div.subreddit-content.skinny-container {
 }
 
 div.primary-container {
-  flex: 2 3 auto;
+  flex: 2 0 auto;
 }
 div.sidebar-container {
   margin-left: 3rem;
-  flex: 1 0 auto;
-  width: 30rem;
+  flex-grow: 1;
+  flex-shrink: 3;
   max-width: 30rem;
   position: sticky;
   top: 5rem;
@@ -51,15 +52,21 @@ div ul {
   padding-left: 0;
 }
 
-@media (max-width: 640px) {
+@media screen and (max-width: 1500px) {
+  .subreddit-container > div.subreddit-content {
+    margin-left: 1rem;
+    margin-right: 1rem;
+  }
+}
+@media screen and (max-width: 900px) {
+  .subreddit-container > div.subreddit-content {
+    margin: 0;
+  }
   .subreddit-container div.sidebar-container {
     display: none;
   }
-
-  div.subreddit-container {
-    margin: 0 1rem 0 0;
-    padding: 1rem;
-  }
+}
+@media (max-width: 640px) {
   div.subreddit-container.skinny-container {
     margin: 0 2rem 0 1rem;
   }

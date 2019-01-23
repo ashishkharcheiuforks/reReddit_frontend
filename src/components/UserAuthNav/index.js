@@ -15,7 +15,6 @@ class UserAuthNav extends Component {
   }
 
   redirectToCreatePost() {
-    debugger;
     return this.props.history.push(CREATE_POST_URL(this.props.subredditTitle));
   }
 

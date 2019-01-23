@@ -6,7 +6,6 @@ import {
   IoMdSettings,
   IoLogoGithub
 } from "react-icons/io";
-import { GoMarkGithub } from "react-icons/go";
 
 import "./styles.css";
 
@@ -36,7 +35,7 @@ const AuthenticatedUser = props => {
           <IoMdCreate /> Create subreddit
         </MenuItem>
         <MenuItem divider />
-        <MenuItem eventKey={3.4} onClick={() => handleLogout()}>
+        <MenuItem eventKey={3.4} onClick={handleLogout}>
           <IoMdLogOut /> Logout
         </MenuItem>
         <MenuItem
@@ -44,7 +43,7 @@ const AuthenticatedUser = props => {
           onClick={() => handleLogout()}
           href="https://github.com/cdunn6754/reReddit_frontend"
         >
-          <GoMarkGithub /> reReddit GitHub
+          <IoLogoGithub /> reReddit GitHub
         </MenuItem>
       </DropdownButton>
     </div>

@@ -3,14 +3,14 @@ import PropTypes from "prop-types";
 import { Navbar, Nav, FormGroup, FormControl, Button } from "react-bootstrap";
 import { Link } from "react-router-dom";
 
-import UserAuthNav from "../../components/UserAuthNav";
+import UserAuthNavContainer from "../../containers/UserAuthNavContainer";
 import reredditIcon from "./reredditIcon.png";
 import NavBarDropdown from "./NavBarDropdown";
 import SearchBarContainer from "../../containers/SearchBarContainer";
 import "./styles.css";
 
 const NavBar = props => {
-  const { userSubreddits, showModal, authUsername, handleLogout } = props;
+  const { userSubreddits } = props;
 
   return (
     <div id="navbar-base">
@@ -30,11 +30,7 @@ const NavBar = props => {
       </div>
 
       <div id="user-auth-dropdown-container">
-        <UserAuthNav
-          showModal={showModal}
-          username={authUsername}
-          handleLogout={handleLogout}
-        />
+        <UserAuthNavContainer />
       </div>
     </div>
   );

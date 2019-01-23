@@ -1,5 +1,5 @@
 import React from "react";
-import { NavDropdown, MenuItem, DropdownButton } from "react-bootstrap";
+import { MenuItem, DropdownButton } from "react-bootstrap";
 import { LinkContainer } from "react-router-bootstrap";
 
 import "./styles.css";

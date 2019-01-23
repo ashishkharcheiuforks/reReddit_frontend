@@ -1,28 +1,18 @@
-import React from 'react';
-import {
-  Nav,
-  NavItem,
-} from 'react-bootstrap';
+import React from "react";
+import { Nav, NavItem } from "react-bootstrap";
 
-import UserButton from '../UserButton';
-import './styles.css'
+import UserButton from "../UserButton";
+import "./styles.css";
 
-const UnauthenticatedUser = ({showModal, middleWareTest}) => {
-
+const UnauthenticatedUser = ({ showModal }) => {
   return (
-    <Nav pullRight className="right-user-links">
-      <NavItem eventKey={4}>
-        <UserButton onClick={() => showModal('login')} inverted>
-          login
-        </UserButton>
-      </NavItem>
-      <NavItem eventKey={5}>
-        <UserButton onClick={() => showModal('register')}>
-          sign up
-        </UserButton>
-      </NavItem>
-    </Nav>
+    <div className="unauthenticated-user-links">
+      <UserButton onClick={() => showModal("login")} inverted>
+        login
+      </UserButton>
+      <UserButton onClick={() => showModal("register")}>sign up</UserButton>
+    </div>
   );
-}
+};
 
 export default UnauthenticatedUser;

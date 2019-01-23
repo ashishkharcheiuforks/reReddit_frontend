@@ -61,7 +61,7 @@ div#subreddit-feed-dropdown-container button {
   border-color: transparent;
 }
 div#subreddit-feed-dropdown-container button:hover {
-  border-color: #cccccc;
+  border-color: #b8b8b8;
 }
 div#subreddit-feed-dropdown-container ul.dropdown-menu {
   background: #1b1b1b;
@@ -100,7 +100,7 @@ div#searchbar-container > div.navbar-form div.form-group input:active,
 div#searchbar-container > div.navbar-form div.form-group input:focus {
   width: 100%;
   background-color: #070707;
-  border-color: #cccccc;
+  border-color: #b8b8b8;
 }
 
 #navbar-base > div#user-auth-dropdown-container {
@@ -110,28 +110,25 @@ div#searchbar-container > div.navbar-form div.form-group input:focus {
   flex: 2 5 auto;
   margin-right: 3rem;
 }
-div#user-auth-dropdown-container > ul {
-  margin: 0;
-}
 
+@media screen and (max-width: 900px) {
+  #navbar-base > div#subreddit-feed-dropdown-container {
+    flex-shrink: 1;
+  }
+  #navbar-base > div#searchbar-container {
+    flex-shrink: 1;
+  }
+  #navbar-base > div#user-auth-dropdown-container {
+    margin-right: 1rem;
+    flex-shrink: 0;
+  }
+}
 @media screen and (max-width: 800px) {
   #nav-home-link {
     display: none;
   }
   #navbar-base > div#subreddit-feed-dropdown-container {
     margin: 0;
-    flex-shrink: 2;
-  }
-  div#searchbar-container > div.navbar-form {
-    width: 95%;
-    padding: 0;
-    margin: 0;
-    border: 0 solid transparent;
-    flex-shrink: 1;
-  }
-  #navbar-base > div#user-auth-dropdown-container {
-    margin: 0;
-    margin-right: 0.4rem;
-    flex-shrink: 0;
+    margin-right: 1rem;
   }
 }

@@ -1,35 +1,34 @@
-import React from 'react';
-import {
-  Nav,
-  NavDropdown,
-  MenuItem,
-} from 'react-bootstrap';
+import React from "react";
+import { Nav, DropdownButton, MenuItem } from "react-bootstrap";
 
-import './styles.css'
+import "./styles.css";
 
-const AuthenticatedUser = ({username,handleLogout}) => {
-  
+const AuthenticatedUser = ({ username, handleLogout }) => {
   return (
-    <Nav pullRight className="auth-dropdown-container">
-          <NavDropdown 
-            className='user-dropdown'
-            eventKey={3}
-            title={username}
-            id="user-nav-dropdown"
-          >
-            <MenuItem eventKey={3.1}>Action</MenuItem>
-            <MenuItem eventKey={3.2}>Another action</MenuItem>
-            <MenuItem eventKey={3.3}>Something else here</MenuItem>
-            <MenuItem divider />
-            <MenuItem 
-              eventKey={3.4}
-              onClick={() => handleLogout()}
-            >
-              Logout
-            </MenuItem>
-          </NavDropdown>
-    </Nav>    
+    <div className="authenticated-user-dropdown-container">
+      <DropdownButton
+        className="user-dropdown"
+        title={username}
+        pullRight
+        id="user-nav-dropdown"
+      >
+        <MenuItem eventKey={3.1}>Action</MenuItem>
+        <MenuItem eventKey={3.2}>Another action</MenuItem>
+        <MenuItem eventKey={3.3}>Something else here</MenuItem>
+        <MenuItem divider />
+        <MenuItem eventKey={3.4} onClick={() => handleLogout()}>
+          Logout
+        </MenuItem>
+        <MenuItem
+          eventKey={3.5}
+          onClick={() => handleLogout()}
+          href="https://github.com/cdunn6754/reReddit_frontend"
+        >
+          reReddit github
+        </MenuItem>
+      </DropdownButton>
+    </div>
   );
-}
+};
 
 export default AuthenticatedUser;

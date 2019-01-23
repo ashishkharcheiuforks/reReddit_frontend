@@ -1,0 +1,25 @@
+button#authenticated-user-dropdown {
+  padding: 0;
+  background-color: inherit;
+  border-color: transparent;
+  color: #b8b8b8;
+}
+
+button#authenticated-user-dropdown span.caret {
+  display: none;
+}
+
+button#authenticated-user-dropdown svg {
+  height: 3rem;
+  width: 3rem;
+}
+
+div#mobile-user-auth-dropdown-container {
+  display: none;
+}
+
+@media (max-width: 640px) {
+  div#mobile-user-auth-dropdown-container {
+    display: block;
+  }
+}

@@ -10,33 +10,24 @@ import {
 } from "../../reducers/userAuth";
 
 const NavBarContainer = props => {
-  const { userSubreddits, showModal, authUsername, handleLogout } = props;
+  const { userSubreddits } = props;
 
   return (
     <NavBar
       {...{
-        userSubreddits,
-        showModal,
-        authUsername,
-        handleLogout
+        userSubreddits
       }}
     />
   );
 };
 
 const mapStateToProps = state => ({
-  authUsername: getAuthUsername(state),
   userSubreddits: getAuthUserSubreddits(state)
-});
-
-const mapDispatchToProps = dispatch => ({
-  showModal: displayType => dispatch(showUserAuthModal(displayType)),
-  handleLogout: () => dispatch(userAuthLogout())
 });
 
 export default connect(
   mapStateToProps,
-  mapDispatchToProps,
+  null,
   null,
   { pure: false }
 )(NavBarContainer);

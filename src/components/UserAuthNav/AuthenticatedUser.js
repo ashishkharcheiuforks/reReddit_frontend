@@ -13,6 +13,7 @@ const AuthenticatedUser = props => {
   const {
     username,
     handleLogout,
+    showModal,
     redirectToCreatePost,
     redirectToCreateSubreddit
   } = props;
@@ -25,7 +26,7 @@ const AuthenticatedUser = props => {
         pullRight
         id="user-nav-dropdown"
       >
-        <MenuItem eventKey={3.1} onClick={redirectToCreatePost}>
+        <MenuItem eventKey={3.1} onClick={() => showModal("update")}>
           <IoMdSettings /> Edit profile
         </MenuItem>
         <MenuItem eventKey={3.1} onClick={redirectToCreatePost}>

@@ -9,16 +9,6 @@ import { showUserAuthModal } from "../../actions/UserAuthModal";
 const RegisterModalContainer = props => {
   const { handleRegister, showLoginModal, loading, messageProps } = props;
 
-  const RegisterHeader = (
-    <Fragment>
-      <h2>Sign up:</h2>
-      <p>
-        By registering with reReddit you can submit posts, vote on content, and
-        subscribe your favorite subreddits to stay up to date.
-      </p>
-    </Fragment>
-  );
-
   const subtitle = `
     By registering with reReddit you can submit posts, vote on content,
     and subscribe your favorite subreddits to stay up to date.

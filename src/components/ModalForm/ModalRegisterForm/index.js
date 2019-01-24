@@ -1,9 +1,7 @@
 import React, { Component } from "react";
 import PropTypes from "prop-types";
-import { Link } from "react-router-dom";
 
 import FieldGroup from "../../FieldGroup";
-import FormButton from "../FormButton";
 import { LoadingButton } from "../../Buttons";
 import "./styles.css";
 
@@ -33,7 +31,7 @@ class ModalRegisterForm extends Component {
     );
   };
 
-  render = () => {
+  render() {
     const { handleHide, showLoginModal, loading } = this.props;
 
     return (
@@ -86,7 +84,7 @@ class ModalRegisterForm extends Component {
         </div>
       </div>
     );
-  };
+  }
 }
 
 ModalRegisterForm.propTypes = {

@@ -33,6 +33,7 @@ class UserAuthNav extends Component {
             handleLogout={handleLogout}
             redirectToCreatePost={this.redirectToCreatePost}
             redirectToCreateSubreddit={this.redirectToCreateSubreddit}
+            showModal={showModal}
           />
         ) : (
           <UnauthenticatedUser showModal={showModal} />

@@ -1,20 +1,31 @@
 import React from "react";
 import { connect } from "react-redux";
+import { Modal } from "react-bootstrap";
 
 import LoginModalContainer from "./LoginModalContainer";
 import RegisterModalContainer from "./RegisterModalContainer";
+import UpdateModalContainer from "./UpdateModalContainer";
 import { hideUserAuthModal } from "../../actions/UserAuthModal";
-import { Modal } from "react-bootstrap";
+import { getAuthUsername } from "../../reducers/userAuth";
 
-const UserAuthModalContainer = ({ displayType, messageProps, handleHide }) => {
+const UserAuthModalContainer = props => {
+  const { displayType, messageProps, handleHide, authUsername } = props;
+
   let modalContent;
-
   switch (displayType) {
     case "login":
       modalContent = <LoginModalContainer messageProps={messageProps} />;
       break;
     case "register":
       modalContent = <RegisterModalContainer messageProps={messageProps} />;
+      break;
+    case "update":
+      modalContent = (
+        <UpdateModalContainer
+          messageProps={messageProps}
+          username={authUsername}
+        />
+      );
       break;
     default:
       return null;
@@ -32,7 +43,8 @@ const mapStateToProps = state => ({
   messageProps: {
     errorMessage: state.userAuthModal.errorMessage,
     successMessage: state.userAuthModal.successMessage
-  }
+  },
+  authUsername: getAuthUsername(state)
 });
 
 const mapDispatchToProps = dispatch => ({

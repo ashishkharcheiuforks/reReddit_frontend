@@ -35,42 +35,35 @@ export const makeUserLoginRequest = (username, password) => ({
   type: API_USER_AUTH_LOGIN,
   types: {
     request: USER_AUTH_LOGIN_REQUEST,
-    success: USER_AUTH_LOGIN_SUCCESS,
-    failure: USER_AUTH_LOGIN_FAILURE
+    success: onUserAuthSuccess(USER_AUTH_LOGIN_SUCCESS),
+    failure: onUserAuthFailure(USER_AUTH_LOGIN_FAILURE)
   },
-  callAPI: () => userLoginApi({ username, password }),
-  successActionCreator: hideUserAuthModal,
-  failureActionCreator: updateErrorMessage
+  callAPI: () => userLoginApi({ username, password })
 });
 
 export const makeUserRegisterRequest = (username, password, email) => ({
   type: API_USER_AUTH_REGISTER,
   types: {
     request: USER_AUTH_REGISTER_REQUEST,
-    success: USER_AUTH_REGISTER_SUCCESS,
-    failure: USER_AUTH_REGISTER_FAILURE
+    success: onUserAuthRegisterSuccess,
+    failure: onUserAuthFailure(USER_AUTH_REGISTER_FAILURE)
   },
   callAPI: () =>
     userRegisterApi({
       username,
       password,
       email
-    }),
-  failureActionCreator: updateErrorMessage,
-  successActionCreator: registerSuccessLoginModal
+    })
 });
 
-// Use a thunk and redux-thunk to get the token rather than prop drilling it
-export const userAuthLogout = () => (dispatch, getState) =>
+const onUserAuthRegisterSuccess = (data, getState, dispatch) => {
   dispatch({
-    type: API_USER_AUTH_LOGOUT,
-    types: {
-      request: USER_AUTH_LOGOUT_REQUEST,
-      success: USER_AUTH_LOGOUT_SUCCESS,
-      failure: USER_AUTH_LOGOUT_FAILURE
-    },
-    callAPI: () => userLogoutApi(getAuthUserToken(getState()))
+    type: USER_AUTH_REGISTER_SUCCESS,
+    data
   });
+  const message = "User profile created! Please log in.";
+  dispatch(showUserAuthModal("login", message));
+};
 
 const registerSuccessLoginModal = () => {
   // When successfully registered launch the login modal with
@@ -88,26 +81,42 @@ export const makeUserUpdateRequest = (username, updateData) => (
     type: API_USER_AUTH_UPDATE,
     types: {
       request: USER_AUTH_UPDATE_REQUEST,
-      success: onUserUpdateSuccess,
-      failure: onUserUpdateFailure
+      success: onUserAuthSuccess(USER_AUTH_UPDATE_SUCCESS),
+      failure: onUserAuthFailure(USER_AUTH_UPDATE_FAILURE)
     },
     callAPI: () =>
       userUpdateApi(username, updateData, getAuthUserToken(getState()))
   });
 };
 
-const onUserUpdateFailure = (error, getState, dispatch) => {
+// Some helper functions. Often in these actions we just need to
+// dispatch some UserAuthModal actions in addition to the UserAuth
+// actions.
+const onUserAuthFailure = failureActionType => (error, getState, dispatch) => {
   const errorMessage = apiRequestErrorHandler(error);
   dispatch(updateErrorMessage(errorMessage));
   dispatch({
-    type: USER_AUTH_UPDATE_FAILURE,
+    type: failureActionType,
     error: errorMessage
   });
 };
 
-const onUserUpdateSuccess = (error, getState, dispatch) => {
+const onUserAuthSuccess = successActionType => (data, getState, dispatch) => {
   dispatch({
-    type: USER_AUTH_UPDATE_SUCCESS
+    type: successActionType,
+    data
   });
   dispatch(hideUserAuthModal());
 };
+
+// Use a thunk and redux-thunk to get the token rather than prop drilling it
+export const userAuthLogout = () => (dispatch, getState) =>
+  dispatch({
+    type: API_USER_AUTH_LOGOUT,
+    types: {
+      request: USER_AUTH_LOGOUT_REQUEST,
+      success: USER_AUTH_LOGOUT_SUCCESS,
+      failure: USER_AUTH_LOGOUT_FAILURE
+    },
+    callAPI: () => userLogoutApi(getAuthUserToken(getState()))
+  });

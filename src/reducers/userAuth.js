@@ -6,6 +6,7 @@ import {
   USER_AUTH_LOGOUT_SUCCESS,
   USER_AUTH_LOGOUT_FAILURE,
   USER_AUTH_REGISTER_REQUEST,
+  USER_AUTH_REGISTER_FAILURE,
   USER_AUTH_UPDATE_REQUEST,
   USER_AUTH_UPDATE_SUCCESS,
   USER_AUTH_UPDATE_FAILURE,
@@ -51,6 +52,12 @@ const userAuth = (state = initialState, action) => {
       return {
         ...state,
         loading: true
+      };
+    case USER_AUTH_REGISTER_FAILURE:
+      return {
+        ...state,
+        loading: false,
+        error: action.error
       };
     case USER_AUTH_LOGOUT_SUCCESS:
       return initialState;

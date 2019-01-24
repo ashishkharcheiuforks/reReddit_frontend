@@ -22,23 +22,12 @@ export const apiMiddleware = store => next => action => {
               data
             })
       )
-      .then(action => {
-        if (successActionCreator) {
-          return store.dispatch(successActionCreator(action.data));
-        }
-      })
       .catch(error => {
-        const errorMessage = apiRequestErrorHandler(error);
-        if (failureActionCreator) {
-          store.dispatch(failureActionCreator(errorMessage));
-        }
-
-        console.log("Error checking: ", error instanceof Error);
         typeof types.failure === "function"
           ? types.failure(error, store.getState, store.dispatch)
           : store.dispatch({
               type: types.failure,
-              error: errorMessage
+              error: apiRequestErrorHandler(error)
             });
 
         // In case the original callers are waiting on news of how this went

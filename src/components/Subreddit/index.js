@@ -26,8 +26,9 @@ const Subreddit = props => {
     props => props.loading,
     SideBarLoader
   )(SideBarContainer);
+
   // Need to perform check with route title rather than
-  // redux version to avoid initial render of header bar
+  // redux version to avoid incorrect initial render of header bar
   const headerBar = checkForPseudoSubreddits(routeSubredditTitle) ? null : (
     <div className="subreddit-header-bar">
       <div id="subreddit-header-bar-title">r/{routeSubredditTitle}</div>

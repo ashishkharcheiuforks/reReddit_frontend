@@ -5,7 +5,7 @@ div#login-form-container {
 }
 
 div#login-form-container #userauth-login-form {
-  min-width: 30rem;
+  width: 100%;
 }
 
 div#login-form-container > div.register-redirect {

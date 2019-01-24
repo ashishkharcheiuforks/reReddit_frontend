@@ -36,11 +36,13 @@ const UserAuthModal = props => {
       <div id="form-container">
         <Modal.Header closeButton>
           <h2 id="modal-title">{title}</h2>
-          <h4 id="modal-subtitle">{subtitle}</h4>
+          <p id="modal-subtitle">{subtitle}</p>
         </Modal.Header>
         <Modal.Body>
-          {sMessage}
-          {eMessage}
+          <div id="modal-error-message-container">
+            {sMessage}
+            {eMessage}
+          </div>
           {formComponent}
         </Modal.Body>
       </div>

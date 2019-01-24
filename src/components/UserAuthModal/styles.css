@@ -8,17 +8,13 @@ div#custom-modal-contents {
 }
 
 div#custom-modal-contents > div#colorful-side {
-  min-width: 10rem;
   background: url("./modalBackground.jpg") no-repeat;
   background-size: cover;
   display: flex;
   align-items: flex-end;
   font-size: 0.4em;
   color: #b8b8b8;
-}
-
-div#custom-modal-contents > #form-container {
-  flex-grow: 1;
+  flex-shrink: 2;
 }
 
 div.modal-header {
@@ -26,16 +22,17 @@ div.modal-header {
   padding-top: 0;
 }
 
-div.modal-header > #modal-title {
+div.modal-header > h2#modal-title {
   font-size: 1.3em;
   font-weight: 700;
   margin-top: 4rem;
 }
 
-div.modal-header > #modal-subtitle {
+div.modal-header > p#modal-subtitle {
   font-size: 1.5em;
   font-size: 0.9em;
   font-weight: 400;
+  max-width: 40rem;
 }
 
 div.modal-header > button.close {
@@ -46,4 +43,17 @@ div.modal-header > button.close {
 
 div.modal-header > button.close:hover {
   opacity: 1;
+}
+
+div#custom-modal-contents > div#form-container {
+  flex-grow: 1;
+  flex-shrink: 1;
+}
+div#form-container > div.modal-body {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+div#form-container > div.modal-body > div#modal-error-message-container {
+  max-width: 100%;
 }

@@ -36,7 +36,7 @@ class MobileUserAuthNav extends Component {
 
     const authenticatedMenu = (
       <Fragment>
-        <MenuItem eventKey={3.1} onClick={redirectToCreatePost}>
+        <MenuItem eventKey={3.1} onClick={() => showModal("update")}>
           <IoMdSettings /> Edit profile
         </MenuItem>
         <MenuItem eventKey={3.1} onClick={redirectToCreatePost}>

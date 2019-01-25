@@ -4,10 +4,10 @@ import { LinkContainer } from "react-router-bootstrap";
 
 import "./styles.css";
 
-const NavBarDropdown = ({ subscribed }) => {
-  const subscribedSubs = subscribed.map(sub => (
-    <LinkContainer key={sub.pk} exact to={"/r/" + sub.title}>
-      <MenuItem eventKey={sub.pk}>{sub.title}</MenuItem>
+const NavBarDropdown = ({ subscribedSubredditTitles }) => {
+  const subscribedSubs = subscribedSubredditTitles.map((title, idx) => (
+    <LinkContainer key={idx} exact to={"/r/" + title}>
+      <MenuItem eventKey={idx}>{title}</MenuItem>
     </LinkContainer>
   ));
 

@@ -10,17 +10,27 @@ import {
   USER_AUTH_UPDATE_REQUEST,
   USER_AUTH_UPDATE_SUCCESS,
   USER_AUTH_UPDATE_FAILURE,
-  SHOW_USER_AUTH_MODAL
+  SHOW_USER_AUTH_MODAL,
+  USER_AUTH_SUBSCRIBE_SUBREDDIT,
+  USER_AUTH_UNSUBSCRIBE_SUBREDDIT
 } from "../actions/actionTypes";
+import { objectById } from "../utilities/reducerUtils";
 
 const initialState = {
   token: null,
   username: null,
   pk: null,
-  subs: [],
+  subredditsById: {},
   moderated_subs: [],
   error: null,
   loading: false
+};
+
+const findSubredditPkWithTitle = (state, title) => {
+  const subreddit = Object.values(state.subredditsById).find(
+    subreddit => subreddit.title === title
+  );
+  return subreddit ? subreddit.pk : null;
 };
 
 const userAuth = (state = initialState, action) => {
@@ -36,7 +46,7 @@ const userAuth = (state = initialState, action) => {
         token: action.data.token,
         username: action.data.username,
         pk: action.data.pk,
-        subs: action.data.subs,
+        subredditsById: objectById(action.data.subs),
         moderated_subs: action.data.moderated_subs,
         loading: false,
         error: null
@@ -90,18 +100,39 @@ const userAuth = (state = initialState, action) => {
         loading: false,
         error: null
       };
+    // given a new subscription and the data of that subreddit, add it
+    // to the User auth subreddit list
+    case USER_AUTH_SUBSCRIBE_SUBREDDIT:
+      return {
+        ...state,
+        subredditsById: {
+          ...state.subredditsById,
+          [action.data.pk]: action.data
+        }
+      };
+    // when a user unsubs from a subreddit we need to update the redux store
+    case USER_AUTH_UNSUBSCRIBE_SUBREDDIT:
+      delete state.subredditsById[
+        findSubredditPkWithTitle(state, action.data.subredditTitle)
+      ];
+      return {
+        ...state,
+        subredditsById: { ...state.subredditsById }
+      };
     default:
       return state;
   }
 };
 
 // Selectors
-
 export const getAuthUsername = state => state.userAuth.username;
 export const getAuthUserToken = state => state.userAuth.token;
 export const getAuthUserLoading = state => state.userAuth.loading;
 export const getAuthUserSubredditTitles = state =>
-  state.userAuth.subs.map(subreddit => subreddit.title);
-export const getAuthUserSubreddits = state => state.userAuth.subs;
+  Object.values(state.userAuth.subredditsById).map(
+    subreddit => subreddit.title
+  );
+export const getAuthUserSubreddits = state =>
+  Object.values(state.userAuth.subredditsById);
 
 export default userAuth;

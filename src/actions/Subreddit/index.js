@@ -14,7 +14,9 @@ import {
   DELETE_SUBREDDIT_REQUEST,
   DELETE_SUBREDDIT_SUCCESS,
   DELETE_SUBREDDIT_FAILURE,
-  API_CREATE_SUBREDDIT
+  API_CREATE_SUBREDDIT,
+  USER_AUTH_SUBSCRIBE_SUBREDDIT,
+  USER_AUTH_UNSUBSCRIBE_SUBREDDIT
 } from "../actionTypes";
 
 import {
@@ -57,7 +59,7 @@ export const makeSubSubscriptionRequest = (subredditTitle, subAction) => (
     type: API_SUBREDDIT_SUBSCRIBE,
     types: {
       request: SUBREDDIT_SUBSCRIBE_REQUEST,
-      success: onSuccessfulSubscription,
+      success: onSuccessfulSubscription(subredditTitle, subAction),
       failure: SUBREDDIT_SUBSCRIBE_FAILURE
     },
     callAPI: () =>
@@ -71,14 +73,28 @@ export const makeSubSubscriptionRequest = (subredditTitle, subAction) => (
 // When the request is successful we need to not only
 // indicate it success in the subreddit state tree
 // but also retrieve the modified user data from the backend
-const onSuccessfulSubscription = (data, getState, dispatch) => {
+const onSuccessfulSubscription = (subredditTitle, subAction) => (
+  data,
+  getState,
+  dispatch
+) => {
   dispatch({
     type: SUBREDDIT_SUBSCRIBE_SUCCESS,
     data
   });
+  if (subAction.toLowerCase() === "sub") {
+    return dispatch({
+      type: USER_AUTH_SUBSCRIBE_SUBREDDIT,
+      data
+    });
+  }
+  return dispatch({
+    type: USER_AUTH_UNSUBSCRIBE_SUBREDDIT,
+    data: { subredditTitle }
+  });
 
-  const username = getState().userAuth.username;
-  return username
-    ? dispatch(makeUserUpdateRequest(getState().userAuth.username))
-    : null;
+  // const username = getState().userAuth.username;
+  // return username
+  //   ? dispatch(makeUserUpdateRequest(getState().userAuth.username))
+  //   : null;
 };

@@ -5,7 +5,7 @@ import NavBar from "../../components/NavBar";
 import { showUserAuthModal } from "../../actions/UserAuthModal";
 import { userAuthLogout } from "../../actions/UserAuth";
 import {
-  getAuthUserSubreddits,
+  getAuthUserSubredditTitles,
   getAuthUsername
 } from "../../reducers/userAuth";
 
@@ -22,7 +22,7 @@ const NavBarContainer = props => {
 };
 
 const mapStateToProps = state => ({
-  userSubreddits: getAuthUserSubreddits(state)
+  userSubreddits: getAuthUserSubredditTitles(state)
 });
 
 export default connect(

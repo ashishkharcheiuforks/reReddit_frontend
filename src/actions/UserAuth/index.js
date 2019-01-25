@@ -12,6 +12,7 @@ import {
   USER_AUTH_LOGOUT_REQUEST,
   USER_AUTH_LOGOUT_SUCCESS,
   USER_AUTH_LOGOUT_FAILURE,
+  USER_AUTH_SUBSCRIBE_SUBREDDIT,
   API_USER_AUTH_UPDATE,
   API_USER_AUTH_LOGOUT,
   API_USER_AUTH_LOGIN,
@@ -72,7 +73,6 @@ const registerSuccessLoginModal = () => {
   return showUserAuthModal("login", successMessage);
 };
 
-// Upon change to user backend we might need to reload the user data
 export const makeUserUpdateRequest = (username, updateData) => (
   dispatch,
   getState
@@ -120,3 +120,9 @@ export const userAuthLogout = () => (dispatch, getState) =>
     },
     callAPI: () => userLogoutApi(getAuthUserToken(getState()))
   });
+
+// When a subreddit is subscribed successfully we need to update the redux store
+export const userAuthSubscribeSubreddit = subredditData => ({
+  type: USER_AUTH_SUBSCRIBE_SUBREDDIT,
+  data: subredditData
+});

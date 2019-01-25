@@ -22,7 +22,7 @@ const NavBar = props => {
       </Link>
 
       <div id="subreddit-feed-dropdown-container">
-        <NavBarDropdown subscribed={userSubreddits} />
+        <NavBarDropdown subscribedSubredditTitles={userSubreddits} />
       </div>
 
       <div id="searchbar-container">

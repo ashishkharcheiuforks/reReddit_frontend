@@ -43,7 +43,7 @@
   flex-shrink: 0;
   max-width: inherit;
   display: flex;
-  flex: 0 6 auto;
+  flex: 2 6 auto;
 }
 div#subreddit-feed-dropdown-container > div.btn-group {
   display: flex;
@@ -130,5 +130,11 @@ div#searchbar-container > div.navbar-form div.form-group input:focus {
   #navbar-base > div#subreddit-feed-dropdown-container {
     margin: 0;
     margin-right: 1rem;
+  }
+  div#subreddit-feed-dropdown-container button {
+    padding-left: 0.5rem;
+  }
+  div#subreddit-feed-dropdown-container button > span.caret {
+    margin-left: 0.5rem;
   }
 }

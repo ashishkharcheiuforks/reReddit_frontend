@@ -4,7 +4,7 @@ import { Navbar, Nav, FormGroup, FormControl, Button } from "react-bootstrap";
 import { Link } from "react-router-dom";
 
 import UserAuthNavContainer from "../../containers/UserAuthNavContainer";
-import reredditIcon from "./reredditIcon.png";
+import reredditIcon from "../../images/reredditIcon.png";
 import NavBarDropdown from "./NavBarDropdown";
 import SearchBarContainer from "../../containers/SearchBarContainer";
 import "./styles.css";

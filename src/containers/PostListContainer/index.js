@@ -4,36 +4,61 @@ import { withRouter } from "react-router";
 
 import { makeSubPostListRequest } from "../../actions/Posts";
 import PostList from "../../components/PostList";
+import {
+  getPostListError,
+  getPostListLoading,
+  getAllPosts
+} from "../../reducers/postList";
+import getSubredditTitle from "../../reducers/subreddit";
 
 class PostListContainer extends Component {
-  componentDidMount() {
-    // If undefined converts to null
-    const subredditTitle = this.props.match.params.subredditTitle || "home";
+  constructor(props) {
+    super(props);
 
-    this.props.fetchPostList(subredditTitle, "new");
+    // If empty then we should show the home subreddit
+    // We need to grab the subredditTitle from the router because
+    // the version in the redux store has not yet been set.
+    // That is to say that when this is constructed and rendered
+    // the subreddit api call may not be back yet and the
+    // subreddit component componentDidMount function has
+    // certainly not been called.
+    this.state = {
+      subredditTitle: props.match.params.subredditTitle || "home"
+    };
+  }
+  componentDidMount() {
+    this.props.fetchPostList(this.state.subredditTitle, "new");
   }
 
   componentDidUpdate(prevProps) {
-    // If undefined converts to null
-    const subredditTitle = this.props.match.params.subredditTitle || "home";
+    // When switching between subreddits this component will not be remounted
 
     if (
       this.props.match.params.subredditTitle !==
       prevProps.match.params.subredditTitle
     ) {
-      this.props.fetchPostList(subredditTitle, "new");
+      this.setState({
+        subredditTitle: this.props.match.params.subredditTitle || "home"
+      });
+      this.props.fetchPostList(this.state.subredditTitle, "new");
     }
   }
 
   render() {
-    return <PostList {...this.props} />;
+    let emptyListMessage = undefined;
+
+    if (this.state.subredditTitle.toLowerCase() === "home") {
+      emptyListMessage = "You have not subscribed to any subreddit yet!";
+    }
+
+    return <PostList {...this.props} emptyListMessage={emptyListMessage} />;
   }
 }
 
 const mapStateToProps = state => ({
-  loading: state.postList.loading,
-  error: state.postList.error,
-  allPosts: state.postList.allPosts
+  loading: getPostListLoading(state),
+  error: getPostListError(state),
+  allPosts: getAllPosts(state)
 });
 
 const mapDispatchToProps = dispatch => ({

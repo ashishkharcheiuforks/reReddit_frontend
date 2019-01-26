@@ -17,23 +17,26 @@
   padding-bottom: 0.3rem;
   margin-left: 1rem;
   margin-right: 1rem;
+  text-decoration: none;
+  color: white;
 }
-
 #navbar-base > #home-nav-link div.home-link-contents {
   display: flex;
   align-items: center;
 }
-
 #navbar-base > #home-nav-link div.home-link-contents > #rereddit-icon {
   max-width: 3.5rem;
   display: inline-block;
 }
-
 #navbar-base > #home-nav-link div.home-link-contents > #nav-home-link {
   margin-bottom: -0.5rem;
   margin-left: 0.3rem;
   font-weight: 700;
   font-size: 1.3em;
+}
+#navbar-base > #home-nav-link div.home-link-contents > #nav-home-link:hover {
+  text-decoration: none;
+  color: white;
 }
 
 #navbar-base > div#subreddit-feed-dropdown-container {

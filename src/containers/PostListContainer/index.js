@@ -12,9 +12,7 @@ import {
 import getSubredditTitle from "../../reducers/subreddit";
 
 class PostListContainer extends Component {
-  constructor(props) {
-    super(props);
-
+  componentDidMount() {
     // If empty then we should show the home subreddit
     // We need to grab the subredditTitle from the router because
     // the version in the redux store has not yet been set.
@@ -22,33 +20,34 @@ class PostListContainer extends Component {
     // the subreddit api call may not be back yet and the
     // subreddit component componentDidMount function has
     // certainly not been called.
-    this.state = {
-      subredditTitle: props.match.params.subredditTitle || "home"
-    };
-  }
-  componentDidMount() {
-    this.props.fetchPostList(this.state.subredditTitle, "new");
+    this.props.fetchPostList(
+      this.props.match.params.subredditTitle || "home",
+      "new"
+    );
   }
 
   componentDidUpdate(prevProps) {
     // When switching between subreddits this component will not be remounted
-
     if (
       this.props.match.params.subredditTitle !==
       prevProps.match.params.subredditTitle
     ) {
-      this.setState({
-        subredditTitle: this.props.match.params.subredditTitle || "home"
-      });
-      this.props.fetchPostList(this.state.subredditTitle, "new");
+      this.props.fetchPostList(
+        this.props.match.params.subredditTitle || "home",
+        "new"
+      );
     }
   }
 
   render() {
     let emptyListMessage = undefined;
+    const subredditTitle = this.props.match.params.subredditTitle || "home";
 
-    if (this.state.subredditTitle.toLowerCase() === "home") {
-      emptyListMessage = "You have not subscribed to any subreddit yet!";
+    if (subredditTitle.toLowerCase() === "home") {
+      emptyListMessage = `
+        There are no posts to display because
+        you have not subscribed to any subreddits yet!
+      `;
     }
 
     return <PostList {...this.props} emptyListMessage={emptyListMessage} />;

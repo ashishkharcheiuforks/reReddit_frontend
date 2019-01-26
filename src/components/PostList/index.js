@@ -9,7 +9,7 @@ import EmptyPostList from "./EmptyPostList";
 import "./styles.css";
 
 const PostList = props => {
-  const { loading, error, allPosts, emptyPostMessage = undefined } = props;
+  const { loading, error, allPosts, emptyListMessage = undefined } = props;
 
   if (error) {
     return <ErrorAlert>{error}</ErrorAlert>;
@@ -19,7 +19,7 @@ const PostList = props => {
   if (loading) {
     postList = <PanelListLoader panelNumber={8} />;
   } else if (allPosts.length === 0) {
-    postList = <EmptyPostList message={emptyPostMessage} />;
+    postList = <EmptyPostList message={emptyListMessage} />;
   } else {
     const postPanels = allPosts.map(postPk => {
       return <PostPanelContainer postPk={postPk} key={postPk} />;

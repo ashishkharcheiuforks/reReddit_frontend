@@ -9,7 +9,7 @@ const EmptyPostList = ({ message = defaultMessage }) => (
   <div className="empty-list-content">
     <h2>
       <img id="rereddit-icon" src={reredditIcon} alt="reReddit" />
-      {message}
+      <span>{message}</span>
     </h2>
   </div>
 );

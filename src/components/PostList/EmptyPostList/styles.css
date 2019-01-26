@@ -10,4 +10,20 @@ div.empty-list-content {
 div.empty-list-content h2 {
   color: white;
   margin-top: 1rem;
+  display: flex;
+  align-items: center;
+}
+
+div.empty-list-content h2 > span {
+  margin-left: 2rem;
+}
+
+@media screen and (max-width: 800px) {
+  div.empty-list-content h2 {
+    flex-direction: column;
+  }
+  div.empty-list-content h2 > span {
+    font-size: 0.8em;
+    margin: 1rem;
+  }
 }

@@ -21,6 +21,8 @@ const SearchResults = props => {
     changeResultsView
   } = props;
 
+  const emptyListMessage = "Sorry! No results found.";
+
   const ConditionalResultsList = compose(
     withEither(props => props.view === "users", () => null),
     withEither(props => props.view === "subreddits", SubredditList)
@@ -64,7 +66,8 @@ const SearchResults = props => {
             allSubreddits,
             allUsers,
             error,
-            loading
+            loading,
+            emptyListMessage
           }}
           view={resultsView}
         />

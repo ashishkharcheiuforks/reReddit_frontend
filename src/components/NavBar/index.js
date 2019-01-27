@@ -37,16 +37,7 @@ const NavBar = props => {
 };
 
 NavBar.propTypes = {
-  userSubreddits: PropTypes.arrayOf(
-    PropTypes.shape({
-      pk: PropTypes.number,
-      created: PropTypes.string,
-      title: PropTypes.string,
-      description: PropTypes.string,
-      moderators: PropTypes.arrayOf(PropTypes.number),
-      members: PropTypes.arrayOf(PropTypes.number)
-    })
-  ),
+  userSubreddits: PropTypes.arrayOf(PropTypes.string),
   showModal: PropTypes.func,
   handleLogout: PropTypes.func,
   authUsername: PropTypes.string

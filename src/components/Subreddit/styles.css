@@ -37,12 +37,11 @@ div.subreddit-content.skinny-container {
 }
 
 div.primary-container {
-  flex: 2 1 auto;
+  flex: 2 1 50%;
 }
 div.sidebar-container {
   margin-left: 3rem;
-  flex-grow: 1;
-  flex-shrink: 3;
+  flex: 1 1 15%;
   max-width: 30rem;
   position: sticky;
   top: 5rem;
@@ -61,6 +60,9 @@ div ul {
 @media screen and (max-width: 900px) {
   .subreddit-container > div.subreddit-content {
     margin: 0;
+  }
+  .subreddit-container div.primary-container {
+    max-width: 100%;
   }
   .subreddit-container div.sidebar-container {
     display: none;

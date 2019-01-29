@@ -30,21 +30,18 @@ class CommentBody extends Component {
           dangerouslySetInnerHTML={{ __html: body }}
         />
         <div className="comment-links">
-          <div className="comment-icon">
-            <FaComment />
-          </div>
-          <Button
-            bsSize="xsmall"
-            className="comment-buttons"
-            onClick={handleToggleReplyEditor}
-          >
-            Reply
-          </Button>
-          {/* This may be nice but for now we don't have a comment detail page
-            <Button bsSize='xsmall' className='comment-buttons'>
-              Share
+          <div className="comment-icon-and-button">
+            <div className="comment-icon">
+              <FaComment />
+            </div>
+            <Button
+              bsSize="xsmall"
+              className="comment-buttons"
+              onClick={handleToggleReplyEditor}
+            >
+              Reply
             </Button>
-          */}
+          </div>
           <AuthEllipsis
             {...{
               authUsername,

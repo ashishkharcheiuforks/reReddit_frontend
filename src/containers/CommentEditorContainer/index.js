@@ -10,7 +10,8 @@ import {
 import { getPostDetailPk } from "../../reducers/postDetail";
 
 const CommentEditorContainer = props => {
-  return <TextEditor {...props} />;
+  const placeholder = "What are your thoughts?";
+  return <TextEditor {...props} placeholder={placeholder} />;
 };
 
 const mapStateToProps = (state, ownProps) => ({

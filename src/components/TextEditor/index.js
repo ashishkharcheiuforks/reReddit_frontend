@@ -87,7 +87,7 @@ class TextEditor extends Component {
         <ReactQuill
           value={this.state.editorHtml}
           onChange={this.handleChange}
-          placeholder={placeholder || "What are your thoughts?"}
+          placeholder={placeholder || ""}
           modules={this.modules}
           formats={this.formats}
           ref={this.quillNode}

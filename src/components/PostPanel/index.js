@@ -76,15 +76,17 @@ class PostPanel extends Component {
 
             <ShareButton shareUrl={`${window.location}/postDetail/${pk}`} />
 
-            <AuthEllipsis showEllipsis={authUsername === posterUsername}>
-              <MenuItem eventKey={1} onSelect={handleDeletePost}>
-                delete
-              </MenuItem>
+            <div className="post-segment-ellipsis-container">
+              <AuthEllipsis showEllipsis={authUsername === posterUsername}>
+                <MenuItem eventKey={1} onSelect={handleDeletePost}>
+                  delete
+                </MenuItem>
 
-              <MenuItem eventKey={2} onSelect={() => null}>
-                edit
-              </MenuItem>
-            </AuthEllipsis>
+                <MenuItem eventKey={2} onSelect={() => null}>
+                  edit
+                </MenuItem>
+              </AuthEllipsis>
+            </div>
           </div>
         </div>
       </div>

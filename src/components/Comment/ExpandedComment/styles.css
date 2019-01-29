@@ -21,7 +21,7 @@
 }
 
 .comment-voter.downvoter span:hover {
-  color: #8DA8FF;
+  color: #8da8ff;
   cursor: pointer;
 }
 
@@ -55,20 +55,8 @@ div.thread-line {
   max-width: 75rem;
 }
 
-.comment-panel .comment-info-line-container, .comment-body-container, .comment-links {
+.comment-panel .comment-info-line-container,
+.comment-body-container,
+.comment-links {
   padding-left: 0.6rem;
-}
-
-.comment-links .comment-icon {
-  display: inline-block;
-}
-
-.comment-tree-content .comment-links .comment-buttons {
-  background-color: #333;
-  color: #818481;
-  font-weight: bold;
-  border: 0;
-  display: inline-block;
-  padding-bottom: 0.7rem;
-  margin-top: 0.2rem;
 }

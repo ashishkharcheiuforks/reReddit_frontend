@@ -55,26 +55,34 @@ div.post-segment-panel > div.voter-container {
 .post-segment-links {
   margin-top: 0.3rem;
   display: flex;
+  align-items: center;
 }
-
-.post-buttons {
+.post-segment-links .post-buttons {
   border-width: 0;
   background-color: #333;
   color: #b8b8b8;
   margin-right: 0.3rem;
   border-radius: 5px;
 }
-
-.post-buttons:hover {
+.post-segment-links .post-buttons:hover {
   background-color: #4d4d4d;
-  color: #b8b8b8;
+  color: white;
 }
-
 .post-segment-links a:hover,
 .post-segment-title > a.post-title:hover,
 a {
   color: white;
   text-decoration: none;
+}
+.post-segment-links > div.post-segment-ellipsis-container {
+  height: 100%;
+  display: flex;
+  align-items: center;
+}
+.post-segment-links > div.post-segment-ellipsis-container > div.dropdown {
+  height: 100%;
+  display: flex;
+  align-items: center;
 }
 
 a:focus {

@@ -67,7 +67,7 @@ class CreatePost extends Component {
           </div>
 
           <TextEditor
-            handleCommentSubmit={this.handleSubmit}
+            handleSubmit={this.handleSubmit}
             usage="create"
             placeholder="Text (optional)"
           />

@@ -7,6 +7,7 @@ div.sidebar-content {
   padding-top: 1rem;
   font-family: "Poppins";
   font-weight: 500;
+  padding-bottom: 2rem;
 }
 
 div.sidebar-content > p.sidebar-header {
@@ -32,6 +33,11 @@ div.description {
   padding-left: 1.5rem;
 }
 
-.sidebar-button {
-  margin: 1.5rem 0.4rem;
+div.sidebar-content > div.sidebar-button-container {
+  margin-top: 1rem;
+  display: flex;
+  justify-content: center;
+}
+div.sidebar-content > div.sidebar-button-container > button#create-post-button {
+  margin: 0.5rem 0.4rem;
 }

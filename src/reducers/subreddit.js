@@ -83,7 +83,7 @@ export const getSubredditTitle = state => state.subreddit.title;
 export const getSubredditData = state => ({
   title: state.subreddit.title,
   description: state.subreddit.description,
-  pseudo: state.subreddit.psuedo,
+  pseudo: state.subreddit.pseudo,
   loading: state.subreddit.loading,
   error: state.subreddit.error
 });

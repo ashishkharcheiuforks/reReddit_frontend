@@ -1,6 +1,7 @@
 import React from "react";
-import { Button } from "react-bootstrap";
+import PropTypes from "prop-types";
 import { withRouter } from "react-router";
+import { Button } from "react-bootstrap";
 
 import "./styles.css";
 import SubscriptionButtonContainer from "../../containers/SubscriptionButtonContainer";
@@ -11,7 +12,8 @@ const SideBar = props => {
     description,
     authenticatedUsername,
     showUserAuthRegisterModal,
-    history
+    history,
+    pseudo
   } = props;
 
   const handleCreatePostClick = () => {
@@ -30,15 +32,19 @@ const SideBar = props => {
       </div>
 
       <div className="description">{description}</div>
-      <SubscriptionButtonContainer subredditTitle={subredditTitle} />
 
-      <Button
-        id="create-post-button"
-        className="sidebar-button"
-        onClick={handleCreatePostClick}
-      >
-        CREATE POST
-      </Button>
+      {!pseudo && (
+        <div className="sidebar-button-container">
+          <SubscriptionButtonContainer subredditTitle={subredditTitle} />
+          <Button
+            id="create-post-button"
+            className="sidebar-button"
+            onClick={handleCreatePostClick}
+          >
+            CREATE POST
+          </Button>
+        </div>
+      )}
     </div>
   );
 };

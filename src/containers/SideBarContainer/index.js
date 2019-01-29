@@ -8,7 +8,7 @@ import { showUserAuthModal } from "../../actions/UserAuthModal";
 
 const SideBarContainer = props => {
   const {
-    subredditData: { title: subredditTitle, description, loading },
+    subredditData: { title: subredditTitle, description, loading, pseudo },
     showUserAuthRegisterModal,
     authenticatedUsername
   } = props;
@@ -20,7 +20,8 @@ const SideBarContainer = props => {
         description,
         loading,
         showUserAuthRegisterModal,
-        authenticatedUsername
+        authenticatedUsername,
+        pseudo
       }}
     />
   );

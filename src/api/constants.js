@@ -31,5 +31,5 @@ export const POST_LIST_URL = API_ROOT_URL + "posts/";
 export const SUB_POST_LIST_URL = subredditTitle =>
   POST_LIST_URL + "subreddit-list/" + subredditTitle + "/";
 export const CREATE_POST_URL = subredditTitle =>
-  SUB_DETAIL_URL(subredditTitle) + "post/";
+  `${POST_LIST_URL}create/${subredditTitle}/`;
 export const POST_DETAIL_URL = postId => POST_LIST_URL + postId + "/";

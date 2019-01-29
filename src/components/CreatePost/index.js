@@ -71,7 +71,7 @@ class CreatePost extends Component {
             handleSubmit={this.handleSubmit}
             usage="create"
             placeholder="Text (optional)"
-            dontFocusOnEditor={false}
+            dontFocusOnEditor
           />
         </form>
       </div>

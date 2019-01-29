@@ -44,6 +44,7 @@ const CommentTreeList = props => {
           parentPk={postPk}
           rootComment={true}
           usage="create"
+          dontFocusOnEditor
         />
       </div>
 

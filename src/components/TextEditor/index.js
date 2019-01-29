@@ -48,7 +48,7 @@ class TextEditor extends Component {
   }
 
   componentDidMount() {
-    if (!this.props.focusOnEditor) {
+    if (!this.props.dontFocusOnEditor) {
       this.quillNode.current.focus();
     }
   }

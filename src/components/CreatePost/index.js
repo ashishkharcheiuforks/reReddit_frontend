@@ -63,6 +63,7 @@ class CreatePost extends Component {
               value={this.state.title}
               onChange={this.handleTitleChange}
               name="username"
+              autoFocus
             />
           </div>
 
@@ -70,6 +71,7 @@ class CreatePost extends Component {
             handleSubmit={this.handleSubmit}
             usage="create"
             placeholder="Text (optional)"
+            dontFocusOnEditor={false}
           />
         </form>
       </div>

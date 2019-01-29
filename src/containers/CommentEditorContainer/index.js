@@ -11,13 +11,14 @@ import { getPostDetailPk } from "../../reducers/postDetail";
 
 const CommentEditorContainer = props => {
   const placeholder = "What are your thoughts?";
-  return <TextEditor {...props} placeholder={placeholder} />;
+  return (
+    <TextEditor
+      {...props}
+      placeholder={placeholder}
+      dontFocusOnEditor={props.dontFocusOnEditor}
+    />
+  );
 };
-
-const mapStateToProps = (state, ownProps) => ({
-  // should the editor be focues on after mounting?
-  focusOnEditor: ownProps.rootComment
-});
 
 const mapDispatchToProps = (dispatch, ownProps) => {
   // This is used for two occasions, creating and updating a comment.
@@ -83,6 +84,6 @@ CommentEditorContainer.propTypes = {
 };
 
 export default connect(
-  mapStateToProps,
+  null,
   mapDispatchToProps
 )(CommentEditorContainer);

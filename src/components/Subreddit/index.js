@@ -5,6 +5,7 @@ import SideBarContainer from "../../containers/SideBarContainer";
 import { SideBarLoader } from "../../components/Loaders";
 import { withEither } from "../../utilities/HOC";
 import { checkForPseudoSubreddits } from "../../reducers/subreddit";
+import { SUBREDDIT_URL } from "../../urls";
 import "./styles.css";
 
 const Subreddit = props => {
@@ -17,8 +18,13 @@ const Subreddit = props => {
         subredditTitle: routeSubredditTitle = "Home" //if undefined it's home
       }
     },
+    history,
     ...restProps
   } = props;
+
+  const redirectToSubreddit = () => {
+    history.push(SUBREDDIT_URL(routeSubredditTitle));
+  };
 
   const skinnyContainer = skinny ? "skinny-container" : "";
 
@@ -30,7 +36,7 @@ const Subreddit = props => {
   // Need to perform check with route title rather than
   // redux version to avoid incorrect initial render of header bar
   const headerBar = checkForPseudoSubreddits(routeSubredditTitle) ? null : (
-    <div className="subreddit-header-bar">
+    <div className="subreddit-header-bar" onClick={redirectToSubreddit}>
       <div id="subreddit-header-bar-title">r/{routeSubredditTitle}</div>
     </div>
   );

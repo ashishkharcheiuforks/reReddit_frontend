@@ -17,7 +17,7 @@
 }
 
 .comment-links .comment-buttons {
-  background-color: #333;
+  background-color: inherit;
   color: #818481;
   font-weight: bold;
   border: 0;

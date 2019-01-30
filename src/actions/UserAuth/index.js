@@ -66,13 +66,6 @@ const onUserAuthRegisterSuccess = (data, getState, dispatch) => {
   dispatch(showUserAuthModal("login", message));
 };
 
-const registerSuccessLoginModal = () => {
-  // When successfully registered launch the login modal with
-  // success message
-  const successMessage = "User profile created! Please log in.";
-  return showUserAuthModal("login", successMessage);
-};
-
 export const makeUserUpdateRequest = (username, updateData) => (
   dispatch,
   getState

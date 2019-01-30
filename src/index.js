@@ -52,7 +52,6 @@ ReactDOM.render(
                 render={props => (
                   <SubredditContainer
                     {...props}
-                    skinny
                     primaryComponent={props => (
                       <PostDetailContainer {...props} />
                     )}

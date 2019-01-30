@@ -4,10 +4,21 @@
   display: flex;
 }
 
+.create-subreddit-container > div#picture-container {
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-end;
+  background: url("./createSubredditPicture.jpg") no-repeat;
+  background-size: cover;
+  flex: 1 1 15%;
+}
+.create-subreddit-container > div#picture-container > a {
+  font-size: 0.8em;
+  color: black;
+}
 .content-container {
   width: 100%;
-  margin: 0rem 0rem 0rem 15rem;
-  background-color: #333333;
+  background-color: #1a1a1a;
   color: white;
   padding: 3rem;
   padding-right: 10rem;

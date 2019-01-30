@@ -162,17 +162,17 @@ const comments = (state = initialState, action) => {
 // // Selectors
 // Ordered array of root comments, based on api ordering
 export const getRootCommentPks = state => state.comments.rootCommentIds;
-
 export const getCommentById = (state, pk) => state.comments.commentsById[pk];
-
 export const getPosterByCommentId = (state, pk) => {
   const posterId = state.comments.commentsById[pk].poster;
   return state.comments.postersById[posterId];
 };
-
 export const getVoteDisplayStateById = (state, pk) =>
   state.comments.commentsById[pk].voteDisplayState;
-
 export const getCommentsLoading = state => state.comments.loading;
+export const getCommentsError = state => state.comments.error;
+export const getCreateCommentError = state => state.comments.createCommentError;
+export const getCreateCommentLoading = state =>
+  state.comments.createCommentLoading;
 
 export default comments;

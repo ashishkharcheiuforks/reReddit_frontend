@@ -9,6 +9,7 @@ import {
   getPostListLoading,
   getAllPosts
 } from "../../reducers/postList";
+import { getAuthUsername } from "../../reducers/userAuth";
 import getSubredditTitle from "../../reducers/subreddit";
 
 class PostListContainer extends Component {
@@ -22,19 +23,23 @@ class PostListContainer extends Component {
     // certainly not been called.
     this.props.fetchPostList(
       this.props.match.params.subredditTitle || "home",
-      "new"
+      "popular"
     );
   }
 
   componentDidUpdate(prevProps) {
     // When switching between subreddits this component will not be remounted
+    // Don't waste time reloading if we are on the same subreddit, but do
+    // if the subreddit title changes.
+    // Also if a user logs in or out we need to update the info as well.
     if (
       this.props.match.params.subredditTitle !==
-      prevProps.match.params.subredditTitle
+        prevProps.match.params.subredditTitle ||
+      this.props.authUsername !== prevProps.authUsername
     ) {
       this.props.fetchPostList(
         this.props.match.params.subredditTitle || "home",
-        "new"
+        "popular"
       );
     }
   }
@@ -57,7 +62,8 @@ class PostListContainer extends Component {
 const mapStateToProps = state => ({
   loading: getPostListLoading(state),
   error: getPostListError(state),
-  allPosts: getAllPosts(state)
+  allPosts: getAllPosts(state),
+  authUsername: getAuthUsername(state)
 });
 
 const mapDispatchToProps = dispatch => ({

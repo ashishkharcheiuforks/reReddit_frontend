@@ -28,7 +28,7 @@ class ModalLoginForm extends Component {
     e.preventDefault();
     try {
       await this.props.handleLogin(this.state.username, this.state.password);
-      this.props.history.push(HOME_SUBREDDIT_URL);
+      //this.props.history.push(HOME_SUBREDDIT_URL);
     } catch {
       this.forceUpdate();
     }

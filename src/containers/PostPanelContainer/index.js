@@ -1,16 +1,23 @@
-import React from 'react';
-import PropTypes from 'prop-types';
-import { connect } from 'react-redux';
-import { withRouter } from 'react-router';
+import React from "react";
+import PropTypes from "prop-types";
+import { connect } from "react-redux";
+import { withRouter } from "react-router";
 
-import PostPanel from '../../components/PostPanel';
-import { getPostById } from '../../reducers/postList';
-import { getAuthUsername } from '../../reducers/userAuth';
-import { makeDeletePostRequest } from '../../actions/Posts';
+import PostPanel from "../../components/PostPanel";
+import { getPostById } from "../../reducers/postList";
+import { getAuthUsername } from "../../reducers/userAuth";
+import { makeDeletePostRequest, togglePostEditor } from "../../actions/Posts";
+import { getPostEditorShowState } from "../../reducers/editPost";
 
-
-const PostPanelContainer = (props) => {
-  const { post, handleDeletePost, authUsername, usage } = props;
+const PostPanelContainer = props => {
+  const {
+    post,
+    handleDeletePost,
+    authUsername,
+    usage,
+    showPostEditor,
+    togglePostEditor
+  } = props;
   const {
     upvotes,
     pk,
@@ -18,9 +25,9 @@ const PostPanelContainer = (props) => {
     subredditTitle,
     posterUsername,
     created,
-    voteDisplayState,
+    voteDisplayState
   } = post;
-  
+
   return (
     <PostPanel
       {...{
@@ -33,26 +40,27 @@ const PostPanelContainer = (props) => {
         created,
         voteDisplayState,
         handleDeletePost,
+        showPostEditor,
+        togglePostEditor
       }}
     />
   );
-}
+};
 
 const mapStateToProps = (state, ownProps) => {
-  const {
-    postPk,
-    usage,
-  } = ownProps;
+  const { postPk, usage } = ownProps;
 
-  return ({
-      post: getPostById(state, postPk),
-      authUsername: getAuthUsername(state),
-    })
-}
+  return {
+    post: getPostById(state, postPk),
+    authUsername: getAuthUsername(state),
+    showPostEditor: getPostEditorShowState(state)
+  };
+};
 
 const mapDispatchToProps = (dispatch, ownProps) => ({
   handleDeletePost: () => dispatch(makeDeletePostRequest(ownProps.postPk)),
-})
+  togglePostEditor: () => dispatch(togglePostEditor())
+});
 
 PostPanelContainer.propTypes = {
   post: PropTypes.shape({
@@ -62,14 +70,14 @@ PostPanelContainer.propTypes = {
     subredditTitle: PropTypes.string,
     posterUsername: PropTypes.string,
     created: PropTypes.string,
-    voteDisplayState: PropTypes.oneOf([0,-1,1]),
+    voteDisplayState: PropTypes.oneOf([0, -1, 1])
   }),
   handleDeletePost: PropTypes.func,
   authUsername: PropTypes.string,
-  usage: PropTypes.oneOf(['subreddit', 'search']),
-}
+  usage: PropTypes.oneOf(["subreddit", "search"])
+};
 
 export default connect(
   mapStateToProps,
-  mapDispatchToProps,
+  mapDispatchToProps
 )(PostPanelContainer);

@@ -21,6 +21,23 @@ class PostPanel extends Component {
     }
   };
 
+  handleShowEditPost = e => {
+    // show the post editor and then switch to the post detail page
+    const {
+      subredditTitle,
+      pk,
+      togglePostEditor,
+      showPostEditor,
+      history
+    } = this.props;
+
+    if (!showPostEditor) {
+      togglePostEditor();
+    }
+
+    history.push(POST_DETAIL_URL(subredditTitle, pk));
+  };
+
   render() {
     const {
       upvotes,
@@ -82,7 +99,7 @@ class PostPanel extends Component {
                   delete
                 </MenuItem>
 
-                <MenuItem eventKey={2} onSelect={() => null}>
+                <MenuItem eventKey={2} onSelect={this.handleShowEditPost}>
                   edit
                 </MenuItem>
               </AuthEllipsis>

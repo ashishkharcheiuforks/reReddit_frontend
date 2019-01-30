@@ -6,9 +6,9 @@
   border-bottom: 0;
   display: flex;
   justify-content: center;
-  color: white;
+  color: #cccccc;
   cursor: pointer;
-  background-color: #333333;
+  background-color: #1a1a1a;
   font-family: Roboto Slab;
 }
 
@@ -25,7 +25,7 @@
 }
 
 div.post-segment-panel > div.voter-container {
-  background-color: #1a1a1a;
+  background-color: #070707;
   display: flex;
   align-items: center;
   justify-content: center;
@@ -35,7 +35,7 @@ div.post-segment-panel > div.voter-container {
 .post-segment-text-container {
   flex: 2;
   padding: 0.5rem 0 0.5rem 1rem;
-  color: white;
+  color: inherit;
 }
 
 .post-segment-title {
@@ -49,7 +49,7 @@ div.post-segment-panel > div.voter-container {
 }
 
 .post-segment-info a:hover {
-  color: white;
+  color: inherit;
 }
 
 .post-segment-links {
@@ -59,7 +59,7 @@ div.post-segment-panel > div.voter-container {
 }
 .post-segment-links .post-buttons {
   border-width: 0;
-  background-color: #333;
+  background-color: inherit;
   color: #b8b8b8;
   margin-right: 0.3rem;
   border-radius: 5px;
@@ -71,7 +71,7 @@ div.post-segment-panel > div.voter-container {
 .post-segment-links a:hover,
 .post-segment-title > a.post-title:hover,
 a {
-  color: white;
+  color: #cccccc;
   text-decoration: none;
 }
 .post-segment-links > div.post-segment-ellipsis-container {

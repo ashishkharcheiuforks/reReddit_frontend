@@ -1,6 +1,6 @@
 .share-button {
   border-width: 0;
-  background-color: #333;
+  background-color: inherit;
   color: #b8b8b8;
   margin-right: 0.3rem;
 }

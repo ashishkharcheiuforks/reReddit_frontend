@@ -1,4 +1,4 @@
-import React, { Component, Fragment } from "react";
+import React, { Component } from "react";
 import PropTypes from "prop-types";
 import ReactQuill from "react-quill";
 import "react-quill/dist/quill.snow.css";
@@ -83,7 +83,7 @@ class TextEditor extends Component {
     }
 
     return (
-      <Fragment>
+      <div className="text-editor-content">
         <ReactQuill
           value={this.state.editorHtml}
           onChange={this.handleChange}
@@ -93,14 +93,16 @@ class TextEditor extends Component {
           ref={this.quillNode}
           onBlur={onBlur}
         />
-        <LoadingButton
-          onClick={() => this.handleSubmitClick(this.state.editorHtml)}
-          className="submit-button"
-          loading={loading}
-        >
-          {submitButtonWord}
-        </LoadingButton>
-      </Fragment>
+        <div className="text-editor-loading-button-container">
+          <LoadingButton
+            onClick={() => this.handleSubmitClick(this.state.editorHtml)}
+            className="submit-button"
+            loading={loading}
+          >
+            {submitButtonWord}
+          </LoadingButton>
+        </div>
+      </div>
     );
   }
 }

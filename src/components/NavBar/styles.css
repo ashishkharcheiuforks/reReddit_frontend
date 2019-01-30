@@ -65,9 +65,6 @@ div#subreddit-feed-dropdown-container button {
   border-color: transparent;
 }
 div#subreddit-feed-dropdown-container button:hover,
-div#subreddit-feed-dropdown-container button:active,
-div#subreddit-feed-dropdown-container button:focus,
-div#subreddit-feed-dropdown-container button:focus-within,
 div#subreddit-feed-dropdown-container > div.dropdown.open > button {
   border-color: #cccccc;
 }

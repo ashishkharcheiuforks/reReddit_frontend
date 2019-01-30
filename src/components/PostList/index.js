@@ -17,7 +17,7 @@ const PostList = props => {
 
   let postList;
   if (loading) {
-    postList = <PanelListLoader panelNumber={8} />;
+    postList = <PanelListLoader panelNumber={12} />;
   } else if (allPosts.length === 0) {
     postList = <EmptyPostList message={emptyListMessage} />;
   } else {

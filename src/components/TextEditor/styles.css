@@ -3,11 +3,11 @@
   border-top-left-radius: 0.5rem;
   border-bottom: 0;
   background-color: #818481;
-
 }
+
 .quill div.ql-container {
   border-bottom-right-radius: 0.3rem;
-  border-bottom-left-radius: 0.3rem
+  border-bottom-left-radius: 0.3rem;
 }
 
 .quill div.ql-editor {
@@ -16,13 +16,24 @@
   color: white;
 }
 
-.quill div.ql-blank:before{
+.quill div.ql-blank:before {
   color: white;
 }
 
 /* Button */
 .submit-button {
   margin-top: 1rem;
-  margin-bottom: 1.0rem;
+  margin-bottom: 1rem;
   font-weight: bold;
+}
+
+@media screen and (max-width: 700px) {
+  .quill div.ql-toolbar {
+    display: none;
+  }
+  .quill > div.ql-toolbar.ql-snow + div.ql-container.ql-snow {
+    border: 1px solid #ffa500;
+    border-top-right-radius: 0.3rem;
+    border-top-left-radius: 0.3rem;
+  }
 }

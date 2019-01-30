@@ -6,7 +6,7 @@
   border-bottom: 0;
   display: flex;
   justify-content: center;
-  color: #cccccc;
+  color: white;
   cursor: pointer;
   background-color: #1a1a1a;
   font-family: Roboto Slab;
@@ -71,7 +71,7 @@ div.post-segment-panel > div.voter-container {
 .post-segment-links a:hover,
 .post-segment-title > a.post-title:hover,
 a {
-  color: #cccccc;
+  color: #e8e8e8;
   text-decoration: none;
 }
 .post-segment-links > div.post-segment-ellipsis-container {

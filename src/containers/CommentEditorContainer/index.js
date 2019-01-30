@@ -3,6 +3,7 @@ import { connect } from "react-redux";
 import PropTypes from "prop-types";
 
 import TextEditor from "../../components/TextEditor";
+import TextEditorContainer from "../TextEditorContainer";
 import {
   makeCreateCommentRequest,
   makeUpdateCommentRequest
@@ -12,7 +13,7 @@ import { getPostDetailPk } from "../../reducers/postDetail";
 const CommentEditorContainer = props => {
   const placeholder = "What are your thoughts?";
   return (
-    <TextEditor
+    <TextEditorContainer
       {...props}
       placeholder={placeholder}
       dontFocusOnEditor={props.dontFocusOnEditor}

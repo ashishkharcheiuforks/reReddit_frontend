@@ -1,17 +1,12 @@
-import React from 'react';
-import { Panel } from 'react-bootstrap';
-import { PulseLoader } from 'react-spinners';
+import React from "react";
+import { PulseLoader } from "react-spinners";
 
-import './styles.css';
+import "./styles.css";
 
 const PanelLoader = () => (
-  <div>
-    <Panel>
-      <Panel.Body id="pulse-loader-panel-body">
-          <PulseLoader className="panel-clip-loader" color={'#BFEFFF'}/>
-      </Panel.Body>
-    </Panel>
-</div>    
+  <div className="panel-loader-container">
+    <PulseLoader className="panel-clip-loader" color={"#BFEFFF"} />
+  </div>
 );
 
 export default PanelLoader;

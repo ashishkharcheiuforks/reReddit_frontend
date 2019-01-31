@@ -54,12 +54,12 @@ const addComment = (state, newComment) => {
   };
 
   // if it's a root comment
-  if (newComment.post) {
+  if (!newComment.parent) {
     return {
       ...addRootCommentId(state, updatedComment),
       commentsById: { ...state.commentsById, [newComment.pk]: updatedComment }
     };
-  } else if (newComment.parent) {
+  } else {
     // or it it is a child comment
     const newCommentsById = addChildCommentId(state, updatedComment);
     return {

@@ -1,40 +1,57 @@
-.create-post-container {
-  background-color: #333333;
-  border-radius: 4px;
-  padding: 2rem;
+div.create-post-container {
+  display: flex;
+  flex-direction: column;
 }
 
+div.create-post-container > div.create-post-header h2 {
+  color: #d7dadc;
+  font-size: 1.25em;
+  font-weight: 500;
+}
+div.create-post-container > div.create-post-header hr {
+  border-color: #333333;
+  margin-top: 1rem;
+}
+
+div.create-post-container > div.create-post-form-container {
+  background-color: #1a1a1a;
+  border-radius: 10px;
+  padding: 2rem;
+}
 .create-post-container .ql-container {
   border-bottom-left-radius: 0.5rem;
   border-bottom-right-radius: 0.5rem;
   border-top: 0;
   font-style: normal;
 }
-
 .create-post-container .ql-toolbar {
   border-top-left-radius: 0.5rem;
   border-top-right-radius: 0.5rem;
   border-bottom: 0;
-  background-color: #F0F0F0;
+  background-color: #f0f0f0;
 }
-
 .create-post-container #create-post-title {
   border-radius: 0.5rem;
-  background-color: #333333;
+  background-color: #1a1a1a;
   color: white;
   font-family: Helvetica, Arial, sans-serif;
 }
-
 .create-post-container #create-post-title:-webkit-autofill,
 .create-post-container #create-post-title:-webkit-autofill:hover,
 .create-post-container #create-post-title:-webkit-autofill:focus,
-.create-post-container #create-post-title:-webkit-autofill:active  {
+.create-post-container #create-post-title:-webkit-autofill:active {
   transition: background-color 5000s ease-in-out 0s;
   -webkit-text-fill-color: white;
 }
-
-.create-post-container #create-post-title::placeHolder {
-  color: white;
+div.create-post-form-container
+  div.text-editor-content
+  .ql-editor.ql-blank::before,
+.create-post-container #create-post-title::placeholder {
+  color: #cccccc;
+  font-size: 1.1em;
+  font-style: normal;
+  font-family: Poppins;
+  font-weight: 500;
 }
 
 .submit-button {

@@ -8,6 +8,7 @@ import {
   CREATE_POST_REQUEST,
   CREATE_POST_SUCCESS,
   CREATE_POST_FAILURE,
+  CLEAR_CREATE_POST_ERROR,
   DELETE_POST_REQUEST,
   DELETE_POST_SUCCESS,
   DELETE_POST_FAILURE,
@@ -16,6 +17,7 @@ import {
   UPDATE_POST_FAILURE,
   API_SUB_POST_LIST,
   API_CREATE_POST,
+  API_UPDATE_POST,
   API_DELETE_POST,
   API_POST_DETAIL,
   TOGGLE_POST_EDITOR
@@ -70,7 +72,7 @@ export const makeCreatePostRequest = (title, body, subredditTitle) => (
 // Using redux-thunk to get an auth token
 export const makeUpdatePostRequest = (pk, body) => (dispatch, getState) =>
   dispatch({
-    type: API_CREATE_POST,
+    type: API_UPDATE_POST,
     types: {
       request: UPDATE_POST_REQUEST,
       success: UPDATE_POST_SUCCESS,
@@ -109,4 +111,8 @@ export const makePostDetailRequest = postId => ({
 
 export const togglePostEditor = () => ({
   type: TOGGLE_POST_EDITOR
+});
+
+export const clearCreatePostError = () => ({
+  type: CLEAR_CREATE_POST_ERROR
 });

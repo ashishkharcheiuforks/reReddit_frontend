@@ -51,29 +51,38 @@ class CreatePost extends Component {
 
     return (
       <div className="create-post-container">
-        <div className="alert-message-container">
-          <CreatePostErrorAlert children={errorMessage} />
+        <div className="create-post-header">
+          <h2>
+            Create a post
+            <hr />
+          </h2>
         </div>
-        <form>
-          <div className="title-input-container">
-            <FieldGroup
-              id="create-post-title"
-              placeholder="Title"
-              type="text"
-              value={this.state.title}
-              onChange={this.handleTitleChange}
-              name="username"
-              autoFocus
-            />
+        <div className="create-post-form-container">
+          <div className="alert-message-container">
+            <CreatePostErrorAlert children={errorMessage} />
           </div>
+          <form>
+            <div className="title-input-container">
+              <FieldGroup
+                id="create-post-title"
+                placeholder="Title"
+                type="text"
+                value={this.state.title}
+                onChange={this.handleTitleChange}
+                name="username"
+                autoFocus
+                autoComplete="off"
+              />
+            </div>
 
-          <TextEditor
-            handleSubmit={this.handleSubmit}
-            usage="create"
-            placeholder="Text (optional)"
-            dontFocusOnEditor
-          />
-        </form>
+            <TextEditor
+              handleSubmit={this.handleSubmit}
+              usage="create"
+              placeholder="Text (optional)"
+              dontFocusOnEditor
+            />
+          </form>
+        </div>
       </div>
     );
   }

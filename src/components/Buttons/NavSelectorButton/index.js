@@ -12,7 +12,9 @@ const NavSelectorButton = props => {
         borderBottom: `3px solid ${color}`,
         color
       }
-    : {};
+    : {
+        color
+      };
 
   return (
     <div

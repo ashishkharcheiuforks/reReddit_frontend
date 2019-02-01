@@ -26,7 +26,9 @@ const NavBarDropdown = ({ subscribedSubredditTitles }) => {
       <LinkContainer exact to="/r/all">
         <MenuItem eventKey={3.3}>All</MenuItem>
       </LinkContainer>
-      <MenuItem divider eventKey={3.4} />
+      {subscribedSubredditTitles.length > 0 && (
+        <MenuItem divider eventKey={3.4} />
+      )}
       {subscribedSubs}
     </DropdownButton>
   );

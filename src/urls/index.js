@@ -9,6 +9,8 @@ export const CREATE_POST_URL = subredditTitle =>
 export const POST_DETAIL_URL = (subredditTitle, postPk) =>
   `/r/${subredditTitle}/postDetail/${postPk}`;
 
+export const USER_PROFILE_URL = username => `/profile/${username}`;
+
 // compare urls disregarding the trailing slash
 export const urlMatch = (first, second) => {
   return first === second || `${first}/` === second || first === `${second}/`;

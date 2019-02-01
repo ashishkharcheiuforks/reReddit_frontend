@@ -29,14 +29,14 @@ class UserProfile extends Component {
         <div id="user-profile-navbar">
           <div id="up-nav-selector-buttons">
             <NavSelectorButton
-              color="black"
+              color="#070707"
               onClick={() => changeProfileView("posts")}
               active={profileView === "posts"}
             >
               Posts
             </NavSelectorButton>
             <NavSelectorButton
-              color="black"
+              color="#070707"
               onClick={() => changeProfileView("comments")}
               active={profileView === "comments"}
             >

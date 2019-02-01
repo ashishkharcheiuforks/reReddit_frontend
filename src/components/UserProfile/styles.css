@@ -1,6 +1,7 @@
 div.user-profile-container {
   display: flex;
   flex-direction: column;
+  max-width: 100%;
 }
 div.user-profile-container > div#user-profile-navbar {
   background-color: #90ee90;
@@ -12,7 +13,6 @@ div.user-profile-container > div#user-profile-navbar {
 div.user-profile-container
   > div#user-profile-navbar
   > #up-nav-selector-buttons {
-  color: white;
   margin-left: 5rem;
 }
 
@@ -29,4 +29,23 @@ div.user-profile-main-content > div.user-profile-sidebar-container {
   flex: 1 1 20%;
   margin-left: 3rem;
   margin-right: 3rem;
+}
+
+@media screen and (max-width: 1000px) {
+  div.user-profile-main-content > div.user-profile-list {
+    margin-left: 1rem;
+    margin-right: 0.5rem;
+  }
+  div.user-profile-main-content > div.user-profile-sidebar-container {
+    margin-left: 1rem;
+    margin-right: 1rem;
+  }
+}
+@media screen and (max-width: 800px) {
+  div.user-profile-main-content > div.user-profile-sidebar-container {
+    display: none;
+  }
+  div.user-profile-main-content > div.user-profile-list {
+    margin-right: 1rem;
+  }
 }

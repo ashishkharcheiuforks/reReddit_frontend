@@ -47,9 +47,16 @@ div.post-segment-panel > div.voter-container {
 .post-segment-info {
   font-size: 80%;
 }
-
 .post-segment-info a:hover {
   color: inherit;
+}
+.post-segment-info a.pp-subreddit-link {
+  margin-right: 0.5rem;
+  font-weight: 700;
+}
+.post-segment-info a.pp-user-profile-link {
+  margin-right: 1rem;
+  margin-left: 0.2rem;
 }
 
 .post-segment-links {

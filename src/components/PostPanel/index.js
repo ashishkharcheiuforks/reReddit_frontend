@@ -9,7 +9,7 @@ import VoterContainer from "../../containers/VoterContainer";
 import EllipsisButton from "../EllipsisButton";
 import ShareButton from "../ShareButton";
 import { withMaybe } from "../../utilities/HOC";
-import { POST_DETAIL_URL } from "../../urls";
+import { POST_DETAIL_URL, USER_PROFILE_URL } from "../../urls";
 import "./styles.css";
 
 class PostPanel extends Component {
@@ -76,11 +76,16 @@ class PostPanel extends Component {
           </div>
 
           <div className="post-segment-info">
-            <strong>
-              <Link to={`/r/${subredditTitle}`}>r/{subredditTitle}</Link>
-            </strong>
+            <Link className="pp-subreddit-link" to={`/r/${subredditTitle}`}>
+              r/{subredditTitle}
+            </Link>
             - posted by:
-            <a href="#"> u/{posterUsername} </a>
+            <Link
+              className="pp-user-profile-link"
+              to={USER_PROFILE_URL(posterUsername)}
+            >
+              u/{posterUsername}
+            </Link>
             {created}
           </div>
 

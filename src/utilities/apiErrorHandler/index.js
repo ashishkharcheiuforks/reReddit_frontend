@@ -29,6 +29,13 @@ const apiRequestErrorHandler = e => {
       );
     } else {
       // There is no response data
+      if (e.response.status === 500) {
+        return `
+          Sorry we are having trouble retrieving that right now.
+          Please try again later.
+        `;
+      }
+
       return `${e.response.status}: ${e.response.statusText}`;
     }
   } catch (error) {

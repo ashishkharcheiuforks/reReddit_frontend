@@ -1,6 +1,7 @@
 import React, { Component } from "react";
 
 import PostList from "../PostList";
+import CommentList from "./CommentList";
 import { withEither } from "../../utilities/HOC";
 import { NavSelectorButton } from "../Buttons";
 import UserProfileSidebar from "./UserProfileSidebar";
@@ -21,22 +22,24 @@ class UserProfile extends Component {
 
     const ConditionalList = withEither(
       props => props.view === "comments",
-      () => null
+      CommentList
     )(PostList);
+
+    const navSelectorButtonColor = "#070707";
 
     return (
       <div className="user-profile-container">
         <div id="user-profile-navbar">
           <div id="up-nav-selector-buttons">
             <NavSelectorButton
-              color="#070707"
+              color={navSelectorButtonColor}
               onClick={() => changeProfileView("posts")}
               active={profileView === "posts"}
             >
               Posts
             </NavSelectorButton>
             <NavSelectorButton
-              color="#070707"
+              color={navSelectorButtonColor}
               onClick={() => changeProfileView("comments")}
               active={profileView === "comments"}
             >

@@ -25,6 +25,8 @@ class UserProfile extends Component {
       CommentList
     )(PostList);
 
+    const emptyListMessage = `u/${username} does not have any activity to show.`;
+
     const navSelectorButtonColor = "#070707";
 
     return (
@@ -50,7 +52,12 @@ class UserProfile extends Component {
         <div className="user-profile-main-content">
           <div className="user-profile-list">
             <ConditionalList
-              {...{ allPosts, error, loading }}
+              {...{
+                allPosts,
+                error,
+                loading,
+                emptyListMessage
+              }}
               view={profileView}
             />
           </div>

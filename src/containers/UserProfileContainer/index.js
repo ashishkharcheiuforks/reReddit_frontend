@@ -8,7 +8,7 @@ import {
   getUserProfileAllComments,
   getUserProfileLoading,
   getUserProfileError,
-  getUserProfileListView
+  getUserProfileView
 } from "../../reducers/userProfile";
 
 class UserProfileContainer extends Component {
@@ -54,7 +54,7 @@ class UserProfileContainer extends Component {
 const mapStateToProps = state => ({
   allComments: getUserProfileAllComments(state),
   allPosts: getUserProfileAllPosts(state),
-  profileView: getUserProfileListView(state),
+  profileView: getUserProfileView(state),
   loading: getUserProfileLoading(state),
   error: getUserProfileError(state)
 });

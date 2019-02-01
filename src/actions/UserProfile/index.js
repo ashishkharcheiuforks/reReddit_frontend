@@ -2,7 +2,8 @@ import {
   FETCH_USER_PROFILE_REQUEST,
   FETCH_USER_PROFILE_SUCCESS,
   FETCH_USER_PROFILE_FAILURE,
-  API_USER_PROFILE
+  API_USER_PROFILE,
+  SET_USER_PROFILE_VIEW
 } from "../actionTypes";
 
 import { getUserProfileApi } from "../../api/UserProfile";
@@ -16,4 +17,9 @@ export const makeUserProfileRequest = username => ({
     failure: FETCH_USER_PROFILE_FAILURE
   },
   callAPI: () => getUserProfileApi(username)
+});
+
+export const setUserProfileView = (viewName = "posts") => ({
+  type: SET_USER_PROFILE_VIEW,
+  viewName
 });

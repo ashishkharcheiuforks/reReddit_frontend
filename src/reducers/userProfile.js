@@ -1,7 +1,8 @@
 import {
   FETCH_USER_PROFILE_REQUEST,
   FETCH_USER_PROFILE_SUCCESS,
-  FETCH_USER_PROFILE_FAILURE
+  FETCH_USER_PROFILE_FAILURE,
+  SET_USER_PROFILE_VIEW
 } from "../actions/actionTypes";
 import { objectById, allIds } from "../utilities/reducerUtils";
 
@@ -14,7 +15,7 @@ const initialState = {
   postsById: {},
   allComments: [],
   allPosts: [],
-  profileListView: "posts"
+  profileView: "posts"
 };
 
 const userProfile = (state = initialState, action) => {
@@ -42,6 +43,11 @@ const userProfile = (state = initialState, action) => {
         error: action.error,
         loading: false
       };
+    case "SET_USER_PROFILE_VIEW":
+      return {
+        ...state,
+        profileView: action.viewName
+      };
     default:
       return state;
   }
@@ -56,7 +62,6 @@ export const getUserProfilePostById = (state, pk) =>
 export const getUserProfileUsername = state => state.userProfile.username;
 export const getUserProfileLoading = state => state.userProfile.loading;
 export const getUserProfileError = state => state.userProfile.error;
-export const getUserProfileListView = state =>
-  state.userProfile.profileListView;
+export const getUserProfileView = state => state.userProfile.profileView;
 
 export default userProfile;

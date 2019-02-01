@@ -1,7 +1,11 @@
 import React, { Component, Fragment } from "react";
 import { withRouter } from "react-router";
 
-import { CREATE_POST_URL, CREATE_SUBREDDIT_URL } from "../../urls";
+import {
+  CREATE_POST_URL,
+  CREATE_SUBREDDIT_URL,
+  USER_PROFILE_URL
+} from "../../urls";
 import UnauthenticatedUser from "./UnauthenticatedUser";
 import AuthenticatedUser from "./AuthenticatedUser";
 import MobileUserAuthNav from "./Mobile/MobileUserAuthNav";
@@ -12,6 +16,7 @@ class UserAuthNav extends Component {
 
     this.redirectToCreatePost = this.redirectToCreatePost.bind(this);
     this.redirectToCreateSubreddit = this.redirectToCreateSubreddit.bind(this);
+    this.redirectToUserProfile = this.redirectToUserProfile.bind(this);
   }
 
   redirectToCreatePost() {
@@ -20,6 +25,10 @@ class UserAuthNav extends Component {
 
   redirectToCreateSubreddit() {
     return this.props.history.push(CREATE_SUBREDDIT_URL);
+  }
+
+  redirectToUserProfile() {
+    return this.props.history.push(USER_PROFILE_URL(this.props.authUsername));
   }
 
   render() {
@@ -33,6 +42,7 @@ class UserAuthNav extends Component {
             handleLogout={handleLogout}
             redirectToCreatePost={this.redirectToCreatePost}
             redirectToCreateSubreddit={this.redirectToCreateSubreddit}
+            redirectToUserProfile={this.redirectToUserProfile}
             showModal={showModal}
           />
         ) : (
@@ -51,6 +61,7 @@ class UserAuthNav extends Component {
           }}
           redirectToCreatePost={this.redirectToCreatePost}
           redirectToCreateSubreddit={this.redirectToCreateSubreddit}
+          redirectToUserProfile={this.redirectToUserProfile}
         />
         {largeScreenComponent}
       </Fragment>

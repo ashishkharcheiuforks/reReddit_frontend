@@ -8,7 +8,8 @@ import {
   IoMdCreate,
   IoMdSettings,
   IoLogoGithub,
-  IoMdMenu
+  IoMdMenu,
+  IoMdPerson
 } from "react-icons/io";
 import { FaUserPlus } from "react-icons/fa";
 
@@ -31,11 +32,15 @@ class MobileUserAuthNav extends Component {
       handleLogout,
       showModal,
       redirectToCreatePost,
-      redirectToCreateSubreddit
+      redirectToCreateSubreddit,
+      redirectToUserProfile
     } = this.props;
 
     const authenticatedMenu = (
       <Fragment>
+        <MenuItem eventKey={3.0} onClick={redirectToUserProfile}>
+          <IoMdPerson /> View profile
+        </MenuItem>
         <MenuItem eventKey={3.1} onClick={() => showModal("update")}>
           <IoMdSettings /> Edit profile
         </MenuItem>

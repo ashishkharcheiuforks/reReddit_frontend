@@ -4,7 +4,8 @@ import {
   IoMdLogOut,
   IoMdCreate,
   IoMdSettings,
-  IoLogoGithub
+  IoLogoGithub,
+  IoMdPerson
 } from "react-icons/io";
 
 import "./styles.css";
@@ -15,7 +16,8 @@ const AuthenticatedUser = props => {
     handleLogout,
     showModal,
     redirectToCreatePost,
-    redirectToCreateSubreddit
+    redirectToCreateSubreddit,
+    redirectToUserProfile
   } = props;
 
   return (
@@ -26,6 +28,9 @@ const AuthenticatedUser = props => {
         pullRight
         id="user-nav-dropdown"
       >
+        <MenuItem eventKey={3.0} onClick={redirectToUserProfile}>
+          <IoMdPerson /> View profile
+        </MenuItem>
         <MenuItem eventKey={3.1} onClick={() => showModal("update")}>
           <IoMdSettings /> Edit profile
         </MenuItem>

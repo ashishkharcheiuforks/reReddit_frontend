@@ -32,7 +32,9 @@ const userProfile = (state = initialState, action) => {
         commentsById: objectById(action.data.comments),
         postsById: objectById(action.data.posts),
         allComments: allIds(action.data.comments),
-        allPosts: allIds(action.data.posts)
+        allPosts: allIds(action.data.posts),
+        loading: false,
+        error: null
       };
     case "FETCH_USER_PROFILE_FAILURE":
       return {
@@ -54,4 +56,7 @@ export const getUserProfilePostById = (state, pk) =>
 export const getUserProfileUsername = state => state.userProfile.username;
 export const getUserProfileLoading = state => state.userProfile.loading;
 export const getUserProfileError = state => state.userProfile.error;
+export const getUserProfileListView = state =>
+  state.userProfile.profileListView;
+
 export default userProfile;

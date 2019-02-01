@@ -1,0 +1,11 @@
+div.user-profile-container {
+  display: flex;
+  flex-direction: column;
+}
+div.user-profile-container > div#user-profile-navbar {
+  background-color: #77dd91;
+  min-height: 4rem;
+  display: flex;
+  align-items: flex-end;
+  color: black;
+}

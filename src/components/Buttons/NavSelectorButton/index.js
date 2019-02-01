@@ -4,12 +4,13 @@ import PropTypes from "prop-types";
 import "./styles.css";
 
 const NavSelectorButton = props => {
-  const { active, children, onClick } = props;
+  const { active, children, onClick, color = "white" } = props;
 
   const activeStyle = active
     ? {
         opacity: "100",
-        borderBottom: "3px solid white"
+        borderBottom: `3px solid ${color}`,
+        color
       }
     : {};
 

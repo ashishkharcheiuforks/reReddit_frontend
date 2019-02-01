@@ -7,7 +7,8 @@ import {
   getUserProfileAllPosts,
   getUserProfileAllComments,
   getUserProfileLoading,
-  getUserProfileError
+  getUserProfileError,
+  getUserProfileListView
 } from "../../reducers/userProfile";
 
 class UserProfileContainer extends Component {
@@ -28,6 +29,7 @@ class UserProfileContainer extends Component {
       allPosts,
       error,
       loading,
+      profileView,
       match: {
         params: { username }
       }
@@ -40,7 +42,9 @@ class UserProfileContainer extends Component {
           allPosts,
           username,
           error,
-          loading
+          loading,
+          profileView,
+          username
         }}
       />
     );
@@ -50,6 +54,7 @@ class UserProfileContainer extends Component {
 const mapStateToProps = state => ({
   allComments: getUserProfileAllComments(state),
   allPosts: getUserProfileAllPosts(state),
+  profileView: getUserProfileListView(state),
   loading: getUserProfileLoading(state),
   error: getUserProfileError(state)
 });

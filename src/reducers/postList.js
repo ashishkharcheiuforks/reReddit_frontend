@@ -6,7 +6,8 @@ import {
   DELETE_POST_REQUEST,
   DELETE_POST_SUCCESS,
   DELETE_POST_FAILURE,
-  SEARCH_SUCCESS
+  SEARCH_SUCCESS,
+  FETCH_USER_PROFILE_SUCCESS
 } from "../actions/actionTypes";
 import {
   updateObjectOnVote,
@@ -89,6 +90,14 @@ const postList = (state = initialState, action) => {
         deleteError: action.error
       };
     case SEARCH_SUCCESS:
+      return {
+        ...state,
+        loading: false,
+        error: null,
+        postsById: postsById(action.data.posts),
+        allPosts: allIds(action.data.posts)
+      };
+    case FETCH_USER_PROFILE_SUCCESS:
       return {
         ...state,
         loading: false,

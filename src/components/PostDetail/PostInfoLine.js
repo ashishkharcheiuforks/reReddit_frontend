@@ -1,22 +1,19 @@
-import React from 'react';
+import React from "react";
 
-import { Link } from 'react-router-dom';
-import './styles.css';
+import { Link } from "react-router-dom";
+import { USER_PROFILE_URL } from "../../urls";
+import "./styles.css";
 
-const PostInfoLine = ({title, poster}) => (
-  <div className='post-info-line'>
-    <div className='link-to-sub'>
-      <Link to={`/r/${title}`}>
-        {`r/${title}`}
-      </Link>
+const PostInfoLine = ({ title, poster }) => (
+  <div className="post-info-line">
+    <div className="link-to-sub">
+      <Link to={`/r/${title}`}>{`r/${title}`}</Link>
     </div>
-    <span id='divider'>-</span>
-    <div className='link-to-user'>
-      <Link to={`/u/${poster}`}>
-        {`Posted by u/${poster}`}
-      </Link>
+    <span id="divider">-</span>
+    <div className="link-to-user">
+      <Link to={USER_PROFILE_URL(poster)}>{`Posted by u/${poster}`}</Link>
     </div>
   </div>
-)
+);
 
 export default PostInfoLine;

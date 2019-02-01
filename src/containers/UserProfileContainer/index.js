@@ -7,12 +7,12 @@ import {
   setUserProfileView
 } from "../../actions/UserProfile";
 import {
-  getUserProfileAllPosts,
   getUserProfileAllComments,
   getUserProfileLoading,
   getUserProfileError,
   getUserProfileView
 } from "../../reducers/userProfile";
+import { getAllPosts } from "../../reducers/postList";
 
 class UserProfileContainer extends Component {
   componentDidMount() {
@@ -58,7 +58,7 @@ class UserProfileContainer extends Component {
 
 const mapStateToProps = state => ({
   allComments: getUserProfileAllComments(state),
-  allPosts: getUserProfileAllPosts(state),
+  allPosts: getAllPosts(state),
   profileView: getUserProfileView(state),
   loading: getUserProfileLoading(state),
   error: getUserProfileError(state)

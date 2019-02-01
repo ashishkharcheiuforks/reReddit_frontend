@@ -26,6 +26,8 @@ export const USER_LOGIN_URL = USER_LIST_URL + "login/";
 export const USER_LOGOUT_URL = USER_LIST_URL + "logout/";
 export const USER_REGISTER_URL = USER_LIST_URL + "create/";
 export const USER_DETAIL_URL = username => `${USER_LIST_URL}${username}/`;
+export const USER_PROFILE_URL = username =>
+  `${USER_LIST_URL}profile/${username}/`;
 
 export const POST_LIST_URL = API_ROOT_URL + "posts/";
 export const SUB_POST_LIST_URL = subredditTitle =>

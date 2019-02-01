@@ -17,6 +17,7 @@ import PostListContainer from "./containers/PostListContainer";
 import PostDetailContainer from "./containers/PostDetailContainer";
 import CreateSubredditContainer from "./containers/CreateSubredditContainer";
 import SearchResultsContainer from "./containers/SearchResultsContainer";
+import UserProfileContainer from "./containers/UserProfileContainer";
 
 WebFont.load({
   google: {
@@ -111,6 +112,12 @@ ReactDOM.render(
                     primaryComponent={props => <PostListContainer {...props} />}
                   />
                 )}
+              />
+              // A user's profile
+              <Route
+                exact
+                path="/profile/:username"
+                render={props => <UserProfileContainer {...props} />}
               />
             </Switch>
           </div>

@@ -31,6 +31,7 @@ export function updateObjectOnVote(oldObj, voteType) {
 }
 
 // Take an array of serialized objects and return array of ids only
+// maintaing order
 export const allIds = (objList, idLabel = "pk") => {
   let allIds = [];
   objList.forEach(obj => {
@@ -41,6 +42,7 @@ export const allIds = (objList, idLabel = "pk") => {
 
 // Take an array of serialized objects and make a objectById object
 // with the `idLabel` element as the object key
+// if a modification is needed to each element you can pass updateFcn
 export const objectById = (objList, updateFcn, idLabel = "pk") => {
   let objById = {};
   objList.forEach(obj => {

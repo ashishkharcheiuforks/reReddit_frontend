@@ -3,9 +3,30 @@ div.user-profile-container {
   flex-direction: column;
 }
 div.user-profile-container > div#user-profile-navbar {
-  background-color: #77dd91;
-  min-height: 4rem;
+  background-color: #90ee90;
+  min-height: 4.5rem;
   display: flex;
   align-items: flex-end;
-  color: black;
+  margin-bottom: 2rem;
+}
+div.user-profile-container
+  > div#user-profile-navbar
+  > #up-nav-selector-buttons {
+  color: white;
+  margin-left: 5rem;
+}
+
+div.user-profile-container > div.user-profile-main-content {
+  display: flex;
+  justify-content: space-between;
+}
+div.user-profile-main-content > div.user-profile-list {
+  flex: 1 1 50%;
+  margin-left: 3rem;
+  margin-right: 1.5rem;
+}
+div.user-profile-main-content > div.user-profile-sidebar-container {
+  flex: 1 1 20%;
+  margin-left: 3rem;
+  margin-right: 3rem;
 }

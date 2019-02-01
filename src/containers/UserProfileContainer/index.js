@@ -2,7 +2,10 @@ import React, { Component } from "react";
 import { connect } from "react-redux";
 
 import UserProfile from "../../components/UserProfile";
-import { makeUserProfileRequest } from "../../actions/UserProfile";
+import {
+  makeUserProfileRequest,
+  setUserProfileView
+} from "../../actions/UserProfile";
 import {
   getUserProfileAllPosts,
   getUserProfileAllComments,
@@ -30,6 +33,7 @@ class UserProfileContainer extends Component {
       error,
       loading,
       profileView,
+      changeProfileView,
       match: {
         params: { username }
       }
@@ -44,6 +48,7 @@ class UserProfileContainer extends Component {
           error,
           loading,
           profileView,
+          changeProfileView,
           username
         }}
       />
@@ -60,7 +65,8 @@ const mapStateToProps = state => ({
 });
 
 const mapDispatchToProps = dispatch => ({
-  fetchUserProfile: username => dispatch(makeUserProfileRequest(username))
+  fetchUserProfile: username => dispatch(makeUserProfileRequest(username)),
+  changeProfileView: view => dispatch(setUserProfileView(view))
 });
 
 export default connect(

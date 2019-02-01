@@ -1,0 +1,10 @@
+div.up-sidebar-content {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+div.up-sidebar-content > div.up-information-sidebar {
+  background-color: #1a1a1a;
+  min-width: 80%;
+}

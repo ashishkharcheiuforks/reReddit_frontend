@@ -1,3 +1,5 @@
+import dateFnsFormat from "date-fns/format";
+
 import {
   FETCH_USER_PROFILE_REQUEST,
   FETCH_USER_PROFILE_SUCCESS,
@@ -13,6 +15,8 @@ const initialState = {
   commentsById: {},
   commentsByPostId: {},
   allComments: [],
+  karma: 0,
+  cakeDay: null,
   profileView: "posts"
 };
 
@@ -28,6 +32,8 @@ const userProfile = (state = initialState, action) => {
       return {
         ...state,
         username: action.data.username,
+        karma: action.data.karma,
+        cakeDay: dateFnsFormat(action.data.cake_day, "MMMM Do"),
         commentsById: objectById(action.data.comments),
         allComments: allIds(action.data.comments),
         loading: false,
@@ -53,6 +59,11 @@ export const getUserProfileAllComments = state => state.userProfile.allComments;
 export const getUserProfileCommentById = (state, pk) =>
   state.userProfile.commentsById[pk];
 export const getUserProfileUsername = state => state.userProfile.username;
+export const getUserProfileData = state => ({
+  username: state.userProfile.username,
+  karma: state.userProfile.karma,
+  cakeDay: state.userProfile.cakeDay
+});
 export const getUserProfileLoading = state => state.userProfile.loading;
 export const getUserProfileError = state => state.userProfile.error;
 export const getUserProfileView = state => state.userProfile.profileView;

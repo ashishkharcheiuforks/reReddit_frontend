@@ -14,6 +14,8 @@ class UserProfile extends Component {
       allPosts,
       allComments,
       username,
+      cakeDay,
+      karma,
       profileView,
       changeProfileView,
       error,
@@ -64,7 +66,9 @@ class UserProfile extends Component {
           <div className="user-profile-sidebar-container">
             <UserProfileSidebar
               {...{
-                username
+                username,
+                cakeDay,
+                karma
               }}
             />
           </div>

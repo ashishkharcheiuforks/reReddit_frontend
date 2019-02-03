@@ -1,0 +1,58 @@
+div#cp-subreddit-dropdown-container > div.dropdown {
+  background-color: inherit;
+  width: 35%;
+}
+
+div#cp-subreddit-dropdown-container
+  > div.dropdown
+  div#cp-dropdown-title-content {
+  display: flex;
+  justify-content: flex-start;
+  align-items: center;
+}
+
+div#cp-subreddit-dropdown-container
+  > div.dropdown
+  div#cp-dropdown-title-content
+  > svg {
+  margin-right: 0.3rem;
+}
+
+button#cp-subreddit-dropdown,
+button#cp-subreddit-dropdown:active,
+button#cp-subreddit-dropdown:hover {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  background-color: inherit;
+  color: #cccccc;
+  width: 100%;
+  font-family: Poppins;
+  font-size: 1.1em;
+  font-weight: 500;
+  border-color: #cccccc;
+  padding-left: 0.3rem;
+}
+
+div#cp-subreddit-dropdown-container > div.dropdown ul,
+div#cp-subreddit-dropdown-container > div.dropdown ul:active {
+  background-color: #1a1a1a;
+  width: 100%;
+  top: 80%;
+  padding-top: 1rem;
+  border: 1px solid #cccccc;
+  border-top-color: transparent;
+  border-top-right-radius: 0;
+  border-top-left-radius: 0;
+}
+
+div#cp-subreddit-dropdown-container > div.dropdown ul a {
+  color: #cccccc;
+  display: flex;
+  justify-content: flex-start;
+  padding-left: 1.5rem;
+  align-items: center;
+}
+div#cp-subreddit-dropdown-container > div.dropdown ul a:hover {
+  color: black;
+}

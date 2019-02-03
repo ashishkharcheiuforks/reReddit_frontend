@@ -59,6 +59,7 @@ class CreatePost extends Component {
     const {
       subredditTitle,
       authUserSubredditTitles,
+      pseudoSubreddit,
       errorMessage,
       loading
     } = this.props;

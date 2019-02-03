@@ -24,7 +24,7 @@ class CreatePostContainer extends Component {
 
   render() {
     const {
-      subredditData: { subredditTitle, pseudo: pseudoSubreddit },
+      subredditData: { title: subredditTitle, pseudo: pseudoSubreddit },
       ...rest
     } = this.props;
 

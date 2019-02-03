@@ -8,8 +8,8 @@ import {
 import { tokenContextObj } from "../apiUtils";
 
 // Get the list of posts for a particular subreddit
-export const getSubPostListApi = (subredditTitle, orderBy, username, token) => {
-  const params = { orderby: orderBy, username };
+export const getSubPostListApi = (subredditTitle, orderBy, token) => {
+  const params = { orderby: orderBy };
   return axios
     .get(SUB_POST_LIST_URL(subredditTitle), {
       params,

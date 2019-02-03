@@ -45,12 +45,7 @@ export const makeSubPostListRequest = (subredditTitle, orderBy) => (
       failure: FETCH_POST_LIST_FAILURE
     },
     callAPI: () =>
-      getSubPostListApi(
-        subredditTitle,
-        orderBy,
-        getAuthUsername(getState()),
-        getAuthUserToken(getState())
-      )
+      getSubPostListApi(subredditTitle, orderBy, getAuthUserToken(getState()))
   });
 
 // Using redux-thunk to get an auth token

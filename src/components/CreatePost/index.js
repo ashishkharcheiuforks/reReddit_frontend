@@ -74,15 +74,17 @@ class CreatePost extends Component {
             <hr />
           </h2>
         </div>
-        <div className="create-post-form-container">
-          <div className="alert-message-container">
-            <CreatePostErrorAlert children={errorMessage} />
-          </div>
+        <div className="cp-subreddit-dropdown-container">
           <SubredditDropdown
             handleSubredditSelection={this.handleSubredditSelection}
             dropdownTitle={this.state.dropdownTitle}
             authUserSubredditTitles={authUserSubredditTitles}
           />
+        </div>
+        <div className="create-post-form-container">
+          <div className="alert-message-container">
+            <CreatePostErrorAlert children={errorMessage} />
+          </div>
           <form>
             <div className="title-input-container">
               <FieldGroup

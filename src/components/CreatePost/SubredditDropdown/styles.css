@@ -1,6 +1,6 @@
 div#cp-subreddit-dropdown-container > div.dropdown {
-  background-color: inherit;
-  width: 35%;
+  background-color: #1a1a1a;
+  min-width: 35%;
 }
 
 div#cp-subreddit-dropdown-container
@@ -30,7 +30,7 @@ button#cp-subreddit-dropdown:hover {
   font-family: Poppins;
   font-size: 1.1em;
   font-weight: 500;
-  border-color: #cccccc;
+  border: 1px solid #4d4d4d;
   padding-left: 0.3rem;
 }
 
@@ -38,10 +38,8 @@ div#cp-subreddit-dropdown-container > div.dropdown ul,
 div#cp-subreddit-dropdown-container > div.dropdown ul:active {
   background-color: #1a1a1a;
   width: 100%;
-  top: 80%;
-  padding-top: 1rem;
-  border: 1px solid #cccccc;
-  border-top-color: transparent;
+  top: 85%;
+  border: 1px solid #4d4d4d;
   border-top-right-radius: 0;
   border-top-left-radius: 0;
 }
@@ -55,4 +53,12 @@ div#cp-subreddit-dropdown-container > div.dropdown ul a {
 }
 div#cp-subreddit-dropdown-container > div.dropdown ul a:hover {
   color: black;
+}
+
+@media screen and (max-width: 800px) {
+  div#cp-subreddit-dropdown-container
+    > div.dropdown
+    div#cp-dropdown-title-content {
+    margin-right: 1rem;
+  }
 }

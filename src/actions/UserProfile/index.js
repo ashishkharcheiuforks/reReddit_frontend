@@ -7,17 +7,18 @@ import {
 } from "../actionTypes";
 
 import { getUserProfileApi } from "../../api/UserProfile";
-import { getUserAuthToken } from "../../reducers/userAuth";
+import { getAuthUserToken } from "../../reducers/userAuth";
 
-export const makeUserProfileRequest = username => ({
-  type: API_USER_PROFILE,
-  types: {
-    request: FETCH_USER_PROFILE_REQUEST,
-    success: FETCH_USER_PROFILE_SUCCESS,
-    failure: FETCH_USER_PROFILE_FAILURE
-  },
-  callAPI: () => getUserProfileApi(username)
-});
+export const makeUserProfileRequest = username => (dispatch, getState) =>
+  dispatch({
+    type: API_USER_PROFILE,
+    types: {
+      request: FETCH_USER_PROFILE_REQUEST,
+      success: FETCH_USER_PROFILE_SUCCESS,
+      failure: FETCH_USER_PROFILE_FAILURE
+    },
+    callAPI: () => getUserProfileApi(username, getAuthUserToken(getState()))
+  });
 
 export const setUserProfileView = (viewName = "posts") => ({
   type: SET_USER_PROFILE_VIEW,

@@ -16,7 +16,6 @@ class TextEditor extends Component {
 
     this.formats = [
       "header",
-      "font",
       "size",
       "bold",
       "italic",
@@ -24,21 +23,14 @@ class TextEditor extends Component {
       "strike",
       "blockquote",
       "list",
-      "bullet",
-      "indent",
       "code"
     ];
 
     this.modules = {
       toolbar: [
-        [{ header: "1" }, { header: "2" }, { font: [] }],
+        [{ header: "1" }, { header: "2" }],
         ["bold", "italic", "underline", "strike", "blockquote", "code"],
-        [
-          { list: "ordered" },
-          { list: "bullet" },
-          { indent: "-1" },
-          { indent: "+1" }
-        ],
+        [{ list: "ordered" }],
         ["clean"]
       ]
     };

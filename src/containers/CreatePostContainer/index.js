@@ -11,23 +11,33 @@ import {
   getCreatePostError,
   getCreatePostLoading
 } from "../../reducers/createPost";
-import { getSubredditTitle } from "../../reducers/subreddit";
-import { getAuthUsername } from "../../reducers/userAuth";
+import { getSubredditData } from "../../reducers/subreddit";
+import {
+  getAuthUsername,
+  getAuthUserSubredditTitles
+} from "../../reducers/userAuth";
 
 class CreatePostContainer extends Component {
   componentWillUnmount() {
     this.props.clearError();
   }
+
   render() {
-    return <CreatePost {...this.props} />;
+    const {
+      subredditData: { subredditTitle, pseudo: pseudoSubreddit },
+      ...rest
+    } = this.props;
+
+    return <CreatePost {...{ subredditTitle, pseudoSubreddit, ...rest }} />;
   }
 }
 
 const mapStateToProps = state => ({
   errorMessage: getCreatePostError(state),
   loading: getCreatePostLoading(state),
-  subredditTitle: getSubredditTitle(state),
-  authorizedUsername: getAuthUsername(state)
+  authorizedUsername: getAuthUsername(state),
+  authUserSubredditTitles: getAuthUserSubredditTitles(state),
+  subredditData: getSubredditData(state)
 });
 
 const mapDispatchToProps = dispatch => ({

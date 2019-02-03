@@ -4,10 +4,11 @@ import { withRouter } from "react-router";
 
 import TextEditor from "../TextEditor";
 import FieldGroup from "../FieldGroup";
+import SubredditDropdown from "./SubredditDropdown";
 import { ErrorAlert } from "../AlertMessage";
 import { withMaybe } from "../../utilities/HOC";
 import FormButton from "../ModalForm/FormButton";
-import { SUBREDDIT_URL, HOME_SUBREDDIT_URL } from "../../urls";
+import { POST_DETAIL_URL, HOME_SUBREDDIT_URL } from "../../urls";
 import "./styles.css";
 
 class CreatePost extends Component {
@@ -15,7 +16,10 @@ class CreatePost extends Component {
     super(props);
 
     this.state = {
-      title: ""
+      title: "",
+      dropdownTitle: props.pseudoSubreddit
+        ? "Choose a subreddit"
+        : props.subredditTitle
     };
 
     this.handleSubmit = this.handleSubmit.bind(this);
@@ -31,21 +35,33 @@ class CreatePost extends Component {
 
   handleTitleChange = e => this.setState({ title: e.target.value });
 
+  handleSubredditSelection = title =>
+    this.setState({
+      dropdownTitle: title
+    });
+
   async handleSubmit(editorHtml) {
     try {
       const postCreation = await this.props.handleCreatePost(
         this.state.title,
         editorHtml,
-        this.props.subredditTitle
+        this.state.dropdownTitle
       );
-      this.props.history.replace(`/r/${this.props.subredditTitle}`);
+      this.props.history.replace(
+        POST_DETAIL_URL(this.state.dropdownTitle, postCreation.data.pk)
+      );
     } catch {
       this.forceUpdate();
     }
   }
 
   render() {
-    const { errorMessage, loading } = this.props;
+    const {
+      subredditTitle,
+      authUserSubredditTitles,
+      errorMessage,
+      loading
+    } = this.props;
 
     const CreatePostErrorAlert = withMaybe(props => props.children)(ErrorAlert);
 
@@ -61,6 +77,11 @@ class CreatePost extends Component {
           <div className="alert-message-container">
             <CreatePostErrorAlert children={errorMessage} />
           </div>
+          <SubredditDropdown
+            handleSubredditSelection={this.handleSubredditSelection}
+            dropdownTitle={this.state.dropdownTitle}
+            authUserSubredditTitles={authUserSubredditTitles}
+          />
           <form>
             <div className="title-input-container">
               <FieldGroup

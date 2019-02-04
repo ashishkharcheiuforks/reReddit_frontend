@@ -2,6 +2,8 @@ div.subreddit-panel {
   display: flex;
   justify-content: space-between;
   cursor: pointer;
+  width: 100%;
+  background-color: #1a1a1a;
 }
 
 div.subreddit-panel > div.title-and-subscriptions {

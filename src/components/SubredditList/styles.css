@@ -1,4 +1,7 @@
 div.subreddit-search-results-container {
-  background-color: #1a1a1b;
   color: #d7dadc;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
 }

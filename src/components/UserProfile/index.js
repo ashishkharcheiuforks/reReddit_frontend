@@ -1,4 +1,5 @@
 import React, { Component } from "react";
+import PropTypes from "prop-types";
 
 import PostList from "../PostList";
 import CommentList from "./CommentList";
@@ -77,5 +78,17 @@ class UserProfile extends Component {
     );
   }
 }
+
+UserProfile.propTypes = {
+  allPosts: PropTypes.arrayOf(PropTypes.number),
+  allComments: PropTypes.arrayOf(PropTypes.number),
+  username: PropTypes.string,
+  cakeDay: PropTypes.string,
+  karma: PropTypes.number,
+  profileView: PropTypes.string,
+  changeProfileView: PropTypes.func,
+  error: PropTypes.string,
+  loading: PropTypes.bool
+};
 
 export default UserProfile;

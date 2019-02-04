@@ -1,4 +1,5 @@
 import React from "react";
+import PropTypes from "prop-types";
 
 import "./styles.css";
 import { Link } from "react-router-dom";
@@ -35,6 +36,12 @@ const UserProfileSidebar = props => {
       </div>
     </div>
   );
+};
+
+UserProfileSidebar.propTypes = {
+  username: PropTypes.string,
+  cakeDay: PropTypes.string,
+  karma: PropTypes.number
 };
 
 export default UserProfileSidebar;

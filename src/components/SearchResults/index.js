@@ -50,12 +50,15 @@ const SearchResults = props => {
             Subreddits
           </NavSelectorButton>
 
+          {/*
           <NavSelectorButton
             active={resultsView === "users"}
             onClick={() => changeResultsView("users")}
           >
+          
             Users
           </NavSelectorButton>
+          */}
         </div>
       </div>
 

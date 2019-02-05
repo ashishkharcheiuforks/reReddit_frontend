@@ -7,24 +7,6 @@
   min-width: 20px;
 }
 
-.comment-voter {
-  flex: 0 0 auto;
-}
-
-.comment-voter span {
-  color: white;
-}
-
-.comment-voter.upvoter span:hover {
-  color: #cc3700;
-  cursor: pointer;
-}
-
-.comment-voter.downvoter span:hover {
-  color: #8da8ff;
-  cursor: pointer;
-}
-
 span.thread-line-container {
   flex: 1 1 auto;
   cursor: pointer;

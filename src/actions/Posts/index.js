@@ -94,15 +94,16 @@ const onDeletePostRequest = pk => dispatch =>
     pk
   });
 
-export const makePostDetailRequest = postId => ({
-  type: API_POST_DETAIL,
-  types: {
-    request: FETCH_POST_DETAIL_REQUEST,
-    success: FETCH_POST_DETAIL_SUCCESS,
-    failure: FETCH_POST_DETAIL_FAILURE
-  },
-  callAPI: () => getPostDetailApi(postId)
-});
+export const makePostDetailRequest = postId => (dispatch, getState) =>
+  dispatch({
+    type: API_POST_DETAIL,
+    types: {
+      request: FETCH_POST_DETAIL_REQUEST,
+      success: FETCH_POST_DETAIL_SUCCESS,
+      failure: FETCH_POST_DETAIL_FAILURE
+    },
+    callAPI: () => getPostDetailApi(postId, getAuthUserToken(getState()))
+  });
 
 export const togglePostEditor = () => ({
   type: TOGGLE_POST_EDITOR

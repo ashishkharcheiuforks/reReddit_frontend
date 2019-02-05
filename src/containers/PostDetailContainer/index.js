@@ -13,7 +13,8 @@ import {
   getPostDetailBody,
   getPostDetailTitle,
   getPostDetailPosterUsername,
-  getPostDetailLoading
+  getPostDetailLoading,
+  getPostDetailData
 } from "../../reducers/postDetail";
 import { getAuthUsername } from "../../reducers/userAuth";
 import {
@@ -35,13 +36,17 @@ class PostDetailContainer extends Component {
 
   render() {
     const {
-      body,
-      title,
+      postDetailData: {
+        body,
+        title,
+        posterUsername,
+        pk,
+        loading,
+        voteDisplayState,
+        upvotes
+      },
       subredditTitle,
-      posterUsername,
       authUsername,
-      pk,
-      loading,
       showPostEditor,
       editPostError,
       commentScroll,
@@ -56,6 +61,8 @@ class PostDetailContainer extends Component {
           title,
           subredditTitle,
           posterUsername,
+          voteDisplayState,
+          upvotes,
           authUsername,
           pk,
           loading,
@@ -71,12 +78,9 @@ class PostDetailContainer extends Component {
 }
 
 const mapStateToProps = (state, ownProps) => ({
+  postDetailData: getPostDetailData(state),
   subredditTitle: ownProps.title,
   body: getPostDetailBody(state),
-  title: getPostDetailTitle(state),
-  posterUsername: getPostDetailPosterUsername(state),
-  pk: getPostDetailPk(state),
-  loading: getPostDetailLoading(state),
   showPostEditor: getPostEditorShowState(state),
   editPostError: getEditPostError(state),
   authUsername: getAuthUsername(state)

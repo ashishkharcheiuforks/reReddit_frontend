@@ -62,6 +62,8 @@ class PostDetail extends Component {
     const {
       subredditTitle,
       posterUsername,
+      voteDisplayState,
+      upvotes,
       authUsername,
       title,
       pk,
@@ -78,8 +80,8 @@ class PostDetail extends Component {
       <div className="post-detail-content">
         <div className="post-detail-voter-container">
           <VoterContainer
-            upvotes={3}
-            voteDisplayState={1}
+            upvotes={upvotes}
+            voteDisplayState={voteDisplayState}
             itemType={"post"}
             itemPk={pk}
           />

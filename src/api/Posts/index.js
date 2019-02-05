@@ -32,8 +32,10 @@ export const updatePostApi = (pk, body, token) => {
     .then(response => response.data);
 };
 
-export const getPostDetailApi = postId =>
-  axios.get(POST_DETAIL_URL(postId)).then(response => response.data);
+export const getPostDetailApi = (postId, token) =>
+  axios
+    .get(POST_DETAIL_URL(postId), tokenContextObj(token))
+    .then(response => response.data);
 
 export const deletePostApi = (pk, token) => {
   return axios

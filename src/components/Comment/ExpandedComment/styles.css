@@ -45,14 +45,23 @@ span.thread-line-container:hover > div.thread-line {
 .comment-panel {
   display: flex;
   flex-direction: column;
+  width: 100%;
 }
 
-.comment-panel .comment-body-container {
-  max-width: 75rem;
+.comment-panel > .comment-body-container,
+div.comment-panel > div.reply-text-editor-container {
+  max-width: 75%;
 }
 
 .comment-panel .comment-info-line-container,
 .comment-body-container,
 .comment-links {
   padding-left: 0.6rem;
+}
+
+@media screen and (max-width: 800px) {
+  .comment-panel > .comment-body-container,
+  div.comment-panel > div.reply-text-editor-container {
+    max-width: 100%;
+  }
 }

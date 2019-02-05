@@ -103,13 +103,15 @@ class ExpandedComment extends Component {
             handleToggleUpdateEditor={this.handleToggleUpdateEditor}
           />
 
-          <ReplyEditorWithHide
-            showEditor={this.state.showReplyEditor}
-            rootComment={false}
-            parentPk={pk}
-            usage="create"
-            onBlur={this.handleToggleReplyEditor}
-          />
+          <div className="reply-text-editor-container">
+            <ReplyEditorWithHide
+              showEditor={this.state.showReplyEditor}
+              rootComment={false}
+              parentPk={pk}
+              usage="create"
+              onBlur={this.handleToggleReplyEditor}
+            />
+          </div>
           <div className="children-container">{childrenList}</div>
         </div>
       </div>

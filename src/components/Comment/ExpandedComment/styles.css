@@ -30,20 +30,16 @@ span.thread-line-container {
   cursor: pointer;
   display: flex;
   flex-direction: column;
-  border-color: #818481;
   align-items: center;
   width: 100%;
 }
-
-span.thread-line-container:hover {
-  border-color: white;
-}
-
-div.thread-line {
-  border: 1px solid white;
+span.thread-line-container > div.thread-line {
+  background-color: #818481;
   flex: 1 1 auto;
-  margin: 0 45%;
-  border-color: inherit;
+  width: 1.5px;
+}
+span.thread-line-container:hover > div.thread-line {
+  background-color: white;
 }
 
 .comment-panel {

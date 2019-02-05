@@ -3,8 +3,10 @@ import {
   FETCH_POST_DETAIL_SUCCESS,
   FETCH_POST_DETAIL_FAILURE,
   FETCH_POST_LIST_SUCCESS,
-  UPDATE_POST_SUCCESS
+  UPDATE_POST_SUCCESS,
+  POST_VOTE_SUCCESS
 } from "../actions/actionTypes";
+import { updateObjectOnVote } from "../utilities/reducerUtils";
 
 const initialState = {
   title: null,
@@ -53,6 +55,10 @@ const postDetail = (state = initialState, action) => {
       return {
         ...state,
         pk: null
+      };
+    case POST_VOTE_SUCCESS:
+      return {
+        ...updateObjectOnVote(state, action.data.vote_type)
       };
     default:
       return state;

@@ -6,7 +6,6 @@ import {
   FETCH_USER_PROFILE_FAILURE,
   SET_USER_PROFILE_VIEW
 } from "../actions/actionTypes";
-import { objectById, allIds } from "../utilities/reducerUtils";
 
 const initialState = {
   loading: false,
@@ -14,6 +13,7 @@ const initialState = {
   username: null,
   commentsById: {},
   commentsByPostId: {},
+  commentPostsById: {},
   allComments: [],
   karma: 0,
   cakeDay: null,
@@ -34,8 +34,9 @@ const userProfile = (state = initialState, action) => {
         username: action.data.username,
         karma: action.data.karma,
         cakeDay: dateFnsFormat(action.data.cake_day, "MMMM Do"),
-        commentsById: objectById(action.data.comments),
-        allComments: allIds(action.data.comments),
+        commentsById: action.data.normalizedCommentData.entities.comments,
+        allComments: action.data.normalizedCommentData.results,
+        commentPostsById: action.data.normalizedCommentData.entities.posts,
         loading: false,
         error: null
       };

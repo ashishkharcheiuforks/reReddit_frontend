@@ -1,6 +1,5 @@
-import React, { Component } from "react";
+import React from "react";
 import PropTypes from "prop-types";
-import { Button } from "react-bootstrap";
 
 import PostList from "../PostList";
 import SubredditList from "../SubredditList";
@@ -77,6 +76,17 @@ const SearchResults = props => {
       </div>
     </div>
   );
+};
+
+SearchResults.propTypes = {
+  allPosts: PropTypes.arrayOf(PropTypes.number),
+  allSubreddits: PropTypes.arrayOf(PropTypes.number),
+  allUsers: PropTypes.arrayOf(PropTypes.number),
+  loading: PropTypes.bool,
+  error: PropTypes.string,
+  query: PropTypes.string,
+  resultsView: PropTypes.string,
+  changeResultsView: PropTypes.func
 };
 
 export default SearchResults;

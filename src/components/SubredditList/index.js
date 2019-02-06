@@ -3,11 +3,16 @@ import PropTypes from "prop-types";
 
 import SubredditPanelContainer from "../../containers/SubredditPanelContainer";
 import EmptyPostList from "../PostList/EmptyPostList";
+import { ErrorAlert } from "../AlertMessage";
 import { PanelListLoader } from "../Loaders";
 import "./styles.css";
 
 const SubredditList = props => {
   const { loading, error, allSubreddits, emptyListMessage } = props;
+
+  if (error) {
+    return <ErrorAlert>{error}</ErrorAlert>;
+  }
 
   let subredditList;
   if (loading) {

@@ -1,17 +1,10 @@
 import React, { Component, Fragment } from "react";
 import PropTypes from "prop-types";
-import {
-  Panel,
-  Button,
-  MenuItem,
-  Tooltip,
-  OverlayTrigger
-} from "react-bootstrap";
-import { FaShare } from "react-icons/fa";
+import { MenuItem } from "react-bootstrap";
 import { withRouter } from "react-router";
 
 import "./styles.css";
-import { PanelListLoader, BlockLoader } from "../Loaders";
+import { BlockLoader } from "../Loaders";
 import VoterContainer from "../../containers/VoterContainer";
 import PostInfoLine from "./PostInfoLine";
 import PostEditorContainer from "../../containers/PostEditorContainer";
@@ -70,7 +63,6 @@ class PostDetail extends Component {
       body,
       loading,
       showPostEditor,
-      handleDeletePost,
       togglePostEditor
     } = this.props;
 

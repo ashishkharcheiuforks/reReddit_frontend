@@ -3,7 +3,6 @@ import {
   FETCH_SUB_DETAIL_SUCCESS,
   FETCH_SUB_DETAIL_FAILURE,
   API_SUB_DETAIL,
-  SET_SUB_TO_HOME,
   SUBREDDIT_SUBSCRIBE_REQUEST,
   SUBREDDIT_SUBSCRIBE_SUCCESS,
   SUBREDDIT_SUBSCRIBE_FAILURE,
@@ -11,9 +10,6 @@ import {
   CREATE_SUBREDDIT_REQUEST,
   CREATE_SUBREDDIT_SUCCESS,
   CREATE_SUBREDDIT_FAILURE,
-  DELETE_SUBREDDIT_REQUEST,
-  DELETE_SUBREDDIT_SUCCESS,
-  DELETE_SUBREDDIT_FAILURE,
   API_CREATE_SUBREDDIT,
   USER_AUTH_SUBSCRIBE_SUBREDDIT,
   USER_AUTH_UNSUBSCRIBE_SUBREDDIT
@@ -24,7 +20,6 @@ import {
   subredditSubscribeApi,
   createSubredditApi
 } from "../../api/Subreddit";
-import { makeUserUpdateRequest } from "../../actions/UserAuth";
 
 export const makeSubDetailRequest = subredditTitle => ({
   type: API_SUB_DETAIL,
@@ -92,9 +87,4 @@ const onSuccessfulSubscription = (subredditTitle, subAction) => (
     type: USER_AUTH_UNSUBSCRIBE_SUBREDDIT,
     data: { subredditTitle }
   });
-
-  // const username = getState().userAuth.username;
-  // return username
-  //   ? dispatch(makeUserUpdateRequest(getState().userAuth.username))
-  //   : null;
 };

@@ -22,13 +22,13 @@ const initialState = {
 
 const userProfile = (state = initialState, action) => {
   switch (action.type) {
-    case "FETCH_USER_PROFILE_REQUEST":
+    case FETCH_USER_PROFILE_REQUEST:
       return {
         ...state,
         error: null,
         loading: true
       };
-    case "FETCH_USER_PROFILE_SUCCESS":
+    case FETCH_USER_PROFILE_SUCCESS:
       return {
         ...state,
         username: action.data.username,
@@ -39,13 +39,13 @@ const userProfile = (state = initialState, action) => {
         loading: false,
         error: null
       };
-    case "FETCH_USER_PROFILE_FAILURE":
+    case FETCH_USER_PROFILE_FAILURE:
       return {
         ...state,
         error: action.error,
         loading: false
       };
-    case "SET_USER_PROFILE_VIEW":
+    case SET_USER_PROFILE_VIEW:
       return {
         ...state,
         profileView: action.viewName

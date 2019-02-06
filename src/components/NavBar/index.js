@@ -1,6 +1,5 @@
 import React from "react";
 import PropTypes from "prop-types";
-import { Navbar, Nav, FormGroup, FormControl, Button } from "react-bootstrap";
 import { Link } from "react-router-dom";
 
 import UserAuthNavContainer from "../../containers/UserAuthNavContainer";

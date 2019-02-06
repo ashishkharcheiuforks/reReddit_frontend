@@ -13,7 +13,6 @@ class CommentBody extends Component {
       body,
       posterUsername,
       authUsername,
-      pk,
       handleDeleteComment,
       handleToggleReplyEditor,
       handleToggleUpdateEditor
@@ -65,7 +64,6 @@ CommentBody.propTypes = {
   body: PropTypes.string,
   posterUsername: PropTypes.string,
   authUsername: PropTypes.string,
-  pk: PropTypes.number,
   handleDeleteComment: PropTypes.func,
   handleToggleReplyEditor: PropTypes.func,
   handleToggleUpdateEditor: PropTypes.func

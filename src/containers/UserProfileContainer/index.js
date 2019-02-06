@@ -51,7 +51,6 @@ class UserProfileContainer extends Component {
           loading,
           profileView,
           changeProfileView,
-          username,
           cakeDay,
           karma
         }}

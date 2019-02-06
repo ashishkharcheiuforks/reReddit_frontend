@@ -12,13 +12,13 @@ const SideBar = props => {
     description,
     authenticatedUsername,
     showUserAuthRegisterModal,
-    history,
+    history: { push: historyPush },
     pseudo
   } = props;
 
   const handleCreatePostClick = () => {
     if (authenticatedUsername) {
-      return history.push(`/r/${subredditTitle}/createPost`);
+      return historyPush(`/r/${subredditTitle}/createPost`);
     } else {
       return showUserAuthRegisterModal();
     }
@@ -47,6 +47,14 @@ const SideBar = props => {
       )}
     </div>
   );
+};
+
+SideBar.propTypes = {
+  subredditTitle: PropTypes.string,
+  description: PropTypes.string,
+  authenticatedUsername: PropTypes.string,
+  showUserAuthRegisterModal: PropTypes.func,
+  pseudo: PropTypes.bool
 };
 
 export default withRouter(SideBar);

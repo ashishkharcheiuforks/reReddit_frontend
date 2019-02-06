@@ -1,6 +1,4 @@
-import React, { Component, Fragment } from "react";
-import { Button } from "react-bootstrap";
-import { FaComment } from "react-icons/fa";
+import React, { Component } from "react";
 import { compose } from "recompose";
 
 import "./styles.css";
@@ -58,8 +56,6 @@ class ExpandedComment extends Component {
       withMaybe(props => !props.deleted),
       withEither(props => props.showUpdateEditor, CommentEditorContainer)
     )(CommentBody);
-
-    const updateEditorProps = {};
 
     return (
       <div className="comment-tree-content">

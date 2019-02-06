@@ -29,7 +29,7 @@ class ModalUpdateForm extends Component {
   };
 
   render() {
-    const { handleHide, loading, messageProps } = this.props;
+    const { loading } = this.props;
 
     return (
       <div id="update-form-container">
@@ -74,5 +74,9 @@ class ModalUpdateForm extends Component {
     );
   }
 }
+
+ModalUpdateForm.propTypes = {
+  loading: PropTypes.bool
+};
 
 export default ModalUpdateForm;

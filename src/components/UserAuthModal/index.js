@@ -6,7 +6,7 @@ import "./styles.css";
 import { SuccessAlert, ErrorAlert } from "../AlertMessage";
 
 const UserAuthModal = props => {
-  const { handleHide, title, subtitle, formComponent, messageProps } = props;
+  const { title, subtitle, formComponent, messageProps } = props;
 
   const { errorMessage, successMessage } = messageProps;
 

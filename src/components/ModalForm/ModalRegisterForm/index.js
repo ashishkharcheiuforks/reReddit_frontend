@@ -32,7 +32,7 @@ class ModalRegisterForm extends Component {
   };
 
   render() {
-    const { handleHide, showLoginModal, loading } = this.props;
+    const { showLoginModal, loading } = this.props;
 
     return (
       <div id="register-form-container">
@@ -89,7 +89,6 @@ class ModalRegisterForm extends Component {
 
 ModalRegisterForm.propTypes = {
   loading: PropTypes.bool,
-  handleHide: PropTypes.func,
   HandleRegister: PropTypes.func,
   showLoginModal: PropTypes.func
 };

@@ -4,7 +4,6 @@ import { connect } from "react-redux";
 
 import TextEditor from "../../components/TextEditor";
 import { makeUpdatePostRequest } from "../../actions/Posts";
-import { getPostDetailBody } from "../../reducers/postDetail";
 import { getEditPostLoading } from "../../reducers/editPost";
 
 const PostEditorContainer = props => {

@@ -1,6 +1,5 @@
-import React, { Component } from "react";
+import React from "react";
 import { MenuItem, DropdownButton } from "react-bootstrap";
-import { LinkContainer } from "react-router-bootstrap";
 import { IoMdSearch } from "react-icons/io";
 
 import "./styles.css";

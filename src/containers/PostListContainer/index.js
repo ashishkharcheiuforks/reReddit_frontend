@@ -10,7 +10,6 @@ import {
   getAllPosts
 } from "../../reducers/postList";
 import { getAuthUsername } from "../../reducers/userAuth";
-import getSubredditTitle from "../../reducers/subreddit";
 
 class PostListContainer extends Component {
   componentDidMount() {

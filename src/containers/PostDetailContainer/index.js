@@ -8,14 +8,7 @@ import {
   makeDeletePostRequest,
   togglePostEditor
 } from "../../actions/Posts";
-import {
-  getPostDetailPk,
-  getPostDetailBody,
-  getPostDetailTitle,
-  getPostDetailPosterUsername,
-  getPostDetailLoading,
-  getPostDetailData
-} from "../../reducers/postDetail";
+import { getPostDetailData } from "../../reducers/postDetail";
 import { getAuthUsername } from "../../reducers/userAuth";
 import {
   getPostEditorShowState,
@@ -80,7 +73,6 @@ class PostDetailContainer extends Component {
 const mapStateToProps = (state, ownProps) => ({
   postDetailData: getPostDetailData(state),
   subredditTitle: ownProps.title,
-  body: getPostDetailBody(state),
   showPostEditor: getPostEditorShowState(state),
   editPostError: getEditPostError(state),
   authUsername: getAuthUsername(state)

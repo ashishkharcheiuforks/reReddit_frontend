@@ -2,10 +2,7 @@ import React, { Component } from "react";
 import { connect } from "react-redux";
 import { withRouter } from "react-router";
 
-import {
-  makeCommentTreeRequest,
-  makeCreateCommentRequest
-} from "../../actions/Comments";
+import { makeCommentTreeRequest } from "../../actions/Comments";
 import CommentTreeList from "../../components/CommentTreeList";
 import {
   getRootCommentPks,

@@ -7,7 +7,6 @@ import FieldGroup from "../FieldGroup";
 import SubredditDropdown from "./SubredditDropdown";
 import { ErrorAlert } from "../AlertMessage";
 import { withMaybe } from "../../utilities/HOC";
-import FormButton from "../ModalForm/FormButton";
 import { POST_DETAIL_URL, HOME_SUBREDDIT_URL } from "../../urls";
 import "./styles.css";
 
@@ -56,13 +55,7 @@ class CreatePost extends Component {
   }
 
   render() {
-    const {
-      subredditTitle,
-      authUserSubredditTitles,
-      pseudoSubreddit,
-      errorMessage,
-      loading
-    } = this.props;
+    const { authUserSubredditTitles, errorMessage, loading } = this.props;
 
     const CreatePostErrorAlert = withMaybe(props => props.children)(ErrorAlert);
 
@@ -104,6 +97,7 @@ class CreatePost extends Component {
               usage="create"
               placeholder="Text (optional)"
               dontFocusOnEditor
+              loading={loading}
             />
           </form>
         </div>

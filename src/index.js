@@ -59,7 +59,7 @@ ReactDOM.render(
                   />
                 )}
               />
-              // Go directly to comments but otherwise same as postDetail
+              {/* Go directly to comments but otherwise same as postDetail */}
               <Route
                 exact
                 path="/r/:subredditTitle/postDetail/:postId/comments"
@@ -102,7 +102,7 @@ ReactDOM.render(
                   />
                 )}
               />
-              // The 'home' psuedo-subreddit
+              {/* The 'home' psuedo-subreddit */}
               <Route
                 exact
                 path="/"
@@ -113,7 +113,7 @@ ReactDOM.render(
                   />
                 )}
               />
-              // A user's profile
+              {/* A user's profile */}
               <Route
                 exact
                 path="/profile/:username"

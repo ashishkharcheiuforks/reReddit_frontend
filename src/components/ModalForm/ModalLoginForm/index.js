@@ -4,7 +4,6 @@ import { withRouter } from "react-router";
 
 import FieldGroup from "../../FieldGroup";
 import { LoadingButton } from "../../Buttons";
-import { HOME_SUBREDDIT_URL } from "../../../urls";
 import "./styles.css";
 
 class ModalLoginForm extends Component {
@@ -35,7 +34,7 @@ class ModalLoginForm extends Component {
   }
 
   render() {
-    const { handleHide, showRegisterModal, loading } = this.props;
+    const { showRegisterModal, loading } = this.props;
 
     return (
       <div id="login-form-container">

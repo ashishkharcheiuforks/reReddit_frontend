@@ -7,7 +7,6 @@ import {
   makeCreateCommentRequest,
   makeUpdateCommentRequest
 } from "../../actions/Comments";
-import { getPostDetailPk } from "../../reducers/postDetail";
 
 const CommentEditorContainer = props => {
   const placeholder = "What are your thoughts?";

@@ -1,7 +1,6 @@
 import React from "react";
 import PropTypes from "prop-types";
 import { connect } from "react-redux";
-import { withRouter } from "react-router";
 
 import PostPanel from "../../components/PostPanel";
 import { getPostById } from "../../reducers/postList";
@@ -14,10 +13,10 @@ const PostPanelContainer = props => {
     post,
     handleDeletePost,
     authUsername,
-    usage,
     showPostEditor,
     togglePostEditor
   } = props;
+
   const {
     upvotes,
     pk,
@@ -48,7 +47,7 @@ const PostPanelContainer = props => {
 };
 
 const mapStateToProps = (state, ownProps) => {
-  const { postPk, usage } = ownProps;
+  const { postPk } = ownProps;
 
   return {
     post: getPostById(state, postPk),

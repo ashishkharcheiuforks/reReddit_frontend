@@ -7,13 +7,7 @@ import { makeUserLoginRequest } from "../../actions/UserAuth";
 import { showUserAuthModal } from "../../actions/UserAuthModal";
 
 const LoginModalContainer = props => {
-  const {
-    handleHide,
-    handleLogin,
-    showRegisterModal,
-    loading,
-    messageProps
-  } = props;
+  const { handleLogin, showRegisterModal, loading, messageProps } = props;
 
   return (
     <UserAuthModal

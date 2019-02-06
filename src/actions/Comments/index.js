@@ -16,13 +16,11 @@ import {
   UPDATE_COMMENT_REQUEST,
   UPDATE_COMMENT_SUCCESS,
   UPDATE_COMMENT_FAILURE,
-  API_UPDATE_COMMENT,
-  COMMENT_VOTE_SUCCESS
+  API_UPDATE_COMMENT
 } from "../actionTypes";
 import {
   createCommentApi,
   getCommentTreeApi,
-  commentVoteApi,
   deleteCommentApi,
   updateCommentApi
 } from "../../api/Comments";

@@ -45,6 +45,7 @@ const CommentTreeList = props => {
           rootComment={true}
           usage="create"
           dontFocusOnEditor
+          loading={createCommentLoading}
         />
       </div>
 

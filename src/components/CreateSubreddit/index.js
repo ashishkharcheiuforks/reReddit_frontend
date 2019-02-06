@@ -2,7 +2,6 @@ import React, { Component } from "react";
 import PropTypes from "prop-types";
 import { withRouter } from "react-router";
 
-import TextEditor from "../TextEditor";
 import FieldGroup from "../FieldGroup";
 import { ErrorAlertWithError } from "../AlertMessage";
 import FormButton from "../ModalForm/FormButton";
@@ -36,13 +35,14 @@ class CreateSubreddit extends Component {
   }
 
   render() {
-    const { errorMessage, loading, handleCreateSubreddit } = this.props;
+    const { errorMessage, loading } = this.props;
 
     return (
       <div className="create-subreddit-container">
         <div id="picture-container">
           <a
             href={`https://www.pexels.com/photo/assorted-colored-wooden-planks-985287/`}
+            rel="noopener noreferrer"
             target="_blank"
           >
             Photo by Magda Ehlers from Pexels

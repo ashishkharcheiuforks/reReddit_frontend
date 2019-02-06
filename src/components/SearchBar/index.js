@@ -1,10 +1,9 @@
 import React, { Component } from "react";
 import PropTypes from "prop-types";
 import { withRouter } from "react-router";
-import { Navbar, Nav, FormGroup, FormControl, Button } from "react-bootstrap";
+import { Navbar } from "react-bootstrap";
 
 import FieldGroup from "../FieldGroup";
-import { LoadingButton } from "../Buttons";
 import { SEARCH_URL } from "../../urls";
 import "./styles.css";
 
@@ -35,8 +34,6 @@ class SearchBar extends Component {
   }
 
   render() {
-    const { loading, error } = this.props;
-
     return (
       <Navbar.Form pullLeft>
         <form autoComplete="off" onSubmit={this.handleSearchSubmit}>

@@ -30,7 +30,7 @@ import {
   deletePostApi,
   updatePostApi
 } from "../../api/Posts";
-import { getAuthUsername, getAuthUserToken } from "../../reducers/userAuth";
+import { getAuthUserToken } from "../../reducers/userAuth";
 
 // use redux-thunk for userAuth username
 export const makeSubPostListRequest = (subredditTitle, orderBy) => (

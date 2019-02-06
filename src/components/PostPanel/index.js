@@ -1,8 +1,7 @@
 import React, { Component } from "react";
 import PropTypes from "prop-types";
 import { withRouter } from "react-router";
-import { Panel, Button, MenuItem } from "react-bootstrap";
-import { FaShare } from "react-icons/fa";
+import { Button, MenuItem } from "react-bootstrap";
 import { Link } from "react-router-dom";
 
 import VoterContainer from "../../containers/VoterContainer";
@@ -48,8 +47,7 @@ class PostPanel extends Component {
       authUsername,
       created,
       voteDisplayState,
-      handleDeletePost,
-      history
+      handleDeletePost
     } = this.props;
 
     const AuthEllipsis = withMaybe(props => props.showEllipsis)(EllipsisButton);

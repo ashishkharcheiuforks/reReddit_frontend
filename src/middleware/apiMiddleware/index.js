@@ -2,12 +2,7 @@ import apiRequestErrorHandler from "../../utilities/apiErrorHandler";
 
 export const apiMiddleware = store => next => action => {
   if (action.type && action.type.startsWith("API_")) {
-    const {
-      callAPI,
-      types,
-      successActionCreator,
-      failureActionCreator
-    } = action;
+    const { callAPI, types } = action;
 
     typeof types.request === "function"
       ? store.dispatch(types.request) // let thunk handle it

@@ -104,4 +104,13 @@ class MobileUserAuthNav extends Component {
   }
 }
 
+MobileUserAuthNav.propTypes = {
+  authUsername: PropTypes.string,
+  handleLogout: PropTypes.func,
+  showModal: PropTypes.func,
+  redirectToCreatePost: PropTypes.func,
+  redirectToCreateSubreddit: PropTypes.func,
+  redirectToUserProfile: PropTypes.func
+};
+
 export default withRouter(MobileUserAuthNav);

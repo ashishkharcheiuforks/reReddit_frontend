@@ -5,7 +5,6 @@ import {
   makeSubDetailRequest,
   makeSubSubscriptionRequest
 } from "../../actions/Subreddit";
-import { getAuthUsername } from "../../reducers/userAuth";
 import { getSubredditData } from "../../reducers/subreddit";
 import Subreddit from "../../components/Subreddit";
 

@@ -1,5 +1,4 @@
 import React from "react";
-import { Nav, NavItem } from "react-bootstrap";
 
 import UserButton from "../UserButton";
 import "./styles.css";

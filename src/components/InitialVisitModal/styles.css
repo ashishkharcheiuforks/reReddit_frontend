@@ -1,0 +1,51 @@
+div#iv-modal > div.modal-dialog {
+  max-width: 65rem;
+  margin-top: 10%;
+  margin-bottom: 0;
+}
+div#iv-modal div.modal-content {
+  font-family: Poppins;
+  background-color: #0079d3;
+}
+div#iv-modal-header {
+  border-top-left-radius: 5px;
+  border-top-right-radius: 5px;
+  border-bottom: 0;
+}
+
+div#iv-modal-body {
+  display: flex;
+  justify-content: flex-start;
+  padding: 0;
+}
+div#iv-modal-body > div#iv-colorful-side {
+  /* background: url("./modalBackground.jpg") no-repeat;
+  background-size: cover; */
+  flex: 1 1 auto;
+  display: flex;
+  align-items: center;
+  font-size: 0.4em;
+  color: #b8b8b8;
+  border-bottom-left-radius: 5px;
+}
+div#iv-modal-body > div#iv-colorful-side > img {
+  max-width: 100%;
+}
+div#iv-modal-body > div#iv-modal-body-content {
+  flex: 1 5 auto;
+  background-color: white;
+  padding-left: 1rem;
+  padding-right: 2rem;
+  border-top-left-radius: 5px;
+}
+div#iv-modal-body > div#iv-modal-body-content > h3 {
+  font-size: 1.3em;
+  font-weight: 700;
+}
+div#iv-modal-body > div#iv-modal-body-content > p {
+  font-size: 1.05em;
+  font-weight: 500;
+}
+div#iv-modal-body > div#iv-modal-body-content a {
+  padding-left: 3px;
+}

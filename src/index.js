@@ -18,6 +18,7 @@ import PostDetailContainer from "./containers/PostDetailContainer";
 import CreateSubredditContainer from "./containers/CreateSubredditContainer";
 import SearchResultsContainer from "./containers/SearchResultsContainer";
 import UserProfileContainer from "./containers/UserProfileContainer";
+import InitialVisitModalContainer from "./containers/InitialVisitModalContainer";
 
 WebFont.load({
   google: {
@@ -32,6 +33,7 @@ ReactDOM.render(
         <div className="whole-page">
           <NavBarContainer />
           <UserAuthModalContainer />
+          <InitialVisitModalContainer />
           <div className="main-layout">
             <Switch>
               <Route

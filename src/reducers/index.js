@@ -11,6 +11,7 @@ import createSubreddit from "./createSubreddit";
 import editPost from "./editPost";
 import search from "./search";
 import userProfile from "./userProfile";
+import initialVisit from "./initialVisit";
 
 const rootReducer = combineReducers({
   subreddit,
@@ -23,7 +24,8 @@ const rootReducer = combineReducers({
   createSubreddit,
   editPost,
   search,
-  userProfile
+  userProfile,
+  initialVisit
 });
 
 export default rootReducer;

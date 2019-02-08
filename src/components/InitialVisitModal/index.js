@@ -17,7 +17,7 @@ const InitialVisitModal = props => {
         <div id="iv-modal-body-content">
           <h3> Welcome to reReddit! </h3>
           <p>
-            This is a clone of the true reddit site that has a subset of it's
+            This is a clone of the true reddit site that has a subset of its
             functionality. What you are looking at now is a single page React
             application that is consuming a Django Rest Framework backend api.
           </p>

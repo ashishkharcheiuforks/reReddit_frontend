@@ -9,7 +9,7 @@ div.subreddit-panel {
 div.subreddit-panel > div.title-and-subscriptions {
   display: flex;
   flex-direction: column;
-  justify-content: space-around;
+  justify-content: center;
   margin-left: 2rem;
   margin-right: 2rem;
   min-width: 18rem;
@@ -42,4 +42,26 @@ div.subreddit-panel > div.description > p {
 
 div.subreddit-panel > div.subscription-button {
   margin-right: 2rem;
+  margin-left: 4rem;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+}
+
+@media screen and (max-width: 1000px) {
+  div.subreddit-panel > div.description {
+    padding-left: 0.5rem;
+  }
+
+  div.subreddit-panel > div.title-and-subscriptions {
+    min-width: 12rem;
+    margin-left: 0.5rem;
+    margin-right: 0.5rem;
+  }
+}
+
+@media screen and (max-width: 800px) {
+  div.subreddit-panel > div.description {
+    display: none;
+  }
 }

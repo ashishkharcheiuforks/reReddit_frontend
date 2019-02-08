@@ -32,5 +32,11 @@ div.search-navbar > div.search-view-selector {
 div.results-list-container {
   margin-top: 3rem;
   margin: 0 auto;
-  min-width: 70%;
+  width: 70%;
+}
+
+@media screen and (max-width: 800px) {
+  div.results-list-container {
+    width: 95%;
+  }
 }

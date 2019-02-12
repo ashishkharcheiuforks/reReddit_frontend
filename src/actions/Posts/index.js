@@ -2,6 +2,9 @@ import {
   FETCH_POST_LIST_REQUEST,
   FETCH_POST_LIST_SUCCESS,
   FETCH_POST_LIST_FAILURE,
+  FETCH_POST_LIST_NEXT_REQUEST,
+  FETCH_POST_LIST_NEXT_SUCCESS,
+  FETCH_POST_LIST_NEXT_FAILURE,
   FETCH_POST_DETAIL_REQUEST,
   FETCH_POST_DETAIL_SUCCESS,
   FETCH_POST_DETAIL_FAILURE,
@@ -16,6 +19,7 @@ import {
   UPDATE_POST_SUCCESS,
   UPDATE_POST_FAILURE,
   API_SUB_POST_LIST,
+  API_SUB_POST_LIST_NEXT,
   API_CREATE_POST,
   API_UPDATE_POST,
   API_DELETE_POST,
@@ -25,6 +29,7 @@ import {
 
 import {
   getSubPostListApi,
+  getSubPostListNextApi,
   getPostDetailApi,
   createPostApi,
   deletePostApi,
@@ -46,6 +51,17 @@ export const makeSubPostListRequest = (subredditTitle, orderBy) => (
     },
     callAPI: () =>
       getSubPostListApi(subredditTitle, orderBy, getAuthUserToken(getState()))
+  });
+
+export const makeSubPostListNextRequest = url => (dispatch, getState) =>
+  dispatch({
+    type: API_SUB_POST_LIST_NEXT,
+    types: {
+      request: FETCH_POST_LIST_NEXT_REQUEST,
+      success: FETCH_POST_LIST_NEXT_SUCCESS,
+      failure: FETCH_POST_LIST_NEXT_FAILURE
+    },
+    callPI: () => getSubPostListNextApi(url, getAuthUserToken(getState()))
   });
 
 // Using redux-thunk to get an auth token

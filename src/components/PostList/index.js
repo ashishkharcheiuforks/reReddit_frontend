@@ -5,6 +5,7 @@ import { withRouter } from "react-router";
 import PostPanelContainer from "../../containers/PostPanelContainer";
 import { ErrorAlert } from "../AlertMessage";
 import { PanelListLoader } from "../Loaders";
+import NextPageLoaderContainer from "../../containers/NextPageLoaderContainer";
 import EmptyPostList from "./EmptyPostList";
 import "./styles.css";
 
@@ -24,7 +25,12 @@ const PostList = props => {
     const postPanels = allPosts.map(postPk => {
       return <PostPanelContainer postPk={postPk} key={postPk} />;
     });
-    postList = <ul>{postPanels}</ul>;
+    postList = (
+      <ul>
+        {postPanels}
+        <NextPageLoaderContainer usage="postList" />
+      </ul>
+    );
   }
 
   return <div className="postlist-content">{postList}</div>;

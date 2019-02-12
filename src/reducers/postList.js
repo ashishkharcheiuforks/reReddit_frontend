@@ -2,6 +2,9 @@ import {
   FETCH_POST_LIST_REQUEST,
   FETCH_POST_LIST_SUCCESS,
   FETCH_POST_LIST_FAILURE,
+  FETCH_POST_LIST_NEXT_REQUEST,
+  FETCH_POST_LIST_NEXT_SUCCESS,
+  FETCH_POST_LIST_NEXT_FAILURE,
   POST_VOTE_SUCCESS,
   DELETE_POST_REQUEST,
   DELETE_POST_SUCCESS,
@@ -38,8 +41,10 @@ const initialState = {
   allPosts: [],
   loading: true,
   error: null,
+  nextPageError: null,
   deletionPostId: null,
-  deleteError: null
+  deleteError: null,
+  nextPageUrl: null
 };
 
 const postList = (state = initialState, action) => {
@@ -55,14 +60,33 @@ const postList = (state = initialState, action) => {
         ...state,
         loading: false,
         error: null,
-        postsById: postsById(action.data),
-        allPosts: allIds(action.data)
+        postsById: postsById(action.data.results),
+        allPosts: allIds(action.data.results),
+        nextPageUrl: action.data.next
       };
     case FETCH_POST_LIST_FAILURE:
       return {
         ...state,
         loading: false,
         error: action.error
+      };
+    case FETCH_POST_LIST_NEXT_REQUEST:
+      return {
+        ...state,
+        nextPageError: null
+      };
+    case FETCH_POST_LIST_NEXT_SUCCESS:
+      return {
+        ...state,
+        nextPageError: null,
+        postsById: postsById(action.data.results),
+        allPosts: allIds(action.data.results),
+        nextPageUrl: action.data.next
+      };
+    case FETCH_POST_LIST_NEXT_FAILURE:
+      return {
+        ...state,
+        nextPageError: action.error
       };
     case POST_VOTE_SUCCESS:
       const postId = action.data.post;
@@ -117,5 +141,6 @@ export const getPostBodyById = (state, pk) =>
 export const getAllPosts = state => state.postList.allPosts;
 export const getPostListLoading = state => state.postList.loading;
 export const getPostListError = state => state.postList.error;
+export const getPostListNextPageUrl = state => state.nextPageUrl;
 
 export default postList;

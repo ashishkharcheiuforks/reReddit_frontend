@@ -18,6 +18,12 @@ export const getSubPostListApi = (subredditTitle, orderBy, token) => {
     .then(response => response.data);
 };
 
+// For fetching the next posts once the bottom of the current post
+// list is reached. The orderby parameter is already included in url
+export const getSubPostListNextApi = (url, token) => {
+  return axios.get(url, tokenContextObj(token)).then(response => response.data);
+};
+
 export const createPostApi = (title, body, subredditTitle, token) => {
   const data = { title, body };
   return axios

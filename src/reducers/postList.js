@@ -36,6 +36,17 @@ const deletePost = (state, postId) => {
   };
 };
 
+// When we successfully request a new page, dont replace the posts
+// that are already here. Instead append to allPosts (addNextIds)
+// and add the new post information into postsById (addNextPosts)
+const addNextPosts = (state, newPostList) => {
+  return { ...state.postsById, ...postsById(newPostList) };
+};
+const addNextIds = (state, newPostList) => {
+  // concat performs a shallow copy
+  return state.allPosts.concat(allIds(newPostList));
+};
+
 const initialState = {
   postsById: {},
   allPosts: [],
@@ -79,8 +90,8 @@ const postList = (state = initialState, action) => {
       return {
         ...state,
         nextPageError: null,
-        postsById: postsById(action.data.results),
-        allPosts: allIds(action.data.results),
+        postsById: addNextPosts(state, action.data.results),
+        allPosts: addNextIds(state, action.data.results),
         nextPageUrl: action.data.next
       };
     case FETCH_POST_LIST_NEXT_FAILURE:
@@ -141,6 +152,6 @@ export const getPostBodyById = (state, pk) =>
 export const getAllPosts = state => state.postList.allPosts;
 export const getPostListLoading = state => state.postList.loading;
 export const getPostListError = state => state.postList.error;
-export const getPostListNextPageUrl = state => state.nextPageUrl;
+export const getPostListNextPageUrl = state => state.postList.nextPageUrl;
 
 export default postList;

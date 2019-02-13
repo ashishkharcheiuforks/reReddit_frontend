@@ -15,7 +15,6 @@ const PostList = props => {
   if (error) {
     return <ErrorAlert>{error}</ErrorAlert>;
   }
-
   let postList;
   if (loading) {
     postList = <PanelListLoader panelNumber={12} />;

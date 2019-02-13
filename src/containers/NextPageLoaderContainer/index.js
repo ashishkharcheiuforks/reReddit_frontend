@@ -7,7 +7,10 @@ import { makeSubPostListNextRequest } from "../../actions/Posts";
 
 const NextPageLoaderContainer = props => {
   const { getNextPage } = props;
-  return <NextPageLoader {...{ getNextPage }} />;
+
+  // if the getNextPage funciton is not set then there is no
+  // nextPageUrl and we shouldn't be showing the loader
+  return getNextPage ? <NextPageLoader {...{ getNextPage }} /> : null;
 };
 
 const mapStateToProps = (state, ownProps) => {
@@ -28,9 +31,17 @@ const mapDispatchToProps = (dispatch, ownProps) => {
   }
 };
 
-const mergeProps = (propsFromState, propsFromDispatch, ownProps) => ({
-  getNextPage: propsFromDispatch.getNextPageWrapper(propsFromState.nextPageUrl)
-});
+const mergeProps = (propsFromState, propsFromDispatch, ownProps) => {
+  const { nextPageUrl } = propsFromState;
+
+  // Guard against hitting the end of the pages and requesting against a
+  // null url
+  return {
+    getNextPage: nextPageUrl
+      ? propsFromDispatch.getNextPageWrapper(nextPageUrl)
+      : null
+  };
+};
 
 export default connect(
   mapStateToProps,

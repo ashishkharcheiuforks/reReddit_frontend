@@ -61,7 +61,7 @@ export const makeSubPostListNextRequest = url => (dispatch, getState) =>
       success: FETCH_POST_LIST_NEXT_SUCCESS,
       failure: FETCH_POST_LIST_NEXT_FAILURE
     },
-    callPI: () => getSubPostListNextApi(url, getAuthUserToken(getState()))
+    callAPI: () => getSubPostListNextApi(url, getAuthUserToken(getState()))
   });
 
 // Using redux-thunk to get an auth token

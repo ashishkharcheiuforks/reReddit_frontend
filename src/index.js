@@ -113,6 +113,7 @@ ReactDOM.render(
                   <SubredditContainer
                     {...props}
                     primaryComponent={props => <PostListContainer {...props} />}
+                    showSortByNavBar
                   />
                 )}
               />

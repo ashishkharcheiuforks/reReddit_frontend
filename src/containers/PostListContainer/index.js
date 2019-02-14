@@ -10,6 +10,7 @@ import {
   getAllPosts
 } from "../../reducers/postList";
 import { getAuthUsername } from "../../reducers/userAuth";
+import { getCurrentSortOption } from "../../reducers/sortBy";
 
 class PostListContainer extends Component {
   componentDidMount() {
@@ -22,7 +23,7 @@ class PostListContainer extends Component {
     // certainly not been called.
     this.props.fetchPostList(
       this.props.match.params.subredditTitle || "home",
-      "popular"
+      this.props.currentSortOption
     );
   }
 
@@ -31,14 +32,16 @@ class PostListContainer extends Component {
     // Don't waste time reloading if we are on the same subreddit, but do
     // if the subreddit title changes.
     // Also if a user logs in or out we need to update the info as well.
+    // Also if the sorting option changes we will need to refetch
     if (
       this.props.match.params.subredditTitle !==
         prevProps.match.params.subredditTitle ||
-      this.props.authUsername !== prevProps.authUsername
+      this.props.authUsername !== prevProps.authUsername ||
+      this.props.currentSortOption !== prevProps.currentSortOption
     ) {
       this.props.fetchPostList(
         this.props.match.params.subredditTitle || "home",
-        "popular"
+        this.props.currentSortOption
       );
     }
   }
@@ -62,7 +65,8 @@ const mapStateToProps = state => ({
   loading: getPostListLoading(state),
   error: getPostListError(state),
   allPosts: getAllPosts(state),
-  authUsername: getAuthUsername(state)
+  authUsername: getAuthUsername(state),
+  currentSortOption: getCurrentSortOption(state)
 });
 
 const mapDispatchToProps = dispatch => ({

@@ -12,6 +12,7 @@ import "./styles.css";
 const Subreddit = props => {
   const {
     skinny,
+    showSortByNavBar,
     primaryComponent,
     loading,
     match: {
@@ -42,10 +43,12 @@ const Subreddit = props => {
     </div>
   );
 
+  const sortByNavBar = showSortByNavBar ? <SortByNavBarContainer /> : null;
+
   return (
     <div className="subreddit-container">
       {headerBar}
-      <SortByNavBarContainer />
+      {sortByNavBar}
       <div className={"subreddit-content " + skinnyContainer}>
         <div className="primary-container">{primaryComponent(restProps)}</div>
         <div className="sidebar-container">

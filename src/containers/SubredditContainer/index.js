@@ -30,7 +30,8 @@ class SubredditContainer extends Component {
     const {
       subredditData: { title, description, pseudo, loading },
       primaryComponent,
-      skinny
+      skinny,
+      showSortByNavBar
     } = this.props;
 
     return (
@@ -41,7 +42,8 @@ class SubredditContainer extends Component {
           pseudo,
           loading,
           primaryComponent,
-          skinny
+          skinny,
+          showSortByNavBar
         }}
       />
     );

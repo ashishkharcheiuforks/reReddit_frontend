@@ -3,13 +3,22 @@ import { connect } from "react-redux";
 
 import SortByNavBar from "../../components/SortByNavBar";
 import { getCurrentSortOption } from "../../reducers/sortBy";
+import { updateSortByOption } from "../../actions/SortBy";
 
 const SortByNavBarContainer = props => {
-  return <SortByNavBar />;
+  const { currentSortOption, handleSortUpdate } = props;
+  return <SortByNavBar {...{ currentSortOption, handleSortUpdate }} />;
 };
 
 const mapStateToProps = state => ({
   currentSortOption: getCurrentSortOption(state)
 });
 
-export default connect(mapStateToProps)(SortByNavBarContainer);
+const mapDispatchToProps = dispatch => ({
+  handleSortUpdate: option => dispatch(updateSortByOption(option))
+});
+
+export default connect(
+  mapStateToProps,
+  mapDispatchToProps
+)(SortByNavBarContainer);

@@ -2,6 +2,7 @@ import React from "react";
 import { withRouter } from "react-router";
 
 import SideBarContainer from "../../containers/SideBarContainer";
+import SortByNavBarContainer from "../../containers/SortByNavBarContainer";
 import { SideBarLoader } from "../../components/Loaders";
 import { withEither } from "../../utilities/HOC";
 import { checkForPseudoSubreddits } from "../../reducers/subreddit";
@@ -44,6 +45,7 @@ const Subreddit = props => {
   return (
     <div className="subreddit-container">
       {headerBar}
+      <SortByNavBarContainer />
       <div className={"subreddit-content " + skinnyContainer}>
         <div className="primary-container">{primaryComponent(restProps)}</div>
         <div className="sidebar-container">

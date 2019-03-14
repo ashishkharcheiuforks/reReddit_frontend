@@ -13,7 +13,7 @@ class UserProfile extends Component {
   render() {
     const {
       allPosts,
-      allComments,
+      commentIdsByPostId,
       username,
       cakeDay,
       karma,

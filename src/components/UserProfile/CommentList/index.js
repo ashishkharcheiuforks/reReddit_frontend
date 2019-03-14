@@ -1,11 +1,10 @@
 import React from "react";
 import PropTypes from "prop-types";
 
-import EmptyPostList from "../../PostList/EmptyPostList";
+import UserProfileCommentPanelContainer from "../../../containers/UserProfileCommentPanelContainer";
 
 const CommentList = props => {
-  const message = "Coming Soon!";
-  return <EmptyPostList message={message} />;
+  return <UserProfileCommentPanelContainer />;
 };
 
 export default CommentList;

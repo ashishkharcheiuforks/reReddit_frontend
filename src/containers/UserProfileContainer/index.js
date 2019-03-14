@@ -7,7 +7,7 @@ import {
   setUserProfileView
 } from "../../actions/UserProfile";
 import {
-  getUserProfileAllComments,
+  getUserProfileCommentIdsByPostId,
   getUserProfileLoading,
   getUserProfileError,
   getUserProfileView,
@@ -21,7 +21,8 @@ class UserProfileContainer extends Component {
   }
 
   componentDidUpdate(prevProps) {
-    // if the username prop changes this component won't be remounted
+    // if only the username prop changes this component won't
+    // be remounted so update it
     if (this.props.match.params.username !== prevProps.match.params.username) {
       this.props.fetchUserProfile(this.props.match.params.username);
     }
@@ -29,7 +30,7 @@ class UserProfileContainer extends Component {
 
   render() {
     const {
-      allComments,
+      commentIdsByPostId,
       allPosts,
       error,
       loading,
@@ -44,7 +45,7 @@ class UserProfileContainer extends Component {
     return (
       <UserProfile
         {...{
-          allComments,
+          commentIdsByPostId,
           allPosts,
           username,
           error,
@@ -60,7 +61,7 @@ class UserProfileContainer extends Component {
 }
 
 const mapStateToProps = state => ({
-  allComments: getUserProfileAllComments(state),
+  commentIdsByPostId: getUserProfileCommentIdsByPostId(state),
   allPosts: getAllPosts(state),
   userData: getUserProfileData(state),
   profileView: getUserProfileView(state),

@@ -1,0 +1,26 @@
+div.up-comment-post-panel {
+  display: flex;
+  flex-direction: column;
+  min-width: 100%;
+  color: #cccccc;
+}
+
+div.up-comment-post-panel > div.up-post-panel {
+  display: flex;
+  justify-content: flex-start;
+  align-content: center;
+  cursor: pointer;
+  border: 1px solid #4d4d4d;
+}
+div.up-comment-post-panel > div.up-post-panel:hover {
+  border-color: white;
+}
+
+div.up-comment-post-panel > div.up-comment-panel {
+  display: flex;
+  flex-direction: column;
+  margin-left: 2rem;
+}
+div.up-comment-post-panel > div.up-comment-panel:hover {
+  border-color: white;
+}

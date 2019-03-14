@@ -77,6 +77,10 @@ const userProfile = (state = initialState, action) => {
 export const getUserProfileAllComments = state => state.userProfile.allComments;
 export const getUserProfileCommentIdsByPostId = state =>
   state.userProfile.commentIdsByPostId;
+export const getUserProfileCommentListFromIdList = (state, ids) =>
+  ids.map(id => state.userProfile.commentsById[id]);
+export const getUserProfileCommentPostById = (state, id) =>
+  state.userProfile.commentPostsById[id];
 export const getUserProfileCommentById = (state, pk) =>
   state.userProfile.commentsById[pk];
 export const getUserProfileUsername = state => state.userProfile.username;

@@ -10,7 +10,13 @@ import EmptyPostList from "./EmptyPostList";
 import "./styles.css";
 
 const PostList = props => {
-  const { loading, error, allPosts, emptyListMessage = undefined } = props;
+  const {
+    loading,
+    error,
+    allPosts,
+    emptyListMessage = undefined,
+    showNextPageLoader = true
+  } = props;
 
   if (error) {
     return <ErrorAlert>{error}</ErrorAlert>;
@@ -24,10 +30,13 @@ const PostList = props => {
     const postPanels = allPosts.map(postPk => {
       return <PostPanelContainer postPk={postPk} key={postPk} />;
     });
+
     postList = (
       <ul>
         {postPanels}
-        <NextPageLoaderContainer usage="postList" />
+        {showNextPageLoader ? (
+          <NextPageLoaderContainer usage="postList" />
+        ) : null}
       </ul>
     );
   }
@@ -38,7 +47,9 @@ const PostList = props => {
 PostList.propTypes = {
   loading: PropTypes.bool,
   error: PropTypes.string,
-  allPosts: PropTypes.arrayOf(PropTypes.number)
+  allPosts: PropTypes.arrayOf(PropTypes.number),
+  emptyListMessage: PropTypes.string,
+  showNextPageLoader: PropTypes.bool
 };
 
 export default withRouter(PostList);

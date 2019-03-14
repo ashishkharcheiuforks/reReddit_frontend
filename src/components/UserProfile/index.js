@@ -61,6 +61,7 @@ class UserProfile extends Component {
                 loading,
                 emptyListMessage
               }}
+              showNextPageLoader={false}
               view={profileView}
             />
           </div>

@@ -13,7 +13,7 @@ class UserProfile extends Component {
   render() {
     const {
       allPosts,
-      commentIdsByPostId,
+      allCommentPosts,
       username,
       cakeDay,
       karma,
@@ -57,6 +57,7 @@ class UserProfile extends Component {
             <ConditionalList
               {...{
                 allPosts,
+                allCommentPosts,
                 error,
                 loading,
                 emptyListMessage
@@ -82,7 +83,7 @@ class UserProfile extends Component {
 
 UserProfile.propTypes = {
   allPosts: PropTypes.arrayOf(PropTypes.number),
-  allComments: PropTypes.arrayOf(PropTypes.number),
+  allCommentPosts: PropTypes.arrayOf(PropTypes.number),
   username: PropTypes.string,
   cakeDay: PropTypes.string,
   karma: PropTypes.number,

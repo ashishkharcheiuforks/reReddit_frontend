@@ -7,7 +7,7 @@ import {
   setUserProfileView
 } from "../../actions/UserProfile";
 import {
-  getUserProfileCommentIdsByPostId,
+  getUserProfileAllCommentPosts,
   getUserProfileLoading,
   getUserProfileError,
   getUserProfileView,
@@ -30,8 +30,8 @@ class UserProfileContainer extends Component {
 
   render() {
     const {
-      commentIdsByPostId,
       allPosts,
+      allCommentPosts,
       error,
       loading,
       profileView,
@@ -45,8 +45,8 @@ class UserProfileContainer extends Component {
     return (
       <UserProfile
         {...{
-          commentIdsByPostId,
           allPosts,
+          allCommentPosts,
           username,
           error,
           loading,
@@ -61,8 +61,8 @@ class UserProfileContainer extends Component {
 }
 
 const mapStateToProps = state => ({
-  commentIdsByPostId: getUserProfileCommentIdsByPostId(state),
   allPosts: getAllPosts(state),
+  allCommentPosts: getUserProfileAllCommentPosts(state),
   userData: getUserProfileData(state),
   profileView: getUserProfileView(state),
   loading: getUserProfileLoading(state),

@@ -6,6 +6,7 @@ import {
   FETCH_USER_PROFILE_FAILURE,
   SET_USER_PROFILE_VIEW
 } from "../actions/actionTypes";
+import { allIds } from "../utilities/reducerUtils";
 
 const initialState = {
   loading: false,
@@ -14,6 +15,7 @@ const initialState = {
   commentsById: {},
   commentIdsByPostId: {},
   commentPostsById: {},
+  allCommentPosts: [],
   allComments: [],
   karma: 0,
   cakeDay: null,
@@ -54,6 +56,9 @@ const userProfile = (state = initialState, action) => {
           action.data.normalizedCommentData.entities.comments
         ),
         allComments: action.data.normalizedCommentData.results,
+        allCommentPosts: allIds(
+          Object.values(action.data.normalizedCommentData.entities.posts)
+        ),
         commentPostsById: action.data.normalizedCommentData.entities.posts,
         loading: false,
         error: null
@@ -75,12 +80,14 @@ const userProfile = (state = initialState, action) => {
 };
 
 export const getUserProfileAllComments = state => state.userProfile.allComments;
-export const getUserProfileCommentIdsByPostId = state =>
-  state.userProfile.commentIdsByPostId;
-export const getUserProfileCommentListFromIdList = (state, ids) =>
-  ids.map(id => state.userProfile.commentsById[id]);
+export const getUserProfileAllCommentPosts = state =>
+  state.userProfile.allCommentPosts;
 export const getUserProfileCommentPostById = (state, id) =>
   state.userProfile.commentPostsById[id];
+export const getUserProfileCommentsByPostId = (state, postPk) =>
+  state.userProfile.commentIdsByPostId[postPk].map(
+    commentPk => state.userProfile.commentsById[commentPk]
+  );
 export const getUserProfileCommentById = (state, pk) =>
   state.userProfile.commentsById[pk];
 export const getUserProfileUsername = state => state.userProfile.username;

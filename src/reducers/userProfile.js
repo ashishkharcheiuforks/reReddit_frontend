@@ -12,12 +12,27 @@ const initialState = {
   error: null,
   username: null,
   commentsById: {},
-  commentsByPostId: {},
+  commentIdsByPostId: {},
   commentPostsById: {},
   allComments: [],
   karma: 0,
   cakeDay: null,
   profileView: "posts"
+};
+
+// The comments will be grouped by posts on the profile page
+// Here map a post id to a list of associated comment ids
+const setCommentIdsByPostId = commentsById => {
+  const commentIdsByPostId = {};
+
+  Object.entries(commentsById).forEach(entry => {
+    if (commentIdsByPostId[entry[1].post] === undefined) {
+      commentIdsByPostId[entry[1].post] = [parseInt(entry[0])];
+    } else {
+      commentIdsByPostId[entry[1].post].push(parseInt(entry[0]));
+    }
+  });
+  return commentIdsByPostId;
 };
 
 const userProfile = (state = initialState, action) => {
@@ -35,6 +50,9 @@ const userProfile = (state = initialState, action) => {
         karma: action.data.karma,
         cakeDay: dateFnsFormat(action.data.cake_day, "MMMM Do"),
         commentsById: action.data.normalizedCommentData.entities.comments,
+        commentIdsByPostId: setCommentIdsByPostId(
+          action.data.normalizedCommentData.entities.comments
+        ),
         allComments: action.data.normalizedCommentData.results,
         commentPostsById: action.data.normalizedCommentData.entities.posts,
         loading: false,
@@ -57,6 +75,8 @@ const userProfile = (state = initialState, action) => {
 };
 
 export const getUserProfileAllComments = state => state.userProfile.allComments;
+export const getUserProfileCommentIdsByPostId = state =>
+  state.userProfile.commentIdsByPostId;
 export const getUserProfileCommentById = (state, pk) =>
   state.userProfile.commentsById[pk];
 export const getUserProfileUsername = state => state.userProfile.username;

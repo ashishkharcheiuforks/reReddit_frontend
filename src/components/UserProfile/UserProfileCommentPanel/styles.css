@@ -1,7 +1,7 @@
 div.up-comment-post-panel {
   display: flex;
   flex-direction: column;
-  min-width: 100%;
+  width: 100%;
   color: #cccccc;
   margin-bottom: 0.3rem;
   background-color: #1a1a1a;
@@ -20,26 +20,28 @@ div.up-comment-post-panel > div.up-post-panel {
 div.up-comment-post-panel > div.up-post-panel:hover {
   border: 1px solid white;
 }
-div.up-comment-post-panel > div.up-post-panel > .up-comment-icon {
+div.up-comment-post-panel > div.up-post-panel .up-comment-icon {
   margin-right: 1rem;
   margin-left: 1rem;
+  min-width: 3rem;
 }
-div.up-comment-post-panel > div.up-post-panel > .up-postline-username {
+div.up-comment-post-panel > div.up-post-panel .up-postline-username {
   margin-right: 0.6rem;
 }
-div.up-comment-post-panel > div.up-post-panel > .up-commented-on {
+div.up-comment-post-panel > div.up-post-panel .up-commented-on {
   margin-right: 0.6rem;
   color: #818384;
 }
-div.up-comment-post-panel > div.up-post-panel > .up-postline-dot {
-  font-size: 120%;
+div.up-comment-post-panel
+  > div.up-post-panel
+  .up-postline-posted-by
+  > .up-postline-username-link {
   margin-right: 0.6rem;
   margin-left: 0.6rem;
 }
-div.up-comment-post-panel
-  > div.up-post-panel
-  > .up-postline-posted-by
-  > .up-postline-username-link {
+
+span.up-dot {
+  font-size: 120%;
   margin-right: 0.6rem;
   margin-left: 0.6rem;
 }
@@ -59,4 +61,25 @@ div.up-comment-post-panel div.up-comment-panel:hover {
 }
 div.up-comment-panel:hover + div.up-comment-panel {
   border-top: 0;
+}
+div.up-comment-post-panel > div.up-comment-panel > div.up-comment-title-line {
+  font-size: 85%;
+  padding-top: 0.5rem;
+  padding-bottom: 0.5rem;
+}
+div.up-comment-post-panel
+  > div.up-comment-panel
+  > div.up-comment-title-line
+  > span.up-ctl-points {
+  padding-left: 0.6rem;
+  color: #818384;
+}
+div.up-comment-post-panel
+  > div.up-comment-panel
+  > div.up-comment-title-line
+  > span.up-ctl-created {
+  color: #818384;
+}
+div.up-comment-post-panel > div.up-comment-panel > div.up-comment-body {
+  margin-bottom: 1rem;
 }

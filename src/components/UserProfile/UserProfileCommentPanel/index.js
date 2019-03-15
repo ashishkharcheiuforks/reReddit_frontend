@@ -2,6 +2,7 @@ import React from "react";
 import PropTypes from "prop-types";
 import { FaRegCommentAlt } from "react-icons/fa";
 import { Link } from "react-router-dom";
+import { withRouter } from "react-router";
 
 import {
   POST_DETAIL_URL,
@@ -12,6 +13,17 @@ import "./styles.css";
 
 const UserProfileCommentPanel = props => {
   const { commentList, postInfo, username } = props;
+
+  const onPostPanelClick = e => {
+    const {
+      postInfo: { subreddit_title, pk },
+      history
+    } = props;
+
+    if (e.target instanceof HTMLDivElement) {
+      history.push(POST_DETAIL_URL(subreddit_title, pk));
+    }
+  };
 
   const comments = commentList.map(comment => (
     <div className="up-comment-panel" key={comment.pk}>
@@ -32,7 +44,7 @@ const UserProfileCommentPanel = props => {
 
   return (
     <div className="up-comment-post-panel">
-      <div className="up-post-panel">
+      <div className="up-post-panel" onClick={onPostPanelClick}>
         <FaRegCommentAlt className="up-comment-icon" />
         <div className="up-post-panel-text">
           <span className="up-postline-username">{username}</span>
@@ -92,4 +104,4 @@ UserProfileCommentPanel.propTypes = {
   }),
   username: PropTypes.string
 };
-export default UserProfileCommentPanel;
+export default withRouter(UserProfileCommentPanel);

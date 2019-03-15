@@ -24,4 +24,9 @@ const CommentList = props => {
   return <>{commentList}</>;
 };
 
+CommentList.propTypes = {
+  allCommentPosts: PropTypes.arrayOf(PropTypes.number),
+  loading: PropTypes.bool
+};
+
 export default CommentList;
